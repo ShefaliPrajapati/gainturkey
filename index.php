@@ -1,257 +1,197 @@
 <?php
-error_reporting(1);
-if (!session_id()) {
-    session_start();
+/*
+ *---------------------------------------------------------------
+ * APPLICATION ENVIRONMENT
+ *---------------------------------------------------------------
+ *
+ * You can load different configurations depending on your
+ * current environment. Setting the environment also influences
+ * things like logging and error reporting.
+ *
+ * This can be set to anything, but default usage is:
+ *
+ *     development
+ *     testing
+ *     production
+ *
+ * NOTE: If you change these, also change the error_reporting() code below
+ *
+ */
+/*
+ *---------------------------------------------------------------
+ * ERROR REPORTING
+ *---------------------------------------------------------------
+ *
+ * Different environments will require different levels of error reporting.
+ * By default development will show errors but testing and live will hide them.
+ */
+
+	
+if (defined('ENVIRONMENT'))
+{
+	switch (ENVIRONMENT)
+	{
+		case 'development':
+			error_reporting(E_ALL);
+		break;
+	
+		case 'testing':
+		case 'production':
+			error_reporting(0);
+		break;
+
+        default:
+            exit('The application environment is not set correctly.');
+    }
 }
 
-    function url()
-    {
-        if (isset($_SERVER['HTTPS'])) {
-            $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
-        } else {
-            $protocol = 'http';
-        }
+/*
+ *---------------------------------------------------------------
+ * SYSTEM FOLDER NAME
+ *---------------------------------------------------------------
+ *
+ * This variable must contain the name of your "system" folder.
+ * Include the path if the folder is not in the same  directory
+ * as this file.
+ *
+ */
+    $system_path = 'system';
 
-        return $protocol . "://" . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+/*
+ *---------------------------------------------------------------
+ * APPLICATION FOLDER NAME
+ *---------------------------------------------------------------
+ *
+ * If you want this front controller to use a different "application"
+ * folder then the default one you can set its name here. The folder
+ * can also be renamed or relocated anywhere on your server.  If
+ * you do, use a full server path. For more info please see the user guide:
+ * http://codeigniter.com/user_guide/general/managing_apps.html
+ *
+ * NO TRAILING SLASH!
+ *
+ */
+    $application_folder = 'application';
+
+/*
+ * --------------------------------------------------------------------
+ * DEFAULT CONTROLLER
+ * --------------------------------------------------------------------
+ *
+ * Normally you will set your default controller in the routes.php file.
+ * You can, however, force a custom routing by hard-coding a
+ * specific controller class/function here.  For most applications, you
+ * WILL NOT set your routing here, but it's an option for those
+ * special instances where you might want to override the standard
+ * routing in a specific front controller that shares a common CI installation.
+ *
+ * IMPORTANT:  If you set the routing here, NO OTHER controller will be
+ * callable. In essence, this preference limits your application to ONE
+ * specific controller.  Leave the function name blank if you need
+ * to call functions dynamically via the URI.
+ *
+ * Un-comment the $routing array below to use this feature
+ *
+ */
+    // The directory name, relative to the "controllers" folder.  Leave blank
+    // if your controller is not in a sub-folder within the "controllers" folder
+    // $routing['directory'] = '';
+
+    // The controller class file name.  Example:  Mycontroller
+    // $routing['controller'] = '';
+
+    // The controller function you wish to be called.
+    // $routing['function']	= '';
+
+
+/*
+ * -------------------------------------------------------------------
+ *  CUSTOM CONFIG VALUES
+ * -------------------------------------------------------------------
+ *
+ * The $assign_to_config array below will be passed dynamically to the
+ * config class when initialized. This allows you to set custom config
+ * items or override any default config values found in the config.php file.
+ * This can be handy as it permits you to share one application between
+ * multiple front controller files, with each file containing different
+ * config values.
+ *
+ * Un-comment the $assign_to_config array below to use this feature
+ *
+ */
+    // $assign_to_config['name_of_config_item'] = 'value of config item';
+
+
+
+// --------------------------------------------------------------------
+// END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
+// --------------------------------------------------------------------
+
+/*
+ * ---------------------------------------------------------------
+ *  Resolve the system path for increased reliability
+ * ---------------------------------------------------------------
+ */
+
+    // Set the current directory correctly for CLI requests
+    if (defined('STDIN')) {
+        chdir(dirname(__FILE__));
     }
 
-    $urlProperty = url().'property/';
+    if (realpath($system_path) !== false) {
+        $system_path = realpath($system_path).'/';
+    }
 
-?>
-<!doctype html>
-<html lang="en">
+    // ensure there's a trailing slash
+    $system_path = rtrim($system_path, '/').'/';
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <link rel="stylesheet" href="css/bliss-slider.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Gain</title>
+    // Is the system path correct?
+    if (! is_dir($system_path)) {
+        exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
+    }
 
-</head>
+/*
+ * -------------------------------------------------------------------
+ *  Now that we know the path, set the main path constants
+ * -------------------------------------------------------------------
+ */
+    // The name of THIS file
+    define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
-<body>
+    // The PHP file extension
+    // this global constant is deprecated.
+    define('EXT', '.php');
 
-    <div class="top_nav">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-            <div class="container">
-                <a class="navbar-brand" href="<?php echo url(); ?>">
-          <img src="images/logo.png" alt="logo">
-        </a>
-                <button class="navbar-toggler right_bt" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $urlProperty.'pages/about-us'; ?>">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Misson</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $urlProperty; ?>">Properties</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $urlProperty.'contact'; ?>">Contact Us</a>
-                        </li>
-                        <?php
-                        if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
-                            <li class="nav-item bt_box">
-                                <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Logout</a>
-                            </li>
-                        <?php } else {
-                            ?>
-                            <li class="nav-item bt_box">
-                                <a class="nav-link" href="<?php echo $urlProperty.'signup'; ?>">Sign up</a>
-                            </li>
-                            <li class="nav-item bt_box">
-                                <a class="nav-link" href="<?php echo $urlProperty.'signin'; ?>">Login</a>
-                            </li>
-                         <?php } ?>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+    // Path to the system folder
+    define('BASEPATH', str_replace("\\", "/", $system_path));
 
-    <div class="clearfix"></div>
-    <div class="banner_slider">
-        <div id="slider" class="slider-container">
-            <ul class="slider">
-                <li class="slide">
-                    <div class="slide-bg">
-                        <img src="images/banner.jpg" alt="An Image" draggable="false">
-                    </div>
-                    <div class="slide-content">
-                        <p>We help clients build true freedom<br> and sustainable wealth using real estate as the vehicle.</p>
-                        <h2>Let us help you Grow your GAIN.<br> Gross Assets Income and Net Worth</h2>
-                        <a href="#">Explore Now</a>
-                    </div>
-                </li>
-                <li class="slide">
-                    <div class="slide-bg">
-                        <img src="images/banner2.jpg" alt="An Image" draggable="false">
-                    </div>
-                    <div class="slide-content">
-                        <p>We help clients build true freedom<br> and sustainable wealth using real estate as the vehicle.</p>
-                        <h2>Let us help you Grow your GAIN.<br> Gross Assets Income and Net Worth</h2>
-                        <a href="#">Explore Now</a>
-                    </div>
-                </li>
-                <li class="slide">
-                    <div class="slide-bg">
-                        <img src="images/banner3.jpg" alt="An Image" draggable="false">
-                    </div>
-                    <div class="slide-content">
-                        <p>We help clients build true freedom<br> and sustainable wealth using real estate as the vehicle.</p>
-                        <h2>Let us help you Grow your GAIN.<br> Gross Assets Income and Net Worth</h2>
-                        <a href="#">Explore Now</a>
-                    </div>
-                </li>
-                <li class="slide">
-                    <div class="slide-bg">
-                        <img src="images/banner4.jpg" alt="An Image" draggable="false">
-                    </div>
-                    <div class="slide-content">
-                        <p>We help clients build true freedom<br> and sustainable wealth using real estate as the vehicle.</p>
-                        <h2>Let us help you Grow your GAIN.<br> Gross Assets Income and Net Worth</h2>
-                        <a href="#">Explore Now</a>
-                    </div>
-                </li>
-            </ul>
-            <div class="slider-controls">
-                <div class="slide-nav">
-                    <!--  <a href="#" class="prev">Prev</a>
-        <a href="#" class="next">Next</a> -->
-                </div>
-                <ul class="slide-list">
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="main_sec">
-        <div class="container">
-            <div class="wlelcome_text">
-                <h2>Welcome to GAIN CONSULTING</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
-                    more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum Aldus PageMaker including versions of Lorem Ipsum..</p>
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <section class="wlelcome_sec">
-        <div class="wlelcome_imag">
-            <img src="images/well.jpg" alt="">
-        </div>
-        <div class="Welcome_rghte1">
-            <div class="container">
-                <div class="Welcome_rghte">
-                    <h2>Welcome to GAIN CONSULTING</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                        specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                        passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum Aldus PageMaker including versions of Lorem Ipsum..</p>
-                    <a href="#">Read more</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="clearfix"></div>
-    <section class="Properties_sec">
-        <div class="container">
-            <div class="Properties_box">
-                <div class="Properties_box2">
-                    <div class="Left_side">
-                        <img src="images/left.jpg" alt="">                    </div>
-                    <div class="center-text">
-                        <h2>Lorem Ipsum is simply dummy text</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                            specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised .</p>                    </div>
-                    <div class="right_side">
-                        <img src="images/right.jpg" alt="">
-                    </div>
-                </div>
-                <a href="#">View Our Turnkey Properties Here</a>
-            </div>
-        </div>
-    </section>
-    <div class="clearfix"></div>
-    <footer class="footer_sec">
-        <div class="container">
-            <div class="footer_log">
-                <img src="images/logo.png" alt="logo">
-            </div>
+    // Path to the front controller (this file)
+    define('FCPATH', str_replace(SELF, '', __FILE__));
 
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="footer_box">
-                        <h2>address</h2>
-                        <ul>
-                            <li><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>4167 Jim Rosa Lane, Oakland, CA, California<br> United States Of Amrica.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="footer_box">
-                        <h2>Get in touch</h2>
-                        <ul>
-                            <li><span><i class="fa fa-phone" aria-hidden="true"></i></span> 877-372-2010</li>
-                            <li><span><i class="fa fa-envelope" aria-hidden="true"></i></span>info@gainturnkeyproperty.com</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="footer_box">
-                        <h2>Useful Links</h2>
-                        <ul>
-                            <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; About Us</a></li>
-                            <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Misson</a></li>
-                            <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Properties</a></li>
-                            <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                    <div class="footer_box">
-                        <img src="images/map.png" alt="map">
-                    </div>
-                </div>
-            </div>
-            <div class="privacy_policy">
-                <h2>Privacy Policy</h2>
-                <p>All properties advertised via Gain Consulting website are sold 'as is', without expressed or implied warranty. You may purchase a home warranty from a 3rd party. Any property you purchase is a transaction between you and the seller of
-                    that property and every property will differ in condition and financial performance. We strongly suggest that you conduct any due-dilligence needed before finalizing the transaction. Gain Consulting and it's related entities does not
-                    offer any guarantee regarding the specific performance of a property including it's return on investment or cap rate. As all real estate transactions pose some risk, we suggest you contact your on accounting, legal or other professional
-                    advisor regarding any questions you have including the suitability of a specific transaction.</p>
-            </div>
-            <div class="copy_right">
-                © 2019 - Gain Consulting
-            </div>
-        </div>
-    </footer>
+    // Name of the "system folder"
+    define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/bliss-slider.js"></script>
-    <script src="js/popper-min.js"></script>
-    <script src="js/bootstrap-min.js"></script>
-    <script type="text/javascript">
-        $(function() {
-          $("#slider").blissSlider({
-            auto: 1,
-                transitionTime: 500,
-                timeBetweenSlides: 4000
-          });
-        });
-    </script>
-</body>
-</html>
+
+    // The path to the "application" folder
+    if (is_dir($application_folder)) {
+        define('APPPATH', $application_folder.'/');
+    } else {
+        if (! is_dir(BASEPATH.$application_folder.'/')) {
+            exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
+        }
+
+        define('APPPATH', BASEPATH.$application_folder.'/');
+    }
+
+/*
+ * --------------------------------------------------------------------
+ * LOAD THE BOOTSTRAP FILE
+ * --------------------------------------------------------------------
+ *
+ * And away we go...
+ *
+ */
+require_once BASEPATH.'core/CodeIgniter.php';
+
+/* End of file index.php */
+/* Location: ./index.php */
