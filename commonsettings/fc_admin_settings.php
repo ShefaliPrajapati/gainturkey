@@ -1,8 +1,8 @@
 <?php 
 $config['id'] = '1'; 
-$config['site_contact_mail'] = 'info@returonrentals.com'; 
+$config['site_contact_mail'] = 'info@gainturnkeyproperty.com';
 $config['site_contact_number'] = '877-372-2010'; 
-$config['email_title'] = 'ReturnRentalAdmin'; 
+$config['email_title'] = 'Gain Turkey Admin';
 $config['google_verification'] = '<meta name=\'google-site-verification\' content=\'uvDBJtHtyZfvfv_a0LuyJeXOMTZqGzi4bXTSGfKodGc\' />'; 
 $config['google_verification_code'] = '<script type=\"text/javascript\">
   var _gaq = _gaq || [];
@@ -23,7 +23,7 @@ $config['rss_link'] = '';
 $config['youtube_link'] = ''; 
 $config['footer_content'] = ''; 
 $config['logo_image'] = 'logo.png'; 
-$config['meta_title'] = 'Return On Rentals'; 
+$config['meta_title'] = 'Gain Turkey';
 $config['meta_keyword'] = 'turnkey, rentals, income property, real estate solutions, home, design, people helping people '; 
 $config['meta_description'] = 'Real Estate Solutions | Turn Key Real Estate | Home | Design | People Helping People'; 
 $config['fevicon_image'] = 'logo1.png'; 
@@ -54,8 +54,8 @@ $config['booking_code'] = '1234';
 $config['map_option'] = '1'; 
 $config['created'] = '2013-07-17'; 
 $config['modified'] = '2018-07-23'; 
-$config['admin_name'] = 'ReturnRentalAdmin'; 
-$config['email'] = 'info@returnonrentals.com'; 
+$config['admin_name'] = 'GainTurkeyAdmin';
+$config['email'] = 'info@gainturnkeyproperty.com';
 $config['admin_type'] = 'super'; 
 $config['privileges'] = 'a:10:{s:5:\"users\";a:4:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"3\";}s:8:\"category\";a:4:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"3\";}s:11:\"subcategory\";a:4:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"3\";}s:7:\"product\";a:4:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"3\";}s:6:\"slider\";a:4:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"3\";}s:5:\"video\";a:4:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"3\";}s:3:\"cms\";a:4:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"3\";}s:5:\"order\";a:4:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"3\";}s:10:\"statistics\";a:4:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"3\";}s:10:\"newsletter\";a:4:{i:0;s:1:\"0\";i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"3\";}}'; 
 $config['crm_privileges'] = ''; 

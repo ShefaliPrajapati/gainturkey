@@ -22,17 +22,13 @@
                 var baseURL = '<?php echo base_url(); ?>';
                 var BaseURL = '<?php echo base_url(); ?>';
             </script>
-
-            <link rel="stylesheet" type="text/css" href="css/site/master.css"/>
-            <link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
-                <link rel="stylesheet" href="css/site/banner_style.css" type="text/css" media="all"/>
-                <link rel="stylesheet" href="css/developer.css" type="text/css" media="all"/>
-                <script src="js/site/jquery-1.7.1.min.js"></script> 
-
-
-                <script type="text/javascript">
-
-
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/site/master.css"/>
+        <link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/site/banner_style.css" type="text/css" media="all"/>
+        <link rel="stylesheet" href="css/developer.css" type="text/css" media="all"/>
+        <script src="js/site/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript">
                 /*** 
                  Simple jQuery Slideshow Script
                  Released by Jon Raasch (jonraasch.com) under FreeBSD license: free to use or modify, not responsible for anything, etc.  Please link out to me if you like it :)
@@ -156,13 +152,13 @@
                     </script>
 
                 <?php } ?>
-                <!--Popup-->
-                <link rel="stylesheet" href="css/site/popup.css" type="text/css" media="all"/>
-                <!-- End pop up-->
+            <!--Popup-->
+            <link rel="stylesheet" href="css/site/popup.css" type="text/css" media="all"/>
+            <!-- End pop up-->
 
                 <script src="js/site/jquery.colorbox.js"></script>
                 <link rel="stylesheet" type="text/css" media="all" href="css/site/colorbox.css" />
-                </head>
+         </head>
 
                 <body>
                     <?php
@@ -415,16 +411,16 @@
                                                 echo 'class="menu_act"';
                                             }
                                             ?>>News</a></li>-->
-                                        <li><a href="<?php echo base_url(); ?>pages/about-us" <?php
-                                            if ($menuActive == 'about-us') {
-                                                echo 'class="menu_act"';
-                                            }
-                                            ?>>About Us  </a></li>
-                                        <li><a href="<?php echo base_url(contact); ?>" <?php
-                                            if ($menuActive == 'contact') {
-                                                echo 'class="menu_act"';
-                                            }
-                                            ?> >Contact Us </a></li>
+<!--                                        <li><a href="--><?php //echo base_url(); ?><!--pages/about-us" --><?php
+//                                            if ($menuActive == 'about-us') {
+//                                                echo 'class="menu_act"';
+//                                            }
+//                                            ?><!--About Us  </a></li>-->
+<!--                                        <li><a href="--><?php //echo base_url(contact); ?><!--" --><?php
+//                                            if ($menuActive == 'contact') {
+//                                                echo 'class="menu_act"';
+//                                            }
+//                                            ?><!-- >Contact Us </a></li>-->
 
                                     </ul>
 

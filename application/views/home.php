@@ -51,9 +51,6 @@ $urlProperty = base_url();
                         <a class="nav-link" href="<?php echo $urlProperty.'pages/about-us'; ?>">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Misson</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="<?php echo $urlProperty.'listing/viewall'; ?>">Properties</a>
                     </li>
                     <li class="nav-item">
@@ -68,9 +65,6 @@ $urlProperty = base_url();
                         ?>
                         <li class="nav-item bt_box">
                             <a class="nav-link" href="<?php echo $urlProperty.'signup'; ?>">Sign up</a>
-                        </li>
-                        <li class="nav-item bt_box">
-                            <a class="nav-link" href="<?php echo $urlProperty.'signin'; ?>">Login</a>
                         </li>
                     <?php } ?>
                 </ul>
@@ -214,10 +208,10 @@ $urlProperty = base_url();
                 <div class="footer_box">
                     <h2>Useful Links</h2>
                     <ul>
-                        <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; About Us</a></li>
+                        <li><a href="<?php echo $urlProperty.'pages/about-us'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; About Us</a></li>
                         <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Misson</a></li>
-                        <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Properties</a></li>
-                        <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Contact Us</a></li>
+                        <li><a href="<?php echo $urlProperty.'listing/viewall'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Properties</a></li>
+                        <li><a href="<?php echo $urlProperty.'contact'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Contact Us</a></li>
                     </ul>
                 </div>
             </div>

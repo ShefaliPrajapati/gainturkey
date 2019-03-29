@@ -1,41 +1,44 @@
 <?php 
-$this->load->view('site/templates/header');
+$this->load->view('site/templates/new_header');
 ?>
-<div class="listing_content" style="margin:20px 0 15px 0px;">
-		<div class="freemember">
-        <h2>Login</h2>
-        						
+<style>
+    .form-group span {
+        color: red;
+    }
+</style>
+<div class="main_sec">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 text-center">
+                <h2>Login</h2>
+            </div>
+            <div class="col col-lg-4">
                                <?php echo form_open('site/user/signin_login_user',array('id'=>'loginForm')); ?>
-                                
-                                <div class="field_signin">
+                                <div class="form-group">
                                 	<label>Email Address<span>*</span></label>
-                                     <input type="text" name="email" id="email_address" class="scroll_5 required email">
-                              		<div id="email_address_warn"  style="float:left; color:#FF0000;"></div>
+                                     <input type="text" name="email" id="email_address" class="scroll_5 form-control required email">
+                              		<div id="email_address_warn"  style="color:#FF0000;"></div>
                                 </div>
-                                <div class="field_signin">
+                                <div class="form-group">
                                 	<label>Password<span>*</span></label>
-                                  <input type="password" name="password" id="password_signin" class="scroll_5 required" size="32">
-                         <div id="password_signin_warn"  style="float:left; color:#FF0000;"></div>
+                                  <input type="password" name="password" id="password_signin" class="scroll_5 form-control required" size="32">
+                         <div id="password_signin_warn"  style="color:#FF0000;"></div>
                                 </div>
-                                <div class="field_signin">
-                                	<label  class="left"><span class="left">* Required Fields</span></label>
-                                </div>
-                                <div class="field_signin">
+                                <div class="form-group">
                                 	<label class="left"><?php echo anchor(base_url('forgot-password'),'Forgot Your Password?',array('class'=>'')); ?></label>
                                     <!--<label class="left"><?php echo 'Need An Account '; echo '<a href="'.base_url(signup).'">Click Here</a>'; ?></label>-->
                                 </div>
                                 
-                                <div class="field_signin">
+                                <div class="form-group">
                            
-                                         <input type="submit" name="signin" id="signin" class="member_btn" value="SUBMIT" style="border:none; margin:0px;" />
+                                         <input type="submit" name="signin" id="signin" class="member_btn btn btn-primary" value="SUBMIT" style="border:none; margin:0px;" />
                                     
                                 </div>
                                   <?php echo form_close(); ?> 
         
+            </div>
         </div>
-
-
-<!----------listing end content-------------->
+    </div>
 </div>
 <div class="clear"></div>
 <script type="text/javascript">
@@ -84,6 +87,6 @@ function removeError(idval){
 
 
 <?php 
-$this->load->view('site/templates/footer');
+$this->load->view('site/templates/new_footer');
 ?>
 

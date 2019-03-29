@@ -1,60 +1,60 @@
 <?php
-$this->load->view('site/templates/header');
+$this->load->view('site/templates/new_header');
 ?>
 <!----------listing content------------------>
-<div class="listing_content" style="margin:20px 0 15px 0px;">
-    <?php echo form_open('site/product/add_review', array('id' => 'SignupForm')); ?>
-    <div class="freemember">
-        <h2>Keep in touch with us</h2>
-        <div class="field_login">
-            <label>First Name<span>*</span></label>
-            <input type="text" class="scroll_5 required" name="firstname" id="firstname" />
-            <div id="firstname_warn"  style="float:left; color:#FF0000;"></div>
-        </div>
-        <div class="field_login">
-            <label>Last Name<span>*</span></label>
-            <input type="text"  class="scroll_5 required" name="lastname" id="lastname" />
-            <div id="lastname_warn"  style="float:left; color:#FF0000;"></div>
-        </div>
-        <div class="field_login">
-            <label>Email Address<span>*</span></label>
-            <input type="text"  class="scroll_5 required email" name="email" id="email"/>
-            <div id="email_warn"  style="float:left; color:#FF0000;"></div>
-        </div>
-        <div class="field_login">
-            <label>Comments<span>*</span></label>
-
-            <textarea class="scroll_5 required" name="message" id="message" style="height:80px;"></textarea>
-            <div id="message_warn"  style="float:left; color:#FF0000;"></div>
-        </div>
-        <div class="field_login">
-            <label style="height:30px;">Enter the text given below<span>*</span>
-
-                <div class="code_full">
-                    <div class="field_login">
-                        <div style="border: 1px solid #CCCCCC;color: #000000; float: left; font-size: 3em;font-style: oblique;font-weight: bold; height: 2em; line-height: 2em;text-align: center; text-decoration: line-through; width: 99%;">
-                            <?php $random_values = substr(number_format(time() * rand(), 0, '', ''), 0, 7); ?>
-                            <span style="color: #990000;float: left; text-align:left; text-decoration: line-through; transform: rotate(-12deg); font-size:15px;"><?php echo $random_values; ?></span></div>
-                        <input type="hidden" name="captcha_original" id="captcha_original" value="<?php echo $random_values; ?>" />
-                    </div>
-                    <!--<img src="images/site/fi.jpg" style="margin-bottom:5px;" />-->
+<div class="main_sec">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 text-center">
+                <h2 class="text-center">Keep in touch with us</h2>
+            </div>
+            <div class="col col-lg-5">
+                <?php echo form_open('site/product/add_review', array('id' => 'SignupForm', 'class' => 'form')); ?>
+                <div class="form-group ">
+                    <label>First Name<span>*</span></label>
+                    <input type="text" class="scroll_5 required form-control" name="firstname" id="firstname" />
+                    <div id="firstname_warn"  style="color:#FF0000;"></div>
                 </div>
-            </label>
-            <input type="text" name="captcha_value" id="captcha_value" class="scroll_5 required" value="" equalto="#captcha_original" >
-            <div id="captcha_value_warn"  style="float:left; color:#FF0000;"></div>
+                <div class="form-group">
+                    <label>Last Name<span>*</span></label>
+                    <input type="text"  class="scroll_5 required form-control" name="lastname" id="lastname" />
+                    <div id="lastname_warn"  style="color:#FF0000;"></div>
+                </div>
+                <div class="form-group">
+                    <label>Email Address<span>*</span></label>
+                    <input type="text"  class="scroll_5 required form-control email" name="email" id="email"/>
+                    <div id="email_warn"  style="color:#FF0000;"></div>
+                </div>
+                <div class="form-group">
+                    <label>Comments<span>*</span></label>
+                    <textarea class="scroll_5 required form-control" name="message" id="message" style="height:80px;"></textarea>
+                    <div id="message_warn"  style="color:#FF0000;"></div>
+                </div>
+                <div class="form-group">
+                    <label>Enter the text given below<span>*</span></label>
+                    <input type="text" name="captcha_value" id="captcha_value" class="form-control scroll_5 required" value="" equalto="#captcha_original" >
+
+                </div>
+                <div class="form-group">
+                    <div style="border: 1px solid #CCCCCC;color: #000000; float: left; font-size: 2em;font-style: oblique;font-weight: bold; height: 2em; line-height: 2em;text-align: center; width: 100%;">
+                        <?php $random_values = substr(number_format(time() * rand(), 0, '', ''), 0, 7); ?>
+                        <span style="color: #99080f;float: left; text-align:left; text-decoration: line-through; transform: rotate(-11deg); font-size:25px;"><?php echo $random_values; ?></span></div>
+                    <input type="hidden" name="captcha_original" id="captcha_original" value="<?php echo $random_values; ?>" />
+                    <div id="captcha_value_warn"  style="float:right; color:#FF0000;"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" name="signin" id="signin" class="member_btn btn btn-md btn-primary" value="SUBMIT"/>
+                </div>
+                <?php echo form_close(); ?>
+                <div class="clear"></div>
+
+                <!----------listing end content-------------->
+            </div>
         </div>
-        <div class="field_login">
-
-            <input type="submit" name="signin" id="signin" class="member_btn" value="SUBMIT"  style="border:none;" />
-
-        </div>
-
     </div>
-    <?php echo form_close(); ?> 
-    <div class="clear"></div>
-
-    <!----------listing end content-------------->
 </div>
+
 <script type="text/javascript">
     $(function () {
         $("#SignupForm").submit(function () {
@@ -116,7 +116,6 @@ $this->load->view('site/templates/header');
     }
 </script>
 
-
 <?php
-$this->load->view('site/templates/footer');
+$this->load->view('site/templates/new_footer');
 ?>

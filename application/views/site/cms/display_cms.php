@@ -1,8 +1,10 @@
 <?php
-$this->load->view('site/templates/header');
+$this->load->view('site/templates/new_header');
 ?>
 <!----------listing content------------------>
-<div class="listing_content" style="margin:20px 0 15px 0px;">
+<div class="main_sec">
+    <div class="container">
+        <div class="wlelcome_text">
 		<?php 
             	if ($pageDetails->num_rows()>0){ ?><div class="cms_view">
        
@@ -14,9 +16,9 @@ $this->load->view('site/templates/header');
                              
         
         </div>
-<?php } ?>   
-
-<!----------listing end content-------------->
+<?php } ?>
+        </div>
+    </div>
 </div>
 <div class="clear"></div>
 <!--
@@ -47,5 +49,5 @@ $(el[0]).show();
 
 
 <?php
-$this->load->view('site/templates/footer');
+$this->load->view('site/templates/new_footer');
 ?>
