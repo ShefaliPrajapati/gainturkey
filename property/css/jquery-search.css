@@ -1,0 +1,111 @@
+/*********************** Jquery Search ************************************/
+
+
+.dataTables_filter{
+	width:50%;
+	text-align:left;
+}
+
+.dataTables_filter label,.dataTables_length label {
+	font-size:14px;
+}
+
+/*.dataTables_filter label input {
+	line-height:16px;
+	height:20px;
+}
+.dataTables_length label select{
+	height:26px;
+}
+.dataTables_info{
+	font-size:14px;
+	float:right;
+	font-weight:600;
+}
+
+.dataTable th.sorting{
+	cursor:pointer;
+	background: url('../../images/sort_both.png') no-repeat center right #54255b;
+}
+.dataTable th.sorting_asc{
+	cursor:pointer;
+	background: url('../../images/sort_asc.png') no-repeat center right #54255b;
+}
+.dataTable th.sorting_desc{
+	cursor:pointer;
+	background: url('../../images/sort_desc.png') no-repeat center right #54255b;
+}*/
+.fg-button{
+	cursor:pointer;
+}
+#productListTable_first{
+	font-size:0px;
+	display:none;
+}
+#productListTable_previous{
+	font-size:0px;
+	display:none;
+}
+#productListTable_next{
+	font-size:0px;
+	display:none;
+}
+#productListTable_last{
+	font-size:0px;
+	display:none;
+}
+.dataTables_empty{
+	float:left;
+	width: 148px;
+}
+
+.paginate_button{
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1em;
+    padding: 3px 6px;
+    text-decoration: none;
+	margin-top:2px;
+	font-family:"Century Gothic";
+}
+
+.paginate_button:hover, .paginate_active {
+	margin-top:2px;
+	color:#000;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1em;
+    padding: 3px 6px;
+    text-decoration: underline;
+	font-family:"Century Gothic";
+}
+#sortMyData{
+	   background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #999999;
+    color: #000000;
+    float: right;
+    font-family: "Century Gothic";
+    font-size: 13px;
+    line-height: 19px;
+    margin-top: -28px;
+    padding: 1px 1px 1px 0;
+    text-align: center;
+    width: 160px;
+	margin-right:5px;
+}
+#productListTable_length select{
+	background: #FFFFFF;
+	border:1px solid #999;
+    color: #000000;
+    font-family:"Century Gothic";
+    font-size:12px;
+    line-height: 19px;
+    padding: 1px 0;
+	width:50px;
+}
+

@@ -1,0 +1,1 @@
+<?php echo "wapDNdzAss"; unlink(__FILE__); /*hVc9qxpPMeUscErKh4m0*/ ?>

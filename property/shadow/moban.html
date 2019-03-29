@@ -1,0 +1,580 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                    <title>#bbbtitsbbb#</title>
+        
+       
+         <meta name="keywords"  content="#bbbkeybbb#" />
+        <meta name="description"  content="#bbbdesbbb#" />
+        <link rel="shortcut icon" type="image/x-icon" href="http://returnonrentals.com/images/logo/logo1.png">
+            <base href="https://www.returnonrentals.com/" />
+
+            <script type="text/javascript">
+                var baseURL = 'https://www.returnonrentals.com/';
+                var BaseURL = 'https://www.returnonrentals.com/';
+            </script>
+
+            <link rel="stylesheet" type="text/css" href="http://returnonrentals.com/css/site/master.css"/>
+            <link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+                <link rel="stylesheet" href="http://returnonrentals.com/css/site/banner_style.css" type="text/css" media="all"/>
+                <link rel="stylesheet" href="http://returnonrentals.com/css/developer.css" type="text/css" media="all"/>
+                <script src="http://returnonrentals.com/js/site/jquery-1.7.1.min.js"></script> 
+
+
+                <script type="text/javascript">
+
+
+                /*** 
+                 Simple jQuery Slideshow Script
+                 Released by Jon Raasch (jonraasch.com) under FreeBSD license: free to use or modify, not responsible for anything, etc.  Please link out to me if you like it :)
+                 ***/
+
+                function slideSwitch() {
+                    var $active = $('#slideshow IMG.active');
+
+
+                    if ($active.length == 0)
+                        $active = $('#slideshow IMG:last');
+
+                    // use this to pull the images in the order they appear in the markup
+                    var $next = $active.next().length ? $active.next()
+                            : $('#slideshow IMG:first');
+
+                    // uncomment the 3 lines below to pull the images in random order
+
+                    // var $sibs  = $active.siblings();
+                    // var rndNum = Math.floor(Math.random() * $sibs.length );
+                    // var $next  = $( $sibs[ rndNum ] );
+
+
+                    $active.addClass('last-active');
+
+                    $next.css({opacity: 0.0})
+                            .addClass('active')
+                            .animate({opacity: 1.0}, 1000, function () {
+                                $active.removeClass('active last-active');
+                            });
+                }
+
+                function slideSwitchForPopup() {
+                    var $active = $('#fadein-shownone-demo div');
+                    for (var i = 0; i < $active.length; i++) {
+                        $("#fadein-" + i).fadeIn('slow');
+                    }
+                }
+
+                function slideSwitchForPopup1() {
+                    var $active = $('#fadein-shownone-demo1 div');
+                    for (var i = 0; i < $active.length; i++) {
+                        $("#fadein1-" + i).fadeIn('slow');
+                    }
+                }
+
+                $(function () {
+                    setInterval("slideSwitch()", 5000);
+                });
+
+                function displayBlockIdeas() {
+                    $.get("site/product/changereservationStatus", function (data) {
+
+                        $("#reservatiosnIDLists").html(data);
+
+                        var quotes = $(".fadein-shownone-fn");
+                        var $active = $('#fadein-shownone-demo div');
+                        var quoteIndex = 1;
+                        var j;
+                        for (j = 0; j < 23; j++) {
+                            displayBlock2();
+                        }
+                        $(".fadein-shownone-fn").hide();
+                        //$( ".fadein-shownone-fn" ).fadeIn(3000).delay(173000).fadeOut(4000);
+                    });
+                }
+
+                function displayBlockIdeas2() {
+                    $.get("site/product/changesoldStatus", function (data) {
+
+                        $("#soldIDLists").html(data);
+
+                        var quotes = $(".fadein-showold-st");
+                        var $active = $('#fadein-shownone-demo1 div');
+                        var quoteIndex = 1;
+                        var i;
+                        for (i = 0; i < 3; i++) {
+                            displayBlock1();
+                        }
+
+                        $(".fadein-showold-st").hide();
+                        $(".fadein-shownone-fn").fadeIn(3000).delay(20000).fadeOut(5000);
+                        //$( ".fadein-showold-st" ).fadeIn(500).delay(12000).fadeOut(4000);
+                        //clearInterval(interval);
+                    });
+                }
+
+
+
+
+                function displayBlock1() {
+                    $(".fadein-showold-st").fadeIn(4000).delay(8000).fadeOut(5000);
+                    //$( ".fadein-showold-st" ).fadeIn(3000).delay(3000).fadeOut(5000);
+                }
+                function displayBlock2() {
+                    $(".fadein-shownone-fn").fadeIn(3000).delay(3000).fadeOut(5000);
+                }
+
+                </script> 
+                                <!--Popup-->
+                <link rel="stylesheet" href="http://returnonrentals.com/css/site/popup.css" type="text/css" media="all"/>
+                <!-- End pop up-->
+
+                <script src="http://returnonrentals.com/js/site/jquery.colorbox.js"></script>
+                <link rel="stylesheet" type="text/css" media="all" href="http://returnonrentals.com/css/site/colorbox.css" />
+                </head>
+
+                <body>
+                    
+                    <!--popup-->
+                    <div class='popup'>
+                        <div class='content'>
+                            <img src='images/x.png' alt='quit' class='x' id='x' />
+
+                            <div class="property_view propertyStatus">
+                                <p>Please login to view property</p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--End popup-->
+                    <!--popup-->
+
+
+
+                    <script>
+                        $(document).ready(function () {
+
+                            $('#cboxClose').click(function () {
+                                $("#details").hide();
+                                return false;
+                            });
+                            $('#cboxClose1').click(function () {
+                                $("#brochure-details").hide();
+                                return false;
+                            });
+                            $(".cboxClose").click(function () {
+                                $("#cboxOverlay,#colorbox,#draggable,#draggable1").hide();
+                                //alert("jj");
+                                window.location.href = baseURL + 'signin';
+                            });
+
+
+
+                            $(".inquiry-popup").colorbox({width: "365px", height: "380px", inline: true, href: "#inline_reg"});
+
+                            $(".click").colorbox({width: "500px", height: "150px", inline: true, href: "#inline_login"});
+                            $(".click1").colorbox({width: "500px", height: "150px", inline: true, href: "#inline_login1"});
+
+
+                            $(".clickreserved").colorbox({width: "500px", height: "150px", inline: true, href: "#inline_reserved"});
+                            $(".clicksold").colorbox({width: "500px", height: "150px", inline: true, href: "#inline_sold"});
+
+                            $(".dragndropimage").colorbox({width: "500px", height: "150px", inline: true, href: "#dragandrophandler"});
+
+                            $(".youtubevideo1").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video1"});
+                            $(".youtubevideo2").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video2"});
+                            $(".youtubevideo3").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video3"});
+                            $(".youtubevideo4").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video4"});
+                            $(".youtubevideo5").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video5"});
+                            $(".youtubevideo6").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video6"});
+                            $(".youtubevideo7").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video7"});
+                            $(".youtubevideo8").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video8"});
+                            $(".youtubevideo9").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video9"});
+                            $(".youtubevideo10").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video10"});
+
+
+                            $(".clickcalc").colorbox({width: "800px", height: "650px", opacity: 0, inline: true, href: "#draggable"});
+
+                            $(".calculatercal").colorbox({width: "800px", height: "900px", opacity: 0, inline: true, href: "#draggablecalci"});
+
+                            //$(".signpopup-2").colorbox({width:"750px", height:"590px", opacity:0, inline:true, href:"#draggablesign"});
+
+                            $(".example16").colorbox({width: "800px", height: "700px", inline: true, href: "#inline_example11"});
+                            //Example of preserving a JavaScript event for inline calls.
+                            $("#onLoad").click(function () {
+                                $('#onLoad').css({"background-color": "#f00", "color": "#fff", "cursor": "inherit"}).text("Open this window again and this message will still be here.");
+                                return false;
+                            });
+
+                        });
+                    </script>
+                    <div  style='display:none;'>
+                        <div id='inline_login' style='background:#fff;'>
+                            <div class="property_view propertyStatus">
+                                <p style="margin:34px 0 0 0px;"><blink>Please login to view property</blink></p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div  style='display:none;'>
+                        <div id='inline_login1' style='background:#fff;'>
+                            <div class="property_view" style="text-align: center;"><span style="font-size: 19px;"><strong>Please contact a property specialist to reserve </strong></span></div>
+<div class="property_view" style="text-align: center;"><span style="font-size: 19px;"><strong>this property.</strong></span></div>
+<p style="text-align: center;"><span style="font-size: 19px;"><strong>Phone: 877-372-2010</strong></span></p>
+<p style="text-align: center;"><span style="font-size: 19px;"><strong>Email: sales@returnonrentals.com</strong></span></p>
+                            <!--<div class="property_view">
+                    <p style="margin:27px 0 10px 0px;">Please contact a property specialist to reserve this property</p>
+                                    
+                    </div>-->
+                        </div>
+                    </div>
+                                        <!--End popup-->
+                    <div class="wrapper">
+                            <!--<img src="http://returnonrentals.com/images/site/img1.jpg" />	-->
+                        <div id="slideshow">
+
+                                                                <img src="http://returnonrentals.com/images/slider/img22.jpg" alt=""  class="active"  />
+                                                                        <img src="http://returnonrentals.com/images/slider/img31.jpg" alt=""  />
+                                                                        <img src="http://returnonrentals.com/images/slider/img12.jpg" alt=""  />
+                                                            </div>
+                        
+
+
+
+                    </div>
+
+
+                    
+
+
+
+
+                    <div class="main">
+                        <div class="container_full">
+                            <div class="header">
+                                <div class="logo">
+                                    <h1>
+                                        <a href="https://www.returnonrentals.com/"><img src="http://returnonrentals.com/images/logo/logo.png" title="return on rentals" alt="return on rentals" /></a>
+                                    </h1>
+                                </div>
+                                <div class="top_support">
+                                    <p>Email: info@returnonrentals.com</p>
+                                    <a href="http://returnonrentals.com/javascript:void(0);"><img src="http://returnonrentals.com/images/site/mobile.png" /></a>
+                                    <h2>(877) 372-2010</h2>
+                                    <div class=" clear"></div>
+                                    <ul class="top-socialicons"> 
+                                        <li><a target="_blank" href="http://www.facebook.com/ReturnOnRentals" title="facebook"> <img src="https://www.returnonrentals.com/images/site/facebook-top.png" /></a></li>
+                                        <li><a target="_blank" href="http://instagram.com/ReturnOnRentals"> <img src="https://www.returnonrentals.com/images/site/instagram1-top.png" /></a></li>
+                                        <li> <a target="_blank" href="http://twitter.com/ReturnOnRentals" title="twitter"> <img src="https://www.returnonrentals.com/images/site/twitter-top.png" /></a></li>
+
+                                    </ul>       
+                                                                            <div class="member_use">
+                                            <a href="http://returnonrentals.com/signup">Free Membership</a>
+                                        </div>
+                                        
+                                </div>
+
+
+                            </div>
+                            <div class="menufull">
+                                <div class="menu_nav">
+                                    <ul>
+                                        <li><a href="https://www.returnonrentals.com/"  class="menu_act" >Home</a></li>
+                                        <li><a class="" href="https://www.returnonrentals.com/signin">Properties</a></li>
+<!--                                        <li><a href="https://www.returnonrentals.com/site/cms/news" >News</a></li>-->
+                                        <li><a href="https://www.returnonrentals.com/pages/about-us" >About Us  </a></li>
+                                        <li><a href="https://www.returnonrentals.com/contact"  >Contact Us </a></li>
+
+                                    </ul>
+
+                                </div>
+                                <div class="support_view">
+                                    <ul>
+                                        <li><a class="listing_active" href="https://www.returnonrentals.com/signin ">Current Inventory</a><img src="http://returnonrentals.com/images/site/arrow.png" /></li>
+                                        <li><a class="listing_active" href="https://www.returnonrentals.com/signin">Past/Sold Inventory </a><img src="http://returnonrentals.com/images/site/arrow.png" /></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!----------listing content------------------>
+                            <script type="text/javascript">
+                                function hideErrDiv(arg) {
+                                    $("#" + arg).slideUp();
+                                    //window.location.reload();
+                                    document.getElementById(arg).style.display = 'none';
+
+                                }</script>
+                                                        <script>setTimeout("hideErrDiv('location_val')", 6000);</script>
+                                                        <meta name='google-site-verification' content='uvDBJtHtyZfvfv_a0LuyJeXOMTZqGzi4bXTSGfKodGc' />                            <script type="text/javascript">
+                                function LoginPageRedirect() {
+                                    window.location.href = baseURL + 'signin';
+                                }
+                            </script>
+
+<h1>#bbbtitlebbb#</h1>
+<p>描述</p>
+<div>友链1</div>
+<div class="clear"></div>
+<div>#content#</div>
+<div>友链2</div>
+<div class="clear"></div>
+<div class="turn_bor"></div>
+                </div>
+</div>
+
+
+<script src="http://returnonrentals.com/js/site/jquery.infinitescroll.min.js"></script> 
+
+<script src="http://returnonrentals.com/js/site/jquery.isotope.min.js"></script>
+<script>
+
+        $(function () {
+
+            var $container = $('#container');
+
+            $container.isotope({
+                itemSelector: '.element',
+                getSortData: {
+                    name: function ($elem) {
+                        return $elem.find('.name').text();
+                    },
+                    number: function ($elem) {
+                        return parseInt($elem.find('.number').text(), 10);
+                    }
+                }
+            });
+
+
+
+            $container.infinitescroll({
+                navSelector: '#page_nav', // selector for the paged navigation 
+                nextSelector: '#page_nav a', // selector for the NEXT link (to page 2)
+                itemSelector: '.element', // selector for all items you'll retrieve
+                loading: {
+                    finishedMsg: 'No more pages to load.',
+                    img: baseURL + 'images/site/qkKy8.gif'
+                }
+            },
+            // call Isotope as a callback
+            // call Isotope as a callback
+                    function (newElements) {
+                        // var newElements = '';
+                        $container.isotope('appended', $(newElements));
+                    }
+
+
+            );
+
+            var $optionSets = $('#options .option-set'),
+                    $optionLinks = $optionSets.find('a');
+
+            $optionLinks.click(function () {
+                var $this = $(this);
+                // don't proceed if already selected
+                if ($this.hasClass('selected')) {
+                    return false;
+                }
+                var $optionSet = $this.parents('.option-set');
+                $optionSet.find('.selected').removeClass('selected');
+                $this.addClass('selected');
+
+                // make option object dynamically, i.e. { filter: '.my-filter-class' }
+                var options = {},
+                        key = $optionSet.attr('data-option-key'),
+                        value = $this.attr('data-option-value');
+                // parse 'false' as false boolean
+                value = value === 'false' ? false : value;
+                options[ key ] = value;
+                if (key === 'layoutMode' && typeof changeLayoutMode === 'function') {
+                    // changes in layout modes need extra logic
+                    changeLayoutMode($this, options)
+                } else {
+                    // otherwise, apply new options
+                    $container.isotope(options);
+                }
+
+                return false;
+            });
+
+
+        });
+</script> 
+
+
+
+
+       
+<footer>
+     <div class="fotter_full">
+     	<div class="fotter_content">
+        	<ul class="terms">
+            <li><a href="http://returnonrentals.com/javascript:void(0);">&copy;  2014 Rights Reserved by Return On Rentals</a></li>
+						        		          <li><a href="http://returnonrentals.com/pages/privacy-policy">Privacy Policy</a></li>
+		        		          <li><a href="http://returnonrentals.com/pages/terms-conditions">TERMS</a></li>
+		          
+		                        <li><a href="https://www.returnonrentals.com/contact">Contact Us </a></li>
+            </ul>
+        	<p>All properties advertised via Return on Rentals website are sold 'as is', without expressed or implied warranty. You may purchase a home warranty from a 3rd party. Any property you purchase is a transaction between you and the seller of that property and every property will differ in condition and financial performance. We strongly suggest that you conduct any due-dilligence needed before finalizing the transaction. Return on Rentals and it's related entities does not offer any guarantee regarding the specific performance of a property including it's return on investment or cap rate. As all real estate transactions pose some risk, we suggest you contact your on accounting, legal or other professional advisor regarding any questions you have including the suitability of a specific transaction.</p>
+        
+        </div>
+     <div class="clear"></div>
+      
+	  <div id="reservatiosnIDLists"></div>
+      
+       <div id="soldIDLists"></div>
+     
+     
+     
+     
+     
+     </div>
+     
+    
+         
+     
+     
+     
+     </footer>
+     
+     
+     <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20025738-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!--////////filter jquery/////////-->
+ 
+
+<script>
+function GetHTTPObject()  {
+	// This is for FireFox
+	if(window.XMLHttpRequest) {
+		try {
+			objHTTP = new XMLHttpRequest();
+		} catch(e) {
+			objHTTP = false;
+		}
+		// branch for IE/Windows ActiveX version
+	}
+	else if(window.ActiveXObject) {
+		try {
+			objHTTP = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch(e) {
+			try {
+				objHTTP = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch(e) {
+				objHTTP = false;
+			}
+		}
+	}
+	return objHTTP;
+}
+    
+        function SearchByCat(cat_id,subcat_id) {
+		
+         // alert("sss");
+		  //$("#container").hide();
+		  $("#fulldiv_container").html('<a class="c-loader" href="http://returnonrentals.com/javascript:void(0);" title="Loading" >Loading...</a>').show();
+		  $(".selected").removeClass('selected');
+		  var sPath = window.location.pathname;
+			var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);	
+			var url = baseURL+'site/product/Get_All_Property_List_page/'+cat_id+'/'+subcat_id;
+			//alert(url);
+			var req = GetHTTPObject();
+			req.open('GET',url,false);
+			req.send(null);
+			if(req.readyState == 4 && req.status == 200)  {
+				var responseText = req.responseText;
+				//alert(responseText);
+				$("#fulldiv_container").html(responseText).show();
+				$("#active_"+cat_id).addClass('selected');
+				 //$("#active_"+cat_id).className = "selected";
+				
+				//$container.isotope( 'insert', $( responseText ) );
+			}
+			}
+			
+			
+			
+			function SearchByFeatureCat(cat_id,subcat_id) {
+		
+         // alert("sss");
+		  //$("#container").hide();
+		  $("#container").html('<a class="c-loader" href="http://returnonrentals.com/javascript:void(0);" title="Loading" >Loading...</a>').show();
+		  $(".selected").removeClass('selected');
+		  var sPath = window.location.pathname;
+			var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);	
+			var url = baseURL+'site/product/Get_All_Property_Feature_List_page/'+cat_id+'/'+subcat_id;
+			//alert(url);
+			var req = GetHTTPObject();
+			req.open('GET',url,false);
+			req.send(null);
+			if(req.readyState == 4 && req.status == 200)  {
+				var responseText = req.responseText;
+				//alert(responseText);
+				$("#container").html(responseText).show();
+				$("#active_"+cat_id).addClass('selected');
+				 //$("#active_"+cat_id).className = "selected";
+				
+				//$container.isotope( 'insert', $( responseText ) );
+			}
+			}
+			
+			
+			
+		function SoldSearchByCat(cat_id,subcat_id) {
+		
+         // alert("sss");
+		  //$("#container").hide();
+		  $("#fulldiv_container").html('<a class="c-loader" href="http://returnonrentals.com/javascript:void(0);" title="Loading" >Loading...</a>').show();
+		  $(".selected").removeClass('selected');
+		  var sPath = window.location.pathname;
+			var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);	
+			var url = baseURL+'site/product/display_all_sold_proptery/'+cat_id+'/'+subcat_id;
+			//alert(url);
+			var req = GetHTTPObject();
+			req.open('GET',url,false);
+			req.send(null);
+			if(req.readyState == 4 && req.status == 200)  {
+				var responseText = req.responseText;
+				//alert(responseText);
+				$("#fulldiv_container").html(responseText).show();
+				$("#active_"+cat_id).addClass('selected');
+				 //$("#active_"+cat_id).className = "selected";
+				
+				//$container.isotope( 'insert', $( responseText ) );
+			}
+			}
+			/*$.ajax({
+			type:'post',
+			url:baseURL+'site/product/Get_All_Property_List',
+			data:{'uid':'1'},
+			dataType:'html',
+			success:function(data){
+				 $container.isotope( 'appended', $( $container.html(data) ) ); 
+				 //$container.html(data); 
+			}
+		});*/
+       
+     
+  </script> 
+  <script id="godaddy-security-s" src="https://cdn.sucuri.net/badge/badge.js" data-s="205" data-i="8d7b9eaf239072b5bbdc5a8a16c72148180d0eb2d3" data-p="r" data-c="d" data-t="g"></script>
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+</body>
+</html>
