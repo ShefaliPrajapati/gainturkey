@@ -81,7 +81,7 @@ class Adminlogin extends MY_Controller {
 					$mode = ADMIN;
 					$condition = array('admin_name' => $name, 'admin_password' => $pwd, 'is_verified' => 'Yes', 'status' => 'Active');
 				}
-			 
+
 			$query = $this->admin_model->get_all_details($mode,$condition);
 			
 			//echo '<pre>'; print_r($query->result_array()); die;

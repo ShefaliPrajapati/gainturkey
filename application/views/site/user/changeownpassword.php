@@ -1,5 +1,5 @@
 <?php 
-$this->load->view('site/templates/header');
+$this->load->view('site/templates/new_header');
 ?><script src="js/site/menu.js" type="text/javascript"></script>
 <section>
 	<div class="main"> 

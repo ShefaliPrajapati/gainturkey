@@ -1,27 +1,33 @@
-<?php 
-$this->load->view('site/templates/header');
+<?php
+$this->load->view('site/templates/new_header');
 ?>
-<div class="listing_content" style="margin:20px 0 15px 0px;">
-		<div class="freemember">
-       
-        <h2>Forgot Password</h2>
+<style>
+    .form-group span, .error{
+        color: red;
+    }
+</style>
+<div class="main_sec">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 text-center">
+                <h2>Forgot Password</h2>
+                <B>Forgot your password? Enter your email address to reset it.</B>
+            </div>
+            <div class="clear"></div>
+            <div class="col-md-6">
+                <?php echo form_open('site/user/forgot_password_user',array('id'=>'forgotPasswordForm')); ?>
+                <div class="field_login form-group">
+                    <label>Email Address<span>*</span></label>
+                    <input type="text" name="email" id="email_address" class="scroll_5 form-control required email">
+                </div>
+                <div class="field_login form-group">
+                    <input type="submit" name="signin" id="signin" class="member_btn btn btn-primary" value="RESET PASSWORD">
+                </div>
+                <?php echo form_close(); ?>
+            </div>
 
-         <div class="clear"></div>
-                    	
-                    <?php echo form_open('site/user/forgot_password_user',array('id'=>'forgotPasswordForm')); ?>
-                    	<h2>Forgot your password? Enter your email address to reset it.</h2>
-                        <div class="field_login">
-                            <label>Email Address<span>*</span></label>
-                             <input type="text" name="email" id="email_address" class="scroll_5 required email">
-                        </div>
-                        <div class="field_login">
-                            <input type="submit" name="signin" id="signin" class="member_btn" value="RESET PASSWORD">
-                      	</div> 
-                      <?php echo form_close(); ?>                        
-                    </div>
-
-
-<!----------listing end content-------------->
+         </div>
+    </div>
 </div>
 <div class="clear"></div>
 
@@ -48,6 +54,6 @@ $this->load->view('site/templates/header');
 	  }
   });
 </script>
-<?php 
-$this->load->view('site/templates/footer');
+<?php
+$this->load->view('site/templates/new_footer');
 ?>

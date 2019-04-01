@@ -4,19 +4,15 @@ $this->load->view('site/templates/new_header');
 <!----------listing content------------------>
 <div class="main_sec">
     <div class="container">
-        <div class="wlelcome_text">
-		<?php 
-            	if ($pageDetails->num_rows()>0){ ?><div class="cms_view">
-       
-        <h2><?php echo $pageDetails->row()->page_name; ?></h2>
-        <div class="clear"></div>
-        <?php echo $pageDetails->row()->description; ?>
-         <div class="clear"></div>
-        					
-                             
-        
-        </div>
-<?php } ?>
+        <div class="col-md-12 text-center wlelcome_text">
+            <?php if ($pageDetails->num_rows()>0){ ?>
+                <div class="cms_view">
+                    <h2><?php echo $pageDetails->row()->page_name; ?></h2>
+                    <div class="clear"></div>
+                    <?php echo $pageDetails->row()->description; ?>
+                    <div class="clear"></div>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
