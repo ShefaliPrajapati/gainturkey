@@ -1,4 +1,5 @@
-<?php $this->load->view('site/templates/header'); ?>
+<?php $this->load->view('site/templates/new_header'); ?>
+<link rel="stylesheet" type="text/css" href="css/site/master.css"/>
 <style>
 .comp_h2 {
     margin: 0 0 10px 30px;
@@ -253,8 +254,8 @@ $(function() {
 #draggable { padding: 0.5em; }
 
 </style>
-
-<div class="listing_content" style="margin:20px 0 15px 0px;">
+    <div class="container">
+<div class="listing_content">
 
 
 
@@ -1324,6 +1325,7 @@ $(function() {
 
 			}); 
 
-            </script>    
+            </script>
+    </div>
 
-<?php $this->load->view('site/templates/footer'); ?>
+<?php $this->load->view('site/templates/new_footer'); ?>
