@@ -28,7 +28,11 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/font-awesome.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/bliss-slider.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/site/banner_style.css" type="text/css" media="all"/>
     <link rel="stylesheet" href="css/developer.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
     <script src="js/site/jquery-1.7.1.min.js"></script>
     <script type="text/javascript">
         /***

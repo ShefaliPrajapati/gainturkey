@@ -1,4 +1,5 @@
-<?php $this->load->view('site/templates/header'); ?>
+<?php $this->load->view('site/templates/new_header'); ?>
+<link rel="stylesheet" type="text/css" href="css/site/master.css"/>
 <?php
 $iiii = $this->session->userdata('proID');
 $this->session->unset_userdata('proID');
@@ -13,8 +14,8 @@ if ($iiii != '') {
         });
     </script>
 <?php } ?>
-
-<div id="options" class="listing_content" style="margin:20px 0 15px 0px;">
+<div class="container">
+<div id="options" class="listing_content" >
     <?php if ($userDetails->row()->reservation == 'Yes') { ?>
         <a href="<?php echo base_url() . 'reservation-continue/' . $userDetails->row()->property_id; ?>" class="detail_btn" style="margin-top:10px;"> Back To Reservation</a>
     <?php } ?>
@@ -147,6 +148,7 @@ if ($iiii != '') {
     </div>
     <!----------listing end content-------------->
 </div>
+</div>
 <div class="clear"></div>
 
 
@@ -155,4 +157,4 @@ if ($iiii != '') {
 </div>
 </div>
 
-<?php $this->load->view('site/templates/footer'); ?>
+<?php $this->load->view('site/templates/new_footer'); ?>
