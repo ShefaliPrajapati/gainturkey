@@ -4,7 +4,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 session_start();
 /**
- * 
+ *
  * This controller contains the common functions
  * @author Teamtweaks
  *
@@ -51,14 +51,14 @@ class MY_Controller extends CI_Controller {
         $this->data['BuyNowPages'] = $BuyNowPages = $BuyNowCmsPages->result_array();
         //print_r($BuyNowPages);die;
         /*
-         * Loading Property Type 
+         * Loading Property Type
          */
 
         $PropertyType = $this->db->query('select * from ' . PRODUCT_ATTRIBUTE . ' where `status`="Active"');
         $this->data['PropertyType'] = $PropertyType->result_array();
 
         /*
-         * Loading Property Sub Type 
+         * Loading Property Sub Type
          */
 
         $PropertySubType = $this->db->query('select * from ' . PRODUCT_SUBATTRIBUTE . ' where `status`="Active"');
@@ -103,7 +103,7 @@ class MY_Controller extends CI_Controller {
         }
         $this->data['base_url_image'] = $this->base_url_image();
         /*
-         * Checking user language and loading user details 
+         * Checking user language and loading user details
          */
         //$this->product_model->saveSoldSettings();
         $this->data['login_admin_name'] = $this->session->userdata('ror_crm_session_admin_name');
@@ -261,7 +261,7 @@ class MY_Controller extends CI_Controller {
         /* Refereral Start */
 
         if ($this->input->get('ref') != '') {
-            //echo $this->input->get('ref');	
+            //echo $this->input->get('ref');
             $referenceName = $this->input->get('ref');
             $this->session->set_userdata('referenceName', $referenceName);
         }
@@ -277,7 +277,6 @@ class MY_Controller extends CI_Controller {
         //echo '<pre>'; print_r($reservedProperty);  die;
         //$reservedProperty = $this->product_model->get_all_details(PRODUCT,array('property_status'=>'Reserved'));
         if ($reservedProperty->num_rows() > 0) {
-
             foreach ($reservedProperty->result() as $rows) {
                 //echo '<pre>'; print_r($rows);	//echo $rows['property_id'];
                 $this->product_model->update_details(PRODUCT, array('property_status' => 'Active'), array('property_id' => $rows->property_id));
@@ -314,7 +313,7 @@ class MY_Controller extends CI_Controller {
 
 	}
     /**
-     * 
+     *
      * This function return the session value based on param
      * @param $type
      */
@@ -324,51 +323,53 @@ class MY_Controller extends CI_Controller {
             return $this->session->userdata('fc_session_admin_id');
         } else if ($type == 'N') {
             return $this->session->userdata('fc_session_admin_name');
-        } else if ($type == 'M') {
+        } elseif ($type == 'M') {
             return $this->session->userdata('fc_session_admin_email');
-        } else if ($type == 'P') {
+        } elseif ($type == 'P') {
             return $this->session->userdata('fc_session_admin_privileges');
-        } else if ($type == 'U') {
+        } elseif ($type == 'U') {
             return $this->session->userdata('fc_session_user_id');
-        } else if ($type == 'T') {
+        } elseif ($type == 'T') {
             return $this->session->userdata('fc_session_temp_id');
-        } else if ($type == 'CA') {
-			//print_r($this->session->userdata('ror_crm_session_admin_id'));
+        } elseif ($type == 'CA') {
+            //print_r($this->session->userdata('ror_crm_session_admin_id'));
             return $this->session->userdata('ror_crm_session_admin_id');
-        } else if ($type == 'CN') {
+        } elseif ($type == 'CN') {
             return $this->session->userdata('ror_crm_session_admin_name');
-        } else if ($type == 'CM') {
+        } elseif ($type == 'CM') {
             return $this->session->userdata('ror_crm_session_admin_email');
-        } else if ($type == 'CP') {
+        } elseif ($type == 'CP') {
             return $this->session->userdata('ror_crm_session_admin_privileges');
         }
     }
 
     /**
-     * 
+     *
      * This function set the error message and type in session
      * @param string $type
      * @param string $msg
      */
-    public function setErrorMessage($type = '', $msg = '') {
+    public function setErrorMessage($type = '', $msg = '')
+    {
         ($type == 'success') ? $msgVal = 'message-green' : $msgVal = 'message-red';
         $this->session->set_flashdata('sErrMSGType', $msgVal);
         $this->session->set_flashdata('sErrMSG', $msg);
     }
 
     /**
-     * 
+     *
      * This function check the admin privileges
      * @param String $name	->	Management Name
      * @param Integer $right	->	0 for view, 1 for add, 2 for edit, 3 delete
      */
-    public function checkPrivileges($name = '', $right = '') {
+    public function checkPrivileges($name = '', $right = '')
+    {
         $prev = '0';
 
         if ($this->checkLogin('CA') != '') {
             $crm_privileges = $this->session->userdata('ror_crm_session_admin_privileges');
             //print_r($crm_privileges);die;
-			$userName = $this->session->userdata('ror_crm_session_admin_name');
+            $userName = $this->session->userdata('ror_crm_session_admin_name');
             extract($crm_privileges);
         }
 
@@ -390,28 +391,30 @@ class MY_Controller extends CI_Controller {
             $prev = '1';
         }
         if ($prev == '1') {
-            return TRUE;
+            return true;
         } else {
-            return FALSE;
+            return false;
         }
     }
 
     /**
-     * 
+     *
      * Generate random string
      * @param Integer $length
      */
-    public function get_rand_str($length = '6') {
+    public function get_rand_str($length = '6')
+    {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
     /**
-     * 
+     *
      * Unsetting array element
      * @param Array $productImage
      * @param Integer $position
      */
-    public function setPictureProducts($productImage, $position) {
+    public function setPictureProducts($productImage, $position)
+    {
         unset($productImage[$position]);
         return $productImage;
     }
@@ -421,10 +424,10 @@ class MY_Controller extends CI_Controller {
      * @param int $width
      * @param int $height
      * @param string $targetImage Name
-     * @param string $savepath 
+     * @param string $savepath
      */
-    public function ImageResizeWithCrop($width, $height, $thumbImage, $savePath, $newhgt) {
-
+    public function ImageResizeWithCrop($width, $height, $thumbImage, $savePath, $newhgt)
+    {
         $thumb_file = $savePath . $thumbImage;
 
         $newimgPath = base_url() . substr($savePath, 2) . $thumbImage;
@@ -477,34 +480,37 @@ class MY_Controller extends CI_Controller {
     /**
      * Image Compress
      * @param int $quality
-     * @param string $source_url 
-     * @param string $destination_url 
+     * @param string $source_url
+     * @param string $destination_url
      */
-    public function ImageCompress($source_url, $destination_url, $quality = 80) {
+    public function ImageCompress($source_url, $destination_url, $quality = 80)
+    {
         $info = getimagesize($source_url);
         $savePath = $source_url;
 
-        if ($info['mime'] == 'image/jpeg')
+        if ($info['mime'] == 'image/jpeg') {
             $image = imagecreatefromjpeg($savePath);
-        elseif ($info['mime'] == 'image/gif')
+        } elseif ($info['mime'] == 'image/gif') {
             $image = imagecreatefromgif($savePath);
-        elseif ($info['mime'] == 'image/png')
+        } elseif ($info['mime'] == 'image/png') {
             $image = imagecreatefrompng($savePath);
+        }
         ### Saving Image
         imagejpeg($image, $savePath, $quality);
     }
 
     /**
      * Get Image resolution type
-     * @param string $destination_url 
+     * @param string $destination_url
      */
-    public function getImageShape($width, $height, $target_file) {
+    public function getImageShape($width, $height, $target_file)
+    {
         list($w, $h) = getimagesize($target_file);
         if ($w == $width && $h == $height) {
             $option = "exact";
-        } else if ($w > $h) {
+        } elseif ($w > $h) {
             $option = "landscape";
-        } else if ($w < $h) {
+        } elseif ($w < $h) {
             $option = "portrait";
         } else {
             $option = "crop";

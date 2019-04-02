@@ -17,27 +17,33 @@ $this->load->view('admin/templates/header.php');
             </div>
           </div>
           <div class="widget_content">
-            <?php 
-				$attributes = array('class' => 'form_container left_label', 'id' => 'adduser_form');
-				echo form_open('admin/cms/insertEditCms',$attributes) 
-			?>
+            <?php
+                $attributes = array('class' => 'form_container left_label', 'id' => 'adduser_form');
+                echo form_open('admin/cms/insertEditCms', $attributes)
+            ?>
             <div id="tab1">
               <ul>
-              <?php if ($cms_details->row()->category == 'Sub'){?>
+              <?php if ($cms_details->row()->category == 'Sub') {
+                ?>
               	<li>
                   <div class="form_grid_12">
                     <label class="field_title" for="parent">Select Main Page <span class="req">*</span></label>
                     <div class="form_input">
                       <select class="chzn-select required" name="parent" tabindex="-1" style="width: 375px; display: none;" data-placeholder="Select Main Page">
                       		<option value=""></option>
-                      		<?php foreach ($cms_main_details->result() as $row){?>
-                      		<option <?php if ($row->id == $cms_details->row()->parent){echo 'selected="selected"';}?> value="<?php echo $row->id;?>"><?php echo $row->page_name;?></option>
-                      		<?php }?>
+                      		<?php foreach ($cms_main_details->result() as $row) {
+                    ?>
+                      		<option <?php if ($row->id == $cms_details->row()->parent) {
+                        echo 'selected="selected"';
+                    } ?> value="<?php echo $row->id; ?>"><?php echo $row->page_name; ?></option>
+                      		<?php
+                } ?>
                       </select>
                     </div>
                   </div>
                 </li>
-               <?php }?>
+               <?php
+            }?>
                 <li>
                   <div class="form_grid_12">
                     <label class="field_title" for="page_name">Page Name <span class="req">*</span></label>
@@ -62,18 +68,18 @@ $this->load->view('admin/templates/header.php');
                     </div>
                   </div>
                 </li>
-                 <li>
-                <div class="form_grid_12">
-					<label class="field_title" for="display_mode">Site<span class="req">*</span></label>
-					<div class="form_input">
-						<div class="yes_no">
-							<input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="main" <?php if($cms_details->row()->site == 'main') { echo 'checked="checked"';}?> /> returnonrentals.com
-                       		<input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="sub" <?php if($cms_details->row()->site == 'sub') { echo 'checked="checked"';}?>/> preigrentals.com
-                        	
-						</div>
-					</div>
-				</div>
-				</li>
+<!--                 <li>-->
+<!--                <div class="form_grid_12">-->
+<!--					<label class="field_title" for="display_mode">Site<span class="req">*</span></label>-->
+<!--					<div class="form_input">-->
+<!--						<div class="yes_no">-->
+<!--							<input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="main" --><?php //if($cms_details->row()->site == 'main') { echo 'checked="checked"';}?><!-- /> returnonrentals.com-->
+<!--                       		<input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="sub" --><?php //if($cms_details->row()->site == 'sub') { echo 'checked="checked"';}?><!--/> preigrentals.com-->
+<!--                        	-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				</li>-->
               </ul>
             <ul><li><div class="form_grid_12">
 				<div class="form_input">
@@ -115,9 +121,11 @@ $this->load->view('admin/templates/header.php');
 			</div></li></ul>
 			</div>
 			<input type="hidden" name="cms_id" value="<?php echo $cms_details->row()->id;?>"/>
-			<?php if ($cms_details->row()->category == 'Sub'){?>
+			<?php if ($cms_details->row()->category == 'Sub') {
+                ?>
 				<input type="hidden" name="subpage" value="subpage"/>
-			<?php }?>
+			<?php
+            }?>
             </form>
           </div>
         </div>
@@ -126,6 +134,6 @@ $this->load->view('admin/templates/header.php');
   </div>
   <span class="clear"></span> </div>
 </div>
-<?php 
+<?php
 $this->load->view('admin/templates/footer.php');
 ?>

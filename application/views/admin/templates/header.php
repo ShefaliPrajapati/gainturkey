@@ -884,7 +884,7 @@ extract($privileges);
 <?php } ?>
 <?php if ($flash_data != '') { ?>
                 <div class="errorContainer" id="<?php echo $flash_data_type; ?>">
-                    <script> setTimeout("hideErrDiv('<?php echo $flash_data_type; ?>')", 3000);</script>
+                    <script>setTimeout("hideErrDiv('<?php echo $flash_data_type; ?>')", 3000);</script>
                     <p><span><?php echo $flash_data; ?></span></p>
                 </div>
 <?php } ?>

@@ -105,7 +105,7 @@ extract($privileges);
 							?>
 								<a title="Click to unhide this page" class="tip_top" href="javascript:confirm_mode('admin/cms/change_cms_mode/<?php echo $mode;?>/<?php echo $row->id;?>');"><span class="badge_style b_done"><?php echo $row->hidden_page;?></span></a>
 							<?php
-								}else {	
+								} else {
 							?>
 								<a title="Click to hide this page" class="tip_top" href="javascript:confirm_mode('admin/cms/change_cms_mode/<?php echo $mode;?>/<?php echo $row->id;?>')"><span class="badge_style"><?php echo $row->hidden_page;?></span></a>
 							<?php 

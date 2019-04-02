@@ -281,56 +281,24 @@
                             </div>
                         </div>
                     <?php } ?>
-                    <!--End popup-->
-                    <div class="wrapper">
-                            <!--<img src="images/site/img1.jpg" />	-->
-                        <div id="slideshow">
-
-                            <?php
-                            if (count($SliderDisplay) > 0) {
-                                $imgcount = '1';
-                                foreach ($SliderDisplay->result() as $Slider) {
-                                    ?>
-                                    <img src="images/slider/<?php echo trim(stripslashes($Slider->image)); ?>" alt="" <?php if ($imgcount == '1') { ?> class="active" <?php } ?> />
-                                    <?php
-                                    $imgcount = $imgcount + 1;
-                                }
-                            }
-                            ?>
-                        </div>
-                        <?php /* ?><div class="social-share">
-                          <ul class="face_list">
-                          <li>
-                          <a target="_blank" href="<?php echo $this->config->item('facebook_link');?>" title="facebook"> <img src="<?php echo base_url();?>images/site/facebook.png" /></a>
-                          <a target="_blank" href="<?php echo $this->config->item('facebook_link');?>" title="facebook">Facebook</a>
-                          <div class="clear"></div>
-                          <div class="bor_fa"></div>
-                          </li>
-
-                          <li>
-                          <a target="_blank" href="<?php echo $this->config->item('twitter_link');?>" title="twitter"> <img src="<?php echo base_url();?>images/site/twitter.png" /></a>
-                          <a target="_blank" href="<?php echo $this->config->item('twitter_link');?>" title="twitter">Twitter</a>
-                          <div class="clear"></div>
-                          <div class="bor_fa"></div>
-                          </li>
-
-                          <li>
-                          <a target="_blank" href="<?php echo $this->config->item('linkedin_link');?>"> <img src="<?php echo base_url();?>images/site/instagram1.png" /></a>
-                          <a target="_blank" href="<?php echo $this->config->item('linkedin_link');?>">Instagram</a>
-                          <div class="clear"></div>
-
-                          </li>
-
-
-
-                          </ul>
-
-                          </div><?php */ ?>
-
-
-
-
-                    </div>
+<!--                    <--End popup-->
+<!--                    <div class="wrapper">-->
+<!--                            <--<img src="images/site/img1.jpg" />	-->
+<!--                        <div id="slideshow">-->
+<!---->
+<!--                            --><?php
+//                            if (count($SliderDisplay) > 0) {
+//                                $imgcount = '1';
+//                                foreach ($SliderDisplay->result() as $Slider) {
+//                                    ?>
+<!--                                    <img src="images/slider/--><?php //echo trim(stripslashes($Slider->image)); ?><!--" alt="" --><?php //if ($imgcount == '1') { ?><!-- class="active" --><?php //} ?><!-- />-->
+<!--                                    --><?php
+//                                    $imgcount = $imgcount + 1;
+//                                }
+//                            }
+//                            ?>
+<!--                        </div>-->
+<!--                    </div>-->
 
 
                     <?php /* ?> <?php
