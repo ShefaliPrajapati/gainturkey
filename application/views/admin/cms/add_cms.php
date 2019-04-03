@@ -57,18 +57,18 @@ $this->load->view('admin/templates/header.php');
 					</div>
 				</div>
 				</li>
-                <li>
-                <div class="form_grid_12">
-					<label class="field_title" for="display_mode">Site<span class="req">*</span></label>
-					<div class="form_input">
-						<div class="yes_no">
-							<input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="main" /> returnonrentals.com
-                       		<input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="sub" /> preigrentals.com
-                        	
-						</div>
-					</div>
-				</div>
-				</li>
+<!--                <li>-->
+<!--                <div class="form_grid_12">-->
+<!--					<label class="field_title" for="display_mode">Site<span class="req">*</span></label>-->
+<!--					<div class="form_input">-->
+<!--						<div class="yes_no">-->
+<!--							<input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="main" /> returnonrentals.com-->
+<!--                       		<input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="sub" /> preigrentals.com-->
+<!--                        	-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				</li>-->
               </ul>
             <ul><li><div class="form_grid_12">
 				<div class="form_input">

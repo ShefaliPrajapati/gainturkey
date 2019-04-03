@@ -20,7 +20,7 @@ class Location extends MY_Controller {
     }
     
     /**
-     * 
+     *
      * This function loads the location list page
      */
    	public function index(){	
