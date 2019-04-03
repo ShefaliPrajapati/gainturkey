@@ -132,6 +132,7 @@ class Location extends MY_Controller {
 			    $config['max_size'] = 2000;
 			    $config['upload_path'] = './images/location';
 			    $this->load->library('upload', $config);
+                $this->upload->initialize($config);
 				if ( $this->upload->do_upload('logo')){
 			    	$logoDetails = $this->upload->data();
 					$logoDetails['file_name'];
@@ -335,6 +336,7 @@ class Location extends MY_Controller {
 			    $config['max_size'] = 2000;
 			    $config['upload_path'] = './images/state';
 			    $this->load->library('upload', $config);
+                $this->upload->initialize($config);
 				if ( $this->upload->do_upload('statelogo')){
 			    	$logoDetails = $this->upload->data();
 					$logoDetails['file_name'];

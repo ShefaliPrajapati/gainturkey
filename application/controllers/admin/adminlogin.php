@@ -482,6 +482,7 @@ class Adminlogin extends MY_Controller {
 			    $config['max_size'] = 2000;
 			    $config['upload_path'] = './images/logo';
 			    $this->load->library('upload', $config);
+                $this->upload->initialize($config);
 				if ( $this->upload->do_upload('logo_image')){
 			    	$logoDetails = $this->upload->data();
 			    	$dataArr['logo_image'] = $logoDetails['file_name'];
@@ -540,6 +541,7 @@ class Adminlogin extends MY_Controller {
 			    			$config['max_size'] = 2000;
 			    			$config['upload_path'] = './images/logo';
 			    			$this->load->library('upload', $config);
+                            $this->upload->initialize($config);
 							if ( $this->upload->do_upload('pr_logo_image'))
 								{
 			    					$pr_logoDetails = $this->upload->data();

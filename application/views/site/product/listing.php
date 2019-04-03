@@ -116,7 +116,7 @@ if ($iiii != '') {
 			LIMIT 0 , 1";
                     $Queryres = $this->product_model->ExecuteQuery($Queryq);
                     ?>
-                    <div class="img_content"><a href="<?php if ($row->property_status != 'Sold') echo base_url() . 'Property/' . $row->id . '/' . $row->property_id; /* else echo base_url(soldlisting); */ ?>"><img src="http://productimages.live/images/product/thumb/<?php
+                    <div class="img_content"><a href="<?php if ($row->property_status != 'Sold') echo base_url() . 'Property/' . $row->id . '/' . $row->property_id; /* else echo base_url(soldlisting); */ ?>"><img src="<?php echo base_url(); ?>images/product/thumb/<?php
                             if ($Queryres->row()->product_image != '')
                                 echo $Queryres->row()->product_image;
                             else

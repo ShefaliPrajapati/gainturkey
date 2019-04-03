@@ -122,8 +122,8 @@ class City extends MY_Controller {
 			    //$config['max_size'] = 50000;
 			    $config['remove_spaces'] = FALSE;
 				$config['upload_path'] = $logoDirectory;
-			    $this->upload->initialize($config);
 				$this->load->library('upload', $config);
+                $this->upload->initialize($config);
 				
 				 //var_dump(is_dir('./dummy'));  die;
 				if ($this->upload->do_upload('citylogo')){

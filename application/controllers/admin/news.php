@@ -75,8 +75,8 @@ class News extends MY_Controller {
             $config['overwrite'] = FALSE;
             $config['allowed_types'] = 'jpg|jpeg|gif|png';
             $config['upload_path'] = './images/news';
-            $this->upload->initialize($config);
             $this->load->library('upload', $config);
+            $this->upload->initialize($config);
 
             if ($this->upload->do_upload('newsimage')) {
                 $imgDetails = $this->upload->data();

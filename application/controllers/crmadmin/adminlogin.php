@@ -13,6 +13,7 @@ class Adminlogin extends MY_Controller {
 		$this->load->helper(array('cookie','date','form'));
 		$this->load->library(array('encrypt','form_validation'));		
 		$this->load->model('admin_model');
+		$this->load->library('upload');
     }
     
     /**
@@ -200,7 +201,7 @@ class Adminlogin extends MY_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('crmadmin/templates/forgot_password.php',$this->data);
-		}else {
+		} else {
 			$email = $this->input->post('email');
 			$mode = SUBADMIN;
 			if ($email == $this->config->item('email')){
@@ -424,10 +425,10 @@ class Adminlogin extends MY_Controller {
 	 * This function validates the admin settings form
 	 */
 	public function admin_global_settings(){
-		if (strpos(base_url(),'pleasureriver.com') === false){
-			$form_mode = $this->input->post('form_mode');
-			if ($form_mode == 'main_settings'){
-				$datestring = "%Y-%m-%d";
+        if (strpos(base_url(),'pleasureriver.com') === false) {
+            $form_mode = $this->input->post('form_mode');
+            if ($form_mode == 'main_settings'){
+                $datestring = "%Y-%m-%d";
 				$time = time();
 				$dataArr = array('modified'=>mdate($datestring,$time));
 				$admin_name = $this->input->post('admin_name');
@@ -463,18 +464,22 @@ class Adminlogin extends MY_Controller {
 				$excludeArr = array('form_mode','logo_image','fevicon_image','site_contact_mail','site_contact_number','email_title','footer_content','booking_code','like_text','liked_text','unlike_text');
 				$this->admin_model->commonInsertUpdate(ADMIN,'update',$excludeArr,$dataArr,$condition);
 				$dataArr = array();
-	//			$config['encrypt_name'] = TRUE;
-				$config['overwrite'] = FALSE;
-		    	$config['allowed_types'] = 'jpg|jpeg|gif|png';
-			    $config['max_size'] = 2000;
-			    $config['upload_path'] = './images/logo';
-			    $this->load->library('upload', $config);
-				if ( $this->upload->do_upload('logo_image')){
-			    	$logoDetails = $this->upload->data();
-			    	$dataArr['logo_image'] = $logoDetails['file_name'];
-				}
-				if ( $this->upload->do_upload('fevicon_image')){
-					$feviconDetails = $this->upload->data();
+                $config['overwrite'] = FALSE;
+                $config['allowed_types'] = 'jpg|jpeg|gif|png';
+                $config['max_size'] = 5000;
+                $config['upload_path'] = FCPATH.'images/logo/';
+                $config['img_path'] = '';
+
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('logo_image')) {
+                    $logoDetails = $this->upload->data();
+                    $dataArr['logo_image'] = $logoDetails['file_name'];
+                }
+
+                if ($this->upload->do_upload('fevicon_image')) {
+                    $feviconDetails = $this->upload->data();
 			    	$dataArr['fevicon_image'] = $feviconDetails['file_name'];
 				}
 				$excludeArr = array('form_mode','logo_image','fevicon_image','email','admin_name');

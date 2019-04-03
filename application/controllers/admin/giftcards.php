@@ -75,6 +75,7 @@ class Giftcards extends MY_Controller {
 		    $config['max_size'] = 2000;
 		    $config['upload_path'] = './images/giftcards';
 		    $this->load->library('upload', $config);
+            $this->upload->initialize($config);
 			if ( $this->upload->do_upload('gift_image')){
 		    	$logoDetails = $this->upload->data();
 		    	$dataArr['image'] = $logoDetails['file_name'];
