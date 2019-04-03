@@ -42,8 +42,7 @@ $this->load->view('site/templates/new_header');
                     <input type="hidden" name="captcha_original" id="captcha_original" value="<?php echo $random_values; ?>" />
                     <div id="captcha_value_warn"  style="float:right; color:#FF0000;"></div>
                 </div>
-
-                <div class="form-group">
+                  <div class="form-group" style=" margin-top: 20px; display: inline-block;">
                     <input type="submit" name="signin" id="signin" class="member_btn btn btn-md btn-primary" value="SUBMIT"/>
                 </div>
                 <?php echo form_close(); ?>

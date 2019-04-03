@@ -26,6 +26,33 @@
      margin: 0;
      padding: 0;
 }
+
+ input#signin {
+     color: #fff;
+     background-color: #2b3743;
+     border-color: #2b3743;
+     border-radius: 0;
+ }
+ input#captcha_value {
+     border-radius: 0;
+ }
+
+ textarea#message {
+     border-radius: 0;
+ }
+
+ .form-control{
+     border-radius: 0;
+ }
+
+ input#signin:hover{
+     color: #fff;
+     background-color: #d89136;
+     border-color: #d89338;
+ }
+
+
+
  .top_nav{
      margin: 0px;
      padding: 0px;

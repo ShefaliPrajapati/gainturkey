@@ -16,6 +16,13 @@
 .comps_table td {
     text-align: center;
 }
+img {
+    max-width: inherit;
+    margin: 0px;
+    padding: 0px;
+}
+
+
 </style>
 <script src="js/drag-min.js"></script>
 
