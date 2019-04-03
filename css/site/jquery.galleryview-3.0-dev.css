@@ -7,19 +7,30 @@
 	To create additional rules, use the markup below as a guide to GalleryView's architecture.
 */
 
+img{
+	max-widt: none;
+}
+
 /* GALLERY LIST */
 /* IMPORTANT - Change '#myGallery' to the ID of your gallery list to prevent a flash of unstyled content */
 #myGallery { display: none; }
 
-.gv_galleryWrap { background: none;
-    border-radius: 5px 5px 5px 5px;
-    font-size: 10pt;
-    left:0px;
-    margin-left: 12px;
-    position: relative;}
+.gv_galleryWrap {
+	background: none;
+	border-radius: 5px 5px 5px 5px;
+	font-size: 10pt;
+	left: 0px;
+	margin-left: 12px;
+	position: relative;
+	width: 100% !important;
+}
 
 /* GALLERY DIV */
-.gv_gallery { overflow: hidden; position: relative;}
+.gv_gallery {
+	overflow: hidden;
+	position: relative;
+	width: 100% !important;
+}
 
 .gv_imageStore { visibility: hidden; position: absolute; top: -10000px; left: -10000px; }
 
@@ -28,14 +39,31 @@
 /**   PANEL STYLES								**/
 /*************************************************/
 
-.gv_panelWrap { filter: inherit; position: absolute; overflow: hidden;  }
+.gv_panelWrap {
+	filter: inherit;
+	position: absolute;
+	overflow: hidden;
+	width: 100% !important;
+}
 
 .gv_panel-loading { background: url(img-loader.gif) 50% 50% no-repeat #aaa; }
 .gv_frame-loading { background: url(img-loader.gif) 50% 50% no-repeat #aaa; }
 
 /* GALLERY PANELS */
-.gv_panel { filter: inherit; position: absolute; top: 0; left: 0; overflow: hidden; z-index: 100; width:510px !important; }
-.gv_panel img { position: absolute; }
+.gv_panel {
+	filter: inherit;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	z-index: 100;
+	width: 100%!important;
+}
+.gv_panel img {
+	position: absolute;
+	width: 100% !important;
+	height: auto !important;
+}
 
 .gv_overlay { position: absolute; background: #222; color: white; z-index: 200; }
 .gv_showOverlay { 
@@ -72,20 +100,31 @@
 /**   FILMSTRIP STYLES							**/
 /*************************************************/
 
-.gv_filmstripWrap { overflow: hidden; position: absolute; width:510px!important; }
+.gv_filmstripWrap {
+	overflow: hidden;
+	position: absolute;
+	width: 100% !important;
+}
 
 
 /* FILMSTRIP */
-.gv_filmstrip { margin: 0; padding: 0; position: absolute; top: 0; left: 0 !important; height:79px !important; width:510px !important; }
+.gv_filmstrip {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	left: 0 !important;
+	height: 79px !important;
+	width: 100%!important;
+}
 
 /* FILMSTRIP FRAMES (contains both images and captions) */
-.gv_frame { 
+.gv_frame {
 	cursor: pointer;
 	float: left;
 	position: relative;
-	margin: 0;
+	margin: 6px 0 0 20px;
 	padding: 0;
-	margin-right:7px !important;
 }
 
 /* WRAPPER FOR FILMSTRIP IMAGES */

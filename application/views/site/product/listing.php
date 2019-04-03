@@ -34,7 +34,7 @@ if ($iiii != '') {
                     if (sizeof($this->data['PropertySubType']) > 0) {
                         foreach ($this->data['PropertySubType'] as $PropertySubRow) {
                             if ($PropertyRow['id'] == $PropertySubRow['attr_id']) {
-                                $SubcatArr .='<li class="active has-sub" style="float:left;"><a style="width:150px" href="' . base_url('signin') . '" onclick="LoginPageRedirect();">' . $PropertySubRow['subattr_name'] . '</a></li>';
+                                $SubcatArr .='<li class="active has-sub" style="float:left;"><a href="' . base_url('signin') . '" onclick="LoginPageRedirect();">' . $PropertySubRow['subattr_name'] . '</a></li>';
                             }
                         }
                     }
@@ -66,7 +66,7 @@ if ($iiii != '') {
                     if (sizeof($this->data['PropertySubType']) > 0) {
                         foreach ($this->data['PropertySubType'] as $PropertySubRow) {
                             if ($PropertyRow['id'] == $PropertySubRow['attr_id']) {
-                                $SubcatArr .='<li class="active has-sub" style="float:left;"><a style="width:150px" onclick="SearchByCat(' . $PropertyRow['id'] . ',' . $PropertySubRow['id'] . ')" href="javascript:void(0);" data-option-value=".subcat' . $PropertySubRow['id'] . '" >' . $PropertySubRow['subattr_name'] . '</a></li>';
+                                $SubcatArr .='<li class="active has-sub" style="float:left;"><a  onclick="SearchByCat(' . $PropertyRow['id'] . ',' . $PropertySubRow['id'] . ')" href="javascript:void(0);" data-option-value=".subcat' . $PropertySubRow['id'] . '" >' . $PropertySubRow['subattr_name'] . '</a></li>';
                             }
                         }
                     }
@@ -88,8 +88,8 @@ if ($iiii != '') {
                 }
                 ?>>Sort By Price</a>
                 <ul>
-                    <li style="float:left;" class="active has-sub"><a href="javascript:void(0);" onclick="SearchByCat('priceasc', 0)" style="width:150px">Low to High </a></li>
-                    <li style="float:left;" class="active has-sub"><a href="javascript:void(0);" onclick="SearchByCat('pricedesc', 0)" style="width:150px">High to Low </a></li>
+                    <li style="float:left;" class="active has-sub"><a href="javascript:void(0);" onclick="SearchByCat('priceasc', 0)">Low to High </a></li>
+                    <li style="float:left;" class="active has-sub"><a href="javascript:void(0);" onclick="SearchByCat('pricedesc', 0)">High to Low </a></li>
                 </ul>
             </li>
         </span>

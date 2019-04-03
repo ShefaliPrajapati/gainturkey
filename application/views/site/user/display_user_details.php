@@ -1,6 +1,6 @@
-<?php $this->load->view('site/templates/header'); ?>
+<?php $this->load->view('site/templates/new_header');
 
-<?php  $SignId=$this->session->userdata('SignID');
+$SignId=$this->session->userdata('SignID');
 $UrlId=$this->session->userdata('UrlID');
 
 $this->session->unset_userdata('SignID');
@@ -432,9 +432,9 @@ function compute_pvalue(form)
 <script type="text/javascript" src="<?php echo base_url(); ?>js/calculator/simplecalendar.js" ></script>
 
 
+<div class="container">
 
-
-<div class="listing_content" style="margin:20px 0 15px 0px;">
+<div class="listing_content">
 		<div class="freemember">
         <h2>Profile</h2>
        <div id="TabbedPanels1" class="TabbedPanels">
@@ -1017,9 +1017,9 @@ echo  anchor_popup("view_orders/".$row->property_id, $atts); */?></li></ul>
      
 
 
+     </div>
      
-     
-<?php $this->load->view('site/templates/footer'); ?>
+<?php $this->load->view('site/templates/new_footer'); ?>
 
 
 <div id="ShowPopupContentOrg" style="display:none" >
