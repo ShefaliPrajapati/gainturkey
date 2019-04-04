@@ -123,6 +123,7 @@ class Category extends MY_Controller {
 				$config['max_size'] = 2000;
 				$config['upload_path'] = './images/category';
 				$this->load->library('upload', $config);
+                $this->upload->initialize($config);
 				if ( $this->upload->do_upload('category_image')){
 					$logoDetails = $this->upload->data();
 					$ImageName = $logoDetails['file_name'];
@@ -192,6 +193,7 @@ class Category extends MY_Controller {
 			$config['max_size'] = 2000;
 			$config['upload_path'] = './images/category/';
 			$this->load->library('upload', $config);
+            $this->upload->initialize($config);
 
 			if ($this->upload->do_upload('category_image')){
 				$logoDetails = $this->upload->data();
@@ -364,6 +366,7 @@ class Category extends MY_Controller {
 			$config['max_size'] = 2000;
 			$config['upload_path'] = './images/category/banner';
 			$this->load->library('upload', $config);
+            $this->upload->initialize($config);
 			if ( $this->upload->do_upload('banner_image')){
 				$logoDetails = $this->upload->data();
 				$ImageName = $logoDetails['file_name'];
@@ -460,6 +463,7 @@ class Category extends MY_Controller {
 			$config['max_size'] = 2000;
 			$config['upload_path'] = './images/category/banner';
 			$this->load->library('upload', $config);
+            $this->upload->initialize($config);
 			if ( $this->upload->do_upload('banner_image')){
 				$logoDetails = $this->upload->data();
 				$ImageName = $logoDetails['file_name'];

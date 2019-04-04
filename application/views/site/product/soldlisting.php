@@ -102,7 +102,7 @@
 			LIMIT 0 , 1";
                     $Queryres = $this->product_model->ExecuteQuery($Queryq);
                     ?>
-                    <div class="img_content"><a><img src="http://productimages.live/images/product/thumb/<?php
+                    <div class="img_content"><a><img src="<?php echo base_url() ?>images/product/thumb/<?php
                             if ($Queryres->row()->product_image != '')
                                 echo $Queryres->row()->product_image;
                             else

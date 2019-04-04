@@ -562,7 +562,7 @@ class Product extends MY_Controller {
                 if ($row->featured == 'Yes') {
                     $this->data['PropertyList'].= '<div class="feature"><img src="images/site/feature.png" /></div>';
                 }
-                $this->data['PropertyList'].='<div class="img_content"><a href="' . base_url() . 'Property/' . $row->id . '"><img src="http://productimages.live/images/product/thumb/';
+                $this->data['PropertyList'].='<div class="img_content"><a href="' . base_url() . 'Property/' . $row->id . '"><img src="'.base_url().'/images/product/thumb/';
                 $sortArr1 = array('field' => 'imgPriority', 'type' => 'ASC');
                 $this->data['one_image'] = $this->product_model->get_all_details_product(PRODUCT_PHOTOS, array('property_id' => $row->id), $sortArr1);
                 if ($this->data['one_image']->row()->product_image != '') {
@@ -799,7 +799,7 @@ class Product extends MY_Controller {
                 if ($row->featured == 'Yes') {
                     $this->data['PropertyList'].= '<div class="feature"><img src="images/site/feature.png" /></div>';
                 }
-                $this->data['PropertyList'].='<div class="img_content"><a><img src="http://productimages.live/images/product/';
+                $this->data['PropertyList'].='<div class="img_content"><a><img src="'.base_url().'/images/product/';
                 $sortArr1 = array('field' => 'imgPriority', 'type' => 'ASC');
                 $this->data['one_image'] = $this->product_model->get_all_details_product(PRODUCT_PHOTOS, array('property_id' => $row->id), $sortArr1);
                 if ($this->data['one_image']->row()->product_image != '') {
@@ -1138,6 +1138,8 @@ class Product extends MY_Controller {
 //	    $config['max_size'] = 2000;
         $config['upload_path'] = './images/product';
         $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
         if ($this->upload->do_upload('thefile')) {
             $imgDetails = $this->upload->data();
             $returnStr['image']['url'] = base_url() . 'images/product/' . $imgDetails['file_name'];
@@ -1438,7 +1440,7 @@ class Product extends MY_Controller {
                 if ($row->featured == 'Yes') {
                     $this->data['PropertyList'].= '<div class="feature"><img src="images/site/feature.png" /></div>';
                 }
-                $this->data['PropertyList'].='<div class="img_content"><a href="' . base_url() . 'Property/' . $row->id . '"><img src="http://productimages.live/images/product/thumb/';
+                $this->data['PropertyList'].='<div class="img_content"><a href="' . base_url() . 'Property/' . $row->id . '"><img src="'.base_url().'/images/product/thumb/';
                 if ($row->product_image != '') {
                     $this->data['PropertyList'].='' . $row->product_image . '';
                 } else {

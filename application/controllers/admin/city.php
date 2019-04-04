@@ -124,6 +124,7 @@ class City extends MY_Controller {
 				$config['upload_path'] = $logoDirectory;
 			    $this->upload->initialize($config);
 				$this->load->library('upload', $config);
+                $this->upload->initialize($config);
 				
 				 //var_dump(is_dir('./dummy'));  die;
 				if ($this->upload->do_upload('citylogo')){
@@ -132,6 +133,7 @@ class City extends MY_Controller {
 			    	$inputArr['citylogo'] = $logoDetails['file_name'];
 				}
 				$error = array('error' => $this->upload->display_errors());
+                $this->upload->initialize($config);
 				//print_r($error); die;
 				if ( $this->upload->do_upload('citythumb')){
 					$feviconDetails = $this->upload->data();

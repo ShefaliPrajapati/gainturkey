@@ -309,7 +309,7 @@ class MY_Controller extends CI_Controller {
 
 		#return 'http://192.168.1.251:8081/jayaprakash/returnonrentals/';
 
-		return 'http://productimages.live/';
+		return base_url();
 
 	}
     /**

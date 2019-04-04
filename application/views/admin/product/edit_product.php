@@ -398,36 +398,36 @@ function viewAttributes(Val){
                 </div>
               </li>
               <input type="hidden" tabindex="11" name="status" value="Publish"/>        
-             <li>
-                <div class="form_grid_12">
-                  <label class="field_title" for="admin_name">Display <span class="req">*</span></label>
-                  <div class="form_input">
-                    <div class="publish_unpublish">
-                    <?php if($product_details->row()->display_main == 'yes' && $product_details->row()->display_sub == 'yes')
-							{
-								$display = 'both';
-							}
-						else if($product_details->row()->display_main == 'yes')
-							{
-								$display = 'main';
-							}
-						else if($product_details->row()->display_sub == 'yes')
-							{
-								$display = 'sub';
-							}else if ($product_details->row()->display_cfr == 'yes') {
-                                $display = 'cfr';
-                            }
-							?>
-							<input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="main" <?php if ($display == 'main') echo 'checked="checked"'; ?> /> returnonrentals.com
-                            <input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="sub" <?php if ($display == 'sub') echo 'checked="checked"'; ?> /> piprentals.com
-                            <input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="cfr" <?php if ($display == 'cfr') echo 'checked="checked"'; ?>/> cashflowready.com
-                            <input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="both" <?php if ($display == 'both') echo 'checked="checked"'; ?> /> all
-                        <span id="display_warn" class="redfont" style="color:#F00;"></span>
-                    </div>
-                  </div>
-                </div>
-              </li>
-             
+<!--             <li>-->
+<!--                <div class="form_grid_12">-->
+<!--                  <label class="field_title" for="admin_name">Display <span class="req">*</span></label>-->
+<!--                  <div class="form_input">-->
+<!--                    <div class="publish_unpublish">-->
+<!--                    --><?php //if($product_details->row()->display_main == 'yes' && $product_details->row()->display_sub == 'yes')
+//							{
+//								$display = 'both';
+//							}
+//						else if($product_details->row()->display_main == 'yes')
+//							{
+//								$display = 'main';
+//							}
+//						else if($product_details->row()->display_sub == 'yes')
+//							{
+//								$display = 'sub';
+//							}else if ($product_details->row()->display_cfr == 'yes') {
+//                                $display = 'cfr';
+//                            }
+//							?>
+<!--							<input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="main" --><?php //if ($display == 'main') echo 'checked="checked"'; ?><!-- /> returnonrentals.com-->
+<!--                            <input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="sub" --><?php //if ($display == 'sub') echo 'checked="checked"'; ?><!-- /> piprentals.com-->
+<!--                            <input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="cfr" --><?php //if ($display == 'cfr') echo 'checked="checked"'; ?><!--/> cashflowready.com-->
+<!--                            <input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="both" --><?php //if ($display == 'both') echo 'checked="checked"'; ?><!-- /> all-->
+<!--                        <span id="display_warn" class="redfont" style="color:#F00;"></span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </li>-->
+<!--             -->
               <!-- <li>
                 <div class="form_grid_12">
                   <div class="form_input">
