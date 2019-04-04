@@ -496,6 +496,8 @@ background:#c7812b !important;
 .rates_full span{
 	float:left;
 	margin:0 0 0 10px;
+
+
 	padding:0px;
 	font-size:15px;
 	 font-family: 'OpenSansRegular';
@@ -505,17 +507,21 @@ background:#c7812b !important;
 	 text-transform: uppercase;
 	 font-weight: bold;
 }
-.detail_btn{
-	/*-webkit-border-radius:3px;*/
-	/*-moz-border-radius:3px;*/
-	/*border-radius:3px;*/
-	float: right;
-	margin:0 10px 0 0px;
+.detail_btn {
+	/* -webkit-border-radius: 3px; */
+	/* -moz-border-radius: 3px; */
+	/* border-radius: 3px; */
+	margin: 0;
 	font-family: 'OpenSansRegular';
-	padding:3px 17px 3px 17px;
-	background:url(../../images/site/detail_bt.jpg) repeat-x;
-	color:#FFFFFF;
-	background:#2b3743;
+	padding: 10px 20px;
+	background: url(../../images/site/detail_bt.jpg) repeat-x;
+	color: #FFFFFF;
+	background: #2b3743;
+	text-align: center;
+	display: inline-block;
+	float: right;
+	/* height: 32px; */
+	font-size: 14px;
 }
 .detail_btn:hover{
 	background:#c7812b;
@@ -994,12 +1000,12 @@ overflow: hidden;*/
 	 font-weight:bold;
 }
 .field_login {
-	float:left;
-	width:58%;
-	padding:5px;
-	font-size:13px;
-	line-height:18px;
-	margin-left:18px;
+	float: left;
+	width: 58%;
+	padding: 5px;
+	font-size: 13px;
+	line-height: 18px;
+	margin-left: 0;
 }
 .field_login label {
 	float:left;
@@ -1026,16 +1032,16 @@ overflow: hidden;*/
 	padding-left:5px;
 }
 .scroll_5 {
-	font-size:15px;
-	font-weight:normal;
-	color:#4A4A4A;
-	height:23px;
-	width:250px;
-	padding-left:3px;
-	border:1px solid #c9bdb4;
-	background:#fff;
-	float:left;
-	line-height:25px;
+	font-size: 15px;
+	font-weight: normal;
+	color: #4A4A4A;
+	height: 32px;
+	width: 250px;
+	padding-left: 3px;
+	border: 1px solid #c9bdb4;
+	background: #fff;
+	float: left;
+	line-height: 25px;
 	font-family: 'MyriadProRegular';
 }
 .scroll_5:hover{
@@ -1091,17 +1097,18 @@ overflow: hidden;*/
     overflow: hidden;
     width: 50%;
 }
-.member_btn{
-	-webkit-border-radius:3px;
-	-moz-border-radius:3px;
-	border-radius:3px;
+.member_btn {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	float: left;
-	margin:0 0px 25px 320px;
+	margin: 0;
 	font-family: 'OpenSansRegular';
-	padding:3px 17px 3px 17px;
-	background:url(../../images/site/detail_bt.jpg) repeat-x;
-	cursor:pointer;
-	color:#FFFFFF;
+	padding: 0 20px;
+	/* background: url(../../images/site/detail_bt.jpg) repeat-x; */
+	cursor: pointer;
+	color: #FFFFFF;
+	height: 42px;
 }
 .member_btn:hover{
 	background:#333333;
@@ -1319,7 +1326,7 @@ overflow: hidden;*/
 }
 /*******reservation page***************/
 .reservation_cont{
-	width:99%;
+	width:100%;
 	float:left;
 	margin:0 0 0 0px;
 	padding:0px;
@@ -1334,11 +1341,11 @@ overflow: hidden;*/
 	font-family: 'OpenSansRegular';
 	 font-weight:bold;
 }
-.timer_con{
-	float:right;
-	margin:10px 0 0 0px;
-	padding:0px;
-	/*width:18%;*/
+.timer_con {
+	float: right;
+	margin: 10px 0 0 0px;
+	padding: 0px;
+	width: 12%;
 }
 .timer_con h2{
 	width:100%;
@@ -1349,6 +1356,7 @@ overflow: hidden;*/
 	font-size:16px;
 	font-family: 'MyriadProRegular';
 	font-weight:bold;
+	text-align: right;
 }
 .split_timer{
 	width:100%;
@@ -1374,17 +1382,17 @@ overflow: hidden;*/
 	height:25px;
 	overflow:hidden;
 }
-.property_title{
-	width:99%;
-	margin:0 0 0 3px;
-	padding:10px 0px 10px 15px;
-	background:#f8f7f7;
-	border:#CCCCCC solid 1px;
-	font-size:16px;
+.property_title {
+	width: 100%;
+	margin: 0 0 0 0px;
+	padding: 10px 0px 10px 15px;
+	background: #2b3743;
+	border: #2b3743 solid 1px;
+	font-size: 16px;
 	font-family: 'MyriadProRegular';
-	font-weight:bold;
-	text-transform:uppercase;
-	color:#c7812b;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #ffffff;
 }
 .proinform_list{
 	list-style:none;
@@ -1458,15 +1466,15 @@ overflow: hidden;*/
 }
 .buyer_field label {
 	color: #1F1F1D;
-    float: left;
-    /*font-family: 'MyriadProRegular';*/
-		font-family: Arial;
-    font-size: 15px;
-    font-weight: normal;
-    line-height: 22px;
-    text-decoration: none;
-    width:31%;
-	text-transform:uppercase;
+	float: left;
+	/* font-family: 'MyriadProRegular'; */
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: normal;
+	line-height: 36px;
+	text-decoration: none;
+	width: 31%;
+	text-transform: uppercase;
 }
 .buyer_field label a{
 	color:#FF0000;
@@ -1902,28 +1910,27 @@ color:#343434;
  width:100%;
   }
 
- .agree-tle {
+.agree-tle {
+	padding: 12px 0px 10px 18px;
+	background: #2b3743;
+	border: #2b3743 solid 1px;
+	margin: 0px;
+	font-size: 16px;
+	color: #fff;
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	width: 100%;
+}
 
-padding: 12px 0px 10px 18px;
-background: #f8f7f7;
-border: #CCCCCC solid 1px;
- margin:0px;
- font-size:16px;
- color:#c7812b;
-font-family: Arial,Helvetica,sans-serif;
-font-weight: bold;
-text-transform: uppercase;
-width:99%;
- }
-
- .agreement-cnt {
- line-height:26px;
- font-family: Arial,Helvetica,sans-serif;
- font-size:14px;
- width: 90%;
-text-align: justify;
-margin-top: 10px;
-padding: 10px 0px 0px 25px;
+.agreement-cnt {
+	line-height: 34px;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14px;
+	width: 100%;
+	text-align: justify;
+	margin-top: 10px;
+	padding: 0;
 }
 
 .code-tle {
@@ -1947,22 +1954,21 @@ font-size:15px;
 
 
  }
- .reservationcode {
-	 background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #C9BDB4;
-    color: #4A4A4A;
-    float: right;
-    font-family: 'MyriadProRegular';
-    font-size: 13px;
-    font-weight: normal;
-    height: 18px;
-    line-height: 23px;
-    margin: 6px 12px 0 0;
-    padding-left: 3px;
-	padding-bottom:2px;
-    width: 126px;
+.reservationcode {
+	background: none repeat scroll 0 0 #fff;
+	border: 1px solid #2b3743;
+	color: #2b3743;
+	float: right;
+	font-family: 'MyriadProRegular';
+	font-size: 14px;
+	font-weight: normal;
+	height: 40px;
+	line-height: 23px;
+	margin: 20px 20px 0 0;
+	padding-left: 12px;
+	padding-bottom: 2px;
+	width: 126px;
 }
-
   .doller_user{
 	float: left;
 margin: 0 0 0 5px;
