@@ -1,4 +1,7 @@
-<?php $this->load->view('site/templates/header'); ?>
+<?php $this->load->view('site/templates/new_header'); ?>
+
+<link rel="stylesheet" type="text/css" href="css/site/master.css"/>
+
 
 <?php /*?><!--<input type="hidden" id="cookieendValue" value="<?php echo $endvalue;?>" />
 <input type="hidden" id="cookiestartValue" value="<?php echo $startvalue;?>" />--><?php */?>
@@ -50,22 +53,26 @@
 <script src="js/site/autoComplete.js"></script>
 
 
+<div class="container">
 
 
-<div class="listing_content" style="margin:20px 0 15px 0px;">
+<div class="listing_content">
+
+    <div class="timer_con">
+        <a href="javascript:void(0);" class="detail_btn" style="margin:0px 0 10px 0;padding: 7px 38px; font-size: 14px " onclick="SaveReserveDetails();" > Back To Listing</a>
+        <h2>Reservation will Expire in:</h2>
+        <div class=" clear"></div>
+        <div class="split_timer">
+            <span id="defaultCountdown"></span>
+        </div>
+    </div>
+
     <div class="reservation_cont">
         <h2 class="tit_head">Property Reservation & Agreement to Purchase</h2>
-        <div class="timer_con">
-            <h2>Reservation will Expire in:</h2>
-            <div class=" clear"></div>
-            <div class="split_timer">
-                <span id="defaultCountdown"></span>
-            </div>
 
-        </div>
         <div class="clear"></div>
 
-        <a href="javascript:void(0);" class="detail_btn" style="margin-top:7px;" onclick="SaveReserveDetails();"> Back To Listing</a>
+
         <div class="property_title"> Property Information </div>
         <div class="property_informaton">
             <ul class="proinform_list">
@@ -87,7 +94,7 @@
             <label style="width:27%; font-weight:bold;">Email Address</label>
             <!-- <input type="text" onblur="SelectUserDetails(this.value);" name="SelectUser" id="SelectUser">-->
             <input type="text" class="userMail scroll_5" autocomplete="off" id="userMail" name="SelectUser"/>
-            <button onclick="SelectUserDetails();" class="detail_btn" style="border:none; float:left; margin:0 0 0 12px; cursor:pointer;">Submit</button>
+            <button onclick="SelectUserDetails();" class="detail_btn" style="border:none; float:left; margin:0 0 0 12px; cursor:pointer;padding: 7px 38px ">Submit</button>
             <div class="for_auto_search"></div>
             <div id="userMail_val" style="display:none;"></div>
             <?php /*?> <?php
@@ -605,4 +612,7 @@
 
     }
 </script>
-<?php $this->load->view('site/templates/footer'); ?>
+
+
+</div>
+<?php $this->load->view('site/templates/new_footer'); ?>
