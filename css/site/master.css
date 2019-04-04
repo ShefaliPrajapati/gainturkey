@@ -2274,11 +2274,11 @@ width: 9px;
 	border-radius: 5px!important;
 }
 
-.calc_popup{
-	position:absolute;
-	z-index:99999;
-	top:200px;
-	left:40px;
+.calc_popup {
+	position: absolute;
+	z-index: 99999;
+	top: 200px;
+	left: 600px;
 }
 .for_auto_search ul{
 	list-style:none;
