@@ -23,6 +23,7 @@
         <link href="css/sprite.css" rel="stylesheet" type="text/css" media="screen">
         <link href="css/gradient.css" rel="stylesheet" type="text/css" media="screen">
         <link href="css/developer.css" rel="stylesheet" type="text/css">
+        <link href="css/style-admin.css" rel="stylesheet" type="text/css">
         <!--<link rel="stylesheet" type="text/css" href="css/ie/ie7.css" />
         <link rel="stylesheet" type="text/css" href="css/ie/ie8.css" />
         <link rel="stylesheet" type="text/css" href="css/ie/ie9.css" />-->

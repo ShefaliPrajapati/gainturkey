@@ -1,0 +1,65 @@
+
+.b_done {
+    background: #edd279;
+    background: -moz-linear-gradient(top, #edd279 0%, #edd279 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #edd279), color-stop(100%, #edd279));
+    background: -webkit-linear-gradient(top, #edd279 0%, #edd279 100%);
+    background: -o-linear-gradient(top, #edd279 0%, #edd279 100%);
+    background: -ms-linear-gradient(top, #edd279 0%, #edd279 100%);
+    background: linear-gradient(top, #edd279 0%, #edd279 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6bba70', endColorstr='#229e00', GradientType=0 );
+    border: #edd279 1px solid;
+    color: #000;
+}
+
+.btn_blue {
+    background-position: 0 -340px;
+    font-size: 11px;
+    padding: 8px 10px;
+    color: #fff;
+    border: #edd279 1px solid;
+    text-shadow: 1px 1px 0px #333;
+    margin-right: 5px;
+    line-height: 14px;
+}
+
+.btn_blue {
+    background-position: 0 -340px;
+    font-size: 11px;
+    padding: 8px 10px;
+    color: #000;
+    border: #edd279 1px solid;
+    text-shadow: none;
+    margin-right: 5px;
+    line-height: 14px;
+    background: #edd279;
+}
+
+label.iPhoneCheckLabelOn {
+    color: white;
+    background: url(../images/on.png) no-repeat;
+    text-shadow: none;
+    left: 0;
+    padding-top: 5px;
+    background: #2b3743;
+}
+
+label.iPhoneCheckLabelOff {
+    color: #000;
+    background: url(../images/off.png) no-repeat right 0;
+    text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.6);
+    text-align: right;
+    right: 0;
+    background: #edd279;
+}
+
+.user_info span {
+    display: block;
+    color: #000;
+    text-shadow: none;
+}
+
+.user_info a {
+    text-decoration: none;
+    color: #000;
+}
