@@ -111,7 +111,7 @@ class Product extends MY_Controller {
     <table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px; ">
         
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-            <td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+            <td width="10%;"><img src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
             </td>
             <td  width="13%;" style="vertical-align:top; text-align:right;">
             <span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$PropertyList->row()->prop_address.'</span>

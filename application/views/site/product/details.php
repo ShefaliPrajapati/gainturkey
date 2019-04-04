@@ -554,7 +554,7 @@ function compute_pvalue(form)
 
             
 
-            	<a  id="cboxClose"  ></a>
+            	<a  id="cboxClose" onclick="return displayfunction('details','details_parent');"  ></a>
 
                 
 

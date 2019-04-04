@@ -700,16 +700,14 @@ class Product extends MY_Controller {
 
 		$message .= 'Step by Step Instruction:<br>';
 		$message .= '1. Click on the "View Documents" link in this email above.<br>';
-		$message .= '2. Login to your free account at ReturnonRentals.com<br>';
+		$message .= '2. Login to your free account at GainTurkey.com<br>';
 		$message .= '3.  Click on "My Account", then "Documents"<br>';
 		$message .= '4. You will then see the property listed above and a RED button that reads "Click to Sign."  Please go ahead and click that button and follow the steps that are given at that point to complete the process.<br><br>';
 
 		$message .= 'Congratulations!  We are very happy for you and look forward to building a long-lasting relationship with you and your team.<br><br>';
-		$message .= 'Feel free to contact us directly at 877.372.2010 or by email at tc@returnonrentals.com if you have any questions.<br><br>';
+		$message .= 'Feel free to contact us directly at 877.372.2010 or by email at info@gainturnkeyproperty.com if you have any questions.<br><br>';
 
-		$message .= '<br><br>The Return on Rentals Team<br>tc@returnonrentals.com<br>877.372.2010</div></body></html>';
-
-
+		$message .= '<br><br>The Gain Turkey Team<br>info@gainturnkeyproperty.com<br> 877-372-2010</div></body></html>';
 
 		$sender_email=$this->data['siteContactMail'];
 		$sender_name=$this->data['siteTitle'];
@@ -2297,7 +2295,7 @@ class Product extends MY_Controller {
                             "_SoldAdminID"=>$is_result->row()->sold_admin_id,
                             "_PropertyAddress"=>$is_result->row()->prop_address,
                             "_PropertyPrice"=>"$".number_format((int)$is_result->row()->prop_price,2),
-                            "_PropertyImage"=>"http://www.returnonrentals.com/images/product/".$is_result->row()->image,
+                            "_PropertyImage"=>"http://beta.gainturnkeyproperty.com/images/product/".$is_result->row()->image,
                             "_EntityName"=>$is_result->row()->prop_entity_name,
                             "_ReserveType"=>$is_result->row()->resrv_type,
                             "_SalesPrice"=>"$".number_format($is_result->row()->sales_price,2),
@@ -2413,7 +2411,7 @@ class Product extends MY_Controller {
 		$email_values = array('mail_type'=>'html',
 								'from_mail_id'=>$sender_email,
 								'mail_name'=>$sender_name,
-								'to_mail_id'=>'deals@returnonrentals.com',
+								'to_mail_id'=>'info@gainturnkeyproperty.com',
 								'subject_message'=>$template_values['news_subject'],
 								'body_messages'=>$message
 		);
@@ -2485,7 +2483,7 @@ class Product extends MY_Controller {
                         "_SoldAdminID"=>$is_result->row()->sold_admin_id,
                         "_PropertyAddress"=>$is_result->row()->prop_address,
                         "_PropertyPrice"=>"$".number_format((int)$is_result->row()->prop_price,2),
-                        "_PropertyImage"=>"http://www.returnonrentals.com/images/product/".$is_result->row()->image,
+                        "_PropertyImage"=>"http://beta.gainturnkeyproperty.com/images/product/".$is_result->row()->image,
                         "_EntityName"=>$is_result->row()->entity_name,
                         "_ReserveType"=>$is_result->row()->resrv_type,
                         "_SalesPrice"=>"$".number_format($is_result->row()->sales_price,2),
@@ -2606,7 +2604,7 @@ class Product extends MY_Controller {
                         "_SoldAdminID"=>$is_result->row()->sold_admin_id,
                         "_PropertyAddress"=>$is_result->row()->prop_address,
                         "_PropertyPrice"=>"$".number_format((int)$is_result->row()->prop_price,2),
-                        "_PropertyImage"=>"http://www.returnonrentals.com/images/product/".$is_result->row()->image,
+                        "_PropertyImage"=>"http://beta.gainturnkeyproperty.com/images/product/".$is_result->row()->image,
                         "_EntityName"=>$is_result->row()->entity_name,
                         "_ReserveType"=>$is_result->row()->resrv_type,
                         "_SalesPrice"=>"$".number_format($is_result->row()->sales_price,2),

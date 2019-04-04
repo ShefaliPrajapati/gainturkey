@@ -170,7 +170,6 @@ class Adminlogin extends MY_Controller {
 		);
 		
 		$this->input->set_cookie($cookie);*/
-		 $this->session->session_destroy();
 		clearstatcache();
 		$this->setErrorMessage('success','Successfully logout from your account');
 		redirect('deals_crm');

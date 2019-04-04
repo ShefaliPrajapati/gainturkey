@@ -2,7 +2,7 @@
 
 
 <?php
-$this->load->view('site/templates/header');
+$this->load->view('site/templates/new_header');
 ?>
 
 <!--<script type="text/javascript">
@@ -12,20 +12,15 @@ jQuery(document).ready(function(e)
 });
 </script>-->
 <!----------listing content------------------>
-<div class="listing_content" style="margin:20px 0 15px 0px;">
-		<div class="cms_view">
-       
-        <h2>Property Reserved Details </h2>
-        <div class="clear"></div>
-        <?php echo $productListPopUp; ?>
-         <div class="clear"></div>
-        					
-                         
-        
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Property Reserved Details </h2>
+            <div class="clear"></div>
+            <?php echo $productListPopUp; ?>
+            <div class="clear"></div>
         </div>
- 
-<!----------listing end content-------------->
-</div>
+    </div>
 </div>
 <div class="clear"></div>
 
@@ -43,5 +38,5 @@ function printthis()
 
 
 <?php
-$this->load->view('site/templates/footer');
+$this->load->view('site/templates/new_footer');
 ?>

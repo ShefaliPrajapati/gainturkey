@@ -543,18 +543,20 @@ function removeError(idval){
                   </div>
                 </div>
               </li>
-                <input type="hidden"  tabindex="11" checked="checked" name="display" id="display" class="publish_unpublish" value="main" />
+                <input type="radio" style="display: none;" checked="checked" tabindex="11" name="display" id="display" class="publish_unpublish" value="both" />
 <!--                <li>-->
-<!--                <div class="form_grid_12">-->
-<!--                  <label class="field_title" for="admin_name">Display <span class="req">*</span></label>-->
-<!--                  <div class="form_input">-->
-<!--                    <div class="publish_unpublish">-->
-<!--                      <input type="hidden"  tabindex="11" checked="checked" name="display" id="display" class="publish_unpublish" value="main" /> -->
-<!--                       <span id="display_warn" class="redfont" style="color:#F00;"></span>-->
+<!--                    <div class="form_grid_12">-->
+<!--                        <label class="field_title" for="admin_name">Display <span class="req">*</span></label>-->
+<!--                        <div class="form_input">-->
+<!--                            <div class="publish_unpublish">-->
+<!--                                <input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="main" /> returnonrentals.com-->
+<!--                                <input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="sub" /> preigrentals.com-->
+<!--                                <input type="radio" tabindex="11" name="display" id="display" class="publish_unpublish" value="both" /> all-->
+<!--                                <span id="display_warn" class="redfont" style="color:#F00;"></span>-->
+<!--                            </div>-->
+<!--                        </div>-->
 <!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </li>-->
+<!--                </li>-->
               <li>
                 <div class="form_grid_12">
                   <div class="form_input">

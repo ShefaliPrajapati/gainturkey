@@ -58,9 +58,9 @@ extract($privileges);
 							<th class="tip_top" title="Click to sort">
 								Event Price
 							</th>
-							<th class="tip_top" title="Click to sort">
-								Display
-							</th>
+<!--							<th class="tip_top" title="Click to sort">-->
+<!--								Display-->
+<!--							</th>-->
                             <th class="tip_top" title="Click to sort">
 								Property Status
 							</th>
@@ -137,21 +137,21 @@ extract($privileges);
 							<td class="center">
 								<?php echo number_format($row->event_price);?>
 							</td>
-							<td class="center">
-								<?php if($row->display_main == 'yes' && $row->display_sub == 'yes')
-											{
-												echo 'All';
-											}
-										else if($row->display_main == 'yes')
-											{
-												echo 'returnonrentals.com';
-											}
-										else if($row->display_sub == 'yes')
-											{
-												echo 'preigrentals.com';
-											}
-								?>
-							</td>
+<!--							<td class="center">-->
+<!--								--><?php //if($row->display_main == 'yes' && $row->display_sub == 'yes')
+//											{
+//												echo 'All';
+//											}
+//										else if($row->display_main == 'yes')
+//											{
+//												echo 'returnonrentals.com';
+//											}
+//										else if($row->display_sub == 'yes')
+//											{
+//												echo 'preigrentals.com';
+//											}
+//								?>
+<!--							</td>-->
                             <td class="center">
 							<?php 
 							echo $row->property_status;
