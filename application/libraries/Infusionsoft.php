@@ -83,7 +83,7 @@ class Infusionsoft{
             "_SoldAdminID"=>$dataArr["sold_admin_id"],
             "_PropertyAddress"=>$dataArr["prop_address"],
             "_PropertyPrice"=>"$".number_format($dataArr["prop_price"],2),
-            "_PropertyImage"=>"http://beta.gainturnkeyproperty.com/images/product/".$dataArr["image"],
+            "_PropertyImage"=>"http://www.returnonrentals.com/images/product/".$dataArr["image"],
             "_EntityName"=>$dataArr["entity_name"],
             "_ReserveType"=>$dataArr["resrv_type"],
             "_SalesPrice"=>"$".number_format($dataArr["sales_price"],2),
