@@ -609,4 +609,28 @@
          text-align: justify;
     }
 }
- 
+
+
+ .right_bt {
+
+     float: right;
+     display: flex;
+
+
+ }
+
+
+ .right_bt a {
+
+     margin: 20px 0 0 10px;
+     background: #dda049;
+     border: solid 1px #dda049;
+
+ }
+ .right_bt a:hover {
+
+     color: #fff;
+     background: #dda049;
+     border: solid 1px #dda049;
+
+ }

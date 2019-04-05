@@ -188,10 +188,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $urlProperty.'contact'; ?>">Contact Us</a>
                     </li>
+
+
                     <?php
                     if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
                         <li class="nav-item bt_box">
-                            <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Logout</a>
+                            <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Sign out</a>
                         </li>
                     <?php } else {
                         ?>
@@ -199,8 +201,71 @@
                             <a class="nav-link" href="<?php echo $urlProperty.'signup'; ?>">Sign up</a>
                         </li>
                     <?php } ?>
+
+
                 </ul>
             </div>
         </div>
     </nav>
 </div>
+<div class="container">
+    <div class="">
+        <div class="right_bt">
+           <a class="btn btn-primary <?php
+                    if ($this->uri->segment(1, 0) == 'listing') {
+                        echo 'nav-link';
+                    }
+                    ?>" href="<?php
+                    if ($loginCheck == '') {
+                        echo base_url() . 'signin';
+                    } else {
+                        echo base_url() . 'listing/viewall/0';
+                    }
+                    ?> ">Current Inventory</a>
+            <a class="btn btn-primary <?php
+                    if ($this->uri->segment(1, 0) == 'soldlisting') {
+                        echo 'nav-link';
+                    }
+                    ?>" href="<?php
+                    if ($loginCheck == '') {
+                        echo base_url() . 'signin';
+                    } else {
+                        echo base_url() . 'soldlisting/viewall/0';
+                    }
+                    ?>">Past/Sold Inventory </a>
+        </div>
+    </div>
+</div>
+<!----------listing content------------------>
+<script type="text/javascript">
+    function hideErrDiv(arg) {
+        $("#" + arg).slideUp();
+        //window.location.reload();
+        document.getElementById(arg).style.display = 'none';
+
+    }</script>
+<?php if (validation_errors() != '') { ?>
+    <div id="validationErr" style="height:30px; ">
+        <script>setTimeout("hideErrDiv('validationErr')", 6000);</script>
+        <p style="font-size:18px; "><?php echo validation_errors(); ?></p>
+    </div>
+<?php } ?>
+<script>setTimeout("hideErrDiv('location_val')", 6000);</script>
+<?php if ($flash_data != '') { ?>
+    <div class="errorContainer" style="min-height:40px;" id="<?php echo $flash_data_type; ?>">
+        <script>setTimeout("hideErrDiv('<?php echo $flash_data_type; ?>')", 6000);</script>
+        <p style="color:#FF0000; font-size:15px; font-weight:bold; font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px; font-weight:bold;"><?php echo $flash_data; ?></span></p>
+    </div>
+<?php } ?>
+<?php
+//$this->load->view('site/templates/popup_templates.php',$this->data);
+
+if ($this->config->item('google_verification')) {
+    echo stripslashes($this->config->item('google_verification'));
+}
+?>
+<script type="text/javascript">
+    function LoginPageRedirect() {
+        window.location.href = baseURL + 'signin';
+    }
+</script>

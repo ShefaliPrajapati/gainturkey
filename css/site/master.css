@@ -378,7 +378,7 @@ float: right;
 .listing_content {
     width: 100%;
     margin: 100px 0;
-    padding: 0px;
+    padding: 25px;
     float: left;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
@@ -876,7 +876,7 @@ left:0px;
     overflow: hidden;
     padding: 0;
     position: relative;
-    width: 247px;
+    width: 263px;
 }
 
 .listing_page li p{
@@ -907,8 +907,8 @@ overflow: hidden;*/
 }
 .rates_full_list{
 	width:100%;
-	margin:12px 0 0 0px;
-	padding:0px;
+	margin:3px 0 0 0px;
+	padding:4px;
 	float:left;
 }
 .rates_full_list span{
@@ -1353,7 +1353,7 @@ overflow: hidden;*/
 	padding:0px;
 	float:left;
 	color:#000000;
-	font-size:16px;
+	font-size:12px;
 	font-family: 'MyriadProRegular';
 	font-weight:bold;
 	text-align: right;

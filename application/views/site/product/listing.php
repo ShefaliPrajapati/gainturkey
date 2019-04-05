@@ -92,14 +92,23 @@ if ($iiii != '') {
                     <li style="float:left;" class="active has-sub"><a href="javascript:void(0);" onclick="SearchByCat('pricedesc', 0)">High to Low </a></li>
                 </ul>
             </li>
+            <li><a id="active_viewall" onclick="SearchByCat('viewall', 0)" href="javascript:void(0);"
+                   data-option-value="*" <?php
+                if ($menuact == 'viewall' && $menuactcat == '0') {
+                    echo 'class="selected"';
+                }
+                ?>>All Properties</a></li>
         </span>
-        <li><a id="active_viewall" onclick="SearchByCat('viewall', 0)" href="javascript:void(0);" data-option-value="*" <?php
-            if ($menuact == 'viewall' && $menuactcat == '0') {
-                echo 'class="selected"';
-            }
-            ?>>All Properties</a></li>
+
     </ul>
-    <div id="fulldiv_container" style="float:left; width:100%"><div class="pagination"><ul class="pagination-ul"><?php echo $paginationLink; ?></ul></div><div class="clear"></div><ul id="container" class="listing_page">
+    <div id="fulldiv_container">
+        <div class="pagination">
+            <ul class="pagination-ul">
+                <?php echo $paginationLink; ?>
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <ul id="container" class="listing_page">
             <?php foreach ($productDetails->result() as $row) {
                 ?>
                 <li  class="element subcat<?php echo $row->property_sub_type; ?> cat<?php echo $row->property_type; ?>"  data-category="cat<?php echo $row->property_type; ?>">
@@ -143,8 +152,11 @@ if ($iiii != '') {
 
                 </li>
             <?php } ?>
-        </ul><div class="clear"></div>
-        <div class="pagination"><ul class="pagination-ul"><?php echo $paginationLink; ?></ul></div>
+        </ul>
+        <div class="clear"></div>
+        <div class="pagination">
+            <ul class="pagination-ul"><?php echo $paginationLink; ?></ul>
+        </div>
     </div>
     <!----------listing end content-------------->
 </div>

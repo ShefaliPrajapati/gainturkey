@@ -13,19 +13,16 @@ jQuery(document).ready(function(e)
 </script>-->
 <!----------listing content------------------>
 <div class="container">
-<div class="listing_content">
-		<div class="cms_view">
-       
-        <h2>Property Reserved Details </h2>
-        <div class="clear"></div>
-        <?php echo $productListPopUp; ?>
-         <div class="clear"></div>
-        					
-                         
-        
+    <div class="listing_content">
+        <div class="cms_view">
+            <h2>Property Reserved Details </h2>
+            <div class="clear"></div>
+                <?php echo $productListPopUp; ?>
+             <div class="clear"></div>
         </div>
+    </div>
 </div>
-<!----------listing end content-------------->
+</div>
 </div>
 <div class="clear"></div>
 

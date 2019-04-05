@@ -59,7 +59,7 @@ function hideErrDiv(arg) {
 			<ul class="login_branding">
 				<li>
 				<div class="logo_small">
-					<img src="images/logo/<?php echo $logo;?>" width="250px" alt="<?php echo $siteTitle;?>" title="<?php echo $siteTitle;?>">
+					<img src="images/logo/<?php echo $logo;?>" width="65px" alt="<?php echo $siteTitle;?>" title="<?php echo $siteTitle;?>">
 				</div>
 				<span></span>
 				</li>
