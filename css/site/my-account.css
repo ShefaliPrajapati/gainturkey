@@ -2,7 +2,12 @@
 /* CSS Document */
 
 /* My Account ======================================================== */
-
+.freemember {
+	margin: 80px 0 0 0;
+}
+.freemember h2 {
+	margin: 0 0 30px 0;
+}
 .view_invoice {
 	float: left;
 	width:99.5%;
@@ -144,7 +149,7 @@ img{ border: none;}
 .TabbedPanels {
 	clear: none;
 	float: left;
-	margin: 90px 0;
+	margin: 0 0 80px 0;
 	padding: 0;
 	width: 100%;
 }

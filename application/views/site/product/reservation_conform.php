@@ -4,7 +4,7 @@
 <?php
 $this->load->view('site/templates/new_header');
 ?>
-
+<link rel="stylesheet" type="text/css" href="css/site/master.css"/>
 <!--<script type="text/javascript">
 jQuery(document).ready(function(e)
  {
@@ -13,14 +13,19 @@ jQuery(document).ready(function(e)
 </script>-->
 <!----------listing content------------------>
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <h2>Property Reserved Details </h2>
-            <div class="clear"></div>
-            <?php echo $productListPopUp; ?>
-            <div class="clear"></div>
+<div class="listing_content">
+		<div class="cms_view">
+       
+        <h2>Property Reserved Details </h2>
+        <div class="clear"></div>
+        <?php echo $productListPopUp; ?>
+         <div class="clear"></div>
+        					
+                         
+        
         </div>
-    </div>
+</div>
+<!----------listing end content-------------->
 </div>
 <div class="clear"></div>
 
