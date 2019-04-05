@@ -2,9 +2,9 @@
 
 
 <?php
-$this->load->view('site/templates/header');
+$this->load->view('site/templates/new_header');
 ?>
-
+<link rel="stylesheet" type="text/css" href="css/site/master.css"/>
 <!--<script type="text/javascript">
 jQuery(document).ready(function(e)
  {
@@ -12,7 +12,8 @@ jQuery(document).ready(function(e)
 });
 </script>-->
 <!----------listing content------------------>
-<div class="listing_content" style="margin:20px 0 15px 0px;">
+<div class="container">
+<div class="listing_content">
 		<div class="cms_view">
        
         <h2>Property Reserved Details </h2>
@@ -23,9 +24,8 @@ jQuery(document).ready(function(e)
                          
         
         </div>
- 
-<!----------listing end content-------------->
 </div>
+<!----------listing end content-------------->
 </div>
 <div class="clear"></div>
 
@@ -43,5 +43,5 @@ function printthis()
 
 
 <?php
-$this->load->view('site/templates/footer');
+$this->load->view('site/templates/new_footer');
 ?>

@@ -306,12 +306,12 @@
                     <span>SDIRA LLC + FINANCE</span></li>
             </ul><br />
 
-            <div class="buyer_field" id="cust_name_field" style="width:104%; height:20px; padding-top:20px; margin-left:0px; display:none" >
+            <div class="buyer_field" id="cust_name_field" style="width:106%; height:20px; padding-top:20px; margin-left:0px; display:none" >
                 <label> Custodian Name:</label>
                 <input type="text" name="cust_name" id="cust_name"  class="scroll_5" value="<?php if (($_SESSION['cust_name']) != 'null') echo $_SESSION['cust_name'];?>"/>
             </div>
 
-            <div class="buyer_field" id="account_no_field"  style="width:104%; height:20px; padding-top:20px; margin-left:0px; display:none">
+            <div class="buyer_field" id="account_no_field"  style="width:106%; height:20px; padding-top:20px; margin-left:0px; display:none;margin: 0 0 40px 0;">
                 <label> Account Number:</label>
                 <input type="text" name="account_no" id="account_no" class="scroll_5" value="<?php if (($_SESSION['acco_no']) != 'null') echo $_SESSION['acco_no'];?>" />
             </div>

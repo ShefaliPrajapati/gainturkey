@@ -385,7 +385,7 @@ float: right;
     border-radius: 7px;
     background: #FFF;
     min-height: 500px;
-    /*border: #c7812b solid 1px;*/
+    border: #c7812b solid 1px;
 }
 .button_tab{
 	width:100%;
@@ -1516,15 +1516,16 @@ overflow: hidden;*/
     padding: 0 0 8px;
     width: 100%;
 }
-.list_check li input{
-	float:left;
-	margin: 11px 7px 5px 10px;
-	padding:0px;
+.list_check li input {
+    float: left;
+    margin: 2px 10px 0 10px;
+    padding: 0px;
+    vertical-align: middle;
 }
 .list_check span{
 	width:160px;
 	float: left;
-	margin:8px 0 5px 0px;
+	margin:0;
 	padding:0px;
 	color: #1F1F1D;
    /* font-family: 'MyriadProRegular';*/
@@ -1574,15 +1575,14 @@ overflow: hidden;*/
 	float:left;
 }
 
-.cms_view h2{
-	float:left;
-	width:90%;
-	margin:15px 0 0px 20px;
-	padding:0px;
-	color:#000000;
-	font-size:20px;
-		font-family: 'OpenSansRegular';
-	 font-weight:bold;
+.cms_view h2 {
+    margin: 20px 0;
+    padding: 0px;
+    color: #000000;
+    font-size: 20px;
+    font-family: 'OpenSansRegular';
+    font-weight: bold;
+    text-align: center;
 }
 .cms_view p{
 	 color: #4A4A4A;
@@ -1955,19 +1955,19 @@ font-size:15px;
 
  }
 .reservationcode {
-	background: none repeat scroll 0 0 #fff;
-	border: 1px solid #2b3743;
-	color: #2b3743;
-	float: right;
-	font-family: 'MyriadProRegular';
-	font-size: 14px;
-	font-weight: normal;
-	height: 40px;
-	line-height: 23px;
-	margin: 20px 20px 0 0;
-	padding-left: 12px;
-	padding-bottom: 2px;
-	width: 126px;
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #2b3743;
+    color: #2b3743;
+    /* float: right; */
+    font-family: 'MyriadProRegular';
+    font-size: 13px;
+    font-weight: normal;
+    height: 40px;
+    line-height: 23px;
+    margin: 20px 0px 0 60px;
+    padding-left: 12px;
+    padding-bottom: 2px;
+    width: 126px;
 }
   .doller_user{
 	float: left;
