@@ -4,7 +4,7 @@ $this->load->view('site/templates/new_header');
 <!----------listing content------------------>
 <div class="main_sec">
     <div class="container">
-        <div class="col-md-12 text-center wlelcome_text">
+        <div class="col-md-12 wlelcome_text">
             <?php if ($pageDetails->num_rows()>0){ ?>
                 <div class="cms_view">
                     <h2><?php echo $pageDetails->row()->page_name; ?></h2>

@@ -105,7 +105,7 @@ class Product extends MY_Controller {
                 foreach ($this->data['sourcer'][0] as $x=>$val){
                     array_push($deals_prev, $val);
                 }
-                $this->data['productList'] = $this->product_model->view_product_details_cancel($table, $whereCnd, $newCnd,unserialize($deals_prev[0]),unserialize($deals_prev[1]));
+                $this->data['productList'] = $this->product_model->view_product_details_cancel($table, $whereCnd, $newCnd,unserialize($deals_prev[0]) ? : NULL,unserialize($deals_prev[1]) ? : NULL);
 				}else{
 					//	$table => RESERVED_INFO
 					$this->data['deals_pre']=$this->product_model->get_deals_prev($this->checkLogin('CA'));

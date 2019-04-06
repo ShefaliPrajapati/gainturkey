@@ -59,7 +59,7 @@ $urlProperty = base_url();
                     <?php
                     if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
                         <li class="nav-item bt_box">
-                            <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Logout</a>
+                            <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Sign Out</a>
                         </li>
                     <?php } else {
                         ?>

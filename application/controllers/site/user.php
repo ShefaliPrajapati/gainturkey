@@ -1442,7 +1442,7 @@ public function send_admin_mail_userdetails($userDetails=''){
 			<meta name="viewport" content="width=device-width"/>
 			<title>'.$template_values['news_subject'].'</title>
 			<body>';
-		include('./newsletter/registeration'.$newsid.'.php');	
+		include('./newsletter/registeration'.$newsid.'.php');
 		
 		$message .= '</body>
 			</html>';
@@ -1455,7 +1455,13 @@ public function send_admin_mail_userdetails($userDetails=''){
 			$sender_name=$template_values['sender_name'];
 			$sender_email=$template_values['sender_email'];
 		}
-		
+
+        $message = '';
+        $message = str_replace('{$pwd}', $pwd , $template_values['news_descrip']);
+        $message = str_replace('{$email_title}', $sender_name , $message);
+        $message = str_replace('{$meta_title}', $sender_name , $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', 'images/logo/logo.php' , $message);
+
 		$email_values = array('mail_type'=>'html',
 							'from_mail_id'=>$sender_email,
 							'mail_name'=>$sender_name,

@@ -39,9 +39,9 @@ class Product extends MY_Controller {
      * This function loads the selling product list page
      */
     public function display_product_list() {
-		
-		   //$this->product_model->update_propertystatus();
-		 
+
+        //$this->product_model->update_propertystatus();
+
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -69,6 +69,7 @@ class Product extends MY_Controller {
                     }
                 }
             }
+
             $this->data['createrArr'] = $createrArr;
             #echo '<pre>'; print_r($this->data['createrArr']); die;
             #echo '<pre>'; print_r($this->data['productList']->result_array()); die;
@@ -76,7 +77,6 @@ class Product extends MY_Controller {
             $this->data['confirm_code'] = $this->product_model->get_confirm_code();
             $this->data['product_image'] = $this->product_model->Display_product_image_details();
             $this->data['code'] = $this->data['confirm_code']->row();
-
             $this->load->view('admin/product/display_product_list', $this->data);
         }
     }
@@ -326,7 +326,7 @@ class Product extends MY_Controller {
     <table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
         
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-            <td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+            <td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
             </td>
             <td  width="13%;" style="vertical-align:top; text-align:right;">
             <span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -1189,8 +1189,6 @@ class Product extends MY_Controller {
      */
     public function edit_product_form() {
 
-
-
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1909,21 +1907,22 @@ class Product extends MY_Controller {
         $s = 0;
         foreach ($this->input->post('imgUploadUrl') as $imgUrl) {
 
-            //echo '<br>'.$imgUrl.$imageNameNew[$s];
-            copy($imgUrl, './images/product/' . $imageNameNew[$s]);
+            $imagPath  = getcwd().'/images/product/';
+            $savepath  = getcwd().'/images/product/thumb/';
+
+            copy($imgUrl, $imagPath. $imageNameNew[$s]);
             unlink('server/php/files/' . $imageNameNew[$s]);
             unlink('server/php/files/thumbnail/' . $imageNameNew[$s]);
-
             $fileName = $imageNameNew[$s];
-            $imagPath = 'images/product/';
-            $savepath = 'images/product/thumb/';
             @copy($imagPath . $fileName, $savepath . $fileName);
-            $target_file = 'images/product/' . $fileName;
-            list($w, $h) = getimagesize($target_file);
+            $target_file = $imagPath . $fileName;
+            $size = getimagesize($target_file);
+            $w = $size['width'];
+            $h = $size['height'];
             $option = $this->getImageShape($w, $h, $target_file);
             $resizeObj = new Resizeimage($target_file);
             $resizeObj->resizeImage(250, 162, $option);
-            $resizeObj->saveImage('images/product/thumb/' . $fileName, 100);
+            $resizeObj->saveImage($savepath . $fileName, 100);
             $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
             $this->ImageCompress($savepath . $fileName, $savepath . $fileName);
 

@@ -143,7 +143,7 @@ class Product_model extends My_Model
                     return $result->result_array();
                 }
 		
-		public function view_product_details_cancel($table = '',$condition = '',$newcondi = '',$deals_prev='',$sourcer='')
+		public function view_product_details_cancel($table = '',$condition = '',$newcondi = '',$deals_prev=NULL,$sourcer= NULl)
 		{
 			$this->db->select('p.*,
 				pa.latitude,pa.longitude,pa.city as cityname,pa.state as statename,pa.post_code,pa.address,sa.user_name as sold_admin_name,ps.articles_status, ps.loi_status, ps.pa_status, ps.loan_status, ps.doi_status, ps.insurance_status, ps.funded_status, ps.closed_status,ps.hand_off_status, ps.invoice_status, ps.ror_iv_status, ps.gen_iv_status, ps.entity_name as loi_entity_name, ps.reserved_id,ps.have_alert,ps.no_of_alert');
