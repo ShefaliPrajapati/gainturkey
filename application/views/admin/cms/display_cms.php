@@ -80,12 +80,13 @@ extract($privileges);
 								<?php echo $row->page_title;?>
 							</td>
  -->						<td class="center">
-								<a href="<?php if($row->site == 'main') { echo base_url().'pages/'.$row->seourl;} else { echo 'http://www.preigrentals.com/pages/'.$row->seourl;}?>" target="_blank"><?php if($row->site == 'main') {echo base_url().'pages/'.$row->seourl;}else { echo 'http://www.preigrentals.com/pages/'.$row->seourl;} ?></a>
+<!--								<a href="--><?php //if($row->site == 'main') { echo base_url().'pages/'.$row->seourl;} else { echo 'http://www.preigrentals.com/pages/'.$row->seourl;}?><!--" target="_blank">--><?php //if($row->site == 'main') {echo base_url().'pages/'.$row->seourl;}else { echo 'http://www.preigrentals.com/pages/'.$row->seourl;} ?><!--</a>-->
+                                <a href="<?php  echo base_url().'pages/'.$row->seourl; ?>" target="_blank"><?php echo base_url().'pages/'.$row->seourl; ?></a>
 							</td>
                             <td class="center">
 								<?php if($row->site == 'main')
 										{
-											echo "Returnonrentals";
+											echo "GainTurnkeyProperty";
 										}
 									else if($row->site == 'sub')
 										{

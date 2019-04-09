@@ -187,7 +187,7 @@ class Product extends MY_Controller {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
@@ -2014,10 +2014,12 @@ class Product extends MY_Controller {
 
 	public function popup_drag()
 	{
-		$id['type'] = $this->uri->segment(4);
-		$id['reserved_id'] = $this->uri->segment(5);
-		$id['sixuri'] = $this->uri->segment(6);
-		$this->load->view('crmadmin/product/dragndrop1',$id);
+	    $buyerDetails = $this->product_model->get_all_details(CANCELLED,array('id'=>$this->uri->segment(4)));
+        $this->data['buyer_info'] = $buyerDetails;
+        $this->data['type'] = $this->uri->segment(4);
+        $this->data['reserved_id'] = $this->uri->segment(5);
+        $this->data['sixuri'] = $this->uri->segment(6);
+		$this->load->view('crmadmin/product/dragndrop1',$this->data);
 	}
 
 	public function get_sub_type_details()
@@ -2700,7 +2702,7 @@ class Product extends MY_Controller {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div style="width:50%; margin:0px; padding:0px;">
@@ -2751,7 +2753,7 @@ class Product extends MY_Controller {
 			<td width="80%">
 				<table border="0" width="130" align="left" cellpadding="0" cellspacing="0" style="max-width: 200px;" >
 					  <tr style="margin-bottom:5px;">
-						<td style="text-align:center;" >Return on Rentals, LLC</td>
+						<td style="text-align:center;" >Gain Turnkey Property, LLC</td>
 					  </tr>
 					  <tr style="margin-bottom:5px;">
 						<td style="text-align:center;">3566 E. Amber Lane</td>
@@ -2919,7 +2921,7 @@ class Product extends MY_Controller {
 		<table border="0" width="330" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px; margin-left:170px;  margin-top: 20px; clear:both; ">
 		  <tr>
 			<td>Company Name:</td>
-			<td>Return on Rentals, LLC</td>
+			<td>Gain Turnkey Property, LLC</td>
 		  </tr>
 		  <tr>
 			<td>Account:</td>

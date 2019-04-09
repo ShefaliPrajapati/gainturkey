@@ -2823,7 +2823,7 @@ $message.='</td>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div style="width:50%; margin:0px; padding:0px;">
@@ -3471,7 +3471,7 @@ ini_set('display_errors','off');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div id="printthis">
@@ -3996,7 +3996,7 @@ ini_set('display_errors','off');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div id="printthis">
@@ -4537,7 +4537,7 @@ $this->load->view('site/product/reservation_conform',$this->data);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div style="width:50%; margin:0px; padding:0px;">

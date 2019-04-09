@@ -19,6 +19,7 @@ $(document).ready(function(){
 </script>';
 }					
 ?>
+<script src="baseURL+"js/site/jquery.colorbox.js"></script>
 <script>
 function popupCall(valID){
 	$.colorbox({href:baseURL+"crmadmin/product/display_property_popup/"+valID});

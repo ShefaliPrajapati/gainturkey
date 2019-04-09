@@ -155,7 +155,7 @@ class Producttemplate extends MY_Controller {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
@@ -1924,7 +1924,7 @@ class Producttemplate extends MY_Controller {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div style="width:50%; margin:0px; padding:0px;">
@@ -1975,7 +1975,7 @@ class Producttemplate extends MY_Controller {
 			<td width="80%">
 				<table border="0" width="130" align="left" cellpadding="0" cellspacing="0" style="max-width: 200px;" >
 					  <tr style="margin-bottom:5px;">
-						<td style="text-align:center;" >Return on Rentals, LLC</td>
+						<td style="text-align:center;" >Gain Turnkey Property, LLC</td>
 					  </tr>
 					  <tr style="margin-bottom:5px;">
 						<td style="text-align:center;">3566 E. Amber Lane</td>
@@ -2143,7 +2143,7 @@ class Producttemplate extends MY_Controller {
 		<table border="0" width="330" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px; margin-left:170px;  margin-top: 20px; clear:both; ">
 		  <tr>
 			<td>Company Name:</td>
-			<td>Return on Rentals, LLC</td>
+			<td>Gain Turnkey Property, LLC</td>
 		  </tr>
 		  <tr>
 			<td>Account:</td>

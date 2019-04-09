@@ -109,7 +109,7 @@ extract($privileges);
                                         <td class="center">
                                             <?php
                                             if ($row->site == 'main') {
-                                                echo "Returnonrentals";
+                                                echo "GainTurnkeyProperty";
                                             }
                                             if ($row->site == 'sub') {
                                                 echo "Preigrentals";

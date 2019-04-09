@@ -354,7 +354,7 @@
         <div class="clear"></div>
         <div class="agree-cnt" style="margin-top:20px;">
             <h2 class="agree-tle">Property Reservation Agreement</h2>
-            <p class="agreement-cnt">This Property Reservation Conformation is your receipt of your commitment to purchase the above referenced property. Due to the nature of the Return On Rentals, and the overwhelming interest the students have in purchasing the properties brought to the event by our preferred vendors, your possession of this document is evidence that the property has been removed from our active database and is not longer available for sale to other students. Our staff will contact you during the final two days of the event to arrange the production and execution of the final document for closing. Please keep this information for reference prior to closing. </p>
+            <p class="agreement-cnt">This Property Reservation Conformation is your receipt of your commitment to purchase the above referenced property. Due to the nature of the Gain Turnkey Property, and the overwhelming interest the students have in purchasing the properties brought to the event by our preferred vendors, your possession of this document is evidence that the property has been removed from our active database and is not longer available for sale to other students. Our staff will contact you during the final two days of the event to arrange the production and execution of the final document for closing. Please keep this information for reference prior to closing. </p>
             <!-- <h3 class="code-tle">Please Enter Sales Code </h3> <input type="text" class="sales-code" />-->
         </div>
         <div class="clear"></div>

@@ -892,6 +892,10 @@ padding: 0;
 text-align: left;
 width: 26%;
 }
+
+#container li p{
+	width: 40%;
+}
 .name_con{
 	color: #333333;
 float: right;

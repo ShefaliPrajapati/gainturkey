@@ -183,7 +183,7 @@ extract($privileges);
                                 <span>
                                 <!--<a class="iframe cboxElement action-icons c-search" href="https://maps.google.com/?q=<?php echo $row->latitude;?>,<?php echo $row->longitude;?>&amp;ie=UTF8&amp;t=m&amp;z=14&amp;ll=<?php echo $row->latitude;?>,<?php echo $row->longitude;?>&amp;output=embed" title="Map">Map</a>-->
                                 
-                                 <a class="iframe cboxElement action-icons c-search" href="http://regiohelden.de/google-maps/map_en.php?width=1030&amp;height=460&amp;hl=en&amp;q=<?php echo $row->address.','.$row->city.','.$row->state;?>+(Return on Rentals)&amp;ie=UTF8&amp;t=&amp;z=15&amp;iwloc=B&amp;output=embed" title="Map">Map</a>
+                                 <a class="iframe cboxElement action-icons c-search" href="http://regiohelden.de/google-maps/map_en.php?width=1030&amp;height=460&amp;hl=en&amp;q=<?php echo $row->address.','.$row->city.','.$row->state;?>+(Gain Turnkey Property)&amp;ie=UTF8&amp;t=&amp;z=15&amp;iwloc=B&amp;output=embed" title="Map">Map</a>
                                 
                                 </span>
                                 

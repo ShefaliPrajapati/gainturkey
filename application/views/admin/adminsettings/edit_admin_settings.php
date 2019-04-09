@@ -67,7 +67,7 @@ $this->load->view('admin/templates/header.php');
                 </li>
                 <li>
                   <div class="form_grid_12">
-                    <label class="field_title" for="logo_image"> ReturnOnRental Logo</label>
+                    <label class="field_title" for="logo_image"> GainTurnkeyProperty Logo</label>
                     <div class="form_input">
                       <input name="logo_image" id="logo_image" type="file" tabindex="5" class="large tipTop" title="Please select the logo image"/>
                     </div>
@@ -76,7 +76,7 @@ $this->load->view('admin/templates/header.php');
                 </li>
                 <li>
                   <div class="form_grid_12">
-                    <label class="field_title" for="fevicon_image"> ReturnOnRental Favicon</label>
+                    <label class="field_title" for="fevicon_image"> GainTurnkeyProperty Favicon</label>
                     <div class="form_input">
                       <input name="fevicon_image" id="fevicon_image" type="file" tabindex="6" class="large tipTop" title="Please select the favicon image"/>
                     </div>

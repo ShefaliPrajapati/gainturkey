@@ -68,7 +68,7 @@ extract($privileges);
                             <td class="center tr_select ">
 								<?php if($row->site == 'ror')
 										{
-											echo "Returnonretnals";
+											echo "GainTurnkeyProperty";
 										}
 									 if($row->site == 'pre')
 									 	{
