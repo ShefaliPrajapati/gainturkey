@@ -29,8 +29,8 @@
 
  input#signin {
      color: #fff;
-     background-color: #2b3743;
-     border-color: #2b3743;
+     background-color: #dda049;
+     border-color: #dda049;
      border-radius: 0;
  }
  input#captcha_value {
@@ -61,7 +61,7 @@
      background: rgb(186,113,42) !important;
      background: linear-gradient(90deg, rgba(186,113,42,1) 0%, rgba(252,247,181,1) 35%, rgba(212,136,42,1) 100%)!important;
      position: relative;
-     padding: 12px 12px;
+     padding: 12px 0px;
 }
  .top_nav li.nav-item.bt_box {
      border: solid 1px #fff;
@@ -147,7 +147,7 @@
 }
  .main_sec {
      margin: 0;
-     padding: 60px 0;
+     padding: 0px 0;
 }
  .wlelcome_text {
      margin: 0;
@@ -177,7 +177,8 @@
  .wlelcome_imag {
      margin: 0;
      padding: 0;
-}
+     width: 100%;
+ }
  .Welcome_rghte1 {
      margin: 0;
      padding: 0;
@@ -277,7 +278,12 @@
      background-size: cover;
      width: 100%;
      float: left;
+     margin: 10px 0 0 0;
 }
+ #SignupForm span{
+     color: red;
+ }
+
  .footer_log {
      width: 100%;
      margin: 0;
@@ -365,6 +371,37 @@
      font-weight: 600;
      margin: 0 0 30px 0;
 }
+
+ .footer_box_img{
+     float: left;
+
+ }
+
+ .cms_view h1{
+     text-align: center;
+ }
+
+ .cms_view h2 {
+
+     margin: 10px 0;
+     padding: 0px;
+     text-align: center;
+     font-size: 26px;
+
+ }
+
+ .cms_view p{
+     margin: 0 0 14px 0;
+     padding: 0px;
+     text-align: left;
+     line-height: 32px;
+
+ }
+
+
+
+
+
  @media all and (transform-3d), (-webkit-transform-3d) {
      .carousel-fade .carousel-inner > .item.next, .carousel-fade .carousel-inner > .item.active.right {
          opacity: 0;
@@ -389,13 +426,13 @@
 }
  @media (min-width: 1200px) and (max-width: 1736px) {
      .Welcome_rghte p {
-         margin: 0;
+         margin: 30px 0;
          padding: 4px 0px 0px 0;
          color: #fff;
          font-size: 13px;
-         line-height: 22px;
+         line-height: 25px;
          display: block;
-    }
+     }
      .Welcome_rghte {
          margin: 0;
          padding: 10px 0 0 14px;

@@ -12,7 +12,7 @@ $this->load->view('site/templates/new_header');
             <div class="col-md-12 text-center">
                 <h2>Sign in</h2>
             </div>
-            <div class="col col-lg-4">
+            <div class="col col-lg-6">
                                <?php echo form_open('site/user/signin_login_user',array('id'=>'loginForm')); ?>
                                 <div class="form-group">
                                 	<label>Email Address<span>*</span></label>
@@ -22,17 +22,16 @@ $this->load->view('site/templates/new_header');
                                 <div class="form-group">
                                 	<label>Password<span>*</span></label>
                                   <input type="password" name="password" id="password_signin" class="scroll_5 form-control required" size="32">
-                         <div id="password_signin_warn"  style="color:#FF0000;"></div>
+                                <div id="password_signin_warn"  style="color:#FF0000;"></div>
                                 </div>
                                 <div class="form-group">
-                                	<label class="left"><?php echo anchor(base_url('forgot-password'),'Forgot Your Password?',array('class'=>'')); ?></label>
-                                    <!--<label class="left"><?php echo 'Need An Account '; echo '<a href="'.base_url(signup).'">Click Here</a>'; ?></label>-->
-                                </div>
-                                
+                                	<label class="left">
+                                        <?php echo anchor(base_url('forgot-password'),'Forgot Your Password?'); ?>
+                                    <br>
+                                    <?php echo 'Need An Account '; echo '<a href="'.base_url(signup).'">Click Here</a></div>'; ?>
+                                </label>
                                 <div class="form-group">
-                           
-                                         <input type="submit" name="signin" id="signin" class="member_btn btn btn-primary" value="SUBMIT" style="border:none; margin:0px;" />
-                                    
+                                         <input type="submit" name="signin" id="signin" class="member_btn btn btn-primary" value="SUBMIT"/>
                                 </div>
                                   <?php echo form_close(); ?> 
         

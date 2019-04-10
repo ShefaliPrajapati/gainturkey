@@ -9,11 +9,12 @@
                 <div class="footer_box">
                     <h2>address</h2>
                     <ul>
-                        <li><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>4167 Jim Rosa Lane, Oakland, CA, California<br> United States Of Amrica.</li>
+                        <li><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>PMB 321, 425 Carr 693,<br>  Ste 1
+                            Dorado, PR 00646.</li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="footer_box">
                     <h2>Get in touch</h2>
                     <ul>
@@ -26,8 +27,7 @@
                 <div class="footer_box">
                     <h2>Useful Links</h2>
                     <ul>
-                        <li><a href="<?php echo $urlProperty.'pages/about-us'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> About Us</a></li>
-                        <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Misson</a></li>
+                        <li><a href="<?php echo $urlProperty.'#about'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> About Us</a></li>
                         <li><a href="<?php echo $urlProperty.'listing/viewall'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Properties</a></li>
                         <li><a href="<?php echo $urlProperty.'contact'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> ContactUs</a></li>
                         <li><a href="<?php echo $urlProperty.'pages/privacy-policy'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Privacy Policy</a></li>
@@ -35,13 +35,20 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <div class="footer_box">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="footer_box_img">
                     <img src="<?php echo base_url(); ?>images/map.png" alt="map">
                 </div>
             </div>
         </div>
-        <div class="copy_right" style="border-top: solid 1px #696b6e;">
+        <div class="privacy_policy">
+            <h2>Privacy Policy</h2>
+            <p>All properties advertised via Gain Consulting website are sold 'as is', without expressed or implied warranty. You may purchase a home warranty from a 3rd party. Any property you purchase is a transaction between you and the seller of
+                that property and every property will differ in condition and financial performance. We strongly suggest that you conduct any due-dilligence needed before finalizing the transaction. Gain Consulting and it's related entities does not
+                offer any guarantee regarding the specific performance of a property including it's return on investment or cap rate. As all real estate transactions pose some risk, we suggest you contact your on accounting, legal or other professional
+                advisor regarding any questions you have including the suitability of a specific transaction.</p>
+        </div>
+        <div class="copy_right">
             © 2019 - Gain Consulting
         </div>
     </div>

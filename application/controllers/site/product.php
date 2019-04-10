@@ -1,17 +1,19 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
- * 
+ *
  * User related functions
  * @author Teamtweaks
  *
  */
-class Product extends MY_Controller {
-
-    function __construct() {
+class Product extends MY_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
         $this->load->helper(array('cookie', 'date', 'form', 'email', 'text', 'html'));
         $this->load->library(array('encrypt', 'form_validation'));
@@ -36,7 +38,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function onboarding() {
+    public function onboarding()
+    {
         if ($this->checkLogin('U') == '') {
             redirect(base_url());
         } else {
@@ -44,7 +47,7 @@ class Product extends MY_Controller {
             if ($this->data['userDetails']->num_rows() == 1) {
                 if ($this->data['mainCategories']->num_rows() > 0) {
                     foreach ($this->data['mainCategories']->result() as $cat) {
-//						$condition = " where p.category_id like '".$cat->id.",%' OR p.category_id like '%,".$cat->id."' OR p.category_id like '%,".$cat->id.",%' OR p.category_id='".$cat->id."' order by p.created desc";
+                        //						$condition = " where p.category_id like '".$cat->id.",%' OR p.category_id like '%,".$cat->id."' OR p.category_id like '%,".$cat->id.",%' OR p.category_id='".$cat->id."' order by p.created desc";
                         $condition = " where FIND_IN_SET('" . $cat->id . "',p.category_id) and p.quantity>0 and p.status='Publish' and u.group='Seller' and u.status='Active' or p.status='Publish' and p.quantity > 0 and p.user_id=0 and FIND_IN_SET('" . $cat->id . "',p.category_id) order by p.created desc";
                         $this->data['productDetails'][$cat->cat_name] = $this->product_model->view_product_details($condition);
                     }
@@ -56,7 +59,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function onboarding_get_products_categories() {
+    public function onboarding_get_products_categories()
+    {
         $returnCnt = '<div id="onboarding-category-items"><ol class="stream vertical">';
         $left = $top = $count = 0;
         $width = 220;
@@ -64,7 +68,7 @@ class Product extends MY_Controller {
         $catID = explode(',', $this->input->get('categories'));
         if (count($catID) > 0) {
             foreach ($catID as $cat) {
-//				$condition = " where p.category_id like '".$cat.",%' AND p.status = 'Publish' OR p.category_id like '%,".$cat."' AND p.status = 'Publish' OR p.category_id like '%,".$cat.",%' AND p.status = 'Publish' OR p.category_id='".$cat."' AND p.status = 'Publish'";
+                //				$condition = " where p.category_id like '".$cat.",%' AND p.status = 'Publish' OR p.category_id like '%,".$cat."' AND p.status = 'Publish' OR p.category_id like '%,".$cat.",%' AND p.status = 'Publish' OR p.category_id='".$cat."' AND p.status = 'Publish'";
                 $condition = " where FIND_IN_SET('" . $cat . "',p.category_id) and p.quantity>0 and p.status='Publish' and u.group='Seller' and u.status='Active' or p.status='Publish' and p.quantity > 0 and p.user_id=0 and FIND_IN_SET('" . $cat . "',p.category_id) order by p.created desc";
                 $productDetails = $this->product_model->view_product_details($condition);
                 if ($productDetails->num_rows() > 0) {
@@ -119,7 +123,8 @@ class Product extends MY_Controller {
         echo $returnCnt;
     }
 
-    public function onboarding_get_users_follow() {
+    public function onboarding_get_users_follow()
+    {
         $catID = explode(',', $this->input->get('categories'));
         $productArr = array();
         $userArr = array();
@@ -131,7 +136,7 @@ class Product extends MY_Controller {
         $returnArr['suggested'] = '<ul class="suggest-list">';
         if (count($catID) > 0) {
             foreach ($catID as $cat) {
-//				$condition = " where p.category_id like '".$cat.",%' AND p.status = 'Publish' OR p.category_id like '%,".$cat."' AND p.status = 'Publish' OR p.category_id like '%,".$cat.",%' AND p.status = 'Publish' OR p.category_id='".$cat."' AND p.status = 'Publish'";
+                //				$condition = " where p.category_id like '".$cat.",%' AND p.status = 'Publish' OR p.category_id like '%,".$cat."' AND p.status = 'Publish' OR p.category_id like '%,".$cat.",%' AND p.status = 'Publish' OR p.category_id='".$cat."' AND p.status = 'Publish'";
                 $condition = " where FIND_IN_SET('" . $cat . "',p.category_id) and p.quantity>0 and p.status='Publish' and u.group='Seller' and u.status='Active' or p.status='Publish' and p.quantity > 0 and p.user_id=0 and FIND_IN_SET('" . $cat . "',p.category_id)";
                 $productDetails = $this->product_model->view_product_details($condition);
                 if ($productDetails->num_rows() > 0) {
@@ -189,7 +194,6 @@ class Product extends MY_Controller {
                                     }
                                 }
                                 if ($img != '') {
-
                                     $returnArr['suggested'] .='<img alt="' . $userProduct->product_name . '" src="' . base_url() . 'images/product/' . $img . '">';
                                     $plimit++;
                                 }
@@ -214,7 +218,7 @@ class Product extends MY_Controller {
             foreach ($this->data['mainCategories']->result() as $catRow) {
                 if ($catRow->id != '' && $catRow->cat_name != '') {
                     $returnArr['categories'] .= '
-					<div style="display:none;" class="intxt ' . url_title($catRow->cat_name, '_', TRUE) . '">
+					<div style="display:none;" class="intxt ' . url_title($catRow->cat_name, '_', true) . '">
 					<p class="stit"><span>' . $catRow->cat_name . '</span>
 					<button class="btns-blue-embo btn-followall">Follow All</button></p>
 					<ul class="suggest-list">';
@@ -256,7 +260,6 @@ class Product extends MY_Controller {
                                                 }
                                             }
                                             if ($img != '') {
-
                                                 $returnArr['categories'] .='<img alt="' . $userProduct->product_name . '" src="' . base_url() . 'images/product/' . $img . '">';
                                                 $plimit++;
                                             }
@@ -281,7 +284,8 @@ class Product extends MY_Controller {
         echo json_encode($returnArr);
     }
 
-    public function display_product_shuffle() {
+    public function display_product_shuffle()
+    {
         $productDetails = $this->product_model->view_product_details(' where p.quantity>0 and p.status="Publish" and u.group="Seller" and u.status="Active" or p.status="Publish" and p.quantity > 0 and p.user_id=0');
         if ($productDetails->num_rows() > 0) {
             $productId = array();
@@ -373,11 +377,11 @@ class Product extends MY_Controller {
       } */
     /*     * ****For Product detail page****** */
 
-    public function display_product_detail($seourl) {
+    public function display_product_detail($seourl)
+    {
         if ($this->checkLogin('U') == '') {
             redirect(base_url(signin));
         } else {
-
             $where = array('property_status !=' => 'Staging', 'property_status !=' => 'Sold', 'id' => $seourl);
             $this->load->model('admin_model');
             $this->data['admin_settings'] = $result = $this->admin_model->getAdminSettings();
@@ -389,7 +393,7 @@ class Product extends MY_Controller {
             $this->data['PropertySubType'] = $this->product_model->get_all_details(PRODUCT_SUBATTRIBUTE, array('status' => 'Active'));
             $product_id = $this->data['productDetails']->row()->id;
             //echo '<pre>'; print_r($this->data['productAddress']->result_array()); die;
-            // Get lat and long by address 
+            // Get lat and long by address
             $address = $propAddress->row()->address . ',' . $propAddress->row()->city . ',' . str_replace('-', ' ', $propAddress->row()->state);
             // Google HQ
             $prepAddr = str_replace(' ', '+', $address);
@@ -423,7 +427,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function display_all_product() {
+    public function display_all_product()
+    {
         if ($this->checkLogin('U') == '') {
             redirect(base_url(signin));
         } else {
@@ -439,8 +444,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function Get_All_Property_List() {
-
+    public function Get_All_Property_List()
+    {
         $PLimit = $this->uri->segment(4, 0);
         if ($PLimit == '') {
             $PLimit = '1';
@@ -453,7 +458,6 @@ class Product extends MY_Controller {
         $this->data['PropertyList'] = '';
         if ($this->data['productDetails']->num_rows() > 0) {
             foreach ($this->data['productDetails']->result() as $row) {
-
                 $this->data['PropertyList'].=' 
 			  <li class="element subcat' . $row->property_sub_type . ' cat' . $row->property_type . '"  data-category="cat' . $row->property_type . '">';
                 if ($row->featured == 'Yes') {
@@ -473,9 +477,9 @@ class Product extends MY_Controller {
             <div class="rates_full_list"><span>';
                 if ($row->financing == 'Yes' && $row->cash_only == 'Yes') {
                     $this->data['PropertyList'].='FINANCING  AVAILABLE';
-                } else if ($row->financing == 'Yes') {
+                } elseif ($row->financing == 'Yes') {
                     $this->data['PropertyList'].= 'FINANCING  AVAILABLE';
-                } else if ($row->cash_only == 'Yes') {
+                } elseif ($row->cash_only == 'Yes') {
                     $this->data['PropertyList'].= 'CASH ONLY';
                 }
                 $this->data['PropertyList'].='</span><a href="' . base_url() . 'Property/' . $row->id . '" class="detail_btn">Details</a></div>
@@ -493,30 +497,25 @@ class Product extends MY_Controller {
         }
     }
 
-    public function Get_All_Property_List_page() {
+    public function Get_All_Property_List_page()
+    {
         $Catg = $this->uri->segment(4, 0);
         $SubCatg = $this->uri->segment(5, 0);
         $whereCantOrder = 'p.event_price';
         if ($SubCatg > 0 && $Catg != 'viewall') {
-
             $whereCant = array('property_type' => $Catg, 'property_sub_type' => $SubCatg);
-        } else if ($Catg == 'state') {
-
+        } elseif ($Catg == 'state') {
             $whereCant = array();
             $whereCantOrder = 'pa.state';
-        } else if ($Catg == 'priceasc') {
-
+        } elseif ($Catg == 'priceasc') {
             $whereCant = array();
             $whereCantOrder = 'priceasc';
-        } else if ($Catg == 'pricedesc') {
-
+        } elseif ($Catg == 'pricedesc') {
             $whereCant = array();
             $whereCantOrder = 'pricedesc';
-        } else if ($Catg == 'viewall') {
-
+        } elseif ($Catg == 'viewall') {
             $whereCant = array();
         } else {
-
             $whereCant = array('property_type' => $Catg);
         }
 
@@ -530,7 +529,7 @@ class Product extends MY_Controller {
 
 
         $get_product_pagination_count = $this->product_model->get_product_details_Cat($whereCant, $whereCantOrder);
-        //$get_predesigned_product_list = $this->product_model->get_product_details_Cat($whereCant,$whereCantOrder,$searchPerPage,$paginationNo);	
+        //$get_predesigned_product_list = $this->product_model->get_product_details_Cat($whereCant,$whereCantOrder,$searchPerPage,$paginationNo);
         $config['prev_link'] = 'Previous';
         $config['next_link'] = 'Next';
         $config['num_links'] = 1;
@@ -556,7 +555,6 @@ class Product extends MY_Controller {
         if ($this->data['productDetails']->num_rows() > 0) {
             $this->data['PropertyList'].='<div id="fulldiv_container" style="float:left; width:100%"><div class="pagination"><ul class="pagination-ul">' . $paginationLink . '</ul></div><div class="clear"></div><ul id="container" class="listing_page">';
             foreach ($this->data['productDetails']->result() as $row) {
-
                 $this->data['PropertyList'].=' 
 			  <li class="element subcat' . $row->property_sub_type . ' cat' . $row->property_type . '"  data-category="cat' . $row->property_type . '">';
                 if ($row->featured == 'Yes') {
@@ -576,9 +574,9 @@ class Product extends MY_Controller {
             <div class="rates_full_list"><span>';
                 if ($row->financing == 'Yes' && $row->cash_only == 'Yes') {
                     $this->data['PropertyList'].='FINANCING  AVAILABLE';
-                } else if ($row->financing == 'Yes') {
+                } elseif ($row->financing == 'Yes') {
                     $this->data['PropertyList'].= 'FINANCING  AVAILABLE';
-                } else if ($row->cash_only == 'Yes') {
+                } elseif ($row->cash_only == 'Yes') {
                     $this->data['PropertyList'].= 'CASH ONLY';
                 }
                 $this->data['PropertyList'].='</span><a href="' . base_url() . 'Property/' . $row->id . '" class="detail_btn">Details</a></div>
@@ -593,13 +591,14 @@ class Product extends MY_Controller {
 
 
 
-            //$this->load->view('site/product/listing',$this->data);
+        //$this->load->view('site/product/listing',$this->data);
         } else {
             echo $this->data['PropertyList'] = 'No result found...';
         }
     }
 
-    public function Get_All_Property_List_page1() {
+    public function Get_All_Property_List_page1()
+    {
         if ($this->checkLogin('U') == '') {
             redirect(base_url(signin));
         }
@@ -609,29 +608,22 @@ class Product extends MY_Controller {
 
         $whereCantOrder = 'p.event_price';
         if ($SubCatg > 0 && $Catg != 'viewall') {
-
             $whereCant = array('property_type' => $Catg, 'property_sub_type' => $SubCatg);
-        } else if ($Catg == 'state') {
-
+        } elseif ($Catg == 'state') {
             $whereCant = array();
             $whereCantOrder = 'pa.state';
-        } else if ($Catg == 'price') {
-
+        } elseif ($Catg == 'price') {
             $whereCant = array();
             $whereCantOrder = 'p.event_price';
-        } else if ($Catg == 'priceasc') {
-
+        } elseif ($Catg == 'priceasc') {
             $whereCant = array();
             $whereCantOrder = 'priceasc';
-        } else if ($Catg == 'pricedesc') {
-
+        } elseif ($Catg == 'pricedesc') {
             $whereCant = array();
             $whereCantOrder = 'pricedesc';
-        } else if ($Catg == 'viewall') {
-
+        } elseif ($Catg == 'viewall') {
             $whereCant = array();
         } else {
-
             $whereCant = array('property_type' => $Catg);
         }
 
@@ -670,7 +662,6 @@ class Product extends MY_Controller {
         if ($this->data['productDetails']->num_rows() > 0) {
             $this->data['PropertyList'].='<div id="fulldiv_container" style="float:left; width:100%"><div class="pagination"><ul class="pagination-ul">' . $paginationLink . '</ul></div><div class="clear"></div><ul id="container" class="listing_page">';
             foreach ($this->data['productDetails']->result() as $row) {
-
                 $this->data['PropertyList'].=' 
 			  <li class="element subcat' . $row->property_sub_type . ' cat' . $row->property_type . '"  data-category="cat' . $row->property_type . '">';
                 if ($row->featured == 'Yes') {
@@ -691,9 +682,9 @@ class Product extends MY_Controller {
             <div class="rates_full_list"><span>';
                 if ($row->financing == 'Yes' && $row->cash_only == 'Yes') {
                     $this->data['PropertyList'].='FINANCING  AVAILABLE';
-                } else if ($row->financing == 'Yes') {
+                } elseif ($row->financing == 'Yes') {
                     $this->data['PropertyList'].= 'FINANCING  AVAILABLE';
-                } else if ($row->cash_only == 'Yes') {
+                } elseif ($row->cash_only == 'Yes') {
                     $this->data['PropertyList'].= 'CASH ONLY';
                 }
                 $this->data['PropertyList'].='</span><a href="' . base_url() . 'Property/' . $row->id . '" class="detail_btn">Details</a></div>
@@ -708,18 +699,20 @@ class Product extends MY_Controller {
 
 
 
-            //$this->load->view('site/product/listing',$this->data);
+        //$this->load->view('site/product/listing',$this->data);
         } else {
             $this->data['PropertyList'] = 'No result found...';
         }
         $this->load->view('site/product/listing', $this->data);
     }
 
-    public function display_all_sold_proptery_nonclickable() {
+    public function display_all_sold_proptery_nonclickable()
+    {
         redirect(base_url() . 'soldlisting/viewall/0/2');
     }
 
-    public function display_all_sold_proptery() {
+    public function display_all_sold_proptery()
+    {
         $ChangeCAt = $Catg = $this->uri->segment(4, 0);
         $SubCatg = $this->uri->segment(5, 0);
 
@@ -730,19 +723,16 @@ class Product extends MY_Controller {
             } else {
                 $whereCant = array('property_type' => $Catg, 'property_sub_type' => $SubCatg);
             }
-        } else if ($Catg == 'state') {
-
+        } elseif ($Catg == 'state') {
             $whereCant = array();
             $whereCantOrder = 'pa.state';
-        } else if ($Catg == 'priceasc') {
-
+        } elseif ($Catg == 'priceasc') {
             $whereCant = array();
             $whereCantOrder = 'priceasc';
-        } else if ($Catg == 'pricedesc') {
-
+        } elseif ($Catg == 'pricedesc') {
             $whereCant = array();
             $whereCantOrder = 'pricedesc';
-        } else if ($Catg == 'viewall') {
+        } elseif ($Catg == 'viewall') {
             $whereCant = array();
         } else {
             if ($ChangeCAt == 'priceasc' || $ChangeCAt == 'pricedesc') {
@@ -758,14 +748,14 @@ class Product extends MY_Controller {
 
 
         $get_product_pagination_count = $this->product_model->get_sold_proptery_details($whereCant, $whereCantOrder);
-        //$get_predesigned_product_list = $this->product_model->get_sold_proptery_details($whereCant,$whereCantOrder,$searchPerPage,$paginationNo);	
+        //$get_predesigned_product_list = $this->product_model->get_sold_proptery_details($whereCant,$whereCantOrder,$searchPerPage,$paginationNo);
         $config['prev_link'] = 'Previous';
         $config['next_link'] = 'Next';
         $config['num_links'] = 1;
         //$config['base_url'] = base_url().'site/product/Get_All_Property_List_page/'.$Catg.'/'.$SubCatg;
         if ($ChangeCAt == 'priceasc' || $ChangeCAt == 'pricedesc') {
             $config['base_url'] = base_url() . 'soldlisting/price/' . $SubCatg;
-        } else if ($ChangeCAt == 'viewall') {
+        } elseif ($ChangeCAt == 'viewall') {
             $config['base_url'] = base_url() . 'soldlisting/viewall/0';
         } else {
             $config['base_url'] = base_url() . 'soldlisting/' . $Catg . '/' . $SubCatg;
@@ -791,9 +781,8 @@ class Product extends MY_Controller {
         $this->data['PropertyList'] = '';
         $this->data['PropertyList'].='<div id="fulldiv_container" style="float:left; width:100%"><div class="pagination"><ul class="pagination-ul">' . $paginationLink . '</ul></div><div class="clear"></div><ul id="container" class="listing_page">';
         if ($this->data['productDetails']->num_rows() > 0) {
-//			$this->data['PropertyList']='<div style="float:right;">'.$paginationLink.'</div>';
+            //			$this->data['PropertyList']='<div style="float:right;">'.$paginationLink.'</div>';
             foreach ($this->data['productDetails']->result() as $row) {
-
                 $this->data['PropertyList'].=' 
 			  <li class="element subcat' . $row->property_sub_type . ' cat' . $row->property_type . '"  data-category="cat' . $row->property_type . '">';
                 if ($row->featured == 'Yes') {
@@ -813,9 +802,9 @@ class Product extends MY_Controller {
             <div class="rates_full_list"><span>';
                 if ($row->financing == 'Yes' && $row->cash_only == 'Yes') {
                     $this->data['PropertyList'].='FINANCING  AVAILABLE';
-                } else if ($row->financing == 'Yes') {
+                } elseif ($row->financing == 'Yes') {
                     $this->data['PropertyList'].= 'FINANCING  AVAILABLE';
-                } else if ($row->cash_only == 'Yes') {
+                } elseif ($row->cash_only == 'Yes') {
                     $this->data['PropertyList'].= 'CASH ONLY';
                 }
                 $this->data['PropertyList'].='</span><a class="detail_btn">Details</a></div>
@@ -830,13 +819,14 @@ class Product extends MY_Controller {
 
 
 
-            //$this->load->view('site/product/listing',$this->data);
+        //$this->load->view('site/product/listing',$this->data);
         } else {
             echo $this->data['PropertyList'] = 'No result found...';
         }
     }
 
-    public function display_all_sold_proptery_limit() {
+    public function display_all_sold_proptery_limit()
+    {
         if ($this->checkLogin('U') == '') {
             redirect(base_url(signin));
         }
@@ -846,29 +836,23 @@ class Product extends MY_Controller {
 
         $whereCantOrder = 'p.event_price';
         if ($SubCatg > 0 && $Catg != 'viewall') {
-
             if ($ChangeCAt == 'priceasc' || $ChangeCAt == 'pricedesc') {
                 $whereCant = array();
             } else {
                 $whereCant = array('property_type' => $Catg, 'property_sub_type' => $SubCatg);
             }
-        } else if ($Catg == 'state') {
-
+        } elseif ($Catg == 'state') {
             $whereCant = array();
             $whereCantOrder = 'pa.state';
-        } else if ($Catg == 'priceasc') {
-
+        } elseif ($Catg == 'priceasc') {
             $whereCant = array();
             $whereCantOrder = 'priceasc';
-        } else if ($Catg == 'pricedesc') {
-
+        } elseif ($Catg == 'pricedesc') {
             $whereCant = array();
             $whereCantOrder = 'pricedesc';
-        } else if ($Catg == 'viewall') {
-
+        } elseif ($Catg == 'viewall') {
             $whereCant = array();
         } else {
-
             if ($ChangeCAt == 'priceasc' || $ChangeCAt == 'pricedesc') {
                 $whereCant = array('property_type' => 'price');
             } else {
@@ -893,7 +877,7 @@ class Product extends MY_Controller {
         //$config['base_url'] = base_url().'site/product/Get_All_Property_List_page/'.$Catg.'/'.$SubCatg;
         if ($ChangeCAt == 'priceasc' || $ChangeCAt == 'pricedesc') {
             $config['base_url'] = base_url() . 'soldlisting/price/' . $SubCatg;
-        } else if ($ChangeCAt == 'viewall') {
+        } elseif ($ChangeCAt == 'viewall') {
             $config['base_url'] = base_url() . 'soldlisting/viewall/0';
         } else {
             $config['base_url'] = base_url() . 'soldlisting/' . $Catg . '/' . $SubCatg;
@@ -915,7 +899,7 @@ class Product extends MY_Controller {
         $this->data['menuActive'] = 'property';
         //$this->data['productDetails'] = $this->product_model->get_product_details_Cat($whereCant,$whereCantOrder);
         $this->data['productDetails'] = $this->product_model->get_sold_proptery_details($whereCant, $whereCantOrder, $searchPerPage, $paginationNo);
-        //echo $this->db->last_query();die;	
+        //echo $this->db->last_query();die;
         //print_r($this->data['productDetails']).'Appu'; die;
         //echo $this->db->last_query().'Kiruba';die;
         //$this->data['productDetails'] = $this->product_model->get_sold_proptery_details();
@@ -924,7 +908,6 @@ class Product extends MY_Controller {
         if ($this->data['productDetails']->num_rows() > 0) {
             $this->data['PropertyList'].='<div id="fulldiv_container" style="float:left; width:100%"><div class="pagination"><ul class="pagination-ul">' . $paginationLink . '</ul></div><div class="clear"></div><ul id="container" class="listing_page">';
             foreach ($this->data['productDetails']->result() as $row) {
-
                 $this->data['PropertyList'].=' 
 			  <li class="element subcat' . $row->property_sub_type . ' cat' . $row->property_type . '"  data-category="cat' . $row->property_type . '">';
                 if ($row->featured == 'Yes') {
@@ -944,9 +927,9 @@ class Product extends MY_Controller {
             <div class="rates_full_list"><span>';
                 if ($row->financing == 'Yes' && $row->cash_only == 'Yes') {
                     $this->data['PropertyList'].='FINANCING  AVAILABLE';
-                } else if ($row->financing == 'Yes') {
+                } elseif ($row->financing == 'Yes') {
                     $this->data['PropertyList'].= 'FINANCING  AVAILABLE';
-                } else if ($row->cash_only == 'Yes') {
+                } elseif ($row->cash_only == 'Yes') {
                     $this->data['PropertyList'].= 'CASH ONLY';
                 }
                 $this->data['PropertyList'].='</span><a class="detail_btn">Details</a></div>
@@ -961,14 +944,15 @@ class Product extends MY_Controller {
 
 
 
-            //$this->load->view('site/product/listing',$this->data);
+        //$this->load->view('site/product/listing',$this->data);
         } else {
             $this->data['PropertyList'] = 'No result found...';
         }
         $this->load->view('site/product/soldlisting', $this->data);
     }
 
-    public function delete_featured_find() {
+    public function delete_featured_find()
+    {
         $uid = $this->checkLogin('U');
         $dataArr = array('feature_product' => '');
         $condition = array('id' => $uid);
@@ -976,7 +960,8 @@ class Product extends MY_Controller {
         echo '1';
     }
 
-    public function add_featured_find() {
+    public function add_featured_find()
+    {
         $pid = $this->input->post('tid');
         $uid = $this->checkLogin('U');
         $dataArr = array('feature_product' => $pid);
@@ -997,7 +982,8 @@ class Product extends MY_Controller {
         echo '1';
     }
 
-    public function share_with_someone() {
+    public function share_with_someone()
+    {
         $returnStr['status_code'] = 0;
         $thing = array();
         $thing['url'] = $this->input->post('url');
@@ -1018,8 +1004,8 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    public function send_thing_share_mail($thing = '', $email = '') {
-
+    public function send_thing_share_mail($thing = '', $email = '')
+    {
         $newsid = '2';
         $template_values = $this->product_model->get_newsletter_template_details($newsid);
         $adminnewstemplateArr = array('meta_title' => $this->config->item('meta_title'), 'logo' => $this->data['logo'], 'uname' => ucfirst($thing['uname']), 'name' => $thing['name'], 'url' => $thing['url'], 'msg' => $thing['msg'], 'email_title' => $this->config->item('email_title'));
@@ -1057,7 +1043,8 @@ class Product extends MY_Controller {
          */
     }
 
-    public function loadStateListValues() {
+    public function loadStateListValues()
+    {
         $returnStr['listCountryCnt'] = '<select class="text_field required" name="city" tabindex="-1"  data-placeholder="Please select the city name">';
         $lid = $this->input->post('lid');
         $lvID = $this->input->post('lvID');
@@ -1081,7 +1068,8 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    public function add_have_tag() {
+    public function add_have_tag()
+    {
         $returnStr['status_code'] = 0;
         $tid = $this->input->post('thing_id');
         $uid = $this->checkLogin('U');
@@ -1112,7 +1100,8 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    public function delete_have_tag() {
+    public function delete_have_tag()
+    {
         $returnStr['status_code'] = 0;
         $tid = $this->input->post('thing_id');
         $uid = $this->checkLogin('U');
@@ -1131,11 +1120,12 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    public function upload_product_image() {
+    public function upload_product_image()
+    {
         $returnStr['status_code'] = 0;
-        $config['overwrite'] = FALSE;
+        $config['overwrite'] = false;
         $config['allowed_types'] = 'jpg|jpeg|gif|png';
-//	    $config['max_size'] = 2000;
+        //	    $config['max_size'] = 2000;
         $config['upload_path'] = './images/product';
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -1154,7 +1144,8 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    public function add_new_thing() {
+    public function add_new_thing()
+    {
         $returnStr['status_code'] = 0;
         $returnStr['message'] = '';
         if ($this->checkLogin('U') != '') {
@@ -1169,7 +1160,8 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    public function display_user_thing() {
+    public function display_user_thing()
+    {
         $uname = $this->uri->segment(2, 0);
         $pid = $this->uri->segment(4, 0);
         $this->data['productUserDetails'] = $this->product_model->get_all_details(USERS, array('user_name' => $uname));
@@ -1199,12 +1191,13 @@ class Product extends MY_Controller {
             $this->load->view('site/product/display_user_product', $this->data);
         } else {
             $this->load->view('site/product/product_detail', $this->data);
-//			$this->setErrorMessage('error','Product details not available');
+            //			$this->setErrorMessage('error','Product details not available');
             //		redirect(base_url());
         }
     }
 
-    public function sales_create() {
+    public function sales_create()
+    {
         if ($this->checkLogin('U') == '') {
             redirect('login');
         } else {
@@ -1230,10 +1223,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * Ajax function for delete the product pictures
      */
-    public function editPictureProducts() {
+    public function editPictureProducts()
+    {
         $ingIDD = $this->input->post('imgId');
         $currentPage = $this->input->post('cpage');
         $id = $this->input->post('val');
@@ -1264,7 +1258,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function edit_product_detail() {
+    public function edit_product_detail()
+    {
         if ($this->checkLogin('U') == '') {
             redirect('login');
         } else {
@@ -1303,13 +1298,12 @@ class Product extends MY_Controller {
 
     /* Edited by mano */
 
-    public function index($city) {
-
+    public function index($city)
+    {
         $_SESSION['searchCity'] = $city;
         $searchResult = explode('?', $_SERVER['REQUEST_URI']);
         $search = '(1=1';
         if (count($searchResult) > 1) {
-
             $search_var = $searchResult[1];
             $search_array = explode('&', $search_var);
             if ($search_array[0] == 'city=' && $search_array[1] == 'rentalid=') {
@@ -1318,7 +1312,6 @@ class Product extends MY_Controller {
             }
             if (!empty($search_array)) {
                 foreach ($search_array as $key => $value) {
-
                     $var = explode('=', $value);
 
                     if ($var[0] == 'p' && $var[1] != '') {
@@ -1363,7 +1356,8 @@ class Product extends MY_Controller {
         $this->load->view('site/product/listing', $this->data);
     }
 
-    public function BrowseAll() {
+    public function BrowseAll()
+    {
         if ($this->checkLogin('U') == '') {
             redirect(base_url());
         } else {
@@ -1380,7 +1374,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function Get_All_Property_Feature_List_page() {
+    public function Get_All_Property_Feature_List_page()
+    {
         $ChangeCAt = $Catg = $this->uri->segment(4, 0);
         $SubCatg = $this->uri->segment(5, 0);
 
@@ -1391,20 +1386,16 @@ class Product extends MY_Controller {
             } else {
                 $whereCant = array('property_type' => $Catg, 'property_sub_type' => $SubCatg);
             }
-        } else if ($Catg == 'state') {
-
+        } elseif ($Catg == 'state') {
             $whereCant = array();
             $whereCantOrder = 'pa.state';
-        } else if ($Catg == 'asc') {
-
+        } elseif ($Catg == 'asc') {
             $whereCant = array();
             $whereCantOrder = 'priceasc';
-        } else if ($Catg == 'desc') {
-
+        } elseif ($Catg == 'desc') {
             $whereCant = array();
             $whereCantOrder = 'pricedesc';
-        } else if ($Catg == 'viewall') {
-
+        } elseif ($Catg == 'viewall') {
             $whereCant = array();
         } else {
             if ($ChangeCAt == 'asc' || $ChangeCAt == 'desc') {
@@ -1432,9 +1423,7 @@ class Product extends MY_Controller {
         $this->data['PropertyList'] = '';
         //$this->data['PropertyList']='<ul id="container" class="listing_page">';
         if ($this->data['productDetails']->num_rows() > 0) {
-
             foreach ($this->data['productDetails']->result() as $row) {
-
                 $this->data['PropertyList'].=' 
 			  <li class="element subcat' . $row->property_sub_type . ' cat' . $row->property_type . '"  data-category="cat' . $row->property_type . '">';
                 if ($row->featured == 'Yes') {
@@ -1456,7 +1445,6 @@ class Product extends MY_Controller {
                 if ($loginCheck == '') {
                     $this->data['PropertyList'].='' . base_url() . 'signin';
                 } else {
-
                     $this->data['PropertyList'].='' . base_url() . 'Property/' . $row->id . '/' . $row->property_id;
                 }
 
@@ -1466,27 +1454,27 @@ class Product extends MY_Controller {
                 if ($loginCheck == '') {
                     $this->data['PropertyList'].='' . base_url() . 'signin';
                 } else {
-
                     $this->data['PropertyList'].='' . base_url() . 'Property/' . $row->id . '/' . $row->property_id;
                 }
                 $this->data['PropertyList'].='">' . $row->bedrooms . 'Bedrooms + ' . $row->baths . ' Bathrooms </a></div>
       </li>';
             }
             //$this->data['PropertyList']='</ul>';
-            //$this->data['PropertyList'].='<div style="float:right;">'.$paginationLink.'</div>';	
+            //$this->data['PropertyList'].='<div style="float:right;">'.$paginationLink.'</div>';
             echo $this->data['PropertyList'];
 
 
 
 
 
-            //$this->load->view('site/product/listing',$this->data);
+        //$this->load->view('site/product/listing',$this->data);
         } else {
             echo $this->data['PropertyList'] = 'No result found...';
         }
     }
 
-    public function StateRentalView($state) {
+    public function StateRentalView($state)
+    {
         //$_SESSION['searchCity']='';
 
         $search = "s.seourl ='" . $state . "'";
@@ -1512,7 +1500,8 @@ class Product extends MY_Controller {
 
     /* map view */
 
-    public function mapview($city) {
+    public function mapview($city)
+    {
         $this->data['Product_igggd'] = $this->uri->segment(3, 0);
         $this->data['statetag'] = $this->uri->segment(2, 0);
 
@@ -1528,8 +1517,6 @@ class Product extends MY_Controller {
             $search_array = explode('&', $search_var);
             if (!empty($search_array)) {
                 foreach ($search_array as $key => $value) {
-
-
                     $var = explode('=', $value);
                     if ($var[0] == 'p' && $var[1] != '') {
                         $search .= ' and p.price_range="' . $var[1] . '" ';
@@ -1565,7 +1552,6 @@ class Product extends MY_Controller {
         $this->data['productList'] = $this->product_model->view_product_details_sitemapview('  where ' . $search . ' (u.group="Seller" and u.status="Active" or p.user_id=0 ) group by p.id order by p.created desc');
 
         if ($this->data['Product_igggd'] != '' && $this->data['statetag'] == 'state') {
-
             $this->data['heading'] = $this->data['productList']->row()->statemtitle;
             if ($this->data['productList']->row()->statemtitle != '') {
                 $this->data['meta_title'] = $this->data['productList']->row()->statemtitle;
@@ -1577,7 +1563,6 @@ class Product extends MY_Controller {
                 $this->data['meta_description'] = $this->data['productList']->row()->statemdesc;
             }
         } else {
-
             $this->data['heading'] = $this->data['productList']->row()->city_name;
             if ($this->data['productList']->row()->meta_title != '') {
                 $this->data['meta_title'] = $this->data['productList']->row()->meta_title;
@@ -1595,7 +1580,8 @@ class Product extends MY_Controller {
         $this->load->view('site/product/mapview', $this->data);
     }
 
-    public function gen_search($rental) {
+    public function gen_search($rental)
+    {
         $searchResult = explode('?', $_SERVER['REQUEST_URI']);
         if (count($searchResult) > 1) {
             $search_var = $searchResult[1];
@@ -1618,7 +1604,8 @@ class Product extends MY_Controller {
 
     /*     * *********For autocomplete in landing************** */
 
-    public function search_text() {
+    public function search_text()
+    {
         $data = $this->input->post();
         $cities = $this->product_model->view_cities($data['text']);
         if (count($cities) > 0) {
@@ -1637,7 +1624,8 @@ class Product extends MY_Controller {
 
     /*     * *********For autocomplete in header************** */
 
-    public function general_search() {
+    public function general_search()
+    {
         $data = $this->input->post();
         $rentals = $this->product_model->view_rental($data['text']);
         if (count($rentals) > 0) {
@@ -1657,7 +1645,8 @@ class Product extends MY_Controller {
 
     /*     * ******Testimonial******** */
 
-    public function testimonial() {
+    public function testimonial()
+    {
         $this->load->model('testimonials_model');
         $condition = array('status' => 'Active');
         $this->data['details'] = $this->testimonials_model->get_all_details(TESTIMONIALS, $condition);
@@ -1666,8 +1655,8 @@ class Product extends MY_Controller {
 
     /*     * ************** */
 
-    public function view_calendar() {
-
+    public function view_calendar()
+    {
         $user_id = $this->input->get('pid');
         $this->data['productList'] = $user_id;
 
@@ -1700,8 +1689,8 @@ class Product extends MY_Controller {
 ';
     }
 
-    public function edit_calendar() {
-
+    public function edit_calendar()
+    {
         $user_id = $this->input->get('pid');
         $this->data['productList'] = $user_id;
 
@@ -1775,7 +1764,8 @@ class Product extends MY_Controller {
 ';
     }
 
-    public function dropSort() {
+    public function dropSort()
+    {
         //print_r($_POST); die;
         //echo $pid = $this->uri->segment(2,0);die;
         $rentalval = '';
@@ -1785,7 +1775,7 @@ class Product extends MY_Controller {
         if ($_POST['searchstaterental'] == 'nostate' && $_POST['searchrental'] == '' && $_POST['cityurl'] != '' && $_POST['rental'] != '') {
             $rentalval = $_POST['rental'];
             $condi = array();
-        } else if ($_POST['searchstaterental'] != 'nostate') {
+        } elseif ($_POST['searchstaterental'] != 'nostate') {
             $condi = array('s.seourl' => $_POST['searchstaterental']);
         } else {
             if ($_SESSION['searchCity'] == 'Browse All') {
@@ -1905,7 +1895,8 @@ class Product extends MY_Controller {
 
     /*     * *********Write review product details page************** */
 
-    public function write_review() {
+    public function write_review()
+    {
         //echo 'hi'; die;
         $this->data['userDetails'] = 'no';
         if ($this->checkLogin('U') != '') {
@@ -1918,14 +1909,16 @@ class Product extends MY_Controller {
         $this->load->view('site/product/write_review', $this->data);
     }
 
-    public function write_review1() {
+    public function write_review1()
+    {
         //echo 'hi'; die;
         $_SESSION['ReviewProductId'] = $pid = $this->uri->segment(1);
         $this->data['productDetails'] = $this->product_model->Write_product_review_details("and p.id='" . $pid . "'");
         $this->load->view('site/product/write_review1', $this->data);
     }
 
-    public function add_review() {
+    public function add_review()
+    {
         $dataArr = array('firstname' => $_POST['firstname'],
             'lastname' => $_POST['lastname'],
             'email' => $_POST['email'],
@@ -1945,7 +1938,8 @@ class Product extends MY_Controller {
 
     /* Ajax function for display review detail */
 
-    public function display_review_detail() {
+    public function display_review_detail()
+    {
         if ($this->checkLogin('U') == '') {
             redirect(base_url());
         } else {
@@ -1966,10 +1960,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * Ajax function for delete the product image
      */
-    public function DeleteImageProducts() {
+    public function DeleteImageProducts()
+    {
         $ingIDD = $this->input->post('imgId');
         $currentPage = $this->input->post('cpage');
         $condition = array('id' => $ingIDD);
@@ -1978,10 +1973,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * Ajax function for delete the product image
      */
-    public function DeleteSiteProducts() {
+    public function DeleteSiteProducts()
+    {
         if ($this->checkLogin('U') == '') {
             redirect(base_url());
         }
@@ -2003,10 +1999,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function change the selling product status
      */
-    public function ChangeStatus() {
+    public function ChangeStatus()
+    {
         if ($this->checkLogin('U') == '') {
             redirect(base_url());
         } else {
@@ -2022,9 +2019,9 @@ class Product extends MY_Controller {
         }
     }
 
-    function viewMemberCalendar($id = '') {
+    public function viewMemberCalendar($id = '')
+    {
         if ($this->checkLogin('U') != '') {
-
             $propertyId = $this->uri->segment(4);
             $idArr = array('id' => $propertyId);
             //print_r($idArr); die;
@@ -2035,9 +2032,10 @@ class Product extends MY_Controller {
         }
     }
 
-/* Property Manage start */
+    /* Property Manage start */
 
-    function titlecheck() {
+    public function titlecheck()
+    {
         $title = $this->input->post('value');
         $condition = array('product_name' => $title);
         $dbvalue = $this->product_model->get_all_details(PRODUCT, $condition);
@@ -2046,7 +2044,8 @@ class Product extends MY_Controller {
         }
     }
 
-    function buy_property() {
+    public function buy_property()
+    {
         $code = $this->input->post('code');
         $secretCode = $this->product_model->get_all_details(ADMIN_SETTINGS, array('booking_code' => $code));
         if ($secretCode->num_rows() == 1) {
@@ -2058,176 +2057,150 @@ class Product extends MY_Controller {
         }
     }
 
-function reservation_form($seourl)
+    public function reservation_form($seourl)
     {
-        if($this->checkLogin('U')=='')
-            {
-                redirect(base_url(signin));
-            }
-        else
-            {
-            if($_SESSION['differenceTime'] > 0)
-                {
-                        $this->setErrorMessage('error','You already have a property in reservation');
-                        redirect(listing);
-                }
-            else
-                {
-                
+        if ($this->checkLogin('U')=='') {
+            redirect(base_url(signin));
+        } else {
+            if ($_SESSION['differenceTime'] > 0) {
+                $this->setErrorMessage('error', 'You already have a property in reservation');
+                redirect(listing);
+            } else {
                 $where = array('id'=>$seourl);
-                $this->data['productDetails'] = $this->product_model->get_all_details(PRODUCT,$where);
+                $this->data['productDetails'] = $this->product_model->get_all_details(PRODUCT, $where);
                 
                 $product_id = $this->data['productDetails']->row()->id;
-                if($product_id ==''){
-                        $this->setErrorMessage('error','Product details not available');
-                        redirect(base_url());
+                if ($product_id =='') {
+                    $this->setErrorMessage('error', 'Product details not available');
+                    redirect(base_url());
                 }
                 //echo '<pre>'; print_r($this->data['productDetails']->result());die;
-                if($this->data['productDetails']->row()->property_status == 'Active'){
+                if ($this->data['productDetails']->row()->property_status == 'Active') {
                     $userId = $this->checkLogin('U');
-                    $this->product_model->update_details(SUBADMIN,array('reservation' => 'Yes', 'property_id' => $seourl),array('id' => $userId)); 
+                    $this->product_model->update_details(SUBADMIN, array('reservation' => 'Yes', 'property_id' => $seourl), array('id' => $userId));
                     $this->load->model('admin_model');
                     $this->data['admin_settings'] = $result = $this->admin_model->getAdminSettings();
-                    $this->data['UserList'] = $result = $this->admin_model->get_all_details(USERS,array('status'=>'Active','is_verified'=>'Yes'));
+                    $this->data['UserList'] = $result = $this->admin_model->get_all_details(USERS, array('status'=>'Active','is_verified'=>'Yes'));
             
                     $this->data['productImages'] = $this->product_model->get_images($this->data['productDetails']->row()->id);
-                    $this->data['productAddress'] = $this->product_model->get_all_details(PRODUCT_ADDRESS,array('property_id' => $this->data['productDetails']->row()->id));
+                    $this->data['productAddress'] = $this->product_model->get_all_details(PRODUCT_ADDRESS, array('property_id' => $this->data['productDetails']->row()->id));
                     
-                    $this->data['reservationCode'] = $this->product_model->get_all_details(ATTRIBUTE,array('status' => 'Active'));
+                    $this->data['reservationCode'] = $this->product_model->get_all_details(ATTRIBUTE, array('status' => 'Active'));
                         
                     
-                $resTime = time();
-                $this->product_model->update_details(PRODUCT,array('property_status'=>'Reserved'),$where);
-                $this->product_model->update_details(PRODUCT,array('reserved_time'=>$resTime),$where);
+                    $resTime = time();
+                    $this->product_model->update_details(PRODUCT, array('property_status'=>'Reserved'), $where);
+                    $this->product_model->update_details(PRODUCT, array('reserved_time'=>$resTime), $where);
                 
             
-                $this->load->helper('cookie');
+                    $this->load->helper('cookie');
             
-            unset($_SESSION['sCheckTimeReser']);
-            unset($_SESSION['sCheckTimeSold']);
-            if($_SESSION['endtimer'] == '') {
-                //setcookie("differenceTime",'');
-                unset($_SESSION['differenceTime']);
-            }
-            else if($_SESSION['endtimer'] < time())
-                {
-                    unset($_SESSION['differenceTime']);
-                    unset($_SESSION['endtimer']);
-                }
-            if($_SESSION['differenceTime'] == '') {
-                $_SESSION['endtimer'] = time()+600;
-                $_SESSION['reservation'] = time()+600;
-                $_SESSION['differenceTime'] = 600;
-                
-            }else {
-                $differenceTime = $_SESSION['endtimer'] - time();
-                $_SESSION['differenceTime'] = $differenceTime;
-            }
+                    unset($_SESSION['sCheckTimeReser']);
+                    unset($_SESSION['sCheckTimeSold']);
+                    if ($_SESSION['endtimer'] == '') {
+                        //setcookie("differenceTime",'');
+                        unset($_SESSION['differenceTime']);
+                    } elseif ($_SESSION['endtimer'] < time()) {
+                        unset($_SESSION['differenceTime']);
+                        unset($_SESSION['endtimer']);
+                    }
+                    if ($_SESSION['differenceTime'] == '') {
+                        $_SESSION['endtimer'] = time()+600;
+                        $_SESSION['reservation'] = time()+600;
+                        $_SESSION['differenceTime'] = 600;
+                    } else {
+                        $differenceTime = $_SESSION['endtimer'] - time();
+                        $_SESSION['differenceTime'] = $differenceTime;
+                    }
             
-            //echo $_SESSION['differenceTime']; die;
+                    //echo $_SESSION['differenceTime']; die;
             
-            $this->data['heading'] = $this->data['productDetails']->row()->meta_title;
+                    $this->data['heading'] = $this->data['productDetails']->row()->meta_title;
         
-            if ($this->data['productDetails']->row()->meta_title != '')
-                {
-                    $this->data['meta_title'] = $this->data['productDetails']->row()->meta_title;
-                }
-            if ($this->data['productDetails']->row()->meta_keyword != '')
-                {
-                    $this->data['meta_keyword'] = $this->data['productDetails']->row()->meta_keyword;
-                }
-            if ($this->data['productDetails']->row()->meta_description != '')
-                {
-                    $this->data['meta_description'] = $this->data['productDetails']->row()->meta_description;
-                }
+                    if ($this->data['productDetails']->row()->meta_title != '') {
+                        $this->data['meta_title'] = $this->data['productDetails']->row()->meta_title;
+                    }
+                    if ($this->data['productDetails']->row()->meta_keyword != '') {
+                        $this->data['meta_keyword'] = $this->data['productDetails']->row()->meta_keyword;
+                    }
+                    if ($this->data['productDetails']->row()->meta_description != '') {
+                        $this->data['meta_description'] = $this->data['productDetails']->row()->meta_description;
+                    }
             
-            //echo $this->db->last_query(); die;
+                    //echo $this->db->last_query(); die;
             
-            $this->product_model->saveResevedSettings();    
+                    $this->product_model->saveResevedSettings();
             
-            //print_r($_SESSION['differenceTime']);die;
-            //$this->load->view('site/product/details',$this->data);
-            //print_r($_COOKIE['differenceTime']); die;
-            $this->load->view('site/product/reservation',$this->data);
+                    //print_r($_SESSION['differenceTime']);die;
+                    //$this->load->view('site/product/details',$this->data);
+                    //print_r($_COOKIE['differenceTime']); die;
+                    $this->load->view('site/product/reservation', $this->data);
+                } else {
+                    //$this->setErrorMessage('error',"<div  style='display:none;'>  <div id='inline_reserved' style='background:#fff;'> <div class='property_view'> <p style='margin:27px 0 10px 0px;'>Property id(".echo $productDetails->row()->id.") is reserved</p>  </div> </div> </div>");
+                    $this->setErrorMessage('error', 'The property '.$this->data['productDetails']->row()->property_id.' is Reserved');
+                    redirect(listing);
+                }
             }
-        else
-        {
-            //$this->setErrorMessage('error',"<div  style='display:none;'>  <div id='inline_reserved' style='background:#fff;'> <div class='property_view'> <p style='margin:27px 0 10px 0px;'>Property id(".echo $productDetails->row()->id.") is reserved</p>  </div> </div> </div>");
-            $this->setErrorMessage('error','The property '.$this->data['productDetails']->row()->property_id.' is Reserved');
-            redirect(listing);
-        }
-        } 
         }
     }
     
-        function reservation_cont($seourl)
+    public function reservation_cont($seourl)
     {
-        if($this->checkLogin('U')=='')
-            {
-                redirect(base_url(signin));
+        if ($this->checkLogin('U')=='') {
+            redirect(base_url(signin));
+        } else {
+            $where = array('id'=>$seourl);
+            $this->data['productDetails'] = $this->product_model->get_all_details(PRODUCT, $where);
+
+            if ($_SESSION['reservation'] < time()) {
+                $this->product_model->update_details(PRODUCT, array('property_status' => 'Active'), $where);
+                    
+                $this->product_model->commonDelete(RESERVED_INFO, array('property_id'=> $seourl));
+                    
+                $user = $this->checkLogin('U');
+                $this->product_model->update_details(SUBADMIN, array('reservation' => 'No'), array('id' => $user));
+                    
+                unset($_SESSION['differenceTime']);
+                unset($_SESSION['endtimer']);
+                unset($_SESSION['reservation']);
+                    
+                $this->setErrorMessage('error', 'Your time has Expired Please reserve your property again.');
+                $this->product_model->saveResevedSettings();
+                redirect(base_url(). 'Property/'.$where['id'].'/'. $this->data['productDetails']->row()->property_id);
             }
-        else
-            {
             
-            if($_SESSION['reservation'] < time())
-                {
-                    $id = array('id'=>$seourl);
-                    $this->product_model->update_details(PRODUCT,array('property_status' => 'Active'),$id);
-                    
-                    $this->product_model->commonDelete(RESERVED_INFO,array('property_id'=> $seourl));
-                    
-                    $user = $this->checkLogin('U');
-                    $this->product_model->update_details(SUBADMIN,array('reservation' => 'No'),array('id' => $user));
-                    
-                    unset($_SESSION['differenceTime']);
-                    unset($_SESSION['endtimer']);
-                    unset($_SESSION['reservation']); 
-                    
-                    $this->setErrorMessage('error','Your time has Expired');
-                    $this->product_model->saveResevedSettings();
-                    redirect(listing);
-                }
-            
-        $where = array('id'=>$seourl);
-            $this->data['productDetails'] = $this->product_model->get_all_details(PRODUCT,$where);
-            /*if($this->data['productDetails']->row()->property_status == 'Active')
-                {*/
-                    $userId = $this->checkLogin('U');
-                    $this->product_model->update_details(SUBADMIN,array('reservation' => 'Yes', 'property_id' => $seourl),array('id' => $userId)); 
+
+            $userId = $this->checkLogin('U');
+            $this->product_model->update_details(SUBADMIN, array('reservation' => 'Yes', 'property_id' => $seourl), array('id' => $userId));
             $this->load->model('admin_model');
             $this->data['admin_settings'] = $result = $this->admin_model->getAdminSettings();
-            $this->data['UserList'] = $result = $this->admin_model->get_all_details(SUBADMIN,array('status'=>'Active','is_verified'=>'Yes'));
+            $this->data['UserList'] = $result = $this->admin_model->get_all_details(SUBADMIN, array('status'=>'Active','is_verified'=>'Yes'));
             
             $this->data['productImages'] = $this->product_model->get_images($this->data['productDetails']->row()->id);
-            $this->data['productAddress'] = $this->product_model->get_all_details(PRODUCT_ADDRESS,array('property_id' => $this->data['productDetails']->row()->id));
+            $this->data['productAddress'] = $this->product_model->get_all_details(PRODUCT_ADDRESS, array('property_id' => $this->data['productDetails']->row()->id));
             
-            $this->data['reservationCode'] = $this->product_model->get_all_details(ATTRIBUTE,array('status' => 'Active'));
+            $this->data['reservationCode'] = $this->product_model->get_all_details(ATTRIBUTE, array('status' => 'Active'));
             
             $product_id = $this->data['productDetails']->row()->id;
-            if($product_id =='')
-                {
-                    $this->setErrorMessage('error','Product details not available');
-                    redirect(base_url());
-                }
+            if ($product_id =='') {
+                $this->setErrorMessage('error', 'Product details not available');
+                redirect(base_url());
+            }
             
             
-            //$this->load->helper('cookie');
             
-            
-            if($_SESSION['endtimer'] == '') {
+            if ($_SESSION['endtimer'] == '') {
                 //setcookie("differenceTime",'');
                 unset($_SESSION['differenceTime']);
+            } elseif ($_SESSION['endtimer'] < time()) {
+                unset($_SESSION['differenceTime']);
+                unset($_SESSION['endtimer']);
             }
-            else if($_SESSION['endtimer'] < time())
-                {
-                    unset($_SESSION['differenceTime']);
-                    unset($_SESSION['endtimer']);
-                }
-            if($_SESSION['differenceTime'] == '') {
+            if ($_SESSION['differenceTime'] == '') {
                 $_SESSION['endtimer'] = time()+600;
                 
                 $_SESSION['differenceTime'] = 600;
-            }else {
+            } else {
                 $differenceTime = $_SESSION['endtimer'] - time();
                 $_SESSION['differenceTime'] = $differenceTime;
             }
@@ -2239,93 +2212,89 @@ function reservation_form($seourl)
             
             $this->data['heading'] = $this->data['productDetails']->row()->meta_title;
         
-            if ($this->data['productDetails']->row()->meta_title != '')
-                {
-                    $this->data['meta_title'] = $this->data['productDetails']->row()->meta_title;
-                }
-            if ($this->data['productDetails']->row()->meta_keyword != '')
-                {
-                    $this->data['meta_keyword'] = $this->data['productDetails']->row()->meta_keyword;
-                }
-            if ($this->data['productDetails']->row()->meta_description != '')
-                {
-                    $this->data['meta_description'] = $this->data['productDetails']->row()->meta_description;
-                }
+            if ($this->data['productDetails']->row()->meta_title != '') {
+                $this->data['meta_title'] = $this->data['productDetails']->row()->meta_title;
+            }
+            if ($this->data['productDetails']->row()->meta_keyword != '') {
+                $this->data['meta_keyword'] = $this->data['productDetails']->row()->meta_keyword;
+            }
+            if ($this->data['productDetails']->row()->meta_description != '') {
+                $this->data['meta_description'] = $this->data['productDetails']->row()->meta_description;
+            }
             
             $dataArr=array('property_status'=>'Reserved');
             $condition=array('id'=>$seourl);
             
-            $this->product_model->edit_product($dataArr,$condition);
+            $this->product_model->edit_product($dataArr, $condition);
             
-            $this->product_model->saveResevedSettings();    
+            $this->product_model->saveResevedSettings();
             
             
             //$this->load->view('site/product/details',$this->data);
             //print_r($_COOKIE['differenceTime']); die;
-            $this->load->view('site/product/reservation',$this->data);
-        /*  }
-        else
-        {
-            //$this->setErrorMessage('error',"<div  style='display:none;'>  <div id='inline_reserved' style='background:#fff;'> <div class='property_view'> <p style='margin:27px 0 10px 0px;'>Property id(".echo $productDetails->row()->id.") is reserved</p>  </div> </div> </div>");
-            $this->setErrorMessage('error','The property '.$this->data['productDetails']->row()->property_id.' is Reserved');
-            redirect(listing);
-        }*/
-        } 
-    }
-    
-    
-    function get_Resevation_Value(){
-    $this->product_model->saveResevedSettings();    
-    }
-    
-    function Get_Reservation_User()
-        {
-            $uid = $this->input->post('uid');
-            $returnStr['success'] = '0';
-            $secretCode = $this->product_model->get_all_details(USERS,array('email' => $uid));
-            if($secretCode->num_rows() == 1)
-                {
-                    $returnStr['first_name'] = $secretCode->row()->first_name;
-                    $returnStr['last_name'] = $secretCode->row()->last_name;
-                    $returnStr['user_name'] = $secretCode->row()->user_name;
-                    $returnStr['email'] = $secretCode->row()->email;
-                    
-                    $returnStr['address'] = $secretCode->row()->address;
-                    $returnStr['address1'] = $secretCode->row()->address1;
-                    $returnStr['city'] = $secretCode->row()->city;
-                    $returnStr['state'] = $secretCode->row()->state;
-                    $returnStr['country'] = $secretCode->row()->country;
-                    $returnStr['postal_code'] = $secretCode->row()->postal_code;
-                    $returnStr['phone_no'] = $secretCode->row()->phone_no;
-                    $returnStr['user_id'] = $secretCode->row()->id;
-                    
-                    $returnStr['success'] = '1';
-                }else{
-                    $returnStr['alert_msg'] = 'Email Id Does Not Exists.';
-                }
-                echo json_encode($returnStr);
+            $this->load->view('site/product/reservation', $this->data);
+            /*  }
+            else
+            {
+                //$this->setErrorMessage('error',"<div  style='display:none;'>  <div id='inline_reserved' style='background:#fff;'> <div class='property_view'> <p style='margin:27px 0 10px 0px;'>Property id(".echo $productDetails->row()->id.") is reserved</p>  </div> </div> </div>");
+                $this->setErrorMessage('error','The property '.$this->data['productDetails']->row()->property_id.' is Reserved');
+                redirect(listing);
+            }*/
         }
-    function ReservationForm_Submit()
-        {
+    }
+    
+    
+    public function get_Resevation_Value()
+    {
+        $this->product_model->saveResevedSettings();
+    }
+    
+    public function Get_Reservation_User()
+    {
+        $uid = $this->input->post('uid');
+        $returnStr['success'] = '0';
+        $secretCode = $this->product_model->get_all_details(USERS, array('email' => $uid));
+        if ($secretCode->num_rows() == 1) {
+            $returnStr['first_name'] = $secretCode->row()->first_name;
+            $returnStr['last_name'] = $secretCode->row()->last_name;
+            $returnStr['user_name'] = $secretCode->row()->user_name;
+            $returnStr['email'] = $secretCode->row()->email;
+                    
+            $returnStr['address'] = $secretCode->row()->address;
+            $returnStr['address1'] = $secretCode->row()->address1;
+            $returnStr['city'] = $secretCode->row()->city;
+            $returnStr['state'] = $secretCode->row()->state;
+            $returnStr['country'] = $secretCode->row()->country;
+            $returnStr['postal_code'] = $secretCode->row()->postal_code;
+            $returnStr['phone_no'] = $secretCode->row()->phone_no;
+            $returnStr['user_id'] = $secretCode->row()->id;
+                    
+            $returnStr['success'] = '1';
+        } else {
+            $returnStr['alert_msg'] = 'Email Id Does Not Exists.';
+        }
+        echo json_encode($returnStr);
+    }
+    public function ReservationForm_Submit()
+    {
+        $product_source_details = $this->product_model->get_all_details(SOURCE_INFO, array('property_id'=>$this->input->post('property_id')));
+        $source_info = unserialize(stripslashes($product_source_details->row()->datavalues));
             
-            $product_source_details = $this->product_model->get_all_details(SOURCE_INFO,array('property_id'=>$this->input->post('property_id')));
-            $source_info = unserialize(stripslashes($product_source_details->row()->datavalues)); 
+        $this->db->select('monthly_rent,annual_rent,hazard_ins,net_income,management_expenses,property_tax,utilities');
+        $this->db->from(PRODUCT);
+        $this->db->where('id = '.$this->input->post('property_id'));
+        $PrdtDets = $this->db->get();
+        //echo '<pre>'; print_r($PrdtDets->result());die;
             
-            $this->db->select('monthly_rent,annual_rent,hazard_ins,net_income,management_expenses,property_tax,utilities');
-            $this->db->from(PRODUCT);
-            $this->db->where('id = '.$this->input->post('property_id'));        
-            $PrdtDets = $this->db->get();
-            //echo '<pre>'; print_r($PrdtDets->result());die;
-            
-            $datestring = "%Y-%m-%d %H:%i:%s";
-            $time = time();
-            $dataArr1=array('property_status'=>'Sold','property_display'=>'1','modified' => mdate($datestring,$time));
-            $condition1=array('id'=>$_POST['property_id']);
-            $id = $this->checkLogin('U');
-            $this->product_model->edit_product($dataArr1,$condition1);
-            $condition = array();
-            $excludeArr = array('signin','SelectUser','password','conf_password','CheckBox_adjustment');
-            $dataArr=array('user_id'=>$_POST['user_id'], 'sold_admin_id' => $this->checkLogin('U'), 'sold_admin_name' => $this->session->userdata('fc_session_user_name'),
+        $datestring = "%Y-%m-%d %H:%i:%s";
+        $time = time();
+        $dataArr1=array('property_status'=>'Sold','property_display'=>'1','modified' => mdate($datestring, $time));
+        $condition1=array('id'=>$_POST['property_id']);
+        $id = $this->checkLogin('U');
+        $this->product_model->edit_product($dataArr1, $condition1);
+        $condition = array();
+        $excludeArr = array('signin','SelectUser','password','conf_password','CheckBox_adjustment');
+        $dataArr=array('user_id'=>$_POST['user_id'], 'sold_admin_id' => $this->checkLogin('U'), 'sold_admin_name' => $this->session->userdata('fc_session_user_name'),
                         's_firstname'=>$source_info['s_firstname'],'s_lastname'=>$source_info['s_lastname'],'s_companyname'=>$source_info['s_companyname'],
                         's_address'=>$source_info['s_address'],'s_city'=>$source_info['s_city'],'s_state'=>$source_info['s_state'],'s_zipcode'=>$source_info['s_zipcode'],
                         's_contact1'=>$source_info['s_contact1'],'s_contact2'=>$source_info['s_contact2'],'s_phone1'=>$source_info['s_phone1'],'s_phone2'=>$source_info['s_phone2'],
@@ -2335,16 +2304,16 @@ function reservation_form($seourl)
                         'p_manager_phone2'=>$source_info['m_phone2'],'p_manager_email'=>$source_info['m_email'],'p_manager_fax'=>$source_info['m_fax'],
                         'p_tenant_name'=>$source_info['t_name'],'p_lease_term'=>$source_info['lease_term'],'p_section_8'=>$source_info['section8'],'p_manager_fee'=>$source_info['mfee'],   'pr_monthly_rent'=>$PrdtDets->row()->monthly_rent,'pr_annual_rent'=>$PrdtDets->row()->annual_rent,'pr_hazard_ins'=>$PrdtDets->row()->hazard_ins,'pr_net_income'=>$PrdtDets->row()->net_income,'pr_mgmt_expense'=>$PrdtDets->row()->management_expenses,'pr_property_tax'=>$PrdtDets->row()->property_tax,'pr_utilities'=>$PrdtDets->row()->utilities);
                         
-            if($this->input->post('net_purchase_price')==''){
-                $dataArr1=array('net_purchase_price'=>$_POST['sales_price']);
-                $dataArr = array_merge($dataArr,$dataArr1);
-            }
+        if ($this->input->post('net_purchase_price')=='') {
+            $dataArr1=array('net_purchase_price'=>$_POST['sales_price']);
+            $dataArr = array_merge($dataArr, $dataArr1);
+        }
             
             
-            $condition1 = array('email'=>$this->input->post('email'));
+        $condition1 = array('email'=>$this->input->post('email'));
             
-            $dataArrNewUSer=array('first_name'=>$this->input->post('first_name'),
-                                'last_name'=>$this->input->post('last_name'), 
+        $dataArrNewUSer=array('first_name'=>$this->input->post('first_name'),
+                                'last_name'=>$this->input->post('last_name'),
                                 'address'=>$this->input->post('address'),
                                 'country'=>$this->input->post('country'),
                                 'state'=>$this->input->post('state'),
@@ -2355,92 +2324,92 @@ function reservation_form($seourl)
                                 'email'=>$this->input->post('email'),
                                 'email1'=>$this->input->post('email1'));
             
-            $users = $this->product_model->update_details(USERS,$dataArrNewUSer,$condition1);
-            //echo $this->db->last_query(); 
-            //echo '<pre>'; print_r($dataArrNewUSer); die;
+        $users = $this->product_model->update_details(USERS, $dataArrNewUSer, $condition1);
+        //echo $this->db->last_query();
+        //echo '<pre>'; print_r($dataArrNewUSer); die;
             
-            $condition1 = array('email'=>$this->input->post('email'));
-            $user = $this->product_model->get_all_details(USERS,$condition1);
+        $condition1 = array('email'=>$this->input->post('email'));
+        $user = $this->product_model->get_all_details(USERS, $condition1);
             
 
-            $this->product_model->update_details(SUBADMIN,array('reservation'=>'No'),array('id'=>$id));
+        $this->product_model->update_details(SUBADMIN, array('reservation'=>'No'), array('id'=>$id));
             
-            $this->product_model->commonInsertUpdate(RESERVED_INFO,'insert',$excludeArr,$dataArr,$condition);
-            $proID= $this->product_model->get_last_insert_id();
-            //$proID
-            $this->product_model->simple_insert(STATUS,array('reserved_id'=>$proID));
+        $this->product_model->commonInsertUpdate(RESERVED_INFO, 'insert', $excludeArr, $dataArr, $condition);
+        $proID= $this->product_model->get_last_insert_id();
+        //$proID
+        $this->product_model->simple_insert(STATUS, array('reserved_id'=>$proID));
             
-            $this->product_model->saveResevedSettings();
-            $this->product_model->saveSoldSettings();
+        $this->product_model->saveResevedSettings();
+        $this->product_model->saveSoldSettings();
         
-            unset($_SESSION['differenceTime']);
-            unset($_SESSION['endtimer']);
-            unset($_SESSION['reservation']); 
+        unset($_SESSION['differenceTime']);
+        unset($_SESSION['endtimer']);
+        unset($_SESSION['reservation']);
             
             
             
             
-                unset($_SESSION['rfname']);
-                unset($_SESSION['rlname']);
-                unset($_SESSION['rename']);
-                unset($_SESSION['rtype']);
-                unset($_SESSION['raddress']);
-                unset($_SESSION['rcountry']);
-                unset($_SESSION['rstate']);
-                unset($_SESSION['rcity']);
-                unset($_SESSION['rzip']);
-                unset($_SESSION['rphno']);
-                unset($_SESSION['rphno1']);
-                unset($_SESSION['remail']);
-                unset($_SESSION['remail1']);
-                unset($_SESSION['rreservprice']);
-                unset($_SESSION['rnote']);
+        unset($_SESSION['rfname']);
+        unset($_SESSION['rlname']);
+        unset($_SESSION['rename']);
+        unset($_SESSION['rtype']);
+        unset($_SESSION['raddress']);
+        unset($_SESSION['rcountry']);
+        unset($_SESSION['rstate']);
+        unset($_SESSION['rcity']);
+        unset($_SESSION['rzip']);
+        unset($_SESSION['rphno']);
+        unset($_SESSION['rphno1']);
+        unset($_SESSION['remail']);
+        unset($_SESSION['remail1']);
+        unset($_SESSION['rreservprice']);
+        unset($_SESSION['rnote']);
                 
-                unset($_SESSION['rcashpt']);
-                unset($_SESSION['rcheckpt']);
-                unset($_SESSION['rcreditpt']);
-                unset($_SESSION['rdotpt']);
-                unset($_SESSION['rsalescash']);
-                unset($_SESSION['rsalescf']);
-                unset($_SESSION['rsalescs']);
-                unset($_SESSION['rsalessdira']);
-                unset($_SESSION['rsalesfs']);
-                unset($_SESSION['rsalessl']);
+        unset($_SESSION['rcashpt']);
+        unset($_SESSION['rcheckpt']);
+        unset($_SESSION['rcreditpt']);
+        unset($_SESSION['rdotpt']);
+        unset($_SESSION['rsalescash']);
+        unset($_SESSION['rsalescf']);
+        unset($_SESSION['rsalescs']);
+        unset($_SESSION['rsalessdira']);
+        unset($_SESSION['rsalesfs']);
+        unset($_SESSION['rsalessl']);
                 
-                unset($_SESSION['cust_name']);
-                unset($_SESSION['acco_no']);
-                unset($_SESSION['office_source']);
-                unset($_SESSION['event_source']);
+        unset($_SESSION['cust_name']);
+        unset($_SESSION['acco_no']);
+        unset($_SESSION['office_source']);
+        unset($_SESSION['event_source']);
             
             
             
             
         
-            $this->setErrorMessage('success','Congratulations! You have successful Reserved this property! Please have the property specialist print you out a copy of your Property Reservation Confirmation Hot Sheet.');
-            /*echo '<form name="_xclick" id="_xclick" action="http://192.168.1.253/ramasamy/ReturnOnRentals/" target="_blank">
+        $this->setErrorMessage('success', 'Congratulations! You have successful Reserved this property! Please have the property specialist print you out a copy of your Property Reservation Confirmation Hot Sheet.');
+        /*echo '<form name="_xclick" id="_xclick" action="http://192.168.1.253/ramasamy/ReturnOnRentals/" target="_blank">
     <input type="submit" />
 </form>
 <script type="text/javascript">
-    document.forms["_xclick"].submit(); 
+    document.forms["_xclick"].submit();
 </script>';*/
             
-            $this->send_reservation_success_mail($proID);
-            if($user->num_rows() ==0)
-            {
-                $this->register_reserve_user($proID);
-            }else{
-                $this->product_model->update_details(RESERVED_INFO,array('user_id' => $user->row()->id),array('id' => $proID)); 
-            }
+        $this->send_reservation_success_mail($proID);
+        if ($user->num_rows() ==0) {
+            $this->register_reserve_user($proID);
+        } else {
+            $this->product_model->update_details(RESERVED_INFO, array('user_id' => $user->row()->id), array('id' => $proID));
+        }
 
-            $this->session->set_userdata('proID',$proID);
+        $this->session->set_userdata('proID', $proID);
 
-            //$this->load->view('site/product/reservation_conform',$this->data);
-            redirect(base_url('listing/viewall/0/2'));
-//redirect(base_url());     
-}
+        //$this->load->view('site/product/reservation_conform',$this->data);
+        redirect(base_url('listing/viewall/0/2'));
+        //redirect(base_url());
+    }
 
 
-    public function changetoActive() {
+    public function changetoActive()
+    {
         $userID = $this->checkLogin('U');
         $id = $this->uri->segment(4, 0);
         $dataArr = array('property_status' => 'Active');
@@ -2489,7 +2458,8 @@ function reservation_form($seourl)
         redirect(base_url());
     }
 
-    public function changetoReserverd() {
+    public function changetoReserverd()
+    {
         $userID = $this->checkLogin('U');
         $id = $this->input->post('prdid');
         $dataArr = array('property_status' => 'Reserved');
@@ -2498,8 +2468,8 @@ function reservation_form($seourl)
         echo 'Success';
     }
 
-    public function register_reserve_user($proID) {
-
+    public function register_reserve_user($proID)
+    {
         $email = $this->input->post('email');
         if (valid_email($email)) {
             $condition = array('email' => $email);
@@ -2511,11 +2481,11 @@ function reservation_form($seourl)
                 $this->product_model->update_details(RESERVED_INFO, array('user_id' => $duplicateMail->row()->id), array('id' => $proID));
                 $this->setErrorMessage('error', 'Email id already exists');
                 redirect('signup');
-            } else if ($duplicateAdminMail->num_rows() > 0) {
+            } elseif ($duplicateAdminMail->num_rows() > 0) {
                 $this->product_model->update_details(RESERVED_INFO, array('user_id' => $duplicateAdminMail->row()->id), array('id' => $proID));
                 $this->setErrorMessage('error', 'Email id already exists');
                 redirect('signup');
-            } else if ($duplicateSubAdminMail->num_rows() > 0) {
+            } elseif ($duplicateSubAdminMail->num_rows() > 0) {
                 $this->product_model->update_details(RESERVED_INFO, array('user_id' => $duplicateSubAdminMail->row()->id), array('id' => $proID));
                 $this->setErrorMessage('error', 'Email id already exists');
                 redirect('signup');
@@ -2555,8 +2525,8 @@ function reservation_form($seourl)
         }
     }
 
-    public function send_reservation_success_mail($rsrdId = '') {
-
+    public function send_reservation_success_mail($rsrdId = '')
+    {
         $Details = $this->product_model->get_all_details(RESERVED_INFO, array('id' => $rsrdId));
         $data = $Details->row();
         $newsid = '10';
@@ -2634,8 +2604,8 @@ function reservation_form($seourl)
         $email_send_to_common = $this->product_model->common_email_send($email_values);
     }
 
-    public function send_confirm_mail($userDetails = '') {
-
+    public function send_confirm_mail($userDetails = '')
+    {
         $uid = $userDetails->row()->id;
         $email = $userDetails->row()->email;
         $randStr = $this->get_rand_str('10');
@@ -2680,7 +2650,8 @@ function reservation_form($seourl)
         $email_send_to_common = $this->product_model->common_email_send($email_values);
     }
 
-    public function send_contact_mail($contactDetails = '') {
+    public function send_contact_mail($contactDetails = '')
+    {
         $uid = $contactDetails->row()->id;
         $email = $contactDetails->row()->email;
 
@@ -2731,15 +2702,18 @@ function reservation_form($seourl)
         $email_send_to_common = $this->product_model->common_email_send($email_values);
     }
 
-    public function calculator() {
+    public function calculator()
+    {
         $this->load->view('site/product/calculator');
     }
 
-    public function changetoactiveagain() {
+    public function changetoactiveagain()
+    {
         unset($_SESSION['reservation']);
     }
 
-    public function ajaxreservedetailssave() {
+    public function ajaxreservedetailssave()
+    {
         if ($_POST['fname']) {
             $_SESSION['rfname'] = $_POST['fname'];
         }
@@ -2830,11 +2804,11 @@ function reservation_form($seourl)
         //redirect(base_url().'Property/'.$this->input->post('propertyId'));
     }
 
-    public function changereservationStatus() {
+    public function changereservationStatus()
+    {
         $id = $this->checkLogin('U');
         $group = $this->product_model->get_all_details(USERS, array('id' => $id));
         if ($this->checkLogin('U') != '') {
-
             if ($_SESSION['sExistingBookingCount'] == 10) {
                 unset($_SESSION['sExistingBooking']);
             }
@@ -2892,7 +2866,8 @@ function reservation_form($seourl)
         /*  <img src="'.echo base_url().'images/product/'. echo trim(stripslashes($featureRow->product_image)).'" /> */
     }
 
-    public function changesoldStatus() {
+    public function changesoldStatus()
+    {
         $id = $this->checkLogin('U');
         $group = $this->product_model->get_all_details(USERS, array('id' => $id));
         if ($this->checkLogin('U') != '') {
@@ -2900,7 +2875,7 @@ function reservation_form($seourl)
 
 
 
-            #echo count($soldID);die;		
+            #echo count($soldID);die;
             if ($_SESSION['sExistingSoldCount'] > count($soldID)) {
                 //unset($_SESSION['sExistingSold']);
             }
@@ -2960,12 +2935,11 @@ function reservation_form($seourl)
         }
     }
 
-    public function changesoldStatus_old() {
+    public function changesoldStatus_old()
+    {
         $id = $this->checkLogin('U');
         $group = $this->product_model->get_all_details(USERS, array('id' => $id));
         if ($this->checkLogin('U') != '') {
-
-
             if ($_SESSION['sExistingSoldCount'] == 10) {
                 unset($_SESSION['sExistingSold']);
             }
@@ -3028,7 +3002,8 @@ function reservation_form($seourl)
         /*  <img src="'.echo base_url().'images/product/'. echo trim(stripslashes($featureRow->product_image)).'" /> */
     }
 
-    public function update_net_price_val() {
+    public function update_net_price_val()
+    {
         echo '<br>Deals';
 
         $this->db->select('id,sales_price,adjustment');
@@ -3080,7 +3055,8 @@ function reservation_form($seourl)
         }
     }
 
-    public function brochure_download() {
+    public function brochure_download()
+    {
         //echo '<pre>'; print_r($_POST); die;
         $dataArr = array('property_id' => $this->input->post('bpropid'),
             'prop_row_id' => $this->input->post('b_row_id'),
@@ -3096,8 +3072,6 @@ function reservation_form($seourl)
         $this->setErrorMessage('success', 'Brochure Updated Successfully');
         redirect('brochure/' . $prDId);
     }
-
-
 }
 
 /*End of file product.php */

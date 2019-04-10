@@ -908,7 +908,7 @@ function compute_pvalue(form)
 
 <?php if($userDetails->row()->reservation == 'Yes') { ?>
 
-<a href="<?php echo base_url().'reservation-continue/'.$userDetails->row()->property_id ;?>" class="detail_btn" style="margin-top:10px;"> Back To Reservation</a>
+<a href="<?php echo base_url().'reservation-continue/'.$userDetails->row()->property_id ;?>" class="detail_btn"> Back To Reservation</a>
 
 <?php } ?>
 

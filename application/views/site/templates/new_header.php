@@ -15,7 +15,7 @@
     <meta name="Title" content="<?php echo $meta_title; ?>" />
     <meta name="keywords" content="<?php echo $meta_keyword; ?>" />
     <meta name="description" content="<?php echo $meta_description; ?>" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo/<?php echo $this->config->item('fevicon_image'); ?>">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>images/logo/<?php echo $this->config->item('fevicon_image'); ?>">
     <base href="<?php echo base_url(); ?>" />
 
     <script type="text/javascript">
@@ -180,10 +180,10 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $urlProperty.'pages/about-us'; ?>">About Us</a>
+                        <a class="nav-link" href="<?php echo $urlProperty.'#about'; ?>">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $urlProperty.'listing/viewall'; ?>">Properties</a>
+                        <a class="nav-link" href="<?php echo $urlProperty.'properties'; ?>">Properties</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $urlProperty.'contact'; ?>">Contact Us</a>
@@ -209,30 +209,32 @@
     </nav>
 </div>
 <div class="container">
-    <div class="">
-        <div class="right_bt">
-           <a class="btn btn-primary <?php
-                    if ($this->uri->segment(1, 0) == 'listing') {
-                        echo 'nav-link';
-                    }
-                    ?>" href="<?php
-                    if ($loginCheck == '') {
-                        echo base_url() . 'signin';
-                    } else {
-                        echo base_url() . 'listing/viewall/0';
-                    }
-                    ?> ">Current Inventory</a>
-            <a class="btn btn-primary <?php
-                    if ($this->uri->segment(1, 0) == 'soldlisting') {
-                        echo 'nav-link';
-                    }
-                    ?>" href="<?php
-                    if ($loginCheck == '') {
-                        echo base_url() . 'signin';
-                    } else {
-                        echo base_url() . 'soldlisting/viewall/0';
-                    }
-                    ?>">Past/Sold Inventory </a>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="right_bt">
+                <a class="btn btn-primary <?php
+                if ($this->uri->segment(1, 0) == 'listing') {
+                    echo 'nav-link';
+                }
+                ?>" href="<?php
+                if ($loginCheck == '') {
+                    echo base_url() . 'signin';
+                } else {
+                    echo base_url() . 'listing/viewall/0';
+                }
+                ?> ">Current Inventory</a>
+                <a class="btn btn-primary <?php
+                if ($this->uri->segment(1, 0) == 'soldlisting') {
+                    echo 'nav-link';
+                }
+                ?>" href="<?php
+                if ($loginCheck == '') {
+                    echo base_url() . 'signin';
+                } else {
+                    echo base_url() . 'soldlisting/viewall/0';
+                }
+                ?>">Past/Sold Inventory </a>
+            </div>
         </div>
     </div>
 </div>
@@ -244,19 +246,21 @@
         document.getElementById(arg).style.display = 'none';
 
     }</script>
-<?php if (validation_errors() != '') { ?>
-    <div id="validationErr" style="height:30px; ">
-        <script>setTimeout("hideErrDiv('validationErr')", 6000);</script>
-        <p style="font-size:18px; "><?php echo validation_errors(); ?></p>
-    </div>
-<?php } ?>
-<script>setTimeout("hideErrDiv('location_val')", 6000);</script>
-<?php if ($flash_data != '') { ?>
-    <div class="errorContainer" style="min-height:40px;" id="<?php echo $flash_data_type; ?>">
-        <script>setTimeout("hideErrDiv('<?php echo $flash_data_type; ?>')", 6000);</script>
-        <p style="color:#FF0000; font-size:15px; font-weight:bold; font-family:Arial, Helvetica, sans-serif;"><span style="font-size:14px; font-weight:bold;"><?php echo $flash_data; ?></span></p>
-    </div>
-<?php } ?>
+<div class="container">
+    <?php if (validation_errors() != '') { ?>
+        <div id="validationErr" >
+            <script>setTimeout("hideErrDiv('validationErr')", 6000);</script>
+            <p><?php echo validation_errors(); ?></p>
+        </div>
+    <?php } ?>
+    <script>setTimeout("hideErrDiv('location_val')", 6000);</script>
+    <?php if ($flash_data != '') { ?>
+        <div class="errorContainer"  id="<?php echo $flash_data_type; ?>">
+            <script>setTimeout("hideErrDiv('<?php echo $flash_data_type; ?>')", 6000);</script>
+            <p ><span><?php echo $flash_data; ?></span></p>
+        </div>
+    <?php } ?>
+</div>
 <?php
 //$this->load->view('site/templates/popup_templates.php',$this->data);
 

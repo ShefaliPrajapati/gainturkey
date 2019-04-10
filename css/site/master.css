@@ -1,5 +1,12 @@
 /* CSS Document */
 /* Getting the new tags to behave */
+body{
+	margin: 0px;
+	padding: 0px;
+	background: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+
 article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video, banner {
 	display:block
 }
@@ -30,43 +37,6 @@ ul li{
 	border-radius:0px !important;
 }
 
-@font-face {
-    font-family: 'OswaldLight';
-    src: url('../../fonts/oswald-light.eot');
-    src: url('../../fonts/oswald-light.eot') format('embedded-opentype'),
-         url('../../fonts/oswald-light.woff') format('woff'),
-         url('../../fonts/oswald-light.ttf') format('truetype'),
-         url('../../fonts/oswald-light.svg#OswaldLight') format('svg');
-}
-@font-face {
-    font-family: 'OswaldBold';
-    src: url('../../fonts/oswald-bold.eot');
-    src: url('../../fonts/oswald-bold.eot') format('embedded-opentype'),
-         url('../../fonts/oswald-bold.woff') format('woff'),
-         url('../../fonts/oswald-bold.ttf') format('truetype'),
-         url('../../fonts/oswald-bold.svg#OswaldBold') format('svg');
-}
-@font-face {
-    font-family: 'MyriadProRegular';
-    src: url('../../fonts/myriadpro-regular.eot');
-    src: url('../../fonts/myriadpro-regular.eot') format('embedded-opentype'),
-         url('../../fonts/myriadpro-regular.woff') format('woff'),
-         url('../../fonts/myriadpro-regular.ttf') format('truetype'),
-         url('../../fonts/myriadpro-regular.svg#MyriadProRegular') format('svg');
-}
-@font-face {
-    font-family: 'OpenSansRegular';
-    src: url('../../fonts/opensans-regular.eot');
-    src: url('../../fonts/opensans-regular.eot') format('embedded-opentype'),
-         url('../../fonts/opensans-regular.woff') format('woff'),
-         url('../../fonts/opensans-regular.ttf') format('truetype'),
-         url('../../fonts/opensans-regular.svg#OpenSansRegular') format('svg');
-}
-
-
-
-
-
 /* Global Structure ============================================================= */
 
 /* Header */
@@ -75,10 +45,10 @@ header {
 	float:left;
 }
 /* Nav */
-nav {
-	width:100%;
-	float:left;
-}
+/*nav {*/
+	/*width:100%;*/
+	/*float:left;*/
+/*}*/
 /* article */
 article {
 	width:100%;
@@ -203,7 +173,7 @@ li {
 	padding:0px;
 	color:#252525;
 	font-size:16px;
-	font-family: 'OpenSansRegular';
+	
 	line-height:24px;
 	font-weight:bold;
 
@@ -222,7 +192,7 @@ li {
 	margin:27px 0 0 5px;
 	padding:0px;
 	font-size:22px;
-    font-family: 'OpenSansRegular';
+    
     font-weight:bold;
 }
 .member_use{
@@ -238,7 +208,7 @@ li {
 .member_use a{
 	 color: #252525;
     float: left;
-   	font-family: 'OpenSansRegular';
+   	
     font-size: 16px;
    margin: 24px 0 0 50px;
     padding: 0;
@@ -268,7 +238,7 @@ font-size:14px;
 .welcome-user span{
 	color: #fff;
 float: left;
-font-family: 'OpenSansRegular';
+
 font-size: 14px;
 padding: 0;
 font-weight: bold;
@@ -280,7 +250,7 @@ font-weight: bold;
 .welcome-user a{
 	color: #fff;
 float: left;
-font-family: 'OpenSansRegular';
+
 font-size: 14px;
 padding-left: 10px;
 font-weight: bold;
@@ -325,7 +295,7 @@ text-decoration:underline;
 .menu_nav ul li a{
 	color: #FFFFFF;
     float: left;
-    font-family: 'OpenSansRegular';
+    
     font-size: 14px;
     margin: 0;
     padding: 15px 37px;
@@ -361,7 +331,7 @@ float: right;
 .support_view ul li a{
 	 color: #FFFFFF;
     float: left;
-    font-family: 'OpenSansRegular';
+    
     font-size: 14px;
     font-weight: bold;
     margin: 0;
@@ -377,7 +347,7 @@ float: right;
 }
 .listing_content {
     width: 100%;
-    margin: 100px 0;
+    margin: 20px 0;
     padding: 25px;
     float: left;
     -webkit-border-radius: 7px;
@@ -389,7 +359,7 @@ float: right;
 }
 .button_tab{
 	width:100%;
-    margin: 20px 0 0 0px;
+    margin: 0px 0 0 0px;
 	padding:0px;
 	list-style:none;
 
@@ -408,7 +378,7 @@ float: right;
 .button_tab li a {
 	color: #fff;
 	float: left;
-	font-family: 'OpenSansRegular';
+	
 	font-size: 14px;
 	margin: 0;
 	text-transform: uppercase;
@@ -476,7 +446,7 @@ background:#c7812b !important;
 	padding:0px;
 	text-align:center;
 	font-size:15px;
-	 font-family: 'OpenSansRegular';
+	 
 	 color:#333333;
 	 height:25px;
 	 overflow:hidden;
@@ -500,7 +470,7 @@ background:#c7812b !important;
 
 	padding:0px;
 	font-size:15px;
-	 font-family: 'OpenSansRegular';
+	 
 	 color:#333333;
 	 width:50%;
 	 overflow:hidden;
@@ -512,11 +482,11 @@ background:#c7812b !important;
 	/* -moz-border-radius: 3px; */
 	/* border-radius: 3px; */
 	margin: 0;
-	font-family: 'OpenSansRegular';
+	
 	padding: 10px 20px;
 	background: url(../../images/site/detail_bt.jpg) repeat-x;
 	color: #FFFFFF;
-	background: #2b3743;
+	background:#dda049;
 	text-align: center;
 	display: inline-block;
 	float: right;
@@ -542,7 +512,7 @@ background:#c7812b !important;
 	text-align:center;
 	margin:0px 0 0 0px;
 	padding:0 0 0 0px;
-	font-family: 'OpenSansRegular';
+	
 	text-decoration:none;
 	color:#999191;
 	line-height:20px;
@@ -611,7 +581,7 @@ border:none !important;
 .split_turn1 p{
 	 color: #252525;
     float: right;
-    font-family: 'OpenSansRegular';;
+    ;
     font-size: 13px;
     margin: 11px 0 0 10px;
     padding: 0;
@@ -684,7 +654,7 @@ border:none !important;
 	padding:0px;
 	font-size:22px;
 	color:#ffffff;
-	font-family: 'OpenSansRegular';
+	
 }
 /***slider_1 slide show*/
 .scroller_con{
@@ -774,7 +744,7 @@ border:none !important;
 	padding:0px;
 }
 .terms li a{
-	font-family: 'OpenSansRegular';
+	
 	font-size:12px;
 	color:#FFFFFF;
 	margin:0 0 0 0px;
@@ -790,7 +760,7 @@ border:none !important;
 	padding:10px;
 	font-size:12px;
 	color:#FFFFFF;
-	font-family: 'OpenSansRegular';
+	
 	width:99%;
 }
 
@@ -876,7 +846,7 @@ left:0px;
     overflow: hidden;
     padding: 0;
     position: relative;
-    width: 263px;
+    width: 231px;
 }
 
 .listing_page li p{
@@ -918,7 +888,7 @@ overflow: hidden;*/
 .rates_full_list span{
 	 color: #c7812b;
     float: left;
-    font-family: 'OpenSansRegular';
+    
     font-size: 11px;
     font-weight: bold;
     margin: 4px 0 0 8px;
@@ -941,7 +911,7 @@ overflow: hidden;*/
 }
 .sub_title_list a{
  color: #999191;
-    font-family: 'OpenSansRegular';
+    
     font-size: 13px;
     line-height: 20px;
     margin: 0;
@@ -1000,7 +970,7 @@ overflow: hidden;*/
 	padding:0px;
 	color:#000000;
 	font-size:20px;
-	 	font-family: 'OpenSansRegular';
+	 	
 	 font-weight:bold;
 }
 .field_login {
@@ -1044,7 +1014,7 @@ overflow: hidden;*/
 	padding-left: 3px;
 	border: 1px solid #c9bdb4;
 	background: #fff;
-	float: left;
+	/*float: left;*/
 	line-height: 25px;
 	font-family: 'MyriadProRegular';
 }
@@ -1107,7 +1077,7 @@ overflow: hidden;*/
 	border-radius: 3px;
 	float: left;
 	margin: 0;
-	font-family: 'OpenSansRegular';
+	
 	padding: 0 20px;
 	/* background: url(../../images/site/detail_bt.jpg) repeat-x; */
 	cursor: pointer;
@@ -1135,7 +1105,7 @@ overflow: hidden;*/
 .button_tab_de{
 	float:left;
 	width:21%;
-    margin: 20px 0 0 0px;
+    margin:0px;
 	padding:0px;
 	float:left;
 	list-style:none;
@@ -1156,7 +1126,7 @@ overflow: hidden;*/
 .button_tab_de li a {
 	color: #fff;
 	float: left;
-	font-family: 'OpenSansRegular';
+	
 	font-size: 22px;
 	margin: 0;
 	padding: 4px 25px;
@@ -1191,19 +1161,21 @@ overflow: hidden;*/
 	/* border-radius: 5px 5px 5px 5px; */
 	color: #FFFFFF;
 	float: right;
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
-	margin: 18px 24px 0 0;
-	padding: 6px 28px;
+	margin: 10px 10px 0 0px;
+	padding: 2px 30px;
 	text-transform: uppercase;
 	border: none;
 	cursor: pointer;
 	outline: none;
 	transition: all 0.5s;
-	background: #2b3743;
+	background:#dda049;
 	line-height: 31px;
 }
+
+
+
 .buyer_btn:hover{
 	background:#c7812b;
     color: #FFFFFF;
@@ -1335,21 +1307,20 @@ overflow: hidden;*/
 	margin:0 0 0 0px;
 	padding:0px;
 }
-.tit_head{
-	float:left;
-	width:60%;
-	margin:15px 0 25px 20px;
-	padding:0px;
-	color:#000000;
-	font-size:20px;
-	font-family: 'OpenSansRegular';
-	 font-weight:bold;
+.tit_head {
+	float: left;
+	width: 60%;
+	margin: 0px 0 0 0;
+	padding: 0px;
+	color: #000000;
+	font-size: 20px;
+
 }
 .timer_con {
 	float: right;
-	margin: 10px 0 0 0px;
+	margin: 0 0 18px 0;
 	padding: 0px;
-	width: 12%;
+	width: 18%;
 }
 .timer_con h2{
 	width:100%;
@@ -1357,8 +1328,8 @@ overflow: hidden;*/
 	padding:0px;
 	float:left;
 	color:#000000;
-	font-size:12px;
-	font-family: 'MyriadProRegular';
+	font-size:14px;
+
 	font-weight:bold;
 	text-align: right;
 }
@@ -1373,7 +1344,7 @@ overflow: hidden;*/
 	margin:0 0 0 0px;
 	padding:0px;
 	font-size:16px;
-	font-family: 'MyriadProRegular';
+
 	color:#000;
 }
 .split_timer p span{
@@ -1381,7 +1352,7 @@ overflow: hidden;*/
 	margin:0 3px 0 3px;
 	padding:0px;
 	font-size:15px;
-	font-family: 'MyriadProRegular';
+
 	color:#c7812b;
 	height:25px;
 	overflow:hidden;
@@ -1393,7 +1364,7 @@ overflow: hidden;*/
 	background: #2b3743;
 	border: #2b3743 solid 1px;
 	font-size: 16px;
-	font-family: 'MyriadProRegular';
+
 	font-weight: bold;
 	text-transform: uppercase;
 	color: #ffffff;
@@ -1465,19 +1436,19 @@ overflow: hidden;*/
     font-size: 13px;
     line-height: 18px;
     margin-left: 20px;
-   padding: 5px 2px;
+   /*padding: 5px 2px;*/
     width: 47%;
 }
 .buyer_field label {
 	color: #1F1F1D;
 	float: left;
-	/* font-family: 'MyriadProRegular'; */
+	/*  */
 	font-family: Arial;
 	font-size: 15px;
 	font-weight: normal;
 	line-height: 36px;
 	text-decoration: none;
-	width: 31%;
+	width: 36%;
 	text-transform: uppercase;
 }
 .buyer_field label a{
@@ -1496,14 +1467,13 @@ overflow: hidden;*/
 }
 .sales_con{
 	width:45%;
-	margin:12px 0 20px 0px;
+	margin:20px 0 0px 20px;
 	padding:0px;
 	float:left;
 
 }
 .list_check{
 	list-style:none;
-	margin:5px 0 0 0px;
 	padding:0px;
 	width:52%;
 	float:left;
@@ -1515,7 +1485,6 @@ overflow: hidden;*/
 .list_check li{
 	border-bottom: 1px solid #CCCCCC;
     float: left;
-    height: 25px;
     margin: 5px 0 0;
     padding: 0 0 8px;
     width: 100%;
@@ -1532,7 +1501,7 @@ overflow: hidden;*/
 	margin:0;
 	padding:0px;
 	color: #1F1F1D;
-   /* font-family: 'MyriadProRegular';*/
+   /* */
    	font-family: Arial;
 	font-size:14px;
 	text-transform:uppercase;
@@ -1540,20 +1509,33 @@ overflow: hidden;*/
 .list_usetite{
 	color: #1F1F1D;
     float: left;
-   /* font-family: 'MyriadProRegular';*/
+   /* */
    	font-family: Arial;
     font-size: 15px;
-    margin: 10px 0 0 0px;
+    margin: 0px 0 0 21px;
     text-transform: uppercase;
-    width: 28%;
+    width: 25%;
+}
+
+.form_reservation label {
+	display: inline-block;
+	margin-bottom: .5rem;
+	width: 30%;
+}
+
+.form_reservation {
+	margin: 25px 0 0 0;
+}
+
+.form_reservation .form-group {
+	margin-bottom: 1rem;
+	display: flex;
 }
 .select_scroll {
  background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #C9BDB4;
     color: #4A4A4A;
-    float: left;
-    /*font-family: 'MyriadProRegular';*/
-		font-family: Arial;
+
     font-size: 13px;
     font-weight: normal;
     height: 25px;
@@ -1565,7 +1547,7 @@ overflow: hidden;*/
 .freemember p{
 	 color: #4A4A4A;
     float: left;
-    font-family: 'MyriadProRegular';
+
     font-size: 14px;
     margin: 0 0 1px 10px;
     padding: 10px;
@@ -1584,19 +1566,34 @@ overflow: hidden;*/
     padding: 0px;
     color: #000000;
     font-size: 20px;
-    font-family: 'OpenSansRegular';
+    
     font-weight: bold;
     text-align: center;
 }
 .cms_view p{
 	 color: #4A4A4A;
     float: left;
-    font-family: 'MyriadProRegular';
+
     font-size: 14px;
     margin: 0 0 0 10px;
     padding: 10px;
     width: 95%;
 	overflow:hidden;
+}
+.back_btn_reservation {
+	-webkit-border-radius: 3px;
+	border-radius: 0;
+	margin: -4px 10px 0 0;
+	padding: 10px 20px;
+	background: url(../../images/site/detail_bt.jpg) repeat-x;
+	color: #FFFFFF;
+	background: #dda049;
+	text-align: center;
+	display: inline-block;
+	float: right;
+	height: 32px;
+	font-size: 14px;
+	line-height: 14px;
 }
 .img_split{
 	width:50%;
@@ -1617,7 +1614,7 @@ overflow: hidden;*/
     font-family:Arial, Helvetica, sans-serif;
     font-size: 28px;
     font-weight: bold;
-    margin: 22px 0 0px 18px;
+    margin: 0 0;
     padding: 0;
     text-transform: uppercase;
 	line-height: 25px;
@@ -1701,7 +1698,7 @@ overflow: hidden;*/
 	font-size:14px;
 	margin:0 0 0 10px;
 	padding:0px;
-	font-family: Arial;
+
 	float:left;
 	font-weight:bold;
 	text-transform:uppercase;
@@ -1715,7 +1712,7 @@ overflow: hidden;*/
 	padding:0px;
 	color:#c7812b;
 	font-size:14px;
-	font-family: Arial;
+
 	font-weight:bold;
 	letter-spacing:1px;
 
@@ -1744,7 +1741,7 @@ overflow: hidden;*/
 	font-size:18px;
 	margin:0 0 0 18px;
 	padding:0px;
-	font-family: Arial;
+
 	float:left;
 	font-weight:bold;
 	text-transform:uppercase;
@@ -1758,14 +1755,14 @@ overflow: hidden;*/
 	padding:0px;
 	color:#c7812b;
 	font-size:18px;
-	font-family: Arial;
+
 	font-weight:bold;
 	letter-spacing:1px;
 
 }
 .detail_tex{
 	 color: #3B3C3D;
-    font-family: Arial,Helvetica,sans-serif;
+
     font-size: 12px;
     margin: 14px 0 20px 19px;
     overflow: hidden;
@@ -1804,7 +1801,7 @@ overflow: hidden;*/
 }
 .left_conttext p {
     color: #3B3C3D;
-    font-family: Arial,Helvetica,sans-serif;
+
     font-size: 14px;
     margin: 2px 0 20px 0px;
     overflow: hidden;
@@ -1838,7 +1835,7 @@ cursor:pointer;
 text-decoration:none;
 	color:#c7812b;
 	text-transform:uppercase;
-	font-family: Arial,Helvetica,sans-serif;
+
 	}
 
 .page-list li a:hover {
@@ -1851,7 +1848,7 @@ float: right;
 display: block;
 color:#c7812b;
 text-transform: uppercase;
-font-family: Arial,Helvetica,sans-serif;
+
 font-size:14px;
 font-weight:bold;
 padding:5px;
@@ -1879,7 +1876,7 @@ padding: 4px;
 -webkit-border-radius: 3px;
 -moz-border-radius: 3px;
 border-radius: 3px;
-font-family: Arial,Helvetica,sans-serif;
+
 background: url(../../images/site/detail_bt.jpg) repeat-x;
 cursor: pointer;
 color: #FFFFFF;
@@ -1921,25 +1918,20 @@ color:#343434;
 	margin: 0px;
 	font-size: 16px;
 	color: #fff;
-	font-family: Arial,Helvetica,sans-serif;
+
 	font-weight: bold;
 	text-transform: uppercase;
 	width: 100%;
 }
 
 .agreement-cnt {
-	line-height: 34px;
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 14px;
-	width: 100%;
 	text-align: justify;
-	margin-top: 10px;
-	padding: 0;
+	margin: 15px;
 }
 
 .code-tle {
 font-size:15px;
- font-family: Arial,Helvetica,sans-serif;
+
 
  margin:10px 0px 0px 0px;
  text-transform:uppercase;
@@ -1963,12 +1955,11 @@ font-size:15px;
     border: 1px solid #2b3743;
     color: #2b3743;
     /* float: right; */
-    font-family: 'MyriadProRegular';
     font-size: 13px;
-    font-weight: normal;
-    height: 40px;
-    line-height: 23px;
-    margin: 20px 0px 0 60px;
+	font-weight: normal;
+	height: 34px;
+	line-height: 23px;
+	margin: 10px 0 0 0;
     padding-left: 12px;
     padding-bottom: 2px;
     width: 126px;
@@ -2042,7 +2033,7 @@ width: 9px;
 .cssmenu ul, .cssmenu li, .cssmenu span, .cssmenu a {
 	padding: 0;
 	position: relative;
-	margin: 10px 0 0 11px;
+	margin: 10px 0 0 14px;
 	width: 190px;
 	text-align: center;
 }
@@ -2159,7 +2150,7 @@ width: 9px;
 
 .countdown-row {
 	font-size:13px;
-	font-family: 'OpenSansRegular';
+	
 	font-weight:bold;
 }
 .proinform_list button{
@@ -2169,7 +2160,7 @@ width: 9px;
 .calculatorPopUpMain h2{
 	color:#000000;
 	font-size:24px;
-	font-family: 'OpenSansRegular';
+	
 	font-weight:bold;
 	margin: 10px 0 10px 10px;
 	padding:0px;
@@ -2186,12 +2177,10 @@ width: 9px;
 	margin:20px 15px 10px 0px;
 	padding:0px;
 	float:right;
-	font-family:Arial, Helvetica, sans-serif;
 }
 .popupFormBox label{
 	width:175px;
 	font-size:12px;
-	font-family: Arial, Helvetica, sans-serif;
 	margin:0 0 0 5px;
 	padding:0px;
 	color:#333333;
@@ -2216,7 +2205,7 @@ width: 9px;
 
 }
 .ccrighttxt{
-	font-family: Arial, Helvetica, sans-serif;
+
 	font-size:11px;
 	color:#666666;
 	margin:0 0 0 15px;
@@ -2235,7 +2224,6 @@ width: 9px;
     color: #FFFFFF !important;
     cursor: pointer;
     float: right;
-    font-family: Arial,Helvetica,sans-serif;
     font-size: 12px !important;
     font-weight: bold;
     margin: 5px 10px 0 0;
@@ -2297,7 +2285,6 @@ width: 9px;
 	width:96%;
 }
 .for_auto_search ul li{
-	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
 	margin:0 0 0 0px;
 	padding:2px 0 2px 0px;
@@ -2313,7 +2300,6 @@ width: 9px;
  color: #333333 !important;
 }
 #reservationconfirmcode_warn{
-	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
 
 }
@@ -2348,7 +2334,7 @@ width: 9px;
 	-moz-border-radius:3px;
 	border-radius:3px;
 	color:#000000;
-	font-family: 'OpenSansRegular';
+	
 	background:#e4e4e4;
 	margin-right:3px;
 	padding:0 7px;
@@ -2365,7 +2351,7 @@ width: 9px;
     /*-moz-border-radius: 3px;*/
     /*border-radius: 3px;*/
     color: #fff;
-    font-family: 'OpenSansRegular';
+    
     background: #2b3743;
     margin-right: 3px;
     padding: 8px 20px;
@@ -2377,7 +2363,7 @@ width: 9px;
     /*-moz-border-radius: 3px;*/
     /*border-radius: 3px;*/
     color: #2b3743;
-    font-family: 'OpenSansRegular';
+    
     background: none repeat scroll 0 0 #c7812b;
     margin-right: 3px;
 	padding: 8px 20px;
@@ -2442,7 +2428,6 @@ width: 9px;
 }
 .front_popup_step_title{
 	color: #000000;
-    font-family: Arial,Helvetica,sans-serif;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -2458,7 +2443,6 @@ width: 9px;
     width: 100%;
 	text-transform:uppercase;
 	 font-style: normal;
-	 font-family: Arial,Helvetica,sans-serif;
 	 font-weight:bold;
 	 margin:3px 0 3px 0px;
 }
@@ -2471,7 +2455,6 @@ width: 9px;
     text-align: center;
     width: 100%;
 	text-transform:uppercase;
-	 font-family: Arial,Helvetica,sans-serif;
 	 font-weight:bold;
 	 margin:3px 0 3px 0px;
 }
@@ -2559,7 +2542,7 @@ width: 9px;
 }
 .front_popup_step2 p{
 	color: #000000;
-    font-family: Arial,Helvetica,sans-serif;
+
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -2575,7 +2558,7 @@ width: 9px;
     width: 100%;
 	text-transform:uppercase;
 	 font-style: normal;
-	 font-family: Arial,Helvetica,sans-serif;
+
 	 font-weight:bold;
 	 margin:3px 0 3px 0px;
 }
@@ -2588,7 +2571,7 @@ width: 9px;
     text-align: center;
     width: 100%;
 	text-transform:uppercase;
-	 font-family: Arial,Helvetica,sans-serif;
+
 	 font-weight:bold;
 	 margin:3px 0 3px 0px;
 }
@@ -2744,13 +2727,15 @@ width:100%;font-weight:bold;    color: #656565;}
 .top-socialicons li a img {
 	margin: 6px !important;
  }
- .comp_h2{margin:0 0 10px 30px; font-family: 'OpenSansRegular'; font-size:18px; font-weight:bold; }
- .comps_table {font-family: 'OpenSansRegular'; float:left; width:95%; margin:0 0 20px 30px;}
+ .comp_h2{margin:0 0 10px 30px;  font-size:18px; font-weight:bold; }
+ .comps_table { float:left; width:95%; margin:0 0 20px 30px;}
 
 .comps_table th{text-align:center; border-bottom:1px solid #eee;}
 .comps_table td{text-align:center;}
 
-
+.form-email-reserv {
+	margin: 0 0 10px 0;
+}
 /*----------------------------New Css-----------------*/
 
 .download-brochure-btn{
@@ -2783,7 +2768,6 @@ width:100%;font-weight:bold;    color: #656565;}
 	width:30%;
 }
 .brochure_input{
-	font-family: Arial, Helvetica, sans-serif;
 	font-size:12px;	
 	float:left;
 	margin:1px 0 0 15px;
@@ -2814,7 +2798,7 @@ width:100%;font-weight:bold;    color: #656565;}
 .calculatorPopUpMain h3{
 	color:#000000;
 	font-size:15px;
-	font-family: 'OpenSansRegular';
+	
 	font-weight:normal;
 	margin: 10px 0 10px 10px;
 	padding:10px 0px;
@@ -2835,5 +2819,7 @@ width:100%;font-weight:bold;    color: #656565;}
     font-size: 13px;
     padding: 0 5px;
 }
-
+.form_reservation .col-lg-6 span {
+	color: red;
+}
 
