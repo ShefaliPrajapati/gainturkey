@@ -59,7 +59,7 @@ $urlProperty = base_url();
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $urlProperty.'#about'; ?>">About Us</a>
+                        <a class="nav-link scroll" href="<?php echo $urlProperty.'#about'; ?>">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $urlProperty.'properties'; ?>">Properties</a>
@@ -266,5 +266,37 @@ $urlProperty = base_url();
         });
     });
 </script>
+
+
+<script>
+    $(document).ready(function(){
+        // Add smooth scrolling to all links
+        $(".scroll").on('click', function(event) {
+
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+
+                // Store hash
+                var hash = this.hash;
+
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function(){
+
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                });
+            } // End if
+        });
+    });
+</script>
+
+
+
+
 </body>
 </html>

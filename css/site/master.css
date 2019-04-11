@@ -10,6 +10,8 @@ body{
 article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video, banner {
 	display:block
 }
+}
+
 mark, rp, rt, ruby, summary, time {
 	display:inline
 }
@@ -350,9 +352,9 @@ float: right;
     margin: 20px 0;
     padding: 25px;
     float: left;
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    border-radius: 7px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
     background: #FFF;
     min-height: 500px;
     border: #c7812b solid 1px;
@@ -390,9 +392,10 @@ float: right;
 .button_tab li a:hover{
 	background:#c7812b;
 }
-
-.button_tab li.active.has-sub{
-    background:#c7812b;
+.button_tab li.active.has-sub {
+	background: #c7812b;
+	margin: 0 6px 0 0;
+	margin-left: 0 !important;
 }
 
 
@@ -839,7 +842,7 @@ left:0px;
 
 .listing_page li {
     border: 1px solid #B8BBC0;
-    border-radius: 5px 5px 5px 5px;
+    border-radius:0;
     box-shadow: 0 0 2px 0 #B3A8A8;
     float: left;
     height: 314px;
@@ -2034,8 +2037,8 @@ width: 9px;
 .cssmenu ul, .cssmenu li, .cssmenu span, .cssmenu a {
 	padding: 0;
 	position: relative;
-	margin: 10px 0 0 14px;
-	width: 190px;
+	margin: 0 6px 0 0;
+	width: 180px;
 	text-align: center;
 }
 .cssmenu {

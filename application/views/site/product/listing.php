@@ -17,7 +17,7 @@ if ($iiii != '') {
 <div class="container">
 <div id="options" class="listing_content" >
     <?php if ($userDetails->row()->reservation == 'Yes') { ?>
-        <a href="<?php echo base_url() . 'reservation-continue/' . $userDetails->row()->property_id; ?>" class="detail_btn" style="margin-top:10px;"> Back To Reservation</a>
+        <a href="<?php echo base_url() . 'reservation-continue/' . $userDetails->row()->property_id; ?>" class="detail_btn"> Back To Reservation</a>
     <?php } ?>
     <ul id="filters" class="button_tab option-set clearfix cssmenu" data-option-key="filter">
         <?php

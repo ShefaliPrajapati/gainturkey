@@ -177,7 +177,7 @@
  .wlelcome_imag {
      margin: 0;
      padding: 0;
-     width: 100%;
+     width: 894px;
  }
  .Welcome_rghte1 {
      margin: 0;
@@ -199,10 +199,10 @@
      margin: 0;
      padding: 18px 90px 0px 0;
      color: #fff;
-     font-size: 14px;
-     line-height: 28px;
+     font-size: 21px;
+     line-height: 36px;
      display: block;
-}
+ }
  .Welcome_rghte a {
      margin: 25px 0 0 0;
      padding: 8px 160px 8px 25px;
@@ -213,17 +213,18 @@
      border-image-source: linear-gradient(45deg, rgb(252,248,177), rgb(208,143,51));
      border-image-slice: 1;
      display: inline-block;
+     display: none;
 }
  .Properties_sec {
      margin: 0;
-     padding: 100px 0;
+     padding: 0px 0;
 }
  .Properties_box {
      margin: 0;
-     padding: 80px 0;
-     border: solid 1px #b5b5b5;
+     padding: 30px 0;
+     /* border: solid 1px #b5b5b5; */
      text-align: center;
-}
+ }
  .Properties_box2 {
      display: flex;
 }
@@ -662,7 +663,7 @@
      margin: 20px 0 0 10px;
      background: #dda049;
      border: solid 1px #dda049;
-
+    border-radius: 0;
  }
  .right_bt a:hover {
 
