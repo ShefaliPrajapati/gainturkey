@@ -147,8 +147,9 @@ class Sitemap {
     /**
      * Build a list of pages in a controller
      *
-     * @param string $page        (optional) Build all the links for a specific controller
+     * @param string $page (optional) Build all the links for a specific controller
      * @return string
+     * @throws ReflectionException
      */
     function get_links($class = null)
     {
@@ -211,7 +212,7 @@ class Sitemap {
             if(!class_exists($class)) include($controller);  // include the class for access
            // $sitemap .= $this->get_links($class) . "\n";
 		    $sitemap[]= $this->get_links($class);
-			
+
         }
 
         return $sitemap;

@@ -1,4 +1,4 @@
-<script src="js/jquery.colorbox.js"></script>
+<script src="<?php echo base_url(); ?>js/jquery.colorbox.js"></script>
 
 <script>
     $(document).ready(function () {

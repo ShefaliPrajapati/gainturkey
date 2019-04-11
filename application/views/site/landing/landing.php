@@ -172,7 +172,7 @@ unset($_SESSION['sExistingSold'])
     </script>
     <div class="return_bar">
         <div class="split_return">
-            <h2>Return on Rentals has thousands of happy students – listen to just a few of them below:</h2>
+            <h2>Gain Turnkey Property has thousands of happy students – listen to just a few of them below:</h2>
         </div>
         <div class="clear"></div>
         <div class=" scroller_con">

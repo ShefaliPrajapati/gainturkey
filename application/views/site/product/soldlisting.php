@@ -1,6 +1,8 @@
-<?php $this->load->view('site/templates/header'); ?>
+<?php $this->load->view('site/templates/new_header'); ?>
+<link rel="stylesheet" type="text/css" href="css/site/master.css"/>
+<div class="container">
 
-<div id="options" class="listing_content" style="margin:20px 0 15px 0px;">
+<div id="options" class="listing_content">
     <?php if ($userDetails->row()->reservation == 'Yes') { ?>
         <a href="<?php echo base_url() . 'reservation-continue/' . $userDetails->row()->property_id; ?>" class="detail_btn" style="margin-top:10px;"> Back To Reservation</a>
     <?php } ?>
@@ -77,13 +79,14 @@
                     <li style="float:left;" class="active has-sub"><a href="javascript:void(0);" onclick="SoldSearchByCat('pricedesc', 0)"  style="width:150px">High to Low </a></li>
                 </ul>
             </li>
+            <li><a id="active_viewall" onclick="SoldSearchByCat('viewall', 0)" href="javascript:void(0);" data-option-value="*" <?php
+                if ($menuact == 'viewall' && $menuactcat == '0') {
+                    echo 'class="selected"';
+                }
+                ?>>All Properties</a></li>
         </span>
 
-        <li><a id="active_viewall" onclick="SoldSearchByCat('viewall', 0)" href="javascript:void(0);" data-option-value="*" <?php
-            if ($menuact == 'viewall' && $menuactcat == '0') {
-                echo 'class="selected"';
-            }
-            ?>>All Properties</a></li>
+
     </ul>
     <div id="fulldiv_container" style="float:left; width:100%"><div class="pagination"><ul class="pagination-ul"><?php echo $paginationLink; ?></ul></div><div class="clear"></div><ul id="container" class="listing_page">
             <?php foreach ($productDetails->result() as $row) {
@@ -136,11 +139,7 @@
     <!----------listing end content-------------->
 </div>
 <div class="clear"></div>
-
-
-
-
-</div>
 </div>
 
-<?php $this->load->view('site/templates/footer'); ?>
+
+<?php $this->load->view('site/templates/new_footer'); ?>

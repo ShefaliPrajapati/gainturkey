@@ -2626,8 +2626,8 @@ function reservation_form($seourl)
         $email_values = array('mail_type' => 'html',
             'from_mail_id' => $sender_email,
             'mail_name' => $sender_name,
-            'to_mail_id' => 'deals@returnonrentals.com',
-            'bcc_mail_id' => 'jadepaiva1@gmail.com',
+            'to_mail_id' => 'info@gainturnkeyproperty.com',
+            'bcc_mail_id' => '',
             'subject_message' => $template_values['news_subject'],
             'body_messages' => $message
         );

@@ -2,11 +2,11 @@
 /*******Messages*******/
 
 .errorContainer{
-	float:left;
 	margin:5px 0px;
+	margin-left: 20%;
 	border:1px solid #DF0505;
 	background: url(../images/error_msg.png) no-repeat scroll 9px #FDE4E1;
-	width:99.5%;
+	width:50%;
 	height:40px;
 }
 #validationErr{
@@ -15,8 +15,8 @@
 	border:1px solid #DF0505;
 	background-color: #FDE4E1;
 	color:#DF0505;
-	padding-left: 10%;
-	width:89.5%;
+	padding-left:50%;
+	width:auto;
 }
 .errorContainer span{
 	float:left;
@@ -31,8 +31,9 @@
 	margin:5px 0px;
 	border:1px solid #64a71c;
 	background: url(../images/success.png) no-repeat scroll 9px #DDEACF;
-	width:99.5%;
+	width:80%;
 	height:40px;
+	margin-left: 35px;
 }
 #message-green span{
 	float:left;

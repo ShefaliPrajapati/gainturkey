@@ -105,7 +105,7 @@ class Product extends MY_Controller {
                 foreach ($this->data['sourcer'][0] as $x=>$val){
                     array_push($deals_prev, $val);
                 }
-                $this->data['productList'] = $this->product_model->view_product_details_cancel($table, $whereCnd, $newCnd,unserialize($deals_prev[0]),unserialize($deals_prev[1]));
+                $this->data['productList'] = $this->product_model->view_product_details_cancel($table, $whereCnd, $newCnd,unserialize($deals_prev[0]) ? : NULL,unserialize($deals_prev[1]) ? : NULL);
 				}else{
 					//	$table => RESERVED_INFO
 					$this->data['deals_pre']=$this->product_model->get_deals_prev($this->checkLogin('CA'));
@@ -187,7 +187,7 @@ class Product extends MY_Controller {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
@@ -700,16 +700,14 @@ class Product extends MY_Controller {
 
 		$message .= 'Step by Step Instruction:<br>';
 		$message .= '1. Click on the "View Documents" link in this email above.<br>';
-		$message .= '2. Login to your free account at ReturnonRentals.com<br>';
+		$message .= '2. Login to your free account at GainTurkey.com<br>';
 		$message .= '3.  Click on "My Account", then "Documents"<br>';
 		$message .= '4. You will then see the property listed above and a RED button that reads "Click to Sign."  Please go ahead and click that button and follow the steps that are given at that point to complete the process.<br><br>';
 
 		$message .= 'Congratulations!  We are very happy for you and look forward to building a long-lasting relationship with you and your team.<br><br>';
-		$message .= 'Feel free to contact us directly at 877.372.2010 or by email at tc@returnonrentals.com if you have any questions.<br><br>';
+		$message .= 'Feel free to contact us directly at 877.372.2010 or by email at info@gainturnkeyproperty.com if you have any questions.<br><br>';
 
-		$message .= '<br><br>The Return on Rentals Team<br>tc@returnonrentals.com<br>877.372.2010</div></body></html>';
-
-
+		$message .= '<br><br>The Gain Turkey Team<br>info@gainturnkeyproperty.com<br> 877-372-2010</div></body></html>';
 
 		$sender_email=$this->data['siteContactMail'];
 		$sender_name=$this->data['siteTitle'];
@@ -2016,10 +2014,12 @@ class Product extends MY_Controller {
 
 	public function popup_drag()
 	{
-		$id['type'] = $this->uri->segment(4);
-		$id['reserved_id'] = $this->uri->segment(5);
-		$id['sixuri'] = $this->uri->segment(6);
-		$this->load->view('crmadmin/product/dragndrop1',$id);
+	    $buyerDetails = $this->product_model->get_all_details(CANCELLED,array('id'=>$this->uri->segment(4)));
+        $this->data['buyer_info'] = $buyerDetails;
+        $this->data['type'] = $this->uri->segment(4);
+        $this->data['reserved_id'] = $this->uri->segment(5);
+        $this->data['sixuri'] = $this->uri->segment(6);
+		$this->load->view('crmadmin/product/dragndrop1',$this->data);
 	}
 
 	public function get_sub_type_details()
@@ -2297,7 +2297,7 @@ class Product extends MY_Controller {
                             "_SoldAdminID"=>$is_result->row()->sold_admin_id,
                             "_PropertyAddress"=>$is_result->row()->prop_address,
                             "_PropertyPrice"=>"$".number_format((int)$is_result->row()->prop_price,2),
-                            "_PropertyImage"=>"http://www.returnonrentals.com/images/product/".$is_result->row()->image,
+                            "_PropertyImage"=>"http://beta.gainturnkeyproperty.com/images/product/".$is_result->row()->image,
                             "_EntityName"=>$is_result->row()->prop_entity_name,
                             "_ReserveType"=>$is_result->row()->resrv_type,
                             "_SalesPrice"=>"$".number_format($is_result->row()->sales_price,2),
@@ -2413,7 +2413,7 @@ class Product extends MY_Controller {
 		$email_values = array('mail_type'=>'html',
 								'from_mail_id'=>$sender_email,
 								'mail_name'=>$sender_name,
-								'to_mail_id'=>'deals@returnonrentals.com',
+								'to_mail_id'=>'info@gainturnkeyproperty.com',
 								'subject_message'=>$template_values['news_subject'],
 								'body_messages'=>$message
 		);
@@ -2485,7 +2485,7 @@ class Product extends MY_Controller {
                         "_SoldAdminID"=>$is_result->row()->sold_admin_id,
                         "_PropertyAddress"=>$is_result->row()->prop_address,
                         "_PropertyPrice"=>"$".number_format((int)$is_result->row()->prop_price,2),
-                        "_PropertyImage"=>"http://www.returnonrentals.com/images/product/".$is_result->row()->image,
+                        "_PropertyImage"=>"http://beta.gainturnkeyproperty.com/images/product/".$is_result->row()->image,
                         "_EntityName"=>$is_result->row()->entity_name,
                         "_ReserveType"=>$is_result->row()->resrv_type,
                         "_SalesPrice"=>"$".number_format($is_result->row()->sales_price,2),
@@ -2606,7 +2606,7 @@ class Product extends MY_Controller {
                         "_SoldAdminID"=>$is_result->row()->sold_admin_id,
                         "_PropertyAddress"=>$is_result->row()->prop_address,
                         "_PropertyPrice"=>"$".number_format((int)$is_result->row()->prop_price,2),
-                        "_PropertyImage"=>"http://www.returnonrentals.com/images/product/".$is_result->row()->image,
+                        "_PropertyImage"=>"http://beta.gainturnkeyproperty.com/images/product/".$is_result->row()->image,
                         "_EntityName"=>$is_result->row()->entity_name,
                         "_ReserveType"=>$is_result->row()->resrv_type,
                         "_SalesPrice"=>"$".number_format($is_result->row()->sales_price,2),
@@ -2702,7 +2702,7 @@ class Product extends MY_Controller {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div style="width:50%; margin:0px; padding:0px;">
@@ -2753,7 +2753,7 @@ class Product extends MY_Controller {
 			<td width="80%">
 				<table border="0" width="130" align="left" cellpadding="0" cellspacing="0" style="max-width: 200px;" >
 					  <tr style="margin-bottom:5px;">
-						<td style="text-align:center;" >Return on Rentals, LLC</td>
+						<td style="text-align:center;" >Gain Turnkey Property, LLC</td>
 					  </tr>
 					  <tr style="margin-bottom:5px;">
 						<td style="text-align:center;">3566 E. Amber Lane</td>
@@ -2921,7 +2921,7 @@ class Product extends MY_Controller {
 		<table border="0" width="330" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px; margin-left:170px;  margin-top: 20px; clear:both; ">
 		  <tr>
 			<td>Company Name:</td>
-			<td>Return on Rentals, LLC</td>
+			<td>Gain Turnkey Property, LLC</td>
 		  </tr>
 		  <tr>
 			<td>Account:</td>

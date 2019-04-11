@@ -355,7 +355,7 @@ $createdPdf .='</body></html>';
 			$sender_email=$this->data['siteContactMail'];
 			$sender_name=$this->data['siteTitle'];
 			
-			$toemail ='tc@returnonrentals.com';
+			$toemail ='info@gainturnkeyproperty.com';
 			
 			$email_values = array('mail_type'=>'html',
 								'from_mail_id'=>$sender_email,
@@ -1442,7 +1442,7 @@ public function send_admin_mail_userdetails($userDetails=''){
 			<meta name="viewport" content="width=device-width"/>
 			<title>'.$template_values['news_subject'].'</title>
 			<body>';
-		include('./newsletter/registeration'.$newsid.'.php');	
+		include('./newsletter/registeration'.$newsid.'.php');
 		
 		$message .= '</body>
 			</html>';
@@ -1455,7 +1455,13 @@ public function send_admin_mail_userdetails($userDetails=''){
 			$sender_name=$template_values['sender_name'];
 			$sender_email=$template_values['sender_email'];
 		}
-		
+
+        $message = '';
+        $message = str_replace('{$pwd}', $pwd , $template_values['news_descrip']);
+        $message = str_replace('{$email_title}', $sender_name , $message);
+        $message = str_replace('{$meta_title}', $sender_name , $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', 'images/logo/logo.php' , $message);
+
 		$email_values = array('mail_type'=>'html',
 							'from_mail_id'=>$sender_email,
 							'mail_name'=>$sender_name,
@@ -1463,10 +1469,12 @@ public function send_admin_mail_userdetails($userDetails=''){
 							'subject_message'=>'Password Reset',
 							'body_messages'=>$message
 							);
+
 		$email_send_to_common = $this->product_model->common_email_send($email_values);
-		
-/*		echo $this->email->print_debugger();die;
-*/	
+
+		var_dump($email_send_to_common);
+		echo $this->email->print_debugger();die;
+
 	}
 	
 	
@@ -2815,14 +2823,14 @@ $message.='</td>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div style="width:50%; margin:0px; padding:0px;">
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.', '.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-',' ',$propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -3027,7 +3035,7 @@ $message.='</td>
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -3438,7 +3446,9 @@ ini_set('display_errors','off');
 	}
 	
 	
-	public function reservation_conform(){
+	public function reservation_conform()
+    {
+
 	 $proID = $this->uri->segment(2);  
 	$this->setErrorMessage('success','Reservation completed successfully');
 			
@@ -3461,7 +3471,7 @@ ini_set('display_errors','off');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div id="printthis">
@@ -3469,7 +3479,7 @@ ini_set('display_errors','off');
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px; ">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.'<br>'.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-',' ',$propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -3673,7 +3683,7 @@ ini_set('display_errors','off');
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -3937,7 +3947,7 @@ ini_set('display_errors','off');
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">Comps</span>
@@ -3986,7 +3996,7 @@ ini_set('display_errors','off');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div id="printthis">
@@ -3994,7 +4004,7 @@ ini_set('display_errors','off');
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px; ">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.', '.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-',' ',$propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -4196,7 +4206,7 @@ ini_set('display_errors','off');
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -4440,7 +4450,7 @@ ini_set('display_errors','off');
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">Comps</span>
@@ -4527,14 +4537,14 @@ $this->load->view('site/product/reservation_conform',$this->data);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div style="width:50%; margin:0px; padding:0px;">
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.', '.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-',' ',$propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -4742,7 +4752,7 @@ $this->load->view('site/product/reservation_conform',$this->data);
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -5127,7 +5137,7 @@ $this->load->view('site/product/reservation_conform',$this->data);
 	 <div style="width:50%; margin:0px; padding:0px;">
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">Comps</span>

@@ -10,7 +10,7 @@ $this->load->view('site/templates/new_header');
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-md-12 text-center">
-                <h2>Login</h2>
+                <h2>Sign in</h2>
             </div>
             <div class="col col-lg-4">
                                <?php echo form_open('site/user/signin_login_user',array('id'=>'loginForm')); ?>

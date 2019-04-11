@@ -554,7 +554,7 @@ function compute_pvalue(form)
 
             
 
-            	<a  id="cboxClose"  ></a>
+            	<a  id="cboxClose" onclick="return displayfunction('details','details_parent');"  ></a>
 
                 
 
@@ -1209,7 +1209,7 @@ function compute_pvalue(form)
 
  
 
- <div class="map_con"><iframe width="550" height="350" src="https://maps.google.com/maps?width=550&amp;height=350&amp;hl=en&amp;q=<?php echo $productAddress->row()->address.','.$productAddress->row()->city.','.str_replace('-',' ',$productAddress->row()->state);?>+(Return on Rentals)&amp;ie=UTF8&amp;t=&amp;z=15&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+ <div class="map_con"><iframe width="550" height="350" src="https://maps.google.com/maps?width=550&amp;height=350&amp;hl=en&amp;q=<?php echo $productAddress->row()->address.','.$productAddress->row()->city.','.str_replace('-',' ',$productAddress->row()->state);?>+(Gain Turnkey Property)&amp;ie=UTF8&amp;t=&amp;z=15&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
  
  
  </div>

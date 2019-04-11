@@ -8,6 +8,9 @@
 
 <link rel="stylesheet" href="js/timer2/jquery.countdown.css">
 <style type="text/css">
+    .error {
+        color: red;
+    }
     #defaultCountdown { width: 240px; height: 45px; }
 </style>
 
@@ -59,11 +62,11 @@
 <div class="listing_content">
 
     <div class="timer_con">
-        <a href="javascript:void(0);" class="detail_btn" style="margin:0px 0 10px 0;padding: 7px 38px; font-size: 14px " onclick="SaveReserveDetails();" > Back To Listing</a>
+        <a href="javascript:void(0);" class="detail_btn" style="margin:0px 0 10px 0;padding: 7px 38px; font-size: 10px " onclick="SaveReserveDetails();" > Back To Listing</a>
         <h2>Reservation will Expire in:</h2>
         <div class=" clear"></div>
         <div class="split_timer">
-            <span id="defaultCountdown"></span>
+            <span class="error" id="defaultCountdown"></span>
         </div>
     </div>
 
@@ -120,7 +123,7 @@
 
                 <input type="hidden" name="image" value="<?php echo $productImages->row()->product_image; ?>" />
                 <input type="hidden" name="user_id" id="user_id"/>
-                <span id="SelectUser_warn"></span></div>
+                <span class="error" id="SelectUser_warn"></span></div>
         <div class="clear"></div>
         <div class="property_title"> BUYER & ENTITY INFORMATION </div>
         <div class="clear"></div>
@@ -128,17 +131,17 @@
             <div class="buyer_field">
                 <label>First Name<span>*</span></label>
                 <input type="text" name="first_name" id="first_name" class="scroll_5"  value="<?php if (($_SESSION['rfname']) != 'null') echo $_SESSION['rfname'];?>" />
-                <span id="first_name_warn"></span>
+                <span class="error" id="first_name_warn"></span>
             </div>
             <div class="buyer_field">
                 <label>Last Name<span>*</span></label>
                 <input type="text" name="last_name" id="last_name" class="scroll_5"  value="<?php if (($_SESSION['rlname']) != 'null') echo $_SESSION['rlname'];?>" />
-                <span id="last_name_warn"></span>
+                <span class="error" id="last_name_warn"></span>
             </div>
             <div class="buyer_field">
                 <label>ENTITY NAME<span>*</span></label>
                 <input type="text" name="entity_name" id="entity_name" class="scroll_5"  value="<?php if (($_SESSION['rename']) != 'null') echo $_SESSION['rename'];?>" />
-                <span id="entity_name_warn"></span>
+                <span class="error" id="entity_name_warn"></span>
             </div>
             <div class="buyer_field">
                 <label>TYPE<span>*</span></label>
@@ -150,17 +153,17 @@
                     <option value="Partnership" <?php if($_SESSION['rreservtype'] == 'Partnership') echo 'selected="selected"';?>>Partnership</option>
                     <option value="IRA" <?php if($_SESSION['rreservtype'] == 'IRA') echo 'selected="selected"';?>>IRA</option>
                 </select>
-                <span id="resrv_type_warn"></span>
+                <span class="error" id="resrv_type_warn"></span>
             </div>
             <div class="buyer_field"  style="width:98%; position:relative; right:2px;">
                 <label style="width:15%;">ADDRESS<span>*</span></label>
                 <input type="text" name="address" id="address" class="scroll_5" style="width:74%;"  value="<?php if (($_SESSION['raddress']) != 'null') echo $_SESSION['raddress'];?>" />
-                <span id="address_warn"></span>
+                <span class="error" id="address_warn"></span>
             </div>
             <div class="buyer_field">
                 <label>COUNTRY<span>*</span></label>
                 <input type="text" name="country" id="country" class="scroll_5"  value="<?php if (($_SESSION['rcountry']) != 'null') echo $_SESSION['rcountry'];?>" />
-                <span id="country_warn"></span>
+                <span class="error" id="country_warn"></span>
                 <!--<select class="select_scroll" >
                   <option>UNITED STATES</option>
                   <option>1</option>
@@ -170,7 +173,7 @@
             <div class="buyer_field">
                 <label>State<span>*</span></label>
                 <input type="text" name="state" id="state" class="scroll_5" value="<?php if (($_SESSION['rstate']) != 'null') echo $_SESSION['rstate'];?>" />
-                <span id="state_warn"></span>
+                <span class="error" id="state_warn"></span>
                 <!--<select class="select_scroll" >
                   <option>SELECT STATE</option>
                   <option>1</option>
@@ -180,17 +183,17 @@
             <div class="buyer_field">
                 <label>City<span>*</span></label>
                 <input type="text" name="city" id="city" class="scroll_5" value="<?php if (($_SESSION['rcity']) != 'null') echo $_SESSION['rcity'];?>" />
-                <span id="city_warn"></span>
+                <span class="error" id="city_warn"></span>
             </div>
             <div class="buyer_field">
                 <label>Zip<span>*</span></label>
                 <input type="text" name="postal_code" id="postal_code" class="scroll_5" value="<?php if (($_SESSION['rzip']) != 'null') echo $_SESSION['rzip'];?>" />
-                <span id="postal_code_warn"></span>
+                <span class="error" id="postal_code_warn"></span>
             </div>
             <div class="buyer_field">
                 <label>Phone 1<span>*</span></label>
                 <input type="text" name="phone_no" id="phone_no" class="scroll_5" value="<?php if (($_SESSION['rphno']) != 'null') echo $_SESSION['rphno'];?>" />
-                <span id="phone_no_warn"></span>
+                <span class="error" id="phone_no_warn"></span>
             </div>
             <div class="buyer_field">
                 <label>Phone 2</label>
@@ -199,7 +202,7 @@
             <div class="buyer_field">
                 <label>Email 1<span>*</span></label>
                 <input type="text" name="email" id="email" class="scroll_5" value="<?php if (($_SESSION['remail']) != 'null') echo $_SESSION['remail'];?>" />
-                <span id="email_warn"></span>
+                <span class="error" id="email_warn"></span>
             </div>
             <div class="buyer_field">
                 <label>Email 2</label>
@@ -213,7 +216,7 @@
             <div class="buyer_field">
                 <label id="cnfpassword_text">Confirm Password<span>*</span></label>
                 <input type="password" name="conf_password" id="conf_password" class="scroll_5"  />
-                <span id="conf_password_warn"></span>
+                <span class="error" id="conf_password_warn"></span>
             </div>
 
         </div>
@@ -224,7 +227,7 @@
             <div class="buyer_field" style="width:89%">
                 <label>Sales Price $<span>*</span></label>
                 <input type="text" name="sales_price" id="sales_price" class="scroll_5" value="<?php echo $productDetails->row()->event_price; ?>" />
-                <span id="sales_price_warn"></span>
+                <span class="error" id="sales_price_warn"></span>
             </div>
             <div class="buyer_field" style="width:89%">
                 <label>&nbsp;</label>
@@ -245,7 +248,7 @@
             <div class="buyer_field"  style="width:89%">
                 <label>RESV.FEE $<span>*</span></label>
                 <input type="text" name="reserv_price" id="reserv_price" class="scroll_5" value="<?php if (($_SESSION['rreservprice']) != 'null') echo $_SESSION['rreservprice'];?>" />
-                <span id="reserv_price_warn"></span>
+                <span class="error" id="reserv_price_warn"></span>
             </div>
             <div class="buyer_field"  style="width:89%">
                 <label>IN FORM OF:</label>
@@ -330,7 +333,7 @@
             </ul>
 
             <div class="buyer_field"  style="width:104%;  padding-top:20px; margin-left:0px;">
-                <span id="reserv_source_warn"></span>
+                <span class="error" id="reserv_source_warn"></span>
                 <label>CODE <span>*</span></label>
                 <select name="res_code" id="rese_code" class="scroll_5">
                     <option value="" selected="selected" disabled="disabled">Select</option>
@@ -351,7 +354,7 @@
         <div class="clear"></div>
         <div class="agree-cnt" style="margin-top:20px;">
             <h2 class="agree-tle">Property Reservation Agreement</h2>
-            <p class="agreement-cnt">This Property Reservation Conformation is your receipt of your commitment to purchase the above referenced property. Due to the nature of the Return On Rentals, and the overwhelming interest the students have in purchasing the properties brought to the event by our preferred vendors, your possession of this document is evidence that the property has been removed from our active database and is not longer available for sale to other students. Our staff will contact you during the final two days of the event to arrange the production and execution of the final document for closing. Please keep this information for reference prior to closing. </p>
+            <p class="agreement-cnt">This Property Reservation Conformation is your receipt of your commitment to purchase the above referenced property. Due to the nature of the Gain Turnkey Property, and the overwhelming interest the students have in purchasing the properties brought to the event by our preferred vendors, your possession of this document is evidence that the property has been removed from our active database and is not longer available for sale to other students. Our staff will contact you during the final two days of the event to arrange the production and execution of the final document for closing. Please keep this information for reference prior to closing. </p>
             <!-- <h3 class="code-tle">Please Enter Sales Code </h3> <input type="text" class="sales-code" />-->
         </div>
         <div class="clear"></div>

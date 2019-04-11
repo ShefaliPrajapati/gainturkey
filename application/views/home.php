@@ -59,7 +59,7 @@ $urlProperty = base_url();
                     <?php
                     if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
                         <li class="nav-item bt_box">
-                            <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Logout</a>
+                            <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Sign Out</a>
                         </li>
                     <?php } else {
                         ?>
@@ -208,10 +208,12 @@ $urlProperty = base_url();
                 <div class="footer_box">
                     <h2>Useful Links</h2>
                     <ul>
-                        <li><a href="<?php echo $urlProperty.'pages/about-us'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; About Us</a></li>
-                        <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Misson</a></li>
-                        <li><a href="<?php echo $urlProperty.'listing/viewall'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Properties</a></li>
-                        <li><a href="<?php echo $urlProperty.'contact'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Contact Us</a></li>
+                        <li><a href="<?php echo $urlProperty.'pages/about-us'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> About Us</a></li>
+                        <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Misson</a></li>
+                        <li><a href="<?php echo $urlProperty.'listing/viewall'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Properties</a></li>
+                        <li><a href="<?php echo $urlProperty.'contact'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> ContactUs</a></li>
+                        <li><a href="<?php echo $urlProperty.'pages/privacy-policy'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Privacy Policy</a></li>
+                        <li><a href="<?php echo $urlProperty.'pages/terms-and-conditions'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Terms And Conditions</a></li>
                     </ul>
                 </div>
             </div>
@@ -221,21 +223,15 @@ $urlProperty = base_url();
                 </div>
             </div>
         </div>
-        <div class="privacy_policy">
-            <h2>Privacy Policy</h2>
-            <p>All properties advertised via Gain Consulting website are sold 'as is', without expressed or implied warranty. You may purchase a home warranty from a 3rd party. Any property you purchase is a transaction between you and the seller of
-                that property and every property will differ in condition and financial performance. We strongly suggest that you conduct any due-dilligence needed before finalizing the transaction. Gain Consulting and it's related entities does not
-                offer any guarantee regarding the specific performance of a property including it's return on investment or cap rate. As all real estate transactions pose some risk, we suggest you contact your on accounting, legal or other professional
-                advisor regarding any questions you have including the suitability of a specific transaction.</p>
-        </div>
-        <div class="copy_right">
+
+        <div class="copy_right" style="border-top: solid 1px #696b6e;">
             © 2019 - Gain Consulting
         </div>
     </div>
 </footer>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="<?php echo base_url(); ?>css/js/bliss-slider.js"></script>
+<script src="<?php echo base_url(); ?>js/bliss-slider.js"></script>
 <script src="<?php echo base_url(); ?>js/popper-min.js"></script>
 <script src="<?php echo base_url(); ?>js/bootstrap-min.js"></script>
 <script type="text/javascript">
