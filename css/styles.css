@@ -4052,20 +4052,21 @@ background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIH
 	border:#002e43 1px solid;
 }
 .login_header .login_branding {
-	width:auto;
-	overflow:hidden;
-	height:68px;
-	width:325px;
-	border:#002e4a 1px solid;
-	margin:5px;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-	background:#dda049;
+	width: auto;
+	overflow: hidden;
+	height: 68px;
+	width: 325px;
+	border: #f9efab 1px solid;
+	margin: 5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 	-moz-box-shadow: inset 0 0 5px #666;
-	-webkit-box-shadow: inset 0 0 5px #666;
+	-webkit-box-shadow: inset 0 0 5px #f6e59f;
 	box-shadow: inner 0 0 5px #666;
-	position:relative;
+	position: relative;
+	background: rgb(186,113,42) !important;
+	background: linear-gradient(90deg, rgba(186,113,42,1) 0%, rgba(252,247,181,1) 35%, rgba(212,136,42,1) 100%)!important;
 }
 .login_success {
 	background: #c3d93b; /* Old browsers */
