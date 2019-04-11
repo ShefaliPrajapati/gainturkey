@@ -2105,9 +2105,9 @@ class Product extends MY_Controller
                         unset($_SESSION['endtimer']);
                     }
                     if ($_SESSION['differenceTime'] == '') {
-                        $_SESSION['endtimer'] = time()+6;
-                        $_SESSION['reservation'] = time()+6;
-                        $_SESSION['differenceTime'] = 6;
+                        $_SESSION['endtimer'] = time()+600;
+                        $_SESSION['reservation'] = time()+600;
+                        $_SESSION['differenceTime'] = 600;
                     } else {
                         $differenceTime = $_SESSION['endtimer'] - time();
                         $_SESSION['differenceTime'] = $differenceTime;
