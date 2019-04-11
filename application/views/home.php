@@ -132,7 +132,7 @@ $urlProperty = base_url();
                     <img src="<?php echo base_url(); ?>images/banner2.jpg" alt="An Image" draggable="false">
                 </div>
                 <div class="slide-content">
-                    <h2>We supply property in the BEST cash flow markets in the country.<br> Times change, markets change, and we change accordingly.<br>  View our inventory to see where we are currently investing </h2>
+                    <h2>We supply property in the BEST cash flow markets in the country. Times change, markets change, and we change accordingly.  View our inventory to see where we are currently investing </h2>
                     <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
                 </div>
             </li>

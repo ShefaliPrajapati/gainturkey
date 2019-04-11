@@ -208,6 +208,7 @@
         </div>
     </nav>
 </div>
+<?php  if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) {  ?>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -238,6 +239,7 @@
         </div>
     </div>
 </div>
+<?php } ?>
 <!----------listing content------------------>
 <script type="text/javascript">
     function hideErrDiv(arg) {
