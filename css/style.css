@@ -487,6 +487,13 @@
          padding: 0 0 40px 0;
          background: #2b2b2b;
     }
+
+     .slide-content h2 {
+         min-height: 166px;
+
+     }
+
+
 }
  @media(max-width: 991px){
      .navbar-dark .navbar-brand {
@@ -496,6 +503,10 @@
      .top_nav li.nav-item.bt_box {
          margin: 0 0 10px 0;
     }
+
+     .slide-content h2 {
+         min-height: 140px;
+     }
      .slide-content {
          top: 34px;
     }
@@ -542,8 +553,16 @@
          margin-left: auto!important;
          margin: 70px 0 0 0;
     }
+
+
+
+
 }
  @media(max-width: 767px){
+
+     .slide-content h2 {
+         min-height: 70px;
+     }
      .footer_box img{
          float: left;
     }
