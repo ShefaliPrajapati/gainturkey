@@ -228,7 +228,7 @@
                             <span class="error" id="reserv_price_warn"></span>
                         </div>
                         <div class="form-group"  >
-                            <label>IN FORM OF:</label>
+                            <label >IN FORM OF:</label>
                             <ul class="list_check" style="width:50%;">
                                 <li>
                                     <input type="checkbox" name="cash_payment" id="cash_payment" value="Cash" <?php if($_SESSION['rcashpt'] == 'true') echo 'checked="checked"';?> />
@@ -267,12 +267,12 @@
                             </ul>
                         </div>
                         <div class="form-group" id="cust_name_field" style="display: none;">
-                            <label> Custodian Name:</label>
-                            <input type="text" name="cust_name" id="cust_name"  class="form-control" value="<?php if (($_SESSION['cust_name']) != 'null') echo $_SESSION['cust_name'];?>"/>
+                            <label style="width: 25%;margin: 0 0 0 21px;"> Custodian Name:</label>
+                            <input type="text" name="cust_name" id="cust_name"  class="form-control" style="width: 52%" value="<?php if (($_SESSION['cust_name']) != 'null') echo $_SESSION['cust_name'];?>"/>
                         </div>
                         <div class="form-group" id="account_no_field" style="display: none;">
-                            <label> Account Number:</label>
-                            <input type="text" name="account_no" id="account_no" class="form-control" value="<?php if (($_SESSION['acco_no']) != 'null') echo $_SESSION['acco_no'];?>" />
+                            <label style="width: 25%;margin: 0 0 0 21px;"> Account Number:</label>
+                            <input type="text" name="account_no" id="account_no" class="form-control" style="width: 52%" value="<?php if (($_SESSION['acco_no']) != 'null') echo $_SESSION['acco_no'];?>" />
                         </div>
                         <div class="form-group">
                             <span class="list_usetite">Reservation Source <span style="color: red;">*</span> </span>
@@ -287,8 +287,8 @@
                             </ul>
                         </div>
                         <div class="form-group" >
-                            <label>CODE <span style="color: red;">*</span></label>
-                            <select name="res_code" id="rese_code" class="form-control">
+                            <label style="width: 25%;margin: 0 0 0 21px;">CODE <span style="color: red;">*</span></label>
+                            <select name="res_code" id="rese_code" class="form-control"  style="width: 52%" >
                                 <option value="" selected="selected" disabled="disabled">Select</option>
                                 <?php foreach($reservationCode->result() as $code){
                                     echo '<option value="'.$code->attribute_name.'">'.$code->attribute_name.'</option>';
@@ -298,8 +298,8 @@
                             <span class="error" id="reserv_source_warn"></span>
                         </div>
                         <div class="form-group" >
-                            <label for="note">NOTE </label>
-                            <textarea id="note" name="note" rows="4" cols="55" id="note" class="form-control"><?php if (($_SESSION['rnote']) != 'null') echo $_SESSION['rnote'];?></textarea>
+                            <label for="note" style="width: 25%;margin: 0 0 0 21px;">NOTE </label>
+                            <textarea id="note" name="note" rows="4" cols="55" id="note" class="form-control"  style="width: 52%" ><?php if (($_SESSION['rnote']) != 'null') echo $_SESSION['rnote'];?></textarea>
 
                         </div>
                     </div>
@@ -509,8 +509,8 @@
         {
             //$('#cust_name_field').show();
             //$('#account_no_field').show();
-            $('#cust_name_field').css('display', 'block' );
-            $('#account_no_field').css('display', 'block');
+            $('#cust_name_field').css('display', 'flex' );
+            $('#account_no_field').css('display', 'flex');
 
         }
         else
