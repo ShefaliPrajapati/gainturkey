@@ -2138,7 +2138,7 @@ class Product extends MY_Controller
                 } else {
                     //$this->setErrorMessage('error',"<div  style='display:none;'>  <div id='inline_reserved' style='background:#fff;'> <div class='property_view'> <p style='margin:27px 0 10px 0px;'>Property id(".echo $productDetails->row()->id.") is reserved</p>  </div> </div> </div>");
                     $this->setErrorMessage('error', 'The property '.$this->data['productDetails']->row()->property_id.' is Reserved');
-                    redirect(listing);
+                    redirect('listing');
                 }
             }
         }

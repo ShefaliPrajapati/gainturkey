@@ -56,11 +56,11 @@ if ($currentUrl == '') {
                                     echo 'class="active"';
                                 }
                                 ?>><span class="list-icon">&nbsp;</span>Settings</a></li>
-                            <li><a href="admin/adminlogin/pr_admin_global_settings_form" <?php
-                                if ($currentPage == 'pr_admin_global_settings_form') {
+                            <!--<li><a href="admin/adminlogin/pr_admin_global_settings_form" <?php
+/*                                if ($currentPage == 'pr_admin_global_settings_form') {
                                     echo 'class="active"';
-                                }
-                                ?>><span class="list-icon">&nbsp;</span>Preigrentals Settings</a></li>
+                                }  */?>>
+                                    <span class="list-icon">&nbsp;</span>Preigrentals Settings</a></li>-->
                             <li><a href="admin/adminlogin/admin_smtp_settings" <?php
                                 if ($currentPage == 'admin_smtp_settings') {
                                     echo 'class="active"';

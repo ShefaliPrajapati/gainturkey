@@ -995,8 +995,6 @@ function compute_pvalue(form)
 
  <input type="hidden" name="admincode" id="admincode" value="<?php echo trim($admin_settings->row()->booking_code); ?>" />
 
- <div id="reservationconfirmcode_warn" style="float:right; color:#FF0000;"></div>
-
  	<ul class="proinform_list">
 
     	<li><p>Member Price :</p><span><?php echo "$".number_format($productDetails->row()->member_price,0); ?></span></li>
@@ -1008,7 +1006,7 @@ function compute_pvalue(form)
     </ul>
 
  <input type="submit" name="buy" class="buyer_btn <?php if($productDetails->row()->property_status=='Sold'){echo 'clicksold';}else if($productDetails->row()->property_status=='Reserved'){echo 'clickreserved';} ?>" value="BUY NOW">
-
+     <div id="reservationconfirmcode_warn" style="float:left; color:#FF0000;margin: 5px 0 0 0;"></div>
  </form>
 
  <?php } 

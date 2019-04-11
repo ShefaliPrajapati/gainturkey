@@ -438,7 +438,8 @@ background:#c7812b !important;
 	overflow:hidden;
 	margin:0 0 0 0px;
 	padding:0px;
-	width:250px;
+	width:219px;
+	height: 155px;
 }
 .listing_detail li p{
 	width:100%;
@@ -1610,7 +1611,7 @@ overflow: hidden;*/
 }
 .detail_titleuse h2{
 	color: #000000;
-    float: left;
+    /*float: left;*/
     font-family:Arial, Helvetica, sans-serif;
     font-size: 28px;
     font-weight: bold;

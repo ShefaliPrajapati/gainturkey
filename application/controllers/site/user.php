@@ -4489,7 +4489,7 @@ foreach($CompDets->result() as $compDets){
          </div>';
 			}
   $this->data['productListPopUp'] .= '</div>
-         <table width="100%">
+         <table width="100%" class="buttons-of-print">
 		  <tr>
         	<td style="font-family:Arial, Helvetica, sans-serif; font-size:17px; line-height:22px; text-align:center;" colspan="3"><br>
             	<a href="'.base_url().'site/user/view_order111/'.$PropertyList->row()->id.'"><button>Download PDF</button></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
