@@ -2038,7 +2038,7 @@ width: 9px;
 	padding: 0;
 	position: relative;
 	margin: 0 6px 0 0;
-	width: 180px;
+	width: 160px;
 	text-align: center;
 }
 .cssmenu {
@@ -2056,7 +2056,7 @@ width: 9px;
 .cssmenu a {
 	display: inline-block;
 	line-height: 0px;
-	padding: 20px 40px;
+	padding: 20px 0px;
 	text-decoration: none;
 }
 .cssmenu a:hover, #active
