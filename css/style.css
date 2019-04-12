@@ -21,6 +21,13 @@
      margin: 0px;
      padding: 0px;
 }
+ .btn-group-sm>.btn, .btn-sm {
+     padding: .25rem .5rem;
+     font-size: .875rem;
+     line-height: 1.5;
+     border-radius: 0;
+ }
+
  ul li{
      list-style: none;
      margin: 0;
@@ -51,7 +58,46 @@
      border-color: #d89338;
  }
 
+ .right_side{
+     float: right;
+ }
 
+ .left_side {
+     margin: 0px;
+     padding: 0px;
+     float: left;
+ }
+ .left_side ul{
+     margin: 0px;
+     padding: 0px;
+ }
+
+ .left_side ul li {
+     margin: 0px;
+     padding: 0 14px 0 0;
+     display: inline-block;
+ }
+
+
+ .left_side ul li:first-child{
+     border-right: solid 2px #fff;
+
+ }
+
+ .left_side ul li:last-child {
+     margin: 0 0 0 13px;
+ }
+
+
+ .left_side ul li a{
+     margin: 0px;
+     padding: 0px;
+     font-size: 14px;
+     color: #fff;
+ }
+ .left_side ul li a:hover{
+     color: #c7812b;
+ }
 
  .top_nav{
      margin: 0px;
