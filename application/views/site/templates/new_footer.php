@@ -30,8 +30,6 @@
                         <li><a href="<?php echo $urlProperty.'#about'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> About Us</a></li>
                         <li><a href="<?php echo $urlProperty.'listing/viewall'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Properties</a></li>
                         <li><a href="<?php echo $urlProperty.'contact'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> ContactUs</a></li>
-                        <li><a href="<?php echo $urlProperty.'pages/privacy-policy'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Privacy Policy</a></li>
-                        <li><a href="<?php echo $urlProperty.'pages/terms-conditions'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Terms & Conditions</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,7 +47,21 @@
                 advisor regarding any questions you have including the suitability of a specific transaction.</p>
         </div>
         <div class="copy_right">
-            © 2019 - Gain Consulting
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="left_side">
+                        <ul>
+                            <li><a href="<?php echo $urlProperty.'pages/privacy-policy'; ?>">Privacy Policy</a></li>|
+                            <li><a href="<?php echo $urlProperty.'pages/terms-conditions'; ?>">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="right_side">
+                        © 2019 - Gain Consulting
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </footer>

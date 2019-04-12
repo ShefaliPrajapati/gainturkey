@@ -177,8 +177,37 @@
  .wlelcome_imag {
      margin: 0;
      padding: 0;
-     width: 894px;
+     width: 100%;
  }
+
+ .left_side{
+     float: left;
+     margin: 0px;
+     padding: 0;
+ }
+
+ .left_side ul{
+     margin: 0px;
+     padding: 0;
+ }
+ .left_side ul li{
+     display: inline-block;
+     margin: 0;
+     padding: 0 10px 0 0;
+ }
+
+
+
+ .left_side ul li a{
+     margin: 0px;
+     padding: 0;
+     font-size: 14px;
+     color: #fff;
+ }
+ .right_side {
+     float: right;
+ }
+
  .Welcome_rghte1 {
      margin: 0;
      padding: 0;
