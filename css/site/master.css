@@ -349,7 +349,7 @@ float: right;
 }
 .listing_content {
     width: 100%;
-    margin: 50px 0;
+    margin: 20px 0;
     padding: 25px;
     float: left;
     -webkit-border-radius: 0px;
@@ -359,11 +359,11 @@ float: right;
     min-height: 500px;
     border: #c7812b solid 1px;
 }
-.button_tab{
-	width:100%;
-    margin: 0px 0 0 0px;
-	padding:0px;
-	list-style:none;
+.button_tab {
+	width: 100%;
+	margin: 0px 0 0 0px;
+	padding: 0px;
+	list-style: none;
 
 }
 .button_tab li{
@@ -486,7 +486,7 @@ background:#c7812b !important;
 	/* border-radius: 3px; */
 	margin: 0;
 	
-	padding: 10px 20px;
+	padding: 7px 20px;
 	background: url(../../images/site/detail_bt.jpg) repeat-x;
 	color: #FFFFFF;
 	background:#dda049;
@@ -849,7 +849,7 @@ left:0px;
     overflow: hidden;
     padding: 0;
     position: relative;
-    width: 231px;
+    width: 238px;
 }
 
 .listing_page li p{
@@ -1095,15 +1095,16 @@ overflow: hidden;*/
     width: 50%;
     float: left;
     margin: 0 0 0 0;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 0px;
     overflow: hidden;
 }
-.right_detail{
-	float:left;
-	margin:0 0 0 0px;
-	padding:0px;
-	width:50%;
-	overflow:hidden;
+.right_detail {
+	float: left;
+	margin: 17px 0 0 30px;
+	padding: 0px;
+	width: 48%;
+	overflow: hidden;
+	border: 1px solid #D3D3D3;
 }
 .button_tab_de{
 	float:left;
@@ -1116,7 +1117,7 @@ overflow: hidden;*/
 }
 .button_tab_de li {
 	list-style: none;
-	margin: 0 0px 0 14px;
+	margin: 0 0px 0 0px;
 	padding: 0px;
 	float: left;
 	background: #2b3743;
@@ -1216,13 +1217,13 @@ overflow: hidden;*/
 .dwn_btn:hover{
 	background:#c7812b;
 }
-.inside_right{
+.inside_right {
 	background: none repeat scroll 0 0 #fff;
-    border: 1px solid #D3D3D3;
-    float: left;
-    margin: 19px 0 0 11px;
-    padding: 0;
-    width: 97%;
+	/* border: 1px solid #D3D3D3; */
+	float: left;
+	/* margin: 19px 0 0 11px; */
+	padding: 0;
+	width: 100%;
 }
 .cont_list{
 	list-style:none;
@@ -1332,9 +1333,8 @@ overflow: hidden;*/
 	float:left;
 	color:#000000;
 	font-size:14px;
-
 	font-weight:bold;
-	text-align: right;
+	text-align: center;
 }
 .split_timer{
 	width:100%;
@@ -1962,16 +1962,16 @@ font-size:15px;
 	font-weight: normal;
 	height: 34px;
 	line-height: 23px;
-	margin: 10px 0 0 0;
+	margin: 10px 0 0 40px;
     padding-left: 12px;
     padding-bottom: 2px;
     width: 126px;
 }
   .doller_user{
 	float: left;
-margin: 0 0 0 5px;
-overflow: hidden;
-width: 9px;
+   margin: 0 0 0 5px;
+   overflow: hidden;
+   width: 9px;
 }
 
   .notes { font-size:10px;
@@ -2037,7 +2037,7 @@ width: 9px;
 	padding: 0;
 	position: relative;
 	margin: 0 6px 0 0;
-	width: 116px;
+	width: 160px;
 	text-align: center;
 }
 .cssmenu {

@@ -83,7 +83,6 @@ $urlProperty = base_url();
         </div>
     </nav>
 </div>
-
 <div class="clearfix"></div>
 <div class="banner_slider">
     <div id="slider" class="slider-container">
@@ -200,7 +199,7 @@ $urlProperty = base_url();
 <footer class="footer_sec">
     <div class="container">
         <div class="footer_log">
-            <img src="<?php echo base_url(); ?>images/logo.png" alt="logo">
+            <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;">
         </div>
 
         <div class="row">
@@ -246,21 +245,24 @@ $urlProperty = base_url();
                 advisor regarding any questions you have including the suitability of a specific transaction.</p>
         </div>
         <div class="copy_right">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="left_side">
-                        <ul>
-                            <li><a href="<?php echo $urlProperty.'pages/privacy-policy'; ?>">Privacy Policy</a></li>|
-                            <li><a href="<?php echo $urlProperty.'pages/terms-conditions'; ?>">Terms & Conditions</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="right_side">
-                        © 2019 - Gain Consulting
-                    </div>
-                </div>
-            </div>
+             <div class="row">
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                     <div class="left_side">
+                         <ul>
+                             <li><a href="<?php echo $urlProperty.'pages/privacy-policy'; ?>">Privacy Policy</a></li>
+                             <li><a href="<?php echo $urlProperty.'pages/terms-conditions'; ?>">Terms And Conditions</a></li>
+                         </ul>
+                     </div>
+                 </div>
+                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                     <div class="right_side">
+                         © 2019 - Gain Consulting
+                     </div>
+                 </div>
+             </div>
+
+
+
         </div>
     </div>
 </footer>

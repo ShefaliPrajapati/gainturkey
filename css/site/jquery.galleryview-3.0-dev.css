@@ -17,12 +17,13 @@ img{
 
 .gv_galleryWrap {
 	background: none;
-	border-radius: 5px 5px 5px 5px;
+	border-radius: 0;
 	font-size: 10pt;
 	left: 0px;
-	margin-left: 12px;
+	margin-left: 0;
 	position: relative;
 	width: 100% !important;
+	padding: 0 !important;
 }
 
 /* GALLERY DIV */
@@ -123,7 +124,7 @@ img{
 	cursor: pointer;
 	float: left;
 	position: relative;
-	margin: 6px 0 0 20px;
+	margin: 6px 0 0 22px;
 	padding: 0;
 }
 

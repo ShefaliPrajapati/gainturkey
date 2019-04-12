@@ -172,7 +172,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
             <a class="navbar-brand" href="<?php echo base_url(); ?>">
-                <img src="<?php echo base_url(); ?>images/logo.png" alt="logo">
+                <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;">
             </a>
             <button class="navbar-toggler right_bt" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -201,8 +201,6 @@
                             <a class="nav-link" href="<?php echo $urlProperty.'signup'; ?>">Sign up</a>
                         </li>
                     <?php } ?>
-
-
                 </ul>
             </div>
         </div>
