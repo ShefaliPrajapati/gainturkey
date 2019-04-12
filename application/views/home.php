@@ -169,7 +169,7 @@ $urlProperty = base_url();
             <div class="Welcome_rghte">
                 <h2>About GAIN Turnkey Property</h2>
                 <p>GAIN Turnkey Property is real estate company with a focus on building client wealth, using the number one wealth creator of all time...real estate.  GAIN was founded by Dallas Hall, a real estate professional with 20 years of hands on real estate experience.
-                    GAIN is an acronym and stands for Gross Assets Income and Net worth.  These are the metrics used to measure wealth and these are the metrics we seek to grow for our clients.  We deal in single family and multi family homes and focus on the Midwest and Rust Belt markets of the U.S.  GAIN offers its clients turnkey income property and a power team to manage and maintain those investments long term.  We provide remodeled, rented...  </p>
+                    GAIN is an acronym and stands for Gross Assets Income and Net worth.  These are the metrics used to measure wealth and these are the metrics we seek to grow for our clients.  We deal in single family and multi family homes and focus on the Midwest and Rust Belt markets of the U.S.  GAIN offers its clients turnkey income property and a power team to manage and maintain those investments long term.  We provide remodeled, rented, and professionally managed homes, as a turnkey solution for real estate investors.  Our model gives investors a hassle free and seamless means of building a portfolio in the best cash flow markets in the country.  With over 1,500 properties sold we have the experience and know how to increase your GAIN!!   </p>
                 <a href="<?php echo $urlProperty.'pages/about-us'; ?>">Read more</a>
             </div>
         </div>
@@ -264,11 +264,10 @@ $urlProperty = base_url();
         </div>
     </div>
 </footer>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="<?php echo base_url(); ?>js/bliss-slider.js"></script>
-<script src="<?php echo base_url(); ?>js/popper-min.js"></script>
 <script src="<?php echo base_url(); ?>js/bootstrap-min.js"></script>
+<script src="<?php echo base_url(); ?>js/popper-min.js"></script>
+<script src="<?php echo base_url(); ?>js/site/jquery-1.7.1.min.js"></script>
+<script src="<?php echo base_url(); ?>js/bliss-slider.js"></script>
 <script type="text/javascript">
     $(function() {
         $("#slider").blissSlider({
@@ -279,12 +278,10 @@ $urlProperty = base_url();
     });
 </script>
 
-
 <script>
     $(document).ready(function(){
         // Add smooth scrolling to all links
         $(".scroll").on('click', function(event) {
-
             // Make sure this.hash has a value before overriding default behavior
             if (this.hash !== "") {
                 // Prevent default anchor click behavior

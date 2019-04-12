@@ -85,12 +85,15 @@ $this->load->view('site/templates/new_header');
         </span>
     </ul>
     <div id="fulldiv_container">
+        <?php if ($paginationLink) { ?>
         <div class="pagination">
             <ul class="pagination-ul">
                 <?php echo $paginationLink; ?>
             </ul>
         </div>
         <div class="clear"></div>
+        <?php } ?>
+
         <ul id="container" class="listing_page">
             <?php foreach ($FeaturedProducts->result() as $row) {
                 ?>
