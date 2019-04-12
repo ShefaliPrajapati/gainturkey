@@ -663,13 +663,11 @@
          float: none;
          text-align: center;
      }
-
      .right_side {
          float: none;
          text-align: center;
          margin: 10px 0 0 0;
      }
-
 }
  @media(max-width: 575px){
      .navbar-dark .navbar-brand img {

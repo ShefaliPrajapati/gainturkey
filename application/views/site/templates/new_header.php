@@ -201,8 +201,6 @@
                             <a class="nav-link" href="<?php echo $urlProperty.'signup'; ?>">Sign up</a>
                         </li>
                     <?php } ?>
-
-
                 </ul>
             </div>
         </div>

@@ -1969,9 +1969,9 @@ font-size:15px;
 }
   .doller_user{
 	float: left;
-margin: 0 0 0 5px;
-overflow: hidden;
-width: 9px;
+   margin: 0 0 0 5px;
+   overflow: hidden;
+   width: 9px;
 }
 
   .notes { font-size:10px;
