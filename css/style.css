@@ -223,7 +223,7 @@
  .wlelcome_imag {
      margin: 0;
      padding: 0;
-     width: 80%;
+     width: 100%;
  }
 
  .left_side{
@@ -304,7 +304,7 @@
 }
  .Properties_box {
      margin: 0;
-     padding: 30px 0;
+     padding: 100px 0;
      /* border: solid 1px #b5b5b5; */
      text-align: center;
  }

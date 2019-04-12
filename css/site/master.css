@@ -1102,7 +1102,7 @@ overflow: hidden;*/
 	float: left;
 	margin: 17px 0 0 30px;
 	padding: 0px;
-	width: 48%;
+	width: 47%;
 	overflow: hidden;
 	border: 1px solid #D3D3D3;
 }
@@ -1962,7 +1962,7 @@ font-size:15px;
 	font-weight: normal;
 	height: 34px;
 	line-height: 23px;
-	margin: 10px 0 0 40px;
+	margin: 10px 0 0 16px;
     padding-left: 12px;
     padding-bottom: 2px;
     width: 126px;
