@@ -22,30 +22,27 @@ $this->load->view('site/templates/new_header');
                                 <div class="form-group">
                                 	<label>Password<span>*</span></label>
                                   <input type="password" name="password" id="password_signin" class="scroll_5 form-control required" size="32">
-                                <div id="password_signin_warn"  style="color:#FF0000;"></div>
+                                    <div id="password_signin_warn"  style="color:#FF0000;"></div>
                                 </div>
                                 <div class="form-group m-0">
-                                	<label class="left_section">
-                                        <div class="bt_left">
-                                            <?php echo anchor(base_url('forgot-password'),'Forgot Your Password?'); ?>
+                                            <div class="bt_left">
+                                                <?php echo '<a href="'.base_url(signup).'">Create Account</a></div>'; ?>
 
-                                        </div>
+                                            </div>
 
-                                        <div class="bt_right">
-                                            <?php echo 'Need An Account '; echo '<a href="'.base_url(signup).'">Create Account</a></div>'; ?>
-                                        </div>
-
-                                    <br>
-
-                                </label>
-                                <div class="form-group">
-                                         <input type="submit" name="signin" id="signin" class="member_btn btn btn-primary" value="SUBMIT"/>
+                                            <div class="bt_right">
+                                                <?php echo anchor(base_url('forgot-password'),'Forgot Your Password?'); ?>
+                                            </div>
+                                          <br>
+                                    <div class="form-group">
+                                             <input type="submit" name="signin" id="signin" class="member_btn btn btn-primary" value="SUBMIT"/>
+                                    </div>
                                 </div>
                                   <?php echo form_close(); ?> 
         
-            </div>
-        </div>
+       </div>
     </div>
+</div>
 </div>
 <div class="clear"></div>
 <script type="text/javascript">
