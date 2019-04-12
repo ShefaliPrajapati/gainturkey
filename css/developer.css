@@ -2,7 +2,7 @@
 /*******Messages*******/
 
 .errorContainer{
-	margin:10px 0;
+	margin:60px 0 0 0;
 	border:1px solid #DF0505;
 	background: url(../images/error_msg.png) no-repeat scroll 9px #FDE4E1;
 	max-width:100%;

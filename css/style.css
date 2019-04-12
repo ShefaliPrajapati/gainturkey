@@ -223,7 +223,7 @@
  .wlelcome_imag {
      margin: 0;
      padding: 0;
-     width: 100%;
+     width: 80%;
  }
 
  .left_side{
@@ -239,10 +239,18 @@
  .left_side ul li{
      display: inline-block;
      margin: 0;
-     padding: 0 10px 0 0;
+     padding: 0 14px 0 0;
+ }
+
+ label.left_section {
+     width: 100%;
+     margin: 0;
  }
 
 
+ .bt_left {
+     float: right;
+ }
 
  .left_side ul li a{
      margin: 0px;
@@ -473,7 +481,9 @@
      line-height: 32px;
 
  }
-
+ .wlelcome_imag img {
+     width: 100%;
+ }
 
 
 
@@ -575,7 +585,9 @@
         /*position: initial;
         */
     }
-
+     .footer_log img {
+         width: 100px !important;
+     }
      .navbar-dark .navbar-brand img {
          width: 100px !important;
      }

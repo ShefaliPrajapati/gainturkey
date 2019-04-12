@@ -199,7 +199,7 @@ $urlProperty = base_url();
 <footer class="footer_sec">
     <div class="container">
         <div class="footer_log">
-            <img src="<?php echo base_url(); ?>images/logo.png" alt="logo">
+            <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;">
         </div>
 
         <div class="row">
