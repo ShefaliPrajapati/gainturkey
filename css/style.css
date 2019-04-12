@@ -189,12 +189,12 @@
      padding: 50px 0 0 40px;
 }
  .Welcome_rghte h2 {
-     margin: 0;
+     margin: 20px 0 0 0;
      padding: 0;
      color: #fff;
      font-size: 28px;
      font-weight: 500;
-}
+ }
  .Welcome_rghte p {
      margin: 0;
      padding: 18px 90px 0px 0;
@@ -500,6 +500,11 @@
         /*position: initial;
         */
     }
+
+     .navbar-dark .navbar-brand img {
+         width: 100px !important;
+     }
+
      .top_nav li.nav-item.bt_box {
          margin: 0 0 10px 0;
     }
@@ -608,7 +613,7 @@
 }
  @media(max-width: 575px){
      .navbar-dark .navbar-brand img {
-         width: 70px;
+         width: 70px !important;
     }
      .slide-content {
          top: 0;
