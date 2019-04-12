@@ -65,5 +65,5 @@ $config['last_login_ip'] = '107.191.0.113';
 $config['is_verified'] = 'Yes'; 
 $config['status'] = 'Active'; 
 // $config['base_url'] = 'http://www.returnonrentals.com/';  
-$config['base_url'] = 'http://localhost/gainturkey/';
+$config['base_url'] = 'http://localhost/Ravi_prajapati/gainturkey/';
 ?>
