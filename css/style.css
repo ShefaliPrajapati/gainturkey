@@ -266,13 +266,15 @@
      margin: 0;
      padding: 0;
      background: #2b2b2b;
-}
+     width: 100%;
+     float: left;
+ }
  .Welcome_rghte {
      margin: 0;
      padding: 50px 0 0 40px;
-}
+ }
  .Welcome_rghte h2 {
-     margin: 20px 0 0 0;
+     margin: 0;
      padding: 0;
      color: #fff;
      font-size: 28px;
