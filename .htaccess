@@ -2,7 +2,7 @@ Options -Indexes
 
 # Prod
 RewriteEngine On
-RewriteCond %{REQUEST_URI} !^/gainturkey
+RewriteCond %{REQUEST_URI} !^/Ravi_prajapati/gainturkey
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /index.php?$1 [L]
@@ -10,7 +10,7 @@ RewriteRule ^(.*)$ /index.php?$1 [L]
 
 # Local/Demo
 RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/gainturkey
+RewriteCond %{REQUEST_URI} ^/Ravi_prajapati/gainturkey
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /gainturkey/index.php?$1 [L]
+RewriteRule ^(.*)$ /Ravi_prajapati/gainturkey/index.php?$1 [L]

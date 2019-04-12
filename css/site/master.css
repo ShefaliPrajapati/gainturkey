@@ -349,7 +349,7 @@ float: right;
 }
 .listing_content {
     width: 100%;
-    margin: 20px 0;
+    margin: 50px 0;
     padding: 25px;
     float: left;
     -webkit-border-radius: 0px;
@@ -380,8 +380,7 @@ float: right;
 .button_tab li a {
 	color: #fff;
 	float: left;
-	
-	font-size: 14px;
+	font-size: 13px;
 	margin: 0;
 	text-transform: uppercase;
 	background: #2b3743;
@@ -2038,7 +2037,7 @@ width: 9px;
 	padding: 0;
 	position: relative;
 	margin: 0 6px 0 0;
-	width: 180px;
+	width: 116px;
 	text-align: center;
 }
 .cssmenu {
@@ -2056,7 +2055,7 @@ width: 9px;
 .cssmenu a {
 	display: inline-block;
 	line-height: 0px;
-	padding: 20px 40px;
+	padding: 20px 0px;
 	text-decoration: none;
 }
 .cssmenu a:hover, #active

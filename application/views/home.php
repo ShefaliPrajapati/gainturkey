@@ -226,7 +226,7 @@ $urlProperty = base_url();
                 <div class="footer_box">
                     <h2>Useful Links</h2>
                     <ul>
-                        <li><a href="<?php echo $urlProperty.'#about'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> About Us</a></li>
+                        <li><a class="scroll"  href=" <?php echo $urlProperty.'#about'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> About Us</a></li>
                         <li><a href="<?php echo $urlProperty.'properties'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Properties</a></li>
                         <li><a href="<?php echo $urlProperty.'contact'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> ContactUs</a></li>
                         <li><a href="<?php echo $urlProperty.'pages/privacy-policy'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Privacy Policy</a></li>
