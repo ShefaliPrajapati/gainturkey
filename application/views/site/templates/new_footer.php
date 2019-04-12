@@ -30,8 +30,6 @@
                         <li><a href="<?php echo $urlProperty.'#about'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> About Us</a></li>
                         <li><a href="<?php echo $urlProperty.'listing/viewall'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Properties</a></li>
                         <li><a href="<?php echo $urlProperty.'contact'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> ContactUs</a></li>
-                        <li><a href="<?php echo $urlProperty.'pages/privacy-policy'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Privacy Policy</a></li>
-                        <li><a href="<?php echo $urlProperty.'pages/terms-conditions'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Terms And Conditions</a></li>
                     </ul>
                 </div>
             </div>
