@@ -349,7 +349,7 @@ float: right;
 }
 .listing_content {
     width: 100%;
-    margin: 20px 0;
+    margin: 60px 0;
     padding: 25px;
     float: left;
     -webkit-border-radius: 0px;
@@ -429,7 +429,7 @@ background:#c7812b !important;
 	z-index:9;
 }
 .img_content{
-	width:250px;
+	width: 277px;
 	height:160px;
 	float:left;
 	margin:5px;
@@ -440,7 +440,7 @@ background:#c7812b !important;
 	overflow:hidden;
 	margin:0 0 0 0px;
 	padding:0px;
-	width:219px;
+	width: 276px;
 	height: 155px;
 }
 .listing_detail li p{
@@ -840,16 +840,16 @@ left:0px;
 }
 
 .listing_page li {
-    border: 1px solid #B8BBC0;
-    border-radius:0;
-    box-shadow: 0 0 2px 0 #B3A8A8;
-    float: left;
-    height: 314px;
-    margin: 7px 7.1px;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
-    width: 238px;
+	border: 1px solid #B8BBC0;
+	border-radius: 0;
+	box-shadow: 0 0 2px 0 #B3A8A8;
+	float: left;
+	height: 334px;
+	margin: 7px 7.1px;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	width: 288px;
 }
 
 .listing_page li p{
