@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 session_start();
 /**
  *
@@ -13,12 +14,13 @@ session_start();
 date_default_timezone_set("America/Los_Angeles");
 
 // echo date('Y-m-d H:i:s A'); die;
-class MY_Controller extends CI_Controller {
-
+class MY_Controller extends CI_Controller
+{
     public $privStatus;
     public $data = array();
 
-    function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         ob_start();
         error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
@@ -112,8 +114,8 @@ class MY_Controller extends CI_Controller {
         $this->data['login_admin_type'] = $this->session->userdata('ror_crm_session_admin_type');
         $this->data['stateDetails'] = $this->product_model->get_all_details(STATE_TAX, array('countryid' => '215', 'status' => 'Active'));
         $this->data['codeDetails'] = $this->product_model->get_all_details(ATTRIBUTE, array('status' => 'Active'));
-		$this->data['soldadminName']=$this->product_model->get_all_details(SUBADMIN,array('status' => 'Active'));
-        $this->data['sourcerName']=$this->product_model->get_all_details(SOURCER_INFO,array('status' => 'Active'));
+        $this->data['soldadminName']=$this->product_model->get_all_details(SUBADMIN, array('status' => 'Active'));
+        $this->data['sourcerName']=$this->product_model->get_all_details(SOURCER_INFO, array('status' => 'Active'));
         //echo '<pre>'; print_r($_SESSION); die;
         if ($this->checkLogin('CA') != '') {
             $this->data['crm_privileges'] = $_SESSION['crm'];//$this->session->userdata('ror_crm_session_admin_privileges');
@@ -127,11 +129,11 @@ class MY_Controller extends CI_Controller {
 
         if (substr($uriMethod, 0, 7) == 'display' || substr($uriMethod, 0, 4) == 'view' || $uriMethod == '0') {
             $this->privStatus = '0';
-        } else if (substr($uriMethod, 0, 3) == 'add') {
+        } elseif (substr($uriMethod, 0, 3) == 'add') {
             $this->privStatus = '1';
-        } else if (substr($uriMethod, 0, 4) == 'edit' || substr($uriMethod, 0, 6) == 'insert' || substr($uriMethod, 0, 6) == 'change') {
+        } elseif (substr($uriMethod, 0, 4) == 'edit' || substr($uriMethod, 0, 6) == 'insert' || substr($uriMethod, 0, 6) == 'change') {
             $this->privStatus = '2';
-        } else if (substr($uriMethod, 0, 6) == 'delete') {
+        } elseif (substr($uriMethod, 0, 6) == 'delete') {
             $this->privStatus = '3';
         } else {
             $this->privStatus = '0';
@@ -228,7 +230,7 @@ class MY_Controller extends CI_Controller {
         $this->data['paypal_credit_card_settings'] = unserialize($this->config->item('payment_1'));
         $this->data['authorize_net_settings'] = unserialize($this->config->item('payment_2'));
         $this->data['currencySymbol'] = $this->config->item('currency_currency_symbol');
-//		$this->data['currencySymbol'] = html_entity_decode($this->config->item('currency_currency_symbol'));
+        //		$this->data['currencySymbol'] = html_entity_decode($this->config->item('currency_currency_symbol'));
         $this->data['currencyType'] = $this->config->item('currency_currency_type');
         $this->data['datestring'] = "%Y-%m-%d %h:%i:%s";
         if ($this->checkLogin('U') != '') {
@@ -300,28 +302,29 @@ class MY_Controller extends CI_Controller {
         //$this->data['adminloginCheck'] = $this->checkLogin('A');
         //echo "<pre>"; print_r(get_defined_vars()); die;
     }
-    public function base_url_image(){
+    public function base_url_image()
+    {
 
 
-		//return 'http://192.168.1.253/sivaprakash/returnonrentals/';
+        //return 'http://192.168.1.253/sivaprakash/returnonrentals/';
 
-		//return 'http://projects.teamtweaks.com/returnonrentals/';
+        //return 'http://projects.teamtweaks.com/returnonrentals/';
 
-		#return 'http://192.168.1.251:8081/jayaprakash/returnonrentals/';
+        #return 'http://192.168.1.251:8081/jayaprakash/returnonrentals/';
 
-		return base_url();
-
-	}
+        return base_url();
+    }
     /**
      *
      * This function return the session value based on param
      * @param $type
      */
-    public function checkLogin($type = '') {
-		//print_r($this->session->userdata('ror_crm_session_admin_id'));
+    public function checkLogin($type = '')
+    {
+        //print_r($this->session->userdata('ror_crm_session_admin_id'));
         if ($type == 'A') {
             return $this->session->userdata('fc_session_admin_id');
-        } else if ($type == 'N') {
+        } elseif ($type == 'N') {
             return $this->session->userdata('fc_session_admin_name');
         } elseif ($type == 'M') {
             return $this->session->userdata('fc_session_admin_email');
@@ -517,5 +520,4 @@ class MY_Controller extends CI_Controller {
         }
         return $option;
     }
-
 }

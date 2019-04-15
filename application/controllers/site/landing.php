@@ -1,17 +1,19 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
- * 
+ *
  * Landing page functions
  * @author Teamtweaks
  *
  */
-class Landing extends MY_Controller {
-
-    function __construct() {
+class Landing extends MY_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
 
         $this->load->helper(array('cookie', 'date', 'form', 'email', 'html'));
@@ -31,16 +33,17 @@ class Landing extends MY_Controller {
         $this->data['mainColorLists'] = $_SESSION['sColorLists'];
 
         $this->data['loginCheck'] = $this->checkLogin('U');
-//		echo $this->session->userdata('fc_session_user_id');die;
+        //		echo $this->session->userdata('fc_session_user_id');die;
         $this->data['SliderDisplay'] = $this->product_model->get_all_details(SLIDER, array('status' => 'Active', 'site' => 'main'));
         $this->data['likedProducts'] = array();
     }
 
     /**
-     * 
-     * 
+     *
+     *
      */
-    public function index() {
+    public function index()
+    {
         $this->data['heading'] = '';
         $this->data['totalProducts'] = $this->product_model->get_total_records(PRODUCT);
         //$this->data['FeaturedProducts'] = $this->product_model->get_all_details(PRODUCT,array('status'=>'Publish','featured' =>'Yes'));
@@ -60,7 +63,8 @@ class Landing extends MY_Controller {
         $this->load->view('site/landing/landing', $this->data);
     }
 
-    public function home() {
+    public function home()
+    {
         $this->data['heading'] = '';
         $this->data['totalProducts'] = $this->product_model->get_total_records(PRODUCT);
 
@@ -79,7 +83,6 @@ class Landing extends MY_Controller {
         $this->data['menuact'] = 'viewall';
         $this->load->view('home', $this->data);
     }
-
 }
 
 /* End of file landing.php */

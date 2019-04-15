@@ -11,10 +11,10 @@
 						<h6>Add / Edit Document Template</h6>
 					</div>
 					<div class="widget_content">
-					<?php 
-						$attributes = array('class' => 'form_container left_label', 'id' => 'commentForm', 'enctype' => 'multipart/form-data');
-						echo form_open('crmadmin/product/insertEditdocumentModule',$attributes) 
-					?>
+					<?php
+                        $attributes = array('class' => 'form_container left_label', 'id' => 'commentForm', 'enctype' => 'multipart/form-data');
+                        echo form_open('crmadmin/product/insertEditdocumentModule', $attributes)
+                    ?>
 
 	 						<ul>
                                 <li>
@@ -39,16 +39,18 @@
 								<div class="form_grid_12">
 									<label class="field_title" for="news_descrip">Upload Pdf  </label>
 									<div class="form_input">
-                                    <?php if($detailsSold->row()->upload_images != ''){
-										
-											$imgName = @explode(',',$detailsSold->row()->upload_images);
-											for($i=0;$i<sizeof($imgName);$i++){
-										 ?>
+                                    <?php if ($detailsSold->row()->upload_images != '') {
+                        $imgName = @explode(',', $detailsSold->row()->upload_images);
+                        for ($i=0;$i<sizeof($imgName);$i++) {
+                            ?>
                                     		<a href="images/pdf-images/<?php echo $imgName[$i]; ?>" rel="lightbox[]" title="<?php echo $imgName[$i]; ?>"><img src="images/pdf-images/<?php echo $imgName[$i]; ?>" alt="<?php echo $imgName[$i]; ?>" width="200"  /></a> 
-                                    <?php }
-									}else{ ?>
+                                    <?php
+                        }
+                    } else {
+                        ?>
                                      <input type="file" name="upload_pdf" id="upload_pdf" accept="pdf" />
-                                    <?php } ?>
+                                    <?php
+                    } ?>
                                    
                                     
 									</div>
@@ -63,14 +65,18 @@
 								<li>
 								<div class="form_grid_12">
 									<div class="form_input">
-                                     <?php if($detailsSold->row()->upload_images != ''){ ?>
+                                     <?php if ($detailsSold->row()->upload_images != '') {
+                        ?>
 	                                     <a href="crmadmin/product/display_product_list/<?php echo $uri_val; ?>" class="btn_small btn_blue" ><span>Back</span></a>
                                          <a href="crmadmin/product/edit_document/<?php echo $reserve_id.'/'.$property_id.'/'.$user_id.'/'.$agree_module.'/'.$uri_val.'/'.$sign_id; ?>" class="btn_small btn_blue" ><span>Edit</span></a>
                                          <a href="crmadmin/product/delete_document/<?php echo $reserve_id.'/'.$property_id.'/'.$user_id.'/'.$agree_module.'/'.$uri_val.'/'.$sign_id; ?>" class="btn_small btn_blue" ><span>Delete</span></a>
                                          
-                                     <?php }else{ ?>
+                                     <?php
+                    } else {
+                        ?>
 	                                  <button type="submit" class="btn_small btn_blue" id="go" tabindex="4"><span>Preview</span></button>
-     	                             <?php } ?>
+     	                             <?php
+                    } ?>
 
 									</div>
 								</div>

@@ -12,21 +12,17 @@ set_time_limit(50000);
 
 require_once("sdk/isdk.php");
 
-$handle = fopen('../opportunities.csv','r');
+$handle = fopen('../opportunities.csv', 'r');
 $final_array = array();
-while ( ($data = fgetcsv($handle) ) !== FALSE ) {
-
-    	$final_array[$data[0]." ".$data[1]]=array("FirstName"=>$data[24],"LastName"=>$data[25],"Phone"=>$data[30],"Email"=>$data[31],"Address"=>$data[1],"City"=>$data[2],"State"=>$data[3],"Zip"=>$data[4]);
-
+while (($data = fgetcsv($handle)) !== false) {
+    $final_array[$data[0]." ".$data[1]]=array("FirstName"=>$data[24],"LastName"=>$data[25],"Phone"=>$data[30],"Email"=>$data[31],"Address"=>$data[1],"City"=>$data[2],"State"=>$data[3],"Zip"=>$data[4]);
 }
 
 $app = new iSDK;
 if ($app->cfgCon("xi178")) {
     $returnFields = array('Id');
-    foreach($final_array as $new){
-
-
-        if($new["Email"]){
+    foreach ($final_array as $new) {
+        if ($new["Email"]) {
             $contact = $app->findByEmail((string)$new['Email'], $returnFields);
         }
 
@@ -37,7 +33,7 @@ if ($app->cfgCon("xi178")) {
             $contact_id = $contact[0]["Id"];
         }
 
-        $opportunity_id = $app->dsAdd("Lead",array(
+        $opportunity_id = $app->dsAdd("Lead", array(
             "ContactID"=>$contact_id,
             //28 = reserved
             //34 = swapped
@@ -48,7 +44,6 @@ if ($app->cfgCon("xi178")) {
             "_PropertyAddress"=>$new['Address'].", ".$new['City'].", ".$new['State']." ".$new['Zip']
         ));
         print("<br/>Made ".$opportunity_id);
-
     }
 }
 /*
@@ -69,18 +64,18 @@ if ($app->cfgCon("xi178")) {
             $app->dsUpdate("Contact",$contact[0]["Id"],array("_Account"=>$value["Account"],"_AccountFunded"=>$value["Fund"]));
         }
 
-		//$contact = $app->findByEmail(array((string)$final_array[0], (string)$final_array[1]), $returnFields);
+        //$contact = $app->findByEmail(array((string)$final_array[0], (string)$final_array[1]), $returnFields);
 
-		//die();
+        //die();
 
 
 
-		//if (empty($contact)) {
-		//	$contact_id = $app->addCon(array("FirstName" => $final_array[0], "LastName" => $final_array[1], ));
-		//} else {
-		//	$contact_id = $contact[0]["Id"];
-		//}
-	}
+        //if (empty($contact)) {
+        //	$contact_id = $app->addCon(array("FirstName" => $final_array[0], "LastName" => $final_array[1], ));
+        //} else {
+        //	$contact_id = $contact[0]["Id"];
+        //}
+    }
 
 }
 
