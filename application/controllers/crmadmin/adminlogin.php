@@ -272,39 +272,39 @@ class Adminlogin extends MY_Controller {
 	public function send_admin_pwd($pwd='',$query){
 		$newsid='4';
 		$template_values=$this->user_model->get_newsletter_template_details($newsid);
-		$subject = 'From: '.$this->config->item('email_title')	.' - '.$template_values['news_subject'];
-		$adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo']);
-		extract($adminnewstemplateArr);
-		$message .= '<!DOCTYPE HTML>
+        $subject = 'From: '.$template_values['news_title'].' - '.$template_values['news_subject'];
+
+        $message = '<!DOCTYPE HTML>
 			<html>
 			<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 			<meta name="viewport" content="width=device-width"/>
 			<title>'.$template_values['news_subject'].'</title>
-			<body>';
-		include('./newsletter/registeration'.$newsid.'.php');	
-		
-		$message .= '</body>
+			<body>'.$template_values['news_descrip'].'</body>
 			</html>';
-		if($template_values['sender_name']=='' && $template_values['sender_email']==''){
-			$sender_email=$this->config->item('site_contact_mail');
-			$sender_name=$this->config->item('email_title');
-		}else{
-			$sender_name=$template_values['sender_name'];
-			$sender_email=$template_values['sender_email'];
-		}
-		
-		$email_values = array('mail_type'=>'html',
-							'from_mail_id'=>$sender_email,
-							'mail_name'=>$sender_name,
-							'to_mail_id'=>$query->row()->email,
-							'subject_message'=>'Password Reset',
-							'body_messages'=>$message
-							);
+
+        if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
+            $sender_email=$this->config->item('site_contact_mail');
+            $sender_name=$this->config->item('email_title');
+        } else {
+            $sender_name=$template_values['sender_name'];
+            $sender_email=$template_values['sender_email'];
+        }
+
+        $message = str_replace('{$pwd}', $pwd, $message);
+        $message = str_replace('{$email_title}', $sender_name, $message);
+        $message = str_replace('{$meta_title}', $sender_name, $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+
+        $email_values = array('mail_type'=>'html',
+            'from_mail_id'=>$sender_email,
+            'mail_name'=>$sender_name,
+            'to_mail_id'=>$query->row()->email,
+            'subject_message'=> $subject,
+            'body_messages'=>$message
+        );
+
 		$email_send_to_common = $this->product_model->common_email_send($email_values);
-		
-/*		echo $this->email->print_debugger();die;
-*/	
 	}
 	
 	/**

@@ -308,36 +308,42 @@ class Contact extends MY_Controller {
 					
 					$cfmurl = base_url().'site/user/confirm_register/'.$uid."/".$randStr."/confirmation";
 					$subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-					$adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo'],'first_name'=>$this->input->post('first_name'),'last_name'=>$this->input->post('last_name'),'adults'=>$this->input->post('adults'),'children'=>$this->input->post('children'),'email_address'=>$this->input->post('email_address'),'ph_no'=>$this->input->post('ph_no'),'Message'=>$this->input->post('Message'),'Arr_date'=>$this->input->post('Arr_date'),'Dep_date'=>$this->input->post('Dep_date'),'renter_id'=>$this->input->post('renter_id'),'rental_id'=>$this->input->post('rental_id'),'renter_fname'=>$Renter_details->row()->first_name,'renter_lname'=>$Renter_details->row()->last_name,'rental_name'=>$Rental_details->row()->product_name);
-					extract($adminnewstemplateArr);
-					//$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
-					$header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";
-					
-					$message1 .= '<!DOCTYPE HTML>
-						<html>
-						<head>
-						<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-						<meta name="viewport" content="width=device-width"/><body>';
-					include('./newsletter/registeration'.$newsid.'.php');	
-					
-					$message1 .= '</body>
-						</html>';
-					
-					if($template_values['sender_name']=='' && $template_values['sender_email']==''){
-						$sender_email=$this->data['siteContactMail'];
-						$sender_name=$this->data['siteTitle'];
-					}else{
-						$sender_name=$template_values['sender_name'];
-						$sender_email=$template_values['sender_email'];
-					}
+
+//					$adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo'],'first_name'=>$this->input->post('first_name'),'last_name'=>$this->input->post('last_name'),'adults'=>$this->input->post('adults'),'children'=>$this->input->post('children'),'email_address'=>$this->input->post('email_address'),'ph_no'=>$this->input->post('ph_no'),'Message'=>$this->input->post('Message'),'Arr_date'=>$this->input->post('Arr_date'),'Dep_date'=>$this->input->post('Dep_date'),'renter_id'=>$this->input->post('renter_id'),'rental_id'=>$this->input->post('rental_id'),'renter_fname'=>$Renter_details->row()->first_name,'renter_lname'=>$Renter_details->row()->last_name,'rental_name'=>$Rental_details->row()->product_name);
+//					extract($adminnewstemplateArr);
+
+                    $message = '<!DOCTYPE HTML>
+			<html>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<meta name="viewport" content="width=device-width"/>
+			<title>'.$template_values['news_subject'].'</title><body>'.$template_values['news_descrip'].'</body>
+			</html>';
+
+                    if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
+                        $sender_email=$this->data['siteContactMail'];
+                        $sender_name=$this->data['siteTitle'];
+                    } else {
+                        $sender_name=$template_values['sender_name'];
+                        $sender_email=$template_values['sender_email'];
+                    }
+
+                    $message = str_replace('{$rental_id}', $this->input->post('rental_id'), $message);
+                    $message = str_replace('{$Arr_date}', $this->input->post('Arr_date'), $message);
+                    $message = str_replace('{$Dep_date}', $this->input->post('Dep_date'), $message);
+                    $message = str_replace('{$Message}', $this->input->post('Message'), $message);
+                    $message = str_replace('{$email_title}', $sender_name, $message);
+                    $message = str_replace('{$meta_title}', $sender_name, $message);
+                    $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
 					
 					$email_values2 = array('mail_type'=>'html',
 										'from_mail_id'=>$sender_email,
 										'mail_name'=>$sender_email,
 										'to_mail_id'=>$this->input->post('email_address'),
 										'subject_message'=>$template_values['news_subject'],
-										'body_messages'=>$message1
+										'body_messages'=>$message
 										);
+
 					$email_send_to_common1 = $this->contact_model->common_email_send($email_values2);
 					
 					
@@ -350,7 +356,7 @@ class Contact extends MY_Controller {
 										'mail_name'=>$sender_name,
 										'to_mail_id'=>$this->input->post('RenterEmail'),
 										'subject_message'=>$template_values['news_subject'],
-										'body_messages'=>$message1
+										'body_messages'=>$message
 										);
 					$email_send_to_common2 = $this->contact_model->common_email_send($email_values3);
 					}

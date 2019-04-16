@@ -757,45 +757,39 @@ class User extends MY_Controller
             
         $cfmurl = base_url().'site/user/confirm_register/'.$uid."/".$randStr."/confirmation";
         $subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-        $adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo'],'membership'=>$membership,'price'=>$price,'first_name'=>$details->row()->first_name,'last_name'=>$details->row()->last_name,'cfmurl'=>$cfmurl);
-        extract($adminnewstemplateArr);
-        //$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
-        $header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";
-            
-        $message .= '<!DOCTYPE HTML>
-				<html>
-				<head>
-				<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-				<meta name="viewport" content="width=device-width"/><body>';
-        include('./newsletter/registeration'.$newsid.'.php');
-            
-        $message .= '</body>
-				</html>';
-            
+
+        $message = '<!DOCTYPE HTML>
+			<html>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<meta name="viewport" content="width=device-width"/><body>'.$template_values['news_descrip'].'</body>
+			</html>';
+
         if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
-            $sender_email=$this->data['siteContactMail'];
-            $sender_name=$this->data['siteTitle'];
+            $sender_email=$this->config->item('site_contact_mail');
+            $sender_name=$this->config->item('email_title');
         } else {
             $sender_name=$template_values['sender_name'];
             $sender_email=$template_values['sender_email'];
         }
-    
+
+        $message = str_replace('{$cfmurl}', $cfmurl, $message);
+        $message = str_replace('{$email_title}', $sender_name, $message);
+        $message = str_replace('{$meta_title}', $sender_name, $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}', base_url(), $message);
+
         $email_values = array('mail_type'=>'html',
-                                'from_mail_id'=>$sender_email,
-                                'mail_name'=>$sender_name,
-                                'to_mail_id'=>$email,
-                                'subject_message'=>$template_values['news_subject'],
-                                'body_messages'=>$message
-                                );
+            'from_mail_id'=>$sender_email,
+            'mail_name'=>$sender_name,
+            'to_mail_id'=>$email,
+            'subject_message'=>$subject,
+            'body_messages'=>$message
+        );
+
         $email_send_to_common = $this->product_model->common_email_send($email_values);
-            
-            
-            
-            
-        //$this->load->view('site/cms/subscription',$this->data);
+
         redirect(base_url().'pages/confirmation-page');
-                
-        //$this->SetErrorMessage('error','Your request received please wait for admin  approval');
     }
     
     public function payment_details_form()
@@ -884,37 +878,37 @@ class User extends MY_Controller
         
         $cfmurl = base_url().'site/user/confirm_register/'.$uid."/".$randStr."/confirmation";
         $subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-        $adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo']);
-        extract($adminnewstemplateArr);
-        //$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
-        $header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";
-        
-        $message .= '<!DOCTYPE HTML>
+
+        $message = '<!DOCTYPE HTML>
 			<html>
 			<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-			<meta name="viewport" content="width=device-width"/><body>';
-        include('./newsletter/registeration'.$newsid.'.php');
-        
-        $message .= '</body>
+			<meta name="viewport" content="width=device-width"/><body>'.$template_values['news_descrip'].'</body>
 			</html>';
-        
+
         if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
-            $sender_email=$this->data['siteContactMail'];
-            $sender_name=$this->data['siteTitle'];
+            $sender_email=$this->config->item('site_contact_mail');
+            $sender_name=$this->config->item('email_title');
         } else {
             $sender_name=$template_values['sender_name'];
             $sender_email=$template_values['sender_email'];
         }
 
+        $message = str_replace('{$cfmurl}', $cfmurl, $message);
+        $message = str_replace('{$email_title}', $sender_name, $message);
+        $message = str_replace('{$meta_title}', $sender_name, $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}', base_url(), $message);
+
         $email_values = array('mail_type'=>'html',
                             'from_mail_id'=>$sender_email,
                             'mail_name'=>$sender_name,
                             'to_mail_id'=>$email,
-                            'subject_message'=>$template_values['news_subject'],
+                            'subject_message'=>$subject,
                             'body_messages'=>$message
                             );
-        $email_send_to_common = $this->product_model->common_email_send($email_values);
+
+        $this->product_model->common_email_send($email_values);
     }
     
     public function send_admin_mail_userdetails($userDetails='')
@@ -1388,22 +1382,18 @@ class User extends MY_Controller
             $newsid='11';
         }
         $template_values=$this->user_model->get_newsletter_template_details($newsid);
-        $adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo']);
-        extract($adminnewstemplateArr);
-        $subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-        $message .= '<!DOCTYPE HTML>
+
+        $subject = 'From: '.$template_values['news_title'].' - '.$template_values['news_subject'];
+
+        $message = '<!DOCTYPE HTML>
 			<html>
 			<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 			<meta name="viewport" content="width=device-width"/>
 			<title>'.$template_values['news_subject'].'</title>
-			<body>';
-        include('./newsletter/registeration'.$newsid.'.php');
-        
-        $message .= '</body>
+			<body>'.$template_values['news_descrip'].'</body>
 			</html>';
-            
-        
+
         if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
             $sender_email=$this->config->item('site_contact_mail');
             $sender_name=$this->config->item('email_title');
@@ -1412,25 +1402,22 @@ class User extends MY_Controller
             $sender_email=$template_values['sender_email'];
         }
 
-        $message = '';
-        $message = str_replace('{$pwd}', $pwd, $template_values['news_descrip']);
+        $message = str_replace('{$pwd}', $pwd, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', 'images/logo/logo.php', $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
 
         $email_values = array('mail_type'=>'html',
                             'from_mail_id'=>$sender_email,
                             'mail_name'=>$sender_name,
                             'to_mail_id'=>$query->row()->email,
-                            'subject_message'=>'Password Reset',
+                            'subject_message'=> $subject,
                             'body_messages'=>$message
                             );
 
         $email_send_to_common = $this->product_model->common_email_send($email_values);
 
-        var_dump($email_send_to_common);
-        echo $this->email->print_debugger();
-        die;
+        return $email_send_to_common;
     }
 
     public function display_user_profilddde()
@@ -2567,29 +2554,31 @@ class User extends MY_Controller
             $emailNoty = explode(',', $followUserDetails[0]['email_notifications']);
             if (in_array('following', $emailNoty)) {
                 $newsid='7';
-                $template_values=$this->product_model->get_newsletter_template_details($newsid);
-                $adminnewstemplateArr=array('logo'=> $this->data['logo'],'meta_title'=>$this->config->item('meta_title'),'full_name'=>$followUserDetails[0]['full_name'],'cfull_name'=>$this->data['userDetails']->row()->full_name,'user_name'=>$this->data['userDetails']->row()->user_name);
-                extract($adminnewstemplateArr);
+                $template_values=$this->user_model->get_newsletter_template_details($newsid);
+
+                $cfmurl = base_url().'site/user/confirm_register/'.$uid."/".$randStr."/confirmation";
                 $subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-                $message .= '<!DOCTYPE HTML>
+
+                $message = '<!DOCTYPE HTML>
 			<html>
 			<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-			<meta name="viewport" content="width=device-width"/>
-			<title>'.$template_values['news_subject'].'</title><body>';
-                include('./newsletter/registeration'.$newsid.'.php');
-        
-                $message .= '</body>
+			<meta name="viewport" content="width=device-width"/><body>'.$template_values['news_descrip'].'</body>
 			</html>';
-                
-                
+
                 if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
-                    $sender_email=$this->data['siteContactMail'];
-                    $sender_name=$this->data['siteTitle'];
+                    $sender_email=$this->config->item('site_contact_mail');
+                    $sender_name=$this->config->item('email_title');
                 } else {
                     $sender_name=$template_values['sender_name'];
                     $sender_email=$template_values['sender_email'];
                 }
+
+                $message = str_replace('{$cfmurl}', $cfmurl, $message);
+                $message = str_replace('{$email_title}', $sender_name, $message);
+                $message = str_replace('{$meta_title}', $sender_name, $message);
+                $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+                $message = str_replace('{base_url()}', base_url(), $message);
 
                 $email_values = array('mail_type'=>'html',
                                     'from_mail_id'=>$sender_email,
@@ -2610,18 +2599,20 @@ class User extends MY_Controller
             if (in_array('following', $emailNoty)) {
                 $newsid='9';
                 $template_values=$this->product_model->get_newsletter_template_details($newsid);
-                $adminnewstemplateArr=array('logo'=> $this->data['logo'],'meta_title'=>$this->config->item('meta_title'),'full_name'=>$followUserDetails[0]['full_name'],'cfull_name'=>$this->data['userDetails']->row()->full_name,'user_name'=>$this->data['userDetails']->row()->user_name);
+                $adminnewstemplateArr=array('logo'=> $this->data['logo'],
+                    'meta_title'=>$this->config->item('meta_title'),
+                    'full_name'=>$followUserDetails[0]['full_name'],
+                    'cfull_name'=>$this->data['userDetails']->row()->full_name,
+                    'user_name'=>$this->data['userDetails']->row()->user_name);
                 extract($adminnewstemplateArr);
-                $subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-                $message .= '<!DOCTYPE HTML>
+                $subject = 'From: '.$template_values['news_title'].' - '.$template_values['news_subject'];
+
+                $message = '<!DOCTYPE HTML>
 			<html>
 			<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 			<meta name="viewport" content="width=device-width"/>
-			<title>'.$template_values['news_subject'].'</title><body>';
-                include('./newsletter/registeration'.$newsid.'.php');
-        
-                $message .= '</body>
+			<title>'.$template_values['news_subject'].'</title><body>'.$template_values['news_descrip'].'</body>
 			</html>';
             
                 if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
@@ -2632,6 +2623,14 @@ class User extends MY_Controller
                     $sender_email=$template_values['sender_email'];
                 }
 
+                $message = str_replace('{$rental_id}', $this->data['userDetails']->row()->user_name, $message);
+                $message = str_replace('{$Arr_date}', $this->data['userDetails']->row()->user_name, $message);
+                $message = str_replace('{$Dep_date}', $this->data['userDetails']->row()->user_name, $message);
+                $message = str_replace('{$Message}', $this->data['userDetails']->row()->user_name, $message);
+                $message = str_replace('{$email_title}', $sender_name, $message);
+                $message = str_replace('{$meta_title}', $sender_name, $message);
+                $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+
                 $email_values = array('mail_type'=>'html',
                                     'from_mail_id'=>$sender_email,
                                     'mail_name'=>$sender_name,
@@ -2639,6 +2638,7 @@ class User extends MY_Controller
                                     'subject_message'=>$subject,
                                     'body_messages'=>$message
                                     );
+
                 $email_send_to_common = $this->product_model->common_email_send($email_values);
             }
         }

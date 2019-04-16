@@ -208,35 +208,42 @@ class Comments extends MY_Controller {
 							}
 							$newsid='8';
                             $template_values=$this->product_model->get_newsletter_template_details($newsid);
-                            $adminnewstemplateArr=array('logo'=> $this->data['logo'],'meta_title'=>$this->config->item('meta_title'),'full_name'=>$likeUserListRow->full_name,'cfull_name'=>$commentDetails->row()->full_name,'user_name'=>$commentDetails->row()->user_name,'product_name'=>$productUserDetails->row()->product_name);
-                            extract($adminnewstemplateArr);
-                            $subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
+                            $subject = 'From: '.$template_values['news_title'].' - '.$template_values['news_subject'];
+
                             $message = '<!DOCTYPE HTML>
-                                <html>
-                                <head>
-                                <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-                                <meta name="viewport" content="width=device-width"/>
-                                <title>'.$template_values['news_subject'].'</title><body>';
-                            include('./newsletter/registeration'.$newsid.'.php');	
-                            
-                            $message .= '</body>
-                                </html>';
-							
-							if($template_values['sender_name']=='' && $template_values['sender_email']==''){
-								$sender_email=$this->data['siteContactMail'];
-								$sender_name=$this->data['siteTitle'];
-							}else{
-								$sender_name=$template_values['sender_name'];
-								$sender_email=$template_values['sender_email'];
-							}
-		
-							$email_values = array('mail_type'=>'html',
-												'from_mail_id'=>$sender_email,
-												'mail_name'=>$sender_name,
-												'to_mail_id'=>$likeUserListRow->email,
-												'subject_message'=>$subject,
-												'body_messages'=>$message
-												);
+			<html>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<meta name="viewport" content="width=device-width"/>
+			<title>'.$template_values['news_subject'].'</title>
+			<body>'.$template_values['news_descrip'].'</body>
+			</html>';
+
+                            if ($template_values['sender_name'] == '' && $template_values['sender_email'] == '') {
+                                $sender_email = $this->data['siteContactMail'];
+                                $sender_name = $this->data['siteTitle'];
+                            } else {
+                                $sender_name = $template_values['sender_name'];
+                                $sender_email = $template_values['sender_email'];
+                            }
+
+                            $message = str_replace('{$full_name}', $likeUserListRow->full_name, $message);
+                            $message = str_replace('{$cfull_name}', $commentDetails->row()->full_name, $message);
+                            $message = str_replace('{$user_name}', $commentDetails->row()->user_name, $message);
+                            $message = str_replace('{$prodLink}', $prodLink, $message);
+                            $message = str_replace('{$product_name}', $productUserDetails->row()->product_name, $message);
+                            $message = str_replace('{$email_title}', $sender_name, $message);
+                            $message = str_replace('{$meta_title}', $sender_name, $message);
+                            $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+
+                            $email_values = array('mail_type'=>'html',
+                                'from_mail_id'=>$sender_email,
+                                'mail_name'=>$sender_name,
+                                'to_mail_id'=>$likeUserListRow->email,
+                                'subject_message'=>$subject,
+                                'body_messages'=>$message
+                            );
+
 							$email_send_to_common = $this->product_model->common_email_send($email_values);
 						}
 					}

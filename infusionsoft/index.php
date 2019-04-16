@@ -70,7 +70,7 @@ if ($app->cfgCon("xi178")) {
                 "_SoldAdminID"=>$row["sold_admin_id"],
                 "_PropertyAddress"=>$row["prop_address"],
                 "_PropertyPrice"=>"$".number_format($row["prop_price"],2),
-"_PropertyImage"=>"http://beta.gainturnkeyproperty.com/images/product/".$row["image"],
+"_PropertyImage"=> base_url()."images/product/".$row["image"],
 "_EntityName"=>$row["entity_name"],
 "_ReserveType"=>$row["resrv_type"],
 "_SalesPrice"=>"$".number_format($row["sales_price"],2),

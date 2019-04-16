@@ -989,6 +989,7 @@ class Product extends MY_Controller
         $thing['url'] = $this->input->post('url');
         $thing['name'] = $this->input->post('name');
         $thing['id'] = $this->input->post('oid');
+        $thing['refid'] = $this->input->post('email');
         $thing['refid'] = $this->input->post('ooid');
         $thing['msg'] = $this->input->post('message');
         $thing['uname'] = $this->input->post('uname');
@@ -1008,35 +1009,40 @@ class Product extends MY_Controller
     {
         $newsid = '2';
         $template_values = $this->product_model->get_newsletter_template_details($newsid);
-        $adminnewstemplateArr = array('meta_title' => $this->config->item('meta_title'), 'logo' => $this->data['logo'], 'uname' => ucfirst($thing['uname']), 'name' => $thing['name'], 'url' => $thing['url'], 'msg' => $thing['msg'], 'email_title' => $this->config->item('email_title'));
-        extract($adminnewstemplateArr);
-        $subject = ucfirst($thing['uname']) . ' ' . $template_values['news_subject'] . ' ' . $this->config->item('email_title');
-        $message .= '<!DOCTYPE HTML>
-								<html>
-								<head>
-								<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-								<meta name="viewport" content="width=device-width"/>
-								<title>' . $adminnewstemplateArr['meta_title'] . ' - Share Things</title>
-								<body>';
-        include('./newsletter/registeration' . $newsid . '.php');
+        $subject = 'From: ' . $template_values['news_title'] . ' - ' . $template_values['news_subject'];
 
-        $message .= '</body>
-								</html>';
+        $message = '<!DOCTYPE HTML>
+			<html>
+			<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<meta name="viewport" content="width=device-width"/><body>'.$template_values['news_descrip'].'</body>
+			</html>';
+
         if ($template_values['sender_name'] == '' && $template_values['sender_email'] == '') {
-            $sender_email = $this->config->item('site_contact_mail');
-            $sender_name = $this->config->item('email_title');
+            $sender_email = $this->data['siteContactMail'];
+            $sender_name = $this->data['siteTitle'];
         } else {
             $sender_name = $template_values['sender_name'];
             $sender_email = $template_values['sender_email'];
         }
 
+        $message = str_replace('{$First_Name}', $thing['uname'], $message);
+        $message = str_replace('{$Last_Name}', $thing['name'], $message);
+        $message = str_replace('{$Email}', $this->config->item('email_title'), $message);
+        $message = str_replace('{$Comment}', $thing['msg'], $message);
+        $message = str_replace('{$email_title}', $sender_name, $message);
+        $message = str_replace('{$meta_title}', $sender_name, $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}', base_url(), $message);
+
         $email_values = array('mail_type' => 'html',
             'from_mail_id' => $sender_email,
             'mail_name' => $sender_name,
-            'to_mail_id' => $email,
+            'to_mail_id' => $this->config->item('site_contact_mail'),
             'subject_message' => $subject,
             'body_messages' => $message
         );
+
         $email_send_to_common = $this->product_model->common_email_send($email_values);
 
         /* 		echo $this->email->print_debugger();die;
@@ -1264,7 +1270,7 @@ class Product extends MY_Controller
             redirect('login');
         } else {
             $pid = $this->uri->segment(2, 0);
-            $viewMode = $this->uri->segment(4, 0);
+            $data->prop_addressprop_addressprop_addressiewMode = $this->uri->segment(4, 0);
             $productDetails = $this->product_model->get_all_details(USER_PRODUCTS, array('seller_product_id' => $pid));
             if ($productDetails->num_rows() == 1) {
                 if ($productDetails->row()->user_id == $this->checkLogin('U')) {
@@ -1281,10 +1287,10 @@ class Product extends MY_Controller
                     if ($productDetails->row()->user_id == $this->checkLogin('U')) {
                         $this->data['productDetails'] = $productDetails;
                         $this->data['editmode'] = '1';
-                        if ($viewMode == '') {
+                        if ($data->first_namefirst_namefirst_nameiewMode == '') {
                             $this->load->view('site/product/edit_seller_product', $this->data);
                         } else {
-                            $this->load->view('site/product/edit_seller_product_' . $viewMode, $this->data);
+                            $this->load->view('site/product/edit_seller_product_' . $data->last_namelast_namelast_nameiewMode, $this->data);
                         }
                     } else {
                         show_404();
@@ -1311,23 +1317,23 @@ class Product extends MY_Controller
                 redirect(base_url());
             }
             if (!empty($search_array)) {
-                foreach ($search_array as $key => $value) {
-                    $var = explode('=', $value);
+                foreach ($search_array as $key => $data->entity_nameentity_nameentity_namealue) {
+                    $data->resrv_typeresrv_typeresrv_typear = explode('=', $data->addressaddressaddressalue);
 
-                    if ($var[0] == 'p' && $var[1] != '') {
-                        $search .= ' and p.price_range="' . $var[1] . '" ';
+                    if ($data->citycitycityar[0] == 'p' && $data->statestatestatear[1] != '') {
+                        $search .= ' and p.price_range="' . $data->countrycountrycountryar[1] . '" ';
                     }
-                    if ($var[0] == 'city' && $var[1] != '') {
-                        $search .= ' and (c.name like "%' . $var[1] . '%" or c.name = "%' . $var[1] . '%") ';
+                    if ($data->post_codepost_codepost_codear[0] == 'city' && $data->ph_noph_noph_noar[1] != '') {
+                        $search .= ' and (c.name like "%' . $data->ph_no1ph_no1ph_no1ar[1] . '%" or c.name = "%' . $data->emailemailemailar[1] . '%") ';
                     }
-                    if ($var[0] == 'rentalid' && $var[1] != '') {
-                        $search .= ' and (p.id like "%' . $var[1] . '%" or p.id = "%' . $var[1] . '%") ';
+                    if ($data->email1email1email1ar[0] == 'rentalid' && $data->sales_pricesales_pricesales_pricear[1] != '') {
+                        $search .= ' and (p.id like "%' . $data->reserv_pricereserv_pricereserv_pricear[1] . '%" or p.id = "%' . $data->cash_paymentcash_paymentcash_paymentar[1] . '%") ';
                     }
-                    if ($var[0] == 'datefrom' && $var[1] != '') {
-                        $search .= ' and b.datefrom > "' . $var[1] . '"  ';
+                    if ($data->check_paymentcheck_paymentcheck_paymentar[0] == 'datefrom' && $data->credit_paymentcredit_paymentcredit_paymentar[1] != '') {
+                        $search .= ' and b.datefrom > "' . $data->sales_cashsales_cashsales_cashar[1] . '"  ';
                     }
-                    if ($var[0] == 'expiredate' && $var[1] != '') {
-                        $search .= ' and b.expiredate < "' . $var[1] . '"  ';
+                    if ($data->sales_cfsales_cfsales_cfar[0] == 'expiredate' && $data->sales_fssales_fssales_fsar[1] != '') {
+                        $search .= ' and b.expiredate < "' . $data->sales_slsales_slsales_slar[1] . '"  ';
                     }
                 }
             }
@@ -1516,23 +1522,23 @@ class Product extends MY_Controller
             $search_var = $searchResult[1];
             $search_array = explode('&', $search_var);
             if (!empty($search_array)) {
-                foreach ($search_array as $key => $value) {
-                    $var = explode('=', $value);
-                    if ($var[0] == 'p' && $var[1] != '') {
-                        $search .= ' and p.price_range="' . $var[1] . '" ';
+                foreach ($search_array as $key => $data->sales_sdirasales_sdirasales_sdiraalue) {
+                    $data->cust_namecust_namecust_namear = explode('=', $data->account_noaccount_noaccount_noalue);
+                    if ($data->res_coderes_coderes_codear[0] == 'p' && $data->res_sourceres_sourceres_sourcear[1] != '') {
+                        $search .= ' and p.price_range="' . $data->notenotenotear[1] . '" ';
                     }
-                    if ($var[0] == 'city' && $var[1] != '') {
-                        $search .= ' and (c.name like "%' . $var[1] . '%" or c.name = "%' . $var[1] . '%") ';
+                    if ($data->saleDatesaleDatesaleDatear[0] == 'city' && $data->soldAdminsoldAdminsoldAdminar[1] != '') {
+                        $search .= ' and (c.name like "%' . $data->ar[1] . '%" or c.name = "%' . $data->ar[1] . '%") ';
                     }
 
 
 
 
-                    if ($var[0] == 'datefrom' && $var[1] != '') {
-                        $search .= ' and b.datefrom > "' . $var[1] . '"  ';
+                    if ($data->ar[0] == 'datefrom' && $data->ar[1] != '') {
+                        $search .= ' and b.datefrom > "' . $data->ar[1] . '"  ';
                     }
-                    if ($var[0] == 'expiredate' && $var[1] != '') {
-                        $search .= ' and b.expiredate < "' . $var[1] . '"  ';
+                    if ($data->ar[0] == 'expiredate' && $data->ar[1] != '') {
+                        $search .= ' and b.expiredate < "' . $data->ar[1] . '"  ';
                     }
                 }
             }
@@ -2532,63 +2538,58 @@ class Product extends MY_Controller
         $newsid = '10';
         $template_values = $this->user_model->get_newsletter_template_details($newsid);
 
+        $subject = 'From: ' . $template_values['news_title'] . ' - ' . $template_values['news_subject'];
 
-        $subject = 'From: ' . $this->config->item('email_title') . ' - ' . $template_values['news_subject'];
-        $adminnewstemplateArr = array('email_title' => $this->config->item('email_title'),
-            'logo' => $this->data['logo'],
-            'prop_address' => $data->prop_address,
-            'first_name' => $data->first_name,
-            'last_name' => $data->last_name,
-            'entity_name' => $data->entity_name,
-            'resrv_type' => $data->resrv_type,
-            'address' => $data->address,
-            'city' => $data->city,
-            'state' => str_replace('-', ' ', $data->state),
-            'country' => $data->country,
-            'post_code' => $data->postal_code,
-            'ph_no' => $data->phone_no,
-            'ph_no1' => $data->phone_no1,
-            'email' => $data->email,
-            'email1' => $data->email1,
-            'sales_price' => $data->sales_price,
-            'reserv_price' => $data->reserv_price,
-            'cash_payment' => $data->cash_payment,
-            'check_payment' => $data->check_payment,
-            'credit_payment' => $data->credit_payment,
-            'sales_cash' => $data->sales_cash,
-            'sales_cf' => $data->sales_cf,
-            'sales_fs' => $data->sales_fs,
-            'sales_sl' => $data->sales_sl,
-            'sales_sdira' => $data->sales_sdira,
-            'saleDate' => $data->dateAdded,
-            'rental_id' => $data->rental_id,
-            'baths' => $data->baths,
-            'bedrooms' => $data->bedrooms,
-            'sq_feet' => $data->sq_feet,
-            'lot_size' => $data->lot_size,
-            'monthly_rent' => $data->monthly_rent,
-            'res_code' => $data->res_code,
-            'note' => $data->note,
-            'property_tax' => $data->property_tax,
-            'cust_name' => $data->cust_name,
-            'account_no' => $data->account_no,
-            'res_source' => $data->res_source,
-            'soldAdmin' => $data->sold_admin_name
-        );
-        extract($adminnewstemplateArr);
-        //$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
-        $header .= "Content-Type: text/plain; charset=ISO-8859-1\r\n";
-
-        $message .= '<!DOCTYPE HTML>
+        $message = '<!DOCTYPE HTML>
 			<html>
 			<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-			<meta name="viewport" content="width=device-width"/><body>';
-        include('./newsletter/registeration' . $newsid . '.php');
-
-        $message .= ' </body>
+			<meta name="viewport" content="width=device-width"/><body>'. $template_values['news_descrip'] .' </body>
 			</html>';
 
+        if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
+            $sender_email=$this->config->item('site_contact_mail');
+            $sender_name=$this->config->item('email_title');
+        } else {
+            $sender_name=$template_values['sender_name'];
+            $sender_email=$template_values['sender_email'];
+        }
+
+        $message = str_replace('{$prop_address}', $data->prop_address, $message);
+        $message = str_replace('{$first_name}', $data->first_name, $message);
+        $message = str_replace('{$last_name}', $data->last_name, $message);
+        $message = str_replace('{$entity_name}', $data->entity_name, $message);
+        $message = str_replace('{$resrv_type}', $data->resrv_type, $message);
+        $message = str_replace('{$address}', $data->address, $message);
+        $message = str_replace('{$city}', $data->city, $message);
+        $message = str_replace('{$state}', str_replace('-', ' ', $data->state), $message);
+        $message = str_replace('{$country}', $data->country, $message);
+        $message = str_replace('{$post_code}', $data->postal_code, $message);
+        $message = str_replace('{$ph_no}', $data->phone_no, $message);
+        $message = str_replace('{$ph_no1}', $data->phone_no1, $message);
+        $message = str_replace('{$email}', $data->email, $message);
+        $message = str_replace('{$email1}', $data->email1, $message);
+        $message = str_replace('{$sales_price}', $data->sales_price, $message);
+        $message = str_replace('{$reserv_price}', $data->reserv_price, $message);
+        $message = str_replace('{$cash_payment}', $data->cash_payment, $message);
+        $message = str_replace('{$check_payment}', $data->check_payment, $message);
+        $message = str_replace('{$credit_payment}', $data->credit_payment, $message);
+        $message = str_replace('{$sales_cash}', $data->sales_cash, $message);
+        $message = str_replace('{$sales_cf}', $data->sales_cf, $message);
+        $message = str_replace('{$sales_fs}', $data->sales_fs, $message);
+        $message = str_replace('{$sales_sl}', $data->sales_sl, $message);
+        $message = str_replace('{$sales_sdira}', $data->sales_sdira, $message);
+        $message = str_replace('{$cust_name}', $data->cust_name, $message);
+        $message = str_replace('{$account_no}', $data->account_no, $message);
+        $message = str_replace('{$res_code}', $data->res_code, $message);
+        $message = str_replace('{$res_source}', $data->res_source, $message);
+        $message = str_replace('{$note}', $data->note, $message);
+        $message = str_replace('{$saleDate}', $data->dateAdded, $message);
+        $message = str_replace('{$soldAdmin}', $data->sold_admin_name, $message);
+        $message = str_replace('{$email_title}', $sender_name, $message);
+        $message = str_replace('{$meta_title}', $sender_name, $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}', base_url(), $message);
 
         $sender_email = $this->data['siteContactMail'];
         $sender_name = $this->data['siteTitle'];
@@ -2596,12 +2597,12 @@ class Product extends MY_Controller
         $email_values = array('mail_type' => 'html',
             'from_mail_id' => $sender_email,
             'mail_name' => $sender_name,
-            'to_mail_id' => 'info@gainturnkeyproperty.com',
-            'bcc_mail_id' => '',
-            'subject_message' => $template_values['news_subject'],
+            'to_mail_id' => $this->config->item('site_contact_mail'),
+            'subject_message' => $subject,
             'body_messages' => $message
         );
-        $email_send_to_common = $this->product_model->common_email_send($email_values);
+
+        return $this->product_model->common_email_send($email_values);
     }
 
     public function send_confirm_mail($userDetails = '')
@@ -2616,38 +2617,38 @@ class Product extends MY_Controller
         $template_values = $this->user_model->get_newsletter_template_details($newsid);
 
         $cfmurl = base_url() . 'site/user/confirm_register/' . $uid . "/" . $randStr . "/confirmation";
-        $subject = 'From: ' . $this->config->item('email_title') . ' - ' . $template_values['news_subject'];
-        $adminnewstemplateArr = array('email_title' => $this->config->item('email_title'), 'logo' => $this->data['logo']);
-        extract($adminnewstemplateArr);
-        //$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
-        $header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";
+        $subject = 'From: ' . $template_values['news_title'] . ' - ' . $template_values['news_subject'];
 
-        $message .= '<!DOCTYPE HTML>
+        $message = '<!DOCTYPE HTML>
 			<html>
 			<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-			<meta name="viewport" content="width=device-width"/><body>';
-        include('./newsletter/registeration' . $newsid . '.php');
-
-        $message .= ' </body>
+			<meta name="viewport" content="width=device-width"/><body>'.$template_values['news_descrip'].'</body>
 			</html>';
 
-        if ($template_values['sender_name'] == '' && $template_values['sender_email'] == '') {
-            $sender_email = $this->data['siteContactMail'];
-            $sender_name = $this->data['siteTitle'];
+        if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
+            $sender_email=$this->config->item('site_contact_mail');
+            $sender_name=$this->config->item('email_title');
         } else {
-            $sender_name = $template_values['sender_name'];
-            $sender_email = $template_values['sender_email'];
+            $sender_name=$template_values['sender_name'];
+            $sender_email=$template_values['sender_email'];
         }
+
+        $message = str_replace('{$cfmurl}', $cfmurl, $message);
+        $message = str_replace('{$email_title}', $sender_name, $message);
+        $message = str_replace('{$meta_title}', $sender_name, $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}', base_url(), $message);
 
         $email_values = array('mail_type' => 'html',
             'from_mail_id' => $sender_email,
             'mail_name' => $sender_name,
             'to_mail_id' => $email,
-            'subject_message' => $template_values['news_subject'],
+            'subject_message' => $subject,
             'body_messages' => $message
         );
-        $email_send_to_common = $this->product_model->common_email_send($email_values);
+
+        return $this->product_model->common_email_send($email_values);
     }
 
     public function send_contact_mail($contactDetails = '')
@@ -2661,27 +2662,13 @@ class Product extends MY_Controller
         $newsid = '2';
         $template_values = $this->user_model->get_newsletter_template_details($newsid);
 
+        $subject = 'From: ' . $template_values['news_title'] . ' - ' . $template_values['news_subject'];
 
-        $subject = 'From: ' . $this->config->item('email_title') . ' - ' . $template_values['news_subject'];
-        $adminnewstemplateArr = array('email_title' => $this->config->item('email_title'),
-            'logo' => $this->data['logo'],
-            'First_Name' => $contactDetails->row()->firstname,
-            'Last_Name' => $contactDetails->row()->lastname,
-            'Email' => $contactDetails->row()->email,
-            'Comment' => $contactDetails->row()->message
-        );
-        extract($adminnewstemplateArr);
-        //$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
-        $header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";
-
-        $message .= '<!DOCTYPE HTML>
+        $message = '<!DOCTYPE HTML>
 			<html>
 			<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-			<meta name="viewport" content="width=device-width"/><body>';
-        include('./newsletter/registeration' . $newsid . '.php');
-
-        $message .= '</body>
+			<meta name="viewport" content="width=device-width"/><body>'.$template_values['news_descrip'].'</body>
 			</html>';
 
         if ($template_values['sender_name'] == '' && $template_values['sender_email'] == '') {
@@ -2692,14 +2679,25 @@ class Product extends MY_Controller
             $sender_email = $template_values['sender_email'];
         }
 
+        $message = str_replace('{$First_Name}', $contactDetails->row()->firstname, $message);
+        $message = str_replace('{$Last_Name}', $contactDetails->row()->lastname, $message);
+        $message = str_replace('{$Email}', $contactDetails->row()->email, $message);
+        $message = str_replace('{$Comment}', $contactDetails->row()->message, $message);
+        $message = str_replace('{$email_title}', $sender_name, $message);
+        $message = str_replace('{$meta_title}', $sender_name, $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}', base_url(), $message);
+
+
         $email_values = array('mail_type' => 'html',
             'from_mail_id' => $sender_email,
             'mail_name' => $sender_name,
             'to_mail_id' => $this->config->item('site_contact_mail'),
-            'subject_message' => $template_values['news_subject'],
+            'subject_message' => $subject,
             'body_messages' => $message
         );
-        $email_send_to_common = $this->product_model->common_email_send($email_values);
+
+        return $email_send_to_common = $this->product_model->common_email_send($email_values);
     }
 
     public function calculator()
@@ -2818,11 +2816,7 @@ class Product extends MY_Controller
                 $_SESSION['sExistingBookingCount'] = '0';
             }
 
-
-
             $reservedID = array_filter(explode(',', $this->config->item('id_reservation')));
-
-
 
             if (count($reservedID) > 0 && $_SESSION['sExistingBookingCount'] <= count($reservedID)) {
                 foreach ($reservedID as $datas) {
