@@ -96,7 +96,7 @@ $urlProperty = base_url();
                     <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
                 </div>
             </li>
-            <li class="slide">
+            <li class="slide" style="display: none;">
                 <div class="slide-bg">
                     <img src="<?php echo base_url(); ?>images/banner2.jpg" alt="An Image" draggable="false">
                 </div>
@@ -106,7 +106,7 @@ $urlProperty = base_url();
                     <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
                 </div>
             </li>
-            <li class="slide">
+            <li class="slide" style="display: none;">
                 <div class="slide-bg">
                     <img src="<?php echo base_url(); ?>images/banner3.jpg" alt="An Image" draggable="false">
                 </div>
@@ -116,7 +116,7 @@ $urlProperty = base_url();
                     <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
                 </div>
             </li>
-            <li class="slide">
+            <li class="slide" style="display: none;">
                 <div class="slide-bg">
                     <img src="<?php echo base_url(); ?>images/banner4.jpg" alt="An Image" draggable="false">
                 </div>
@@ -126,7 +126,7 @@ $urlProperty = base_url();
                     <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
                 </div>
             </li>
-            <li class="slide">
+            <li class="slide" style="display: none;">
                 <div class="slide-bg">
                     <img src="<?php echo base_url(); ?>images/banner2.jpg" alt="An Image" draggable="false">
                 </div>
@@ -135,7 +135,7 @@ $urlProperty = base_url();
                     <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
                 </div>
             </li>
-            <li class="slide">
+            <li class="slide" style="display: none;">
                 <div class="slide-bg">
                     <img src="<?php echo base_url(); ?>images/banner3.jpg" alt="An Image" draggable="false">
                 </div>
