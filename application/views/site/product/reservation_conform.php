@@ -29,14 +29,12 @@ jQuery(document).ready(function(e)
 <script type="text/javascript">
 function printthis()
 {
- var w = window.open('', '', 'width=1000,height=700,resizeable');
-    var html = $("#printthis").html();
-    html.getElementByClass('buttons-of-print').style.display='none';
- w.document.write(html);
- w.document.close(); // needed for chrome and safari
- javascript:w.print();
- w.close();
- return false;
+    var w = window.open('', '', 'width=1000,height=700,resizeable');
+    w.document.write($("#printthis").html());
+    w.document.close(); // needed for chrome and safari
+    javascript:w.print();
+    w.close();
+    return false;
 }
 </script>
 

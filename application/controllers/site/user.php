@@ -101,8 +101,7 @@ class User extends MY_Controller
             redirect(base_url());
         }
     }
-    
-    
+
     public function display_signaturepad()
     {
         $this->data['userId'] = $userId = $this->checkLogin('U');
@@ -139,8 +138,7 @@ class User extends MY_Controller
             redirect(base_url());
         }
     }
-    
-    
+
     public function viewagreement()
     {
         $this->data['userId'] = $userId = $this->checkLogin('U');
@@ -339,7 +337,7 @@ class User extends MY_Controller
             $message .= '<!DOCTYPE HTML><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"/><title>Signature Agreement</title></head><body>';
             $message .= '<div style="width:692px;background:#FFFFFF; margin:0 auto;">
 <div style="width:100%;background:#454B56; float:left; margin:0 auto;">
-    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="'.base_url().'" target="_blank" id="logo"><img src="'.base_url().'images/logo/'.$this->data['logo'].'" alt="'.$this->data['WebsiteTitle'].'" title="'.$this->data['WebsiteTitle'].'"></a></div>
+    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="'.base_url().'" target="_blank" id="logo"><img src="'.$baseUrl.'images/logo/'.$this->data['logo'].'" alt="'.$this->data['WebsiteTitle'].'" title="'.$this->data['WebsiteTitle'].'"></a></div>
 	
 </div>			
 <!--END OF LOGO-->
@@ -488,20 +486,14 @@ class User extends MY_Controller
             redirect(base_url());
         }
     }
-    
-    
+
     public function intialsave()
     {
         $this->user_model->update_details(SIGNTEMPLATE, array('initial_name'=>$this->input->post('intiailName')), array('id'=>$this->input->post('stid')));
         echo 'success';
     }
-    
-    
-    
-    
-    
+
     /**
-     *
      * Function for quick signup update
      */
     public function quickSignupUpdate()
@@ -612,8 +604,6 @@ class User extends MY_Controller
             redirect('signup');
         }
     }
-    
-    
     
     public function signin_registerUser()
     {
@@ -734,6 +724,7 @@ class User extends MY_Controller
         $this->data['subscription'] = $this->user_model->get_all_details(FANCYYBOX, $condition);
         $this->load->view('site/user/continue_page', $this->data);
     }
+
     public function user_cum_owner()
     {
         $userid = $this->uri->segment(2);
@@ -814,6 +805,7 @@ class User extends MY_Controller
         $this->data['stateDisplay'] = $this->city_model->SelectAllCountry();
         $this->load->view('site/product/payment_details', $this->data);
     }
+
     public function payment_details_value()
     {
         $this->form_validation->set_rules('first_name', 'First Name', 'required');
@@ -993,8 +985,7 @@ class User extends MY_Controller
             $this->load->view('site/user/signup', $this->data);
         }
     }
-    
-    
+
     public function signin_form()
     {
         if ($this->checkLogin('U') != '') {
@@ -1067,8 +1058,7 @@ class User extends MY_Controller
             }
         }
     }
-    
-    
+
     public function signin_login_user()
     {
         $email = $this->input->post('email');
@@ -1126,8 +1116,7 @@ class User extends MY_Controller
             }
         }
     }
-    
-    
+
     public function login_after_signup($userDetails='')
     {
         if ($userDetails->num_rows() == '1') {
@@ -1156,6 +1145,7 @@ class User extends MY_Controller
             redirect(base_url());
         }
     }
+
     public function dashboard()
     {
         if ($this->checkLogin('U')=='') {
@@ -1170,6 +1160,7 @@ class User extends MY_Controller
             $this->load->view('site/user/dashboard', $this->data);
         }
     }
+
     public function EditUserLoginDetails()
     {
         $excludeArr=array('signin');
@@ -1441,12 +1432,7 @@ class User extends MY_Controller
         echo $this->email->print_debugger();
         die;
     }
-    
-    
-    
-    
-    
-    
+
     public function display_user_profilddde()
     {
         $username =  urldecode($this->uri->segment(2, 0));
@@ -1471,10 +1457,7 @@ class User extends MY_Controller
         }
         /*}*/
     }
-    
-    
-    
-    
+
     public function display_user_added()
     {
         $username =  urldecode($this->uri->segment(2, 0));
@@ -2011,8 +1994,7 @@ class User extends MY_Controller
             }
         }
     }
-    
-    
+
     public function create_brand_form()
     {
         if ($this->checkLogin('U')=='') {
@@ -2022,8 +2004,7 @@ class User extends MY_Controller
             $this->load->view('site/user/seller_register', $this->data);
         }
     }
-    /**********Edited by mano**********/
-    /************For Owner signup**************/
+
     public function seller_signup_form()
     {
         if ($this->checkLogin('U') != '') {
@@ -2033,6 +2014,7 @@ class User extends MY_Controller
             $this->load->view('site/user/owner_signup.php', $this->data);
         }
     }
+
     /*	public function registerOwner(){
             $first_name = $this->input->post('first_name');
             $last_name = $this->input->post('last_name');
@@ -2068,7 +2050,7 @@ class User extends MY_Controller
                 redirect('owner');
             }
         }*/
-    /**************************/
+
     public function seller_signup()
     {
         if ($this->checkLogin('U')=='') {
@@ -2141,7 +2123,7 @@ class User extends MY_Controller
 <body>
 <div style="width:1012px;background:#FFFFFF; margin:0 auto;">
 <div style="width:100%;background:#454B56; float:left; margin:0 auto;">
-    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="'.base_url().'" target="_blank" id="logo"><img src="'.base_url().'images/logo/'.$this->data['logo'].'" alt="'.$this->data['WebsiteTitle'].'" title="'.$this->data['WebsiteTitle'].'"></a></div>
+    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="'.base_url().'" target="_blank" id="logo"><img src="'.$baseUrl.'images/logo/'.$this->data['logo'].'" alt="'.$this->data['WebsiteTitle'].'" title="'.$this->data['WebsiteTitle'].'"></a></div>
 	
 </div>			
 <!--END OF LOGO-->
@@ -2751,6 +2733,7 @@ class User extends MY_Controller
             $this->user_model->update_details(PAYMENT, array('received_status'=>$status), array('id'=>$rid));
         }
     }
+
     public function list_property()
     {
         $this->load->model('product_model');
@@ -2759,10 +2742,12 @@ class User extends MY_Controller
         $this->data['productList'] = $this->product_model->get_all_details(FANCYYBOX, array(), $sortArr);
         $this->load->view('site/product/list_your_property', $this->data);
     }
+
     public function popup()
     {
         $this->load->view('site/owner/popup');
     }
+
     public function news_letter()
     {
         $email = $this->input->post('newsletter');
@@ -2778,8 +2763,7 @@ class User extends MY_Controller
         $this->setErrorMessage('error', 'You have been successfully subscribed to the news letter');
         redirect($this->uri->segment());
     }
-    
-    
+
     /*View User Details*/
     public function view_user_details()
     {
@@ -3434,10 +3418,10 @@ class User extends MY_Controller
             //$this->load->view('site/user/view_user',$this->data);
         }
     }
-    
-    
+
     public function reservation_conform()
     {
+        $baseUrl = base_url();
         $proID = $this->uri->segment(2);
         $this->setErrorMessage('success', 'Reservation completed successfully');
             
@@ -3451,7 +3435,7 @@ class User extends MY_Controller
         } else {
             $imgName = 'no-image.jpg';
         }
-                    
+
                     
         $propAddress = $this->user_model->get_all_details(PRODUCT_ADDRESS, array('property_id'=> $PropertyList->row()->property_id));
         $CompDets = $this->user_model->get_all_details(RENTALCOMPS, array('property_id'=> $PropertyList->row()->property_id));
@@ -3468,7 +3452,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px; ">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.'<br>'.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-', ' ', $propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -3669,7 +3653,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -3932,7 +3916,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left; " src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">Comps</span>
@@ -3951,7 +3935,7 @@ class User extends MY_Controller
 		  <tr>
         	<td style="font-family:Arial, Helvetica, sans-serif; font-size:17px; line-height:22px; text-align:center;" colspan="3"><br>
             	<a href="'.base_url().'site/user/view_order111/'.$PropertyList->row()->id.'"><button>Download PDF</button></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button onClick="printthis(); return false;">Print this page</button>
+				<button class="print_btn" style="display: none;" onClick="printthis(); return false;">Print this page</button>
             </td>
         </tr>
       </table>
@@ -3962,7 +3946,7 @@ class User extends MY_Controller
 		  <tr>
         	<td style="font-family:Arial, Helvetica, sans-serif; font-size:17px; line-height:22px; text-align:center;" colspan="3"><br>
             	<a href="'.base_url().'site/user/view_order111/'.$PropertyList->row()->id.'"><button>Download PDF</button></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button onClick="printthis(); return false;">Print this page</button>
+				<button class="print_btn" style="display: none;" onClick="printthis(); return false;">Print this page</button>
             </td>
         </tr>
       </table>
@@ -3989,7 +3973,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px; ">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.', '.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-', ' ', $propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -4188,7 +4172,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -4431,7 +4415,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">Comps</span>
@@ -4494,6 +4478,7 @@ class User extends MY_Controller
      */
     public function view_order111()
     {
+        $baseUrl = base_url();
         if ($this->checkLogin('U') == '') {
             redirect(base_url());
         } else {
@@ -4514,7 +4499,9 @@ class User extends MY_Controller
             } else {
                 $imgName = 'no-image.jpg';
             }
-                    
+
+
+
             $msgprop='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -4526,7 +4513,7 @@ class User extends MY_Controller
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.', '.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-', ' ', $propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -4731,7 +4718,7 @@ class User extends MY_Controller
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left; " src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -5115,7 +5102,7 @@ class User extends MY_Controller
 	 <div style="width:50%; margin:0px; padding:0px;">
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left; " src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">Comps</span>
@@ -5169,6 +5156,3 @@ class User extends MY_Controller
         }
     }
 }
-
-/* End of file user.php */
-/* Location: ./application/controllers/site/user.php */
