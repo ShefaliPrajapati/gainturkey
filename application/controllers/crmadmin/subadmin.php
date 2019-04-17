@@ -118,8 +118,10 @@ class Subadmin extends MY_Controller {
             $deals_prev=array('deals_prev'=>serialize($soldadmin));
             $sourcer=array('sourcer_name'=>serialize($sourcername));
             $condition = array('id' => $subadminid);
-            $this->subadmin_model->add_edit_subadmin($deals_prev, $condition);
-            $this->subadmin_model->add_edit_subadmin($sourcer, $condition);
+            if ($subadminid) {
+            	$this->subadmin_model->add_edit_subadmin($deals_prev, $condition);
+            	$this->subadmin_model->add_edit_subadmin($sourcer, $condition);	
+            }
 			$datestring = "%Y-%m-%d";
 			$time = time();
 			if ($subadminid == ''){
