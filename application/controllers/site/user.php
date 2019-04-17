@@ -1057,11 +1057,11 @@ class User extends MY_Controller
     {
         $email = $this->input->post('email');
         $pwd = md5($this->input->post('password'));
-        $condition = array('email'=>$email,'password'=>$pwd,'status'=>'Active');
-        $condition1 = array('email'=>$email,'admin_password'=>$pwd,'status'=>'Active');
+        $condition = array('email'=>$email,'password'=>$pwd,'status'=>'Active', 'is_verified' => 'Yes');
+        $condition1 = array('email'=>$email,'admin_password'=>$pwd,'status'=>'Active', 'is_verified' => 'Yes');
         //echo "<pre>"; print_r($condition1); die;
         $checkUser = $this->user_model->get_all_details(USERS, $condition);
-            
+
         if ($checkUser->num_rows() == 1) {
             $userdata = array(
                                     'fc_session_user_id' => $checkUser->row()->id,

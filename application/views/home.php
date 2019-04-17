@@ -62,7 +62,7 @@ $urlProperty = base_url();
                         <a class="nav-link scroll" href="<?php echo $urlProperty.'#about'; ?>">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $urlProperty.'properties'; ?>">Properties</a>
+                        <a class="nav-link" href="<?php echo $urlProperty.'listing/viewall/0'; ?>">Properties</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $urlProperty.'contact'; ?>">Contact Us</a>
@@ -75,7 +75,7 @@ $urlProperty = base_url();
                     <?php } else {
                         ?>
                         <li class="nav-item bt_box">
-                            <a class="nav-link" href="<?php echo $urlProperty.'signup'; ?>">Sign up</a>
+                            <a class="nav-link" style="width: auto;" href="<?php echo $urlProperty.'signup'; ?>">Sign up/Login</a>
                         </li>
                     <?php } ?>
                 </ul>
@@ -93,7 +93,7 @@ $urlProperty = base_url();
                 </div>
                 <div class="slide-content">
                     <h2>Building Sustainable Wealth Through Real Estate</h2>
-                    <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -103,7 +103,7 @@ $urlProperty = base_url();
                 <div class="slide-content">
                     <h2>We locate, purchase, and remodel homes in the best cash flow markets<br>
                         (All the hard work is done!) </h2>
-                    <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -113,7 +113,7 @@ $urlProperty = base_url();
                 <div class="slide-content">
                     <h2>Our professional property managers place tenants, collect rents, and deal with maintenance<br>
                         (All the management is done!)</h2>
-                    <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -123,7 +123,7 @@ $urlProperty = base_url();
                 <div class="slide-content">
                     <h2>Clients purchase a turnkey rental property and receive the cash flow, appreciation, and tax benefits that come with it<br>
                         (Risk mitigated, time saved, GAIN up!)</h2>
-                    <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -132,7 +132,7 @@ $urlProperty = base_url();
                 </div>
                 <div class="slide-content">
                     <h2>We supply property in the BEST cash flow markets in the country. Times change, markets change, and we change accordingly.  View our inventory to see where we are currently investing </h2>
-                    <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -141,7 +141,7 @@ $urlProperty = base_url();
                 </div>
                 <div class="slide-content">
                     <h2>With over 1,500 properties sold to investors,<br> our experience sets us apart from the competition.</h2>
-                    <a href="<?php echo $urlProperty.'properties'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
                 </div>
             </li>
         </ul>
@@ -167,7 +167,7 @@ $urlProperty = base_url();
         <div class="container">
             <div class="Welcome_rghte">
                 <h2>About GAIN Turnkey Property</h2>
-                <p>GAIN Turnkey Property is real estate company with a focus on building client wealth, using the number one wealth creator of all time...real estate.  GAIN was founded by Dallas Hall, a real estate professional with 20 years of hands on real estate experience.
+                <p>GAIN Turnkey Property is a real estate company with a focus on building client wealth, using the number one wealth creator of all time...real estate.  GAIN was founded by Dallas Hall, a real estate professional with 20 years of hands on real estate experience.
                     GAIN is an acronym and stands for Gross Assets Income and Net worth.  These are the metrics used to measure wealth and these are the metrics we seek to grow for our clients.  We deal in single family and multi family homes and focus on the Midwest and Rust Belt markets of the U.S.  GAIN offers its clients turnkey income property and a power team to manage and maintain those investments long term.  We provide remodeled, rented, and professionally managed homes, as a turnkey solution for real estate investors.  Our model gives investors a hassle free and seamless means of building a portfolio in the best cash flow markets in the country.  With over 1,500 properties sold we have the experience and know how to increase your GAIN!!   </p>
                 <a href="<?php echo $urlProperty.'pages/about-us'; ?>">Read more</a>
             </div>
@@ -191,7 +191,7 @@ $urlProperty = base_url();
                     <img src="<?php echo base_url(); ?>images/right.jpg" alt="">
                 </div>
             </div>
-            <a href="<?php echo $urlProperty.'properties'; ?>">View Our Turnkey Properties Here</a>
+            <a href="<?php echo $urlProperty.'signin'; ?>">View Our Turnkey Properties Here</a>
         </div>
     </div>
 </section>
@@ -226,7 +226,7 @@ $urlProperty = base_url();
                     <h2>Useful Links</h2>
                     <ul>
                         <li><a class="scroll"  href=" <?php echo $urlProperty.'#about'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> About Us</a></li>
-                        <li><a href="<?php echo $urlProperty.'properties'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Properties</a></li>
+                        <li><a href="<?php echo $urlProperty.'listing/viewall/0'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Properties</a></li>
                         <li><a href="<?php echo $urlProperty.'contact'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> ContactUs</a></li>
                     </ul>
                 </div>
@@ -274,8 +274,8 @@ $urlProperty = base_url();
     $(function() {
         $("#slider").blissSlider({
             auto: 1,
-            transitionTime: 500,
-            timeBetweenSlides: 4000
+            transitionTime: 700,
+            timeBetweenSlides: 6000
         });
     });
 </script>

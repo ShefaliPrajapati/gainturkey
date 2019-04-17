@@ -77,8 +77,8 @@ extract($privileges);
  						</tr>
 						</thead>
 						<tbody>
-						<?php 
-						if ($productList->num_rows() > 0){
+						<?php
+						if ($productList !== NULL && $productList->num_rows() > 0){
 						//for ($x=0; $x<=100; $x++){
 						/*if($this->session->userdata('fc_session_admin_mode') == 'fc_admin')
 							{
