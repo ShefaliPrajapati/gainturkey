@@ -14,8 +14,8 @@ ini_set('max_execution_time', 36000);
 | path to your installation.
 |
 */
-$config['base_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/gainturkey/';
-$config['base_url_index'] = 'http://' . $_SERVER['HTTP_HOST'] . '/gainturkey/';
+$config['base_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/Ravi_prajapati/gainturkey/';
+$config['base_url_index'] = 'http://' . $_SERVER['HTTP_HOST'] . '/Ravi_prajapati/gainturkey/';
 
 /*
 |--------------------------------------------------------------------------

@@ -4,29 +4,30 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 /**
- * 
- * This controller contains the functions related to Product management 
+ *
+ * This controller contains the functions related to Product management
  * @author Teamtweaks
  *
  */
-class Product extends MY_Controller {
-
-    function __construct() {
+class Product extends MY_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
         $this->load->helper(array('cookie', 'date', 'form'));
         $this->load->library(array('encrypt', 'form_validation'));
         $this->load->model('product_model');
-        if ($this->checkPrivileges('property', $this->privStatus) == FALSE) {
+        if ($this->checkPrivileges('property', $this->privStatus) == false) {
             redirect('admin_ror');
         }
     }
 
     /**
-     * 
+     *
      * This function loads the product list page
      */
-    public function index() {
-
+    public function index()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -35,13 +36,14 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function loads the selling product list page
      */
-    public function display_product_list() {
-		
-		   //$this->product_model->update_propertystatus();
-		 
+    public function display_product_list()
+    {
+
+        //$this->product_model->update_propertystatus();
+
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -51,7 +53,6 @@ class Product extends MY_Controller {
                 $this->data['productList'] = $this->product_model->view_product_details_admin_ror(' group by p.id order by p.created desc ');
             } else {
                 $this->data['productList'] = $this->product_model->view_product_details_admin_ror('and p.user_id=' . $this->checkLogin('A') . ' group by p.id order by p.created desc ');
-				
             }
 
             $createrArr = array();
@@ -69,6 +70,7 @@ class Product extends MY_Controller {
                     }
                 }
             }
+
             $this->data['createrArr'] = $createrArr;
             #echo '<pre>'; print_r($this->data['createrArr']); die;
             #echo '<pre>'; print_r($this->data['productList']->result_array()); die;
@@ -76,42 +78,38 @@ class Product extends MY_Controller {
             $this->data['confirm_code'] = $this->product_model->get_confirm_code();
             $this->data['product_image'] = $this->product_model->Display_product_image_details();
             $this->data['code'] = $this->data['confirm_code']->row();
-
             $this->load->view('admin/product/display_product_list', $this->data);
         }
     }
      
-     public function reserved_product_details()
-        {
-            if ($this->checkLogin('A') == '')
-                {
-                    redirect('admin_ror');
-                }
-            else
-                {
-                    $condition  =   array('id' => $this->uri->segment(4,0));
-                    $this->data['heading'] = 'Reserved Property Information';
-                    $this->data['productList'] = $this->product_model->get_all_details(RESERVED_INFO,$condition);
-                    //print_r($this->data['productList']->result());die;
-                    $PropertyList=$this->data['productList'];
+    public function reserved_product_details()
+    {
+        if ($this->checkLogin('A') == '') {
+            redirect('admin_ror');
+        } else {
+            $condition  =   array('id' => $this->uri->segment(4, 0));
+            $this->data['heading'] = 'Reserved Property Information';
+            $this->data['productList'] = $this->product_model->get_all_details(RESERVED_INFO, $condition);
+            //print_r($this->data['productList']->result());die;
+            $PropertyList=$this->data['productList'];
                     
-                    if($PropertyList->row()->image!=''){
-                        $imgName = $PropertyList->row()->image;
-                    }else{
-                        $imgName = 'no-image.jpg';
-                    }
-                    $this->data['productListPopUp']='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            if ($PropertyList->row()->image!='') {
+                $imgName = $PropertyList->row()->image;
+            } else {
+                $imgName = 'no-image.jpg';
+            }
+            $this->data['productListPopUp']='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
     <div id="printthis" style="margin:0px auto; width:64%;">
     <table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px; ">
         
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-            <td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+            <td width="10%;"><img src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
             </td>
             <td  width="13%;" style="vertical-align:top; text-align:right;">
             <span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$PropertyList->row()->prop_address.'</span>
@@ -168,7 +166,7 @@ class Product extends MY_Controller {
                     
                     <tr style="margin:5px 0 15px 0px; line-height:28px;">
                     
-                        <td colspan="2" valign="top" style=" font-size:14px; margin:0 0 15px 0px; color:#000000; font-family:Arial, Helvetica, sans-serif;"> <b>Monthly Rental Amount : $'.number_format($PropertyList->row()->monthly_rent,0).'</b></br> </td>
+                        <td colspan="2" valign="top" style=" font-size:14px; margin:0 0 15px 0px; color:#000000; font-family:Arial, Helvetica, sans-serif;"> <b>Monthly Rental Amount : $'.number_format($PropertyList->row()->monthly_rent, 0).'</b></br> </td>
                         <br />
 
                         
@@ -177,7 +175,7 @@ class Product extends MY_Controller {
                     
                     <tr style="margin:5px 0 15px 0px; line-height:28px;">
                     
-                    <td colspan="2" valign="top" style=" font-size:14px; width=100% !important; margin:0 0 15px 0px; color:#000000; font-family:Arial, Helvetica, sans-serif;"> <b>Estimated Annual Tax: $'.number_format($PropertyList->row()->property_tax,0).' </b> </td>
+                    <td colspan="2" valign="top" style=" font-size:14px; width=100% !important; margin:0 0 15px 0px; color:#000000; font-family:Arial, Helvetica, sans-serif;"> <b>Estimated Annual Tax: $'.number_format($PropertyList->row()->property_tax, 0).' </b> </td>
                     </tr>
                     
                 </table>
@@ -222,7 +220,7 @@ class Product extends MY_Controller {
            
             <td><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">City: '.$PropertyList->row()->city.'</span></td>
             
-            <td><span style="float:left; font-weight:bold; margin:0px 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">State: '.str_replace('-',' ',$PropertyList->row()->state).'</span></td>
+            <td><span style="float:left; font-weight:bold; margin:0px 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">State: '.str_replace('-', ' ', $PropertyList->row()->state).'</span></td>
             
             <td><span style="float:left; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Zip: '.$PropertyList->row()->postal_code.'</span></td>
             
@@ -249,29 +247,26 @@ class Product extends MY_Controller {
            
            <tr>
            
-            <td><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Sales Price: $'.number_format($PropertyList->row()->sales_price,0).'</span></td>
+            <td><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Sales Price: $'.number_format($PropertyList->row()->sales_price, 0).'</span></td>
             
            
            
           ';
-           if($PropertyList->row()->adjustment !='')
-            {
-                 $this->data['productListPopUp'] .= '
+            if ($PropertyList->row()->adjustment !='') {
+                $this->data['productListPopUp'] .= '
            
-                <td><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Adjustment: $'.number_format($PropertyList->row()->adjustment,0).'</span></td>
+                <td><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Adjustment: $'.number_format($PropertyList->row()->adjustment, 0).'</span></td>
             
            ';
+            } else {
+                $this->data['productListPopUp'] .= ' <td colspan="2">&nbsp;</td>';
             }
-            else
-            {
-                 $this->data['productListPopUp'] .= ' <td colspan="2">&nbsp;</td>';
-            }
-           $this->data['productListPopUp'] .= ' </tr>
+            $this->data['productListPopUp'] .= ' </tr>
            
            
            <tr>
            
-            <td><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Reservation Fee: $'.number_format($PropertyList->row()->reserv_price,0).'</span></td>
+            <td><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Reservation Fee: $'.number_format($PropertyList->row()->reserv_price, 0).'</span></td>
             
             <td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">In form Of: '.$PropertyList->row()->cash_payment.' '.$PropertyList->row()->check_payment.' '.$PropertyList->row()->credit_payment.' '.$PropertyList->row()->dot_payment.'</span></td>
            
@@ -282,26 +277,25 @@ class Product extends MY_Controller {
            
             <td><span style="display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Sale Type:  '.$PropertyList->row()->sales_cash.' '.$PropertyList->row()->sales_cf.' '.$PropertyList->row()->sales_cs.' '.$PropertyList->row()->sales_fs.' '.$PropertyList->row()->sales_sdira.' '.$PropertyList->row()->sales_sl.'</span></td>';
             
-            if($PropertyList->row()->sales_sdira !='' || $PropertyList->row()->sales_sl !=''){
-            $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Custodian name: '.$PropertyList->row()->cust_name.'</span></td>';
-           }else{
-            $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">&nbsp;</span></td>';
-           
-           }
- $this->data['productListPopUp'] .= '</tr>
+            if ($PropertyList->row()->sales_sdira !='' || $PropertyList->row()->sales_sl !='') {
+                $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Custodian name: '.$PropertyList->row()->cust_name.'</span></td>';
+            } else {
+                $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">&nbsp;</span></td>';
+            }
+            $this->data['productListPopUp'] .= '</tr>
            
            
             <tr>
            
             <td><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Note: '.$PropertyList->row()->note.'</span></td>';
             
-            if($PropertyList->row()->sales_sdira !='' || $PropertyList->row()->sales_sl !=''){
-            $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Account number: '.$PropertyList->row()->account_no.'</span></td>';
-            }else{
-            $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">&nbsp;</span></td>';
-            } 
+            if ($PropertyList->row()->sales_sdira !='' || $PropertyList->row()->sales_sl !='') {
+                $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Account number: '.$PropertyList->row()->account_no.'</span></td>';
+            } else {
+                $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">&nbsp;</span></td>';
+            }
             
-           $this->data['productListPopUp'] .= '</tr>
+            $this->data['productListPopUp'] .= '</tr>
             
     </table>   
     
@@ -326,7 +320,7 @@ class Product extends MY_Controller {
     <table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
         
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-            <td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+            <td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
             </td>
             <td  width="13%;" style="vertical-align:top; text-align:right;">
             <span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -388,7 +382,7 @@ class Product extends MY_Controller {
                     
                         <td>&nbsp;</td>
                         
-                        <td>'.$PropertyList->row()->city.', '.str_replace('-',' ',$PropertyList->row()->state).', '.$PropertyList->row()->postal_code.'</td>
+                        <td>'.$PropertyList->row()->city.', '.str_replace('-', ' ', $PropertyList->row()->state).', '.$PropertyList->row()->postal_code.'</td>
                     
                     </tr>
                 </table>
@@ -407,22 +401,21 @@ class Product extends MY_Controller {
 
          <tr>
         
-            <td style="line-height:30px;"><strong style="font-weight:bold; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#000000;">PURCHASE PRICE: </strong>$'.number_format($PropertyList->row()->sales_price,0).'</td>
+            <td style="line-height:30px;"><strong style="font-weight:bold; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#000000;">PURCHASE PRICE: </strong>$'.number_format($PropertyList->row()->sales_price, 0).'</td>
             
         </tr>';
-           if($PropertyList->row()->adjustment !='')
-            {
-                 $this->data['productListPopUp'] .= '<tr>
+            if ($PropertyList->row()->adjustment !='') {
+                $this->data['productListPopUp'] .= '<tr>
            
-            <td style="line-height:30px;"><strong style="font-weight:bold; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#000000;">ADJUSTMENT: </strong>$'.number_format($PropertyList->row()->adjustment,0).'</td>
+            <td style="line-height:30px;"><strong style="font-weight:bold; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#000000;">ADJUSTMENT: </strong>$'.number_format($PropertyList->row()->adjustment, 0).'</td>
            
            </tr>';
             }
-           $this->data['productListPopUp'] .= '
+            $this->data['productListPopUp'] .= '
         
         <tr>
         
-            <td style="line-height:35px;"><strong style="font-weight:bold; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#000000;">RESERVATION FEE DEPOSIT: </strong>'.number_format($PropertyList->row()->reserv_price,0).' dollars ($)</td>
+            <td style="line-height:35px;"><strong style="font-weight:bold; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#000000;">RESERVATION FEE DEPOSIT: </strong>'.number_format($PropertyList->row()->reserv_price, 0).' dollars ($)</td>
             
         </tr>
         
@@ -477,7 +470,7 @@ class Product extends MY_Controller {
                         <tr>
                             <td width="25%" style="line-height:20px;"><strong style="font-weight:normal; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000;">Address: </strong>'.$PropertyList->row()->address.'</td>
                             <td width="20%" style="line-height:20px;"><strong style="font-weight:normal; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000;">City: </strong>'.$PropertyList->row()->city.'</td>
-                            <td width="20%" style="line-height:20px;"><strong style="font-weight:normal; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000;">State: </strong>'.str_replace('-',' ',$PropertyList->row()->state).'</td>
+                            <td width="20%" style="line-height:20px;"><strong style="font-weight:normal; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000;">State: </strong>'.str_replace('-', ' ', $PropertyList->row()->state).'</td>
                             <td width="20%" style="line-height:20px;"><strong style="font-weight:normal; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000;">Zip Code: </strong>'.$PropertyList->row()->postal_code.'</td>
                         </tr>
                         <tr>
@@ -551,15 +544,16 @@ class Product extends MY_Controller {
 </body>
 </html>';
                     
-                    $this->load->view('admin/product/reserved_detail',$this->data);
-                }
+            $this->load->view('admin/product/reserved_detail', $this->data);
         }
+    }
 
 
 
 
 
-    public function display_user_product_list() {
+    public function display_user_product_list()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -574,10 +568,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function loads the add new product form
      */
-    public function add_product_form() {
+    public function add_product_form()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -604,7 +599,7 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function insert and edit product
     //  */
     // public function insertEditProduct() {
@@ -613,106 +608,88 @@ class Product extends MY_Controller {
             
     // }
     public function insertEditProduct()
-        {
-            if ($this->checkLogin('A') == '')
-                    redirect('admin_ror');
-            else
-                {
-                    $headline = $this->input->post('headline');
-                    $property_id = $this->input->post('propertyID');
-                    $price = $this->input->post('event_price');
+    {
+        if ($this->checkLogin('A') == '') {
+            redirect('admin_ror');
+        } else {
+            $headline = $this->input->post('headline');
+            $property_id = $this->input->post('propertyID');
+            $price = $this->input->post('event_price');
                 
-                if($property_id == '')
-                    {
-                        $old_product_details = array();
-                        $condition = array('headline' => $headline);
-                        $soldmode='UnSold';
-                    }
-                else
-                    {
-                        $old_product_details = $this->product_model->get_all_details(PRODUCT,array('id'=>$property_id));
-                        $condition = array('headline' => $headline,'id !=' => $property_id);
-                        $soldmode=$old_product_details->row()->property_status;
-                    }
+            if ($property_id == '') {
+                $old_product_details = array();
+                $condition = array('headline' => $headline);
+                $soldmode='UnSold';
+            } else {
+                $old_product_details = $this->product_model->get_all_details(PRODUCT, array('id'=>$property_id));
+                $condition = array('headline' => $headline,'id !=' => $property_id);
+                $soldmode=$old_product_details->row()->property_status;
+            }
                 
                 
                 
-                if($property_id != '')
-                    {
-                        if($this->input->post('property_status') == 'Active')
-                            {
-                                $this->product_model->commonDelete(RESERVED_INFO,array('property_id' => $property_id));
-                            }
-                    }
+            if ($property_id != '') {
+                if ($this->input->post('property_status') == 'Active') {
+                    $this->product_model->commonDelete(RESERVED_INFO, array('property_id' => $property_id));
+                }
+            }
         
         
-                $price_range = '';
-                if ($price>0 && $price<30000)
-                    $price_range = '1-30000';
-                    
-                else if ($price>30000 && $price<40000)
-                    $price_range = '30000-40000';
-                    
-                else if ($price>40000 && $price<50000)
-                    $price_range = '40000-50000';
-                    
-                else if ($price>50000 && $price<60000)
-                    $price_range = '50000-60000';
-                    
-                else if ($price>60000)
-                    $price_range = '60000+';
+            $price_range = '';
+            if ($price>0 && $price<30000) {
+                $price_range = '1-30000';
+            } elseif ($price>30000 && $price<40000) {
+                $price_range = '30000-40000';
+            } elseif ($price>40000 && $price<50000) {
+                $price_range = '40000-50000';
+            } elseif ($price>50000 && $price<60000) {
+                $price_range = '50000-60000';
+            } elseif ($price>60000) {
+                $price_range = '60000+';
+            }
                 
-                $excludeArr = array('imgtitle', 'imgPriority', 'address', 'state', 'city', 'post_code', 'latitude', 'longitude', 'product_id', 'changeorder', 'propertyID', 'b1_firstname', 'b1_lastname', 'b2_firstname', 'b2_lastname', 'b_entityname', 'b_entitytype', 'b_address', 'b_city', 'b_state', 'b_zipcode', 'b_phone1', 'b_phone2', 'b_email1', 'b_email2', 'b_purchase_price', 'sale_date', 'reservedTime', 'googlelat', 'googlelng', 'q', 'output', 'Reload', 'submit_button', 'display', 'comp_prop_address', 'comp_purchase_price', 'comp_date_sold', 'comp_type_deal', 'comp_beds', 'comp_baths', 'comp_id', 'modified');
+            $excludeArr = array('imgtitle', 'imgPriority', 'address', 'state', 'city', 'post_code', 'latitude', 'longitude', 'product_id', 'changeorder', 'propertyID', 'b1_firstname', 'b1_lastname', 'b2_firstname', 'b2_lastname', 'b_entityname', 'b_entitytype', 'b_address', 'b_city', 'b_state', 'b_zipcode', 'b_phone1', 'b_phone2', 'b_email1', 'b_email2', 'b_purchase_price', 'sale_date', 'reservedTime', 'googlelat', 'googlelng', 'q', 'output', 'Reload', 'submit_button', 'display', 'comp_prop_address', 'comp_purchase_price', 'comp_date_sold', 'comp_type_deal', 'comp_beds', 'comp_baths', 'comp_id', 'modified');
                 
-                if($this->input->post('status') != '')
-                    $product_status = 'Publish';
+            if ($this->input->post('status') != '') {
+                $product_status = 'Publish';
+            } else {
+                $product_status = 'UnPublish';
+            }
             
-                else
-                    $product_status = 'UnPublish';
-            
-                $display_main = 'no';
-                $display_sub = 'no';
-                if($this->input->post('display') == 'main')
-                    {
-                        $display_main = 'yes';
-                    }
-                else if($this->input->post('display') == 'sub')
-                    {
-                        $display_sub = 'yes';
-                    }
-                else if($this->input->post('display') == 'both')
-                    {
-                        $display_main = 'yes';
-                        $display_sub = 'yes';
-                    }
+            $display_main = 'no';
+            $display_sub = 'no';
+            if ($this->input->post('display') == 'main') {
+                $display_main = 'yes';
+            } elseif ($this->input->post('display') == 'sub') {
+                $display_sub = 'yes';
+            } elseif ($this->input->post('display') == 'both') {
+                $display_main = 'yes';
+                $display_sub = 'yes';
+            }
                     
-                $seourl = url_title($headline, '-', TRUE);
-                $checkSeo = $this->product_model->get_all_details(PRODUCT,array('seourl'=>$seourl,'id !='=>$property_id));
-                $seo_count = 1;
-                while ($checkSeo->num_rows()>0)
-                    {
-                        $seourl = $seourl.$seo_count;
-                        $seo_count++;
-                        $checkSeo = $this->product_model->get_all_details(PRODUCT,array('seourl'=>$seourl,'id !='=>$property_id));
-                    }   
+            $seourl = url_title($headline, '-', true);
+            $checkSeo = $this->product_model->get_all_details(PRODUCT, array('seourl'=>$seourl,'id !='=>$property_id));
+            $seo_count = 1;
+            while ($checkSeo->num_rows()>0) {
+                $seourl = $seourl.$seo_count;
+                $seo_count++;
+                $checkSeo = $this->product_model->get_all_details(PRODUCT, array('seourl'=>$seourl,'id !='=>$property_id));
+            }
             
-                $ImageName = '';
+            $ImageName = '';
             
-                $datestring = "%Y-%m-%d %H:%i:%s";
-                $time = time();
-                if ($property_id == '')
-                    {
-                        $inputArr = array('created' => mdate($datestring,$time),
+            $datestring = "%Y-%m-%d %H:%i:%s";
+            $time = time();
+            if ($property_id == '') {
+                $inputArr = array('created' => mdate($datestring, $time),
                                           'seourl' => $seourl,
                                           'price_range'=> $price_range,
                                           'display_main' => $display_main,
                                           'display_sub' => $display_sub,
                                           'status' => 'Publish'
                                         );
-                    }
-                else
-                    {
-                        $inputArr = array('modified' => mdate($datestring,$time),
+            } else {
+                $inputArr = array('modified' => mdate($datestring, $time),
                                           'seourl' => $seourl,
                                           'status' => $product_status,
                                           'display_main' => $display_main,
@@ -720,87 +697,83 @@ class Product extends MY_Controller {
                                           'price_range'=> $price_range,
                                         
                                         );
-                    }
+            }
                     
                     
                         
             //$config['encrypt_name'] = TRUE;
             //$config['overwrite'] = FALSE;
-        /*  $config['allowed_types'] = 'jpg|jpeg|gif|png|bmp';
-            $config['upload_path'] = './images/product/';
-             $this->upload->initialize($config);
-            $this->load->library('upload', $config);
-            if ( $this->upload->do_multi_upload('product_image')){
-            
-                    $imgDetails = $this->upload->get_multi_upload_data();
+            /*  $config['allowed_types'] = 'jpg|jpeg|gif|png|bmp';
+                $config['upload_path'] = './images/product/';
+                 $this->upload->initialize($config);
+                $this->load->library('upload', $config);
+                if ( $this->upload->do_multi_upload('product_image')){
 
-                           foreach ($imgDetails as $fileDetails){
-                                $returnStr['image']['width'] = $fileDetails['image_width'];
-                                $returnStr['image']['height'] = $fileDetails['image_height'];
-                                $returnStr['image']['name'] = $fileDetails['file_name'];
-                                $this->imageResizeWithSpace(420, 320, $fileDetails['file_name'], './images/product/');
-                                @copy('./images/product/'.$fileDetails['file_name'], './images/product/thumb/'.$fileDetails['file_name']);
-                                $this->imageResizeWithSpace(250, 188, $fileDetails['file_name'], './images/product/thumb/');
-                                   $ImageName .= $fileDetails['file_name'].',';
-                                }
-                            
-                                }
-            */
+                        $imgDetails = $this->upload->get_multi_upload_data();
+
+                               foreach ($imgDetails as $fileDetails){
+                                    $returnStr['image']['width'] = $fileDetails['image_width'];
+                                    $returnStr['image']['height'] = $fileDetails['image_height'];
+                                    $returnStr['image']['name'] = $fileDetails['file_name'];
+                                    $this->imageResizeWithSpace(420, 320, $fileDetails['file_name'], './images/product/');
+                                    @copy('./images/product/'.$fileDetails['file_name'], './images/product/thumb/'.$fileDetails['file_name']);
+                                    $this->imageResizeWithSpace(250, 188, $fileDetails['file_name'], './images/product/thumb/');
+                                       $ImageName .= $fileDetails['file_name'].',';
+                                    }
+
+                                    }
+                */
             $logoDirectory ='./images/product';
-                       if(!is_dir($logoDirectory))
-                            {
-                               mkdir($logoDirectory,0777);
-                            }
-                       //$config['overwrite'] = FALSE;
-                       $config['remove_spaces'] = FALSE;
-                       $config['upload_path'] = $logoDirectory;
-                       $config['allowed_types'] = 'jpg|jpeg|gif|png';
+            if (!is_dir($logoDirectory)) {
+                mkdir($logoDirectory, 0777);
+            }
+            //$config['overwrite'] = FALSE;
+            $config['remove_spaces'] = false;
+            $config['upload_path'] = $logoDirectory;
+            $config['allowed_types'] = 'jpg|jpeg|gif|png';
                        
-                       $this->upload->initialize($config);
-                       $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            $this->load->library('upload', $config);
                        
-                       $file_element_name = 'product_image';
-                       $ImageName_orig_name ='';
-                       $ImageName_encrypt_name ='';
+            $file_element_name = 'product_image';
+            $ImageName_orig_name ='';
+            $ImageName_encrypt_name ='';
                        
-               $file_element_name = 'product_image';
+            $file_element_name = 'product_image';
                
-               $filePRoductUploadData = array();
-               $setPriority = 0;
-               $imgtitle = $this->input->post('imgtitle');
+            $filePRoductUploadData = array();
+            $setPriority = 0;
+            $imgtitle = $this->input->post('imgtitle');
               
-               if ( $this->upload->do_multi_upload('product_image'))
-         {
-            
-            
+            if ($this->upload->do_multi_upload('product_image')) {
             }
             
-                // echo "<pre>";print_r($_FILES['product_image']);die; 
-                $logoDetails = $this->upload->get_multi_upload_data();
-                //$logoDetails = $_FILES['product_image'];
+            // echo "<pre>";print_r($_FILES['product_image']);die;
+            $logoDetails = $this->upload->get_multi_upload_data();
+            //$logoDetails = $_FILES['product_image'];
 
             
             
-            if ($property_id != ''){
-                $this->update_old_list_values($property_id,$list_val_arr,$old_product_details);
+            if ($property_id != '') {
+                $this->update_old_list_values($property_id, $list_val_arr, $old_product_details);
             }
             $dataArr = $inputArr;
             
             
-            if ($property_id == ''){
+            if ($property_id == '') {
                 $condition = array();
                 
-                $this->product_model->commonInsertUpdate(PRODUCT,'insert',$excludeArr,$dataArr,$condition);
+                $this->product_model->commonInsertUpdate(PRODUCT, 'insert', $excludeArr, $dataArr, $condition);
                 
                 $property_id = $this->product_model->get_last_insert_id();
                 
                 $Attr_val_str = '';
                 
                 
-                $this->setErrorMessage('success','Property added successfully');
+                $this->setErrorMessage('success', 'Property added successfully');
                 
             
-                $this->update_price_range_in_table('add',$price_range,$property_id,$old_product_details);
+                $this->update_price_range_in_table('add', $price_range, $property_id, $old_product_details);
                 //echo '<pre>';
                 //print_r($excludeArr);print_r($dataArr);print_r($condition);die;
                 //echo $this->input->post('status');die;
@@ -818,7 +791,7 @@ class Product extends MY_Controller {
                             'latitude'=> $this->input->post('latitude'),
                             'longitude'=> $this->input->post('longitude')
                 );
-                $this->product_model->simple_insert(PRODUCT_ADDRESS,$inputArr1);
+                $this->product_model->simple_insert(PRODUCT_ADDRESS, $inputArr1);
                 
                 
                 $inputArr2=array();
@@ -845,9 +818,7 @@ class Product extends MY_Controller {
                 $comp_id = $this->input->post('comp_id');
 
                 for ($i = 0; $i < $compCount; $i++) {
-
                     if ($comp_address[$i] != '') {
-
                         $inputArrComp = array('property_id' => $property_id, 'comp_prop_address' => $comp_address[$i], 'comp_purchase_price' => $comp_price[$i], 'comp_date_sold' => $comp_date[$i], 'comp_type_deal' => $comp_deal[$i], 'no_of_beds' => $comp_beds[$i], 'no_of_baths' => $comp_baths[$i], 'dateAdded' => date('Y-m-d H:i:s'));
 
                         $this->product_model->simple_insert(RENTALCOMPS, $inputArrComp);
@@ -856,17 +827,15 @@ class Product extends MY_Controller {
                 
         
                 //Update user table count
-            if ($this->checkLogin('U') != ''){
-                $user_details = $this->product_model->get_all_details(USERS,array('id'=>$this->checkLogin('U')));
-                if ($user_details->num_rows()==1){
-                    $prod_count = $user_details->row()->products;
-                    $prod_count++;
-                    $this->product_model->update_details(USERS,array('products'=>$prod_count),array('id'=>$this->checkLogin('U')));
+                if ($this->checkLogin('U') != '') {
+                    $user_details = $this->product_model->get_all_details(USERS, array('id'=>$this->checkLogin('U')));
+                    if ($user_details->num_rows()==1) {
+                        $prod_count = $user_details->row()->products;
+                        $prod_count++;
+                        $this->product_model->update_details(USERS, array('products'=>$prod_count), array('id'=>$this->checkLogin('U')));
+                    }
                 }
-            }
-                
-                
-            }else {
+            } else {
                 $compCount = count($this->input->post('comp_prop_address'));
                 //die;
                 $comp_address = $this->input->post('comp_prop_address');
@@ -878,12 +847,10 @@ class Product extends MY_Controller {
                 $comp_id = $this->input->post('comp_id');
 
                 for ($i = 0; $i < $compCount; $i++) {
-
                     if ($comp_address[$i] != '') {
-
                         $inputArrComp = array('property_id' => $this->input->post('propertyID'), 'comp_prop_address' => $comp_address[$i], 'comp_purchase_price' => $comp_price[$i], 'comp_date_sold' => $comp_date[$i], 'comp_type_deal' => $comp_deal[$i], 'no_of_beds' => $comp_beds[$i], 'no_of_baths' => $comp_baths[$i], 'dateAdded' => date('Y-m-d H:i:s'));
 
-                        //echo '<pre>'; print_r($inputArrComp); 
+                        //echo '<pre>'; print_r($inputArrComp);
                         if ($comp_id[$i] != '') {
                             $this->product_model->update_details(RENTALCOMPS, $inputArrComp, array('id' => $comp_id[$i]));
                         } else {
@@ -895,9 +862,9 @@ class Product extends MY_Controller {
                     
                  
                 $condition = array('id'=>$property_id);
-                $this->product_model->commonInsertUpdate(PRODUCT,'update',$excludeArr,$dataArr,$condition);
-                        $this->product_model->saveResevedSettings();
-                        $this->product_model->saveSoldSettings();
+                $this->product_model->commonInsertUpdate(PRODUCT, 'update', $excludeArr, $dataArr, $condition);
+                $this->product_model->saveResevedSettings();
+                $this->product_model->saveSoldSettings();
                 
                 $condition1 = array('property_id'=>$property_id);
                 $inputArr1 = array(
@@ -912,7 +879,7 @@ class Product extends MY_Controller {
                             'latitude'=> $this->input->post('latitude'),
                             'longitude'=> $this->input->post('longitude')
                 );
-                $this->product_model->update_details(PRODUCT_ADDRESS,$inputArr1,$condition1);
+                $this->product_model->update_details(PRODUCT_ADDRESS, $inputArr1, $condition1);
                 
                 $inputArr2=array();
                 $inputArr2 = array(
@@ -927,53 +894,46 @@ class Product extends MY_Controller {
                             'invoice_template'=> $this->input->post('invoice_template')
                 );
                 
-                $this->product_model->update_details(PRODUCT_FEATURES,$inputArr2,$condition1);
+                $this->product_model->update_details(PRODUCT_FEATURES, $inputArr2, $condition1);
                 
                 
                 
                 
-                $this->setErrorMessage('success','Property updated successfully');
-                $this->update_price_range_in_table('edit',$price_range,$property_id,$old_product_details);
+                $this->setErrorMessage('success', 'Property updated successfully');
+                $this->update_price_range_in_table('edit', $price_range, $property_id, $old_product_details);
             }
             
             
             //upload image the table
-            foreach($logoDetails as $fileVal)
-               {
-                       if (!$this->imageResizeWithSpace(600, 600, $file_element_name[$setPriority], './images/product/'))
-                       {
-                       
-                               $error = array('error' => $this->upload->display_errors());
-                       }
-                       else
-                       {
-                               $sliderUploadedData = array($this->upload->data());
-                               
-                               
-                       }
+            foreach ($logoDetails as $fileVal) {
+                if (!$this->imageResizeWithSpace(600, 600, $file_element_name[$setPriority], './images/product/')) {
+                    $error = array('error' => $this->upload->display_errors());
+                } else {
+                    $sliderUploadedData = array($this->upload->data());
+                }
                                               
-                       $filePRoductUploadData = array('property_id'=>$property_id,'product_image'=>$fileVal['file_name']);
+                $filePRoductUploadData = array('property_id'=>$property_id,'product_image'=>$fileVal['file_name']);
                        
-                       $this->product_model->simple_insert(PRODUCT_PHOTOS,$filePRoductUploadData);                                        
-                       $setPriority = $setPriority + 1;
-               }
-               //Insert the Property package cost
-                $inputArrRate=$this->input->post('PrCosting');
-                $inputArrPrName=$this->input->post('PrName');
-                $inputArrPrStartDate=$this->input->post('PrStartDate');
-                $inputArrPrEndDate=$this->input->post('PrEndDate');
-                $inputArrPrUnit=$this->input->post('PrUnit');
-                $inputArrPrNightly=$this->input->post('Nightly');
-                $inputArrPrWkndNight=$this->input->post('WkndNight');
-                $inputArrPrWeekend=$this->input->post('Weekend');
-                $inputArrPrWeekly=$this->input->post('Weekly');
-                $inputArrPrMonthly=$this->input->post('Monthly');
-                $inputArrPrEvent=$this->input->post('Event');
+                $this->product_model->simple_insert(PRODUCT_PHOTOS, $filePRoductUploadData);
+                $setPriority = $setPriority + 1;
+            }
+            //Insert the Property package cost
+            $inputArrRate=$this->input->post('PrCosting');
+            $inputArrPrName=$this->input->post('PrName');
+            $inputArrPrStartDate=$this->input->post('PrStartDate');
+            $inputArrPrEndDate=$this->input->post('PrEndDate');
+            $inputArrPrUnit=$this->input->post('PrUnit');
+            $inputArrPrNightly=$this->input->post('Nightly');
+            $inputArrPrWkndNight=$this->input->post('WkndNight');
+            $inputArrPrWeekend=$this->input->post('Weekend');
+            $inputArrPrWeekly=$this->input->post('Weekly');
+            $inputArrPrMonthly=$this->input->post('Monthly');
+            $inputArrPrEvent=$this->input->post('Event');
                 
-                if(count($inputArrPrName)>0){
-                    for($i=0;$i < count($inputArrPrName);$i++){
-                        if($inputArrPrName[$i]!=''){
-                            $inputArrRateVal = array(
+            if (count($inputArrPrName)>0) {
+                for ($i=0;$i < count($inputArrPrName);$i++) {
+                    if ($inputArrPrName[$i]!='') {
+                        $inputArrRateVal = array(
                                         'property_id' =>$property_id,
                                         'PrName' => $inputArrPrName[$i],
                                         'PrStartDate' => $inputArrPrStartDate[$i],
@@ -985,19 +945,19 @@ class Product extends MY_Controller {
                                         'Monthly' => $inputArrPrMonthly[$i],
                                         'Event' => $inputArrPrEvent[$i]
                             );
-                            $this->product_model->simple_insert(PRODUCT_PACKAGES,$inputArrRateVal);
-                        }
+                        $this->product_model->simple_insert(PRODUCT_PACKAGES, $inputArrRateVal);
                     }
-                } 
+                }
+            }
             //Update the list table
-            if (is_array($list_val_arr)){
-                foreach ($list_val_arr as $list_val_row){
-                    $list_val_details = $this->product_model->get_all_details(LIST_VALUES,array('id'=>$list_val_row));
-                    if ($list_val_details->num_rows()==1){
+            if (is_array($list_val_arr)) {
+                foreach ($list_val_arr as $list_val_row) {
+                    $list_val_details = $this->product_model->get_all_details(LIST_VALUES, array('id'=>$list_val_row));
+                    if ($list_val_details->num_rows()==1) {
                         $product_count = $list_val_details->row()->product_count;
                         $products_in_this_list = $list_val_details->row()->products;
                         $products_in_this_list_arr = explode(',', $products_in_this_list);
-                        if (!in_array($property_id, $products_in_this_list_arr)){
+                        if (!in_array($property_id, $products_in_this_list_arr)) {
                             array_push($products_in_this_list_arr, $property_id);
                             $product_count++;
                             $list_update_values = array(
@@ -1005,19 +965,20 @@ class Product extends MY_Controller {
                                 'product_count'=>$product_count
                             );
                             $list_update_condition = array('id'=>$list_val_row);
-                            $this->product_model->update_details(LIST_VALUES,$list_update_values,$list_update_condition);
+                            $this->product_model->update_details(LIST_VALUES, $list_update_values, $list_update_condition);
                         }
                     }
                 }
             }
             
-            if($this->input->post('submit_button') == 'savencont')
+            if ($this->input->post('submit_button') == 'savencont') {
                 $this->source_info_form($property_id);
-            else
+            } else {
                 redirect('admin/product/display_product_list');
+            }
             //if($soldmode=='Sold'){
             //  redirect('admin/product/display_product_list');
-            //}else{ 
+            //}else{
                 //redirect('admin/product/display_user_product_list');
             //}
         }
@@ -1025,13 +986,14 @@ class Product extends MY_Controller {
     
 
     /**
-     * 
+     *
      * Update the products_count and products in list_values table, when edit or delete products
      * @param Integer $property_id
      * @param Array $list_val_arr
      * @param Array $old_product_details
      */
-    public function update_old_list_values($product_id, $list_val_arr, $old_product_details = '') {
+    public function update_old_list_values($product_id, $list_val_arr, $old_product_details = '')
+    {
         if ($old_product_details == '' || count($old_product_details) == 0) {
             $old_product_details = $this->product_model->get_all_details(PRODUCT, array('id' => $product_id));
         }
@@ -1090,7 +1052,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function update_price_range_in_table($mode = '', $price_range = '', $product_id = '0', $old_product_details = '') {
+    public function update_price_range_in_table($mode = '', $price_range = '', $product_id = '0', $old_product_details = '')
+    {
         $list_values = $this->product_model->get_all_details(LIST_VALUES, array('list_value' => $price_range));
         if ($list_values->num_rows() == 1) {
             $products = explode(',', $list_values->row()->products);
@@ -1100,7 +1063,7 @@ class Product extends MY_Controller {
                     array_push($products, $product_id);
                     $product_count++;
                 }
-            } else if ($mode == 'edit') {
+            } elseif ($mode == 'edit') {
                 $old_price_range = '';
                 if ($old_product_details != '' && count($old_product_details) > 0 && $old_product_details->num_rows() == 1) {
                     $old_price_range = $old_product_details->row()->price_range;
@@ -1124,7 +1087,7 @@ class Product extends MY_Controller {
                         array_push($products, $product_id);
                         $product_count++;
                     }
-                } else if ($old_price_range != '' && $old_price_range == $price_range) {
+                } elseif ($old_price_range != '' && $old_price_range == $price_range) {
                     if (!in_array($product_id, $products)) {
                         array_push($products, $product_id);
                         $product_count++;
@@ -1137,7 +1100,8 @@ class Product extends MY_Controller {
         }
     }
 
-   public function DeletePackageProducts() {
+    public function DeletePackageProducts()
+    {
         $ingIDD = $this->input->post('imgId');
         $currentPage = $this->input->post('cpage');
         $condition = array('id' => $ingIDD);
@@ -1146,10 +1110,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * Ajax function for delete the product Package
      */
-    public function DeleteCompsProducts() {
+    public function DeleteCompsProducts()
+    {
         $ingIDD = $this->input->post('compId');
         $currentPage = $this->input->post('cpage');
         $condition = array('id' => $ingIDD);
@@ -1158,10 +1123,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * Ajax function for delete the product image
      */
-    public function DeleteImageProducts() {
+    public function DeleteImageProducts()
+    {
         $ingIDD = $this->input->post('imgId');
         $currentPage = $this->input->post('cpage');
         $condition = array('id' => $ingIDD);
@@ -1170,10 +1136,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * Ajax function for chhange the product featured/unfeatured
      */
-    public function ChangeFeaturedProducts() {
+    public function ChangeFeaturedProducts()
+    {
         $ingIDD = $this->input->post('imgId');
         $FtrId = $this->input->post('FtrId');
         $currentPage = $this->input->post('cpage');
@@ -1184,13 +1151,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function loads the edit product form
      */
-    public function edit_product_form() {
-
-
-
+    public function edit_product_form()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1252,19 +1217,19 @@ class Product extends MY_Controller {
 
     /* Ajax update for edit product */
 
-    public function ajaxProductAttributeUpdate() {
-
+    public function ajaxProductAttributeUpdate()
+    {
         $conditons = array('pid' => $this->input->post('attId'));
         $dataArr = array('attr_id' => $this->input->post('attname'), 'attr_price' => $this->input->post('attval'));
         $subproductDetails = $this->product_model->edit_subproduct_update($dataArr, $conditons);
-
     }
 
     /**
-     * 
+     *
      * This function change the selling product status
      */
-    public function change_product_status() {
+    public function change_product_status()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1276,15 +1241,14 @@ class Product extends MY_Controller {
             $this->product_model->update_details(PRODUCT, $newdata, $condition);
             $this->setErrorMessage('success', 'Property Status Changed Successfully');
             redirect('admin/product/display_product_list');
-
         }
     }
 
-    public function change_product_sold_status() {
+    public function change_product_sold_status()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
-            
             $mode = $this->input->post('mode');
             $product_id = $this->input->post('id');
             $status = ($mode == '0') ? 'Unsold' : 'Sold';
@@ -1299,10 +1263,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function change the affiliate product status
      */
-    public function change_user_product_status() {
+    public function change_user_product_status()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1318,10 +1283,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function loads the product view page
      */
-    public function view_product() {
+    public function view_product()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1388,7 +1354,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function source_info_form($id) {
+    public function source_info_form($id)
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1401,7 +1368,7 @@ class Product extends MY_Controller {
                 $this->data['SourcerDetails'] = $this->product_model->get_all_details(SOURCER_INFO, array('status' => 'Active'));
                 $this->data['ManagerDetails'] = $this->product_model->get_all_details(MANAGER_INFO, array('status' => 'Active'));
                 $this->load->view('admin/product/add_source_info', $this->data);
-            } else if ($this->data['source']->num_rows() == 1) {
+            } elseif ($this->data['source']->num_rows() == 1) {
                 $this->data['heading'] = 'Edit Source Info';
                 $this->data['SourcerDetails'] = $this->product_model->get_all_details(SOURCER_INFO, array('status' => 'Active'));
                 $this->data['ManagerDetails'] = $this->product_model->get_all_details(MANAGER_INFO, array('status' => 'Active'));
@@ -1420,7 +1387,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function edit_source_info_form() {
+    public function edit_source_info_form()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1437,8 +1405,7 @@ class Product extends MY_Controller {
                 $this->data['source_info'] = unserialize(stripslashes($data));
 
                 $this->load->view('admin/product/edit_source_info', $this->data);
-            } else if ($this->data['product_source_details']->num_rows() == 0) {
-
+            } elseif ($this->data['product_source_details']->num_rows() == 0) {
                 $this->load->view('admin/product/edit_source_info', $this->data);
             } else {
                 $this->setErrorMessage('error', 'Details not found');
@@ -1447,7 +1414,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function add_source_info() {
+    public function add_source_info()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1464,7 +1432,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function edit_source_info() {
+    public function edit_source_info()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1475,7 +1444,7 @@ class Product extends MY_Controller {
             $rows = $this->product_model->get_all_details(SOURCE_INFO, $condition);
             if ($rows->num_rows() == 1) {
                 $this->setErrorMessage('success', 'Property source info details updated successfully');
-            } else if ($rows->num_rows() == 0) {
+            } elseif ($rows->num_rows() == 0) {
                 $this->setErrorMessage('success', 'Property source info details added successfully');
             }
             redirect(base_url() . 'admin/product/display_product_list');
@@ -1483,10 +1452,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function delete the selling product record from db
      */
-    public function delete_product() {
+    public function delete_product()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1508,10 +1478,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function delete the affiliate product record from db
      */
-    public function delete_user_product() {
+    public function delete_user_product()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1532,21 +1503,24 @@ class Product extends MY_Controller {
         }
     }
 
-    public function update_user_likes($product_id = '0') {
+    public function update_user_likes($product_id = '0')
+    {
         $like_list = $this->product_model->get_like_user_full_details($product_id);
         if ($like_list->num_rows() > 0) {
             foreach ($like_list->result() as $like_list_row) {
                 $likes_count = $like_list_row->likes;
                 $likes_count--;
-                if ($likes_count < 0)
+                if ($likes_count < 0) {
                     $likes_count = 0;
+                }
                 $this->product_model->update_details(USERS, array('likes' => $likes_count), array('id' => $like_list_row->id));
             }
             $this->product_model->commonDelete(PRODUCT_LIKES, array('product_id' => $product_id));
         }
     }
 
-    public function update_user_created_lists($pid = '0') {
+    public function update_user_created_lists($pid = '0')
+    {
         $user_created_lists = $this->product_model->get_user_created_lists($pid);
         if ($user_created_lists->num_rows() > 0) {
             foreach ($user_created_lists->result() as $user_created_lists_row) {
@@ -1560,7 +1534,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function update_user_product_count($old_product_details) {
+    public function update_user_product_count($old_product_details)
+    {
         if ($old_product_details != '' && count($old_product_details) > 0 && $old_product_details->num_rows() == 1) {
             if ($old_product_details->row()->user_id > 0) {
                 $user_details = $this->product_model->get_all_details(USERS, array('id' => $old_product_details->row()->user_id));
@@ -1577,13 +1552,12 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function change the selling product status, delete the selling product record
      */
-    public function change_product_status_global() {
-
+    public function change_product_status_global()
+    {
         if ($_POST['checkboxID'] != '') {
-
             if ($_POST['checkboxID'] == '0') {
                 redirect('admin/product/add_product_form/0');
             } else {
@@ -1618,11 +1592,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function change the affiliate product status, delete the affiliate product record
      */
-    public function change_user_product_status_global() {
-
+    public function change_user_product_status_global()
+    {
         if (count($_POST['checkbox_id']) > 0 && $_POST['statusMode'] != '') {
             $data = $_POST['checkbox_id'];
             if (strtolower($_POST['statusMode']) == 'delete') {
@@ -1655,7 +1629,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function loadListValues() {
+    public function loadListValues()
+    {
         $returnStr['listCnt'] = '<option value="">--Select--</option>';
         $lid = $this->input->post('lid');
         $lvID = $this->input->post('lvID');
@@ -1676,7 +1651,8 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    public function loadCountryListValues() {
+    public function loadCountryListValues()
+    {
         $returnStr['listCountryCnt'] = '<select class="chzn-select required" name="state" tabindex="-1" style="width: 375px;" onchange="javascript:loadStateListValues(this)"  data-placeholder="Please select the state name">';
         $lid = $this->input->post('lid');
         $lvID = $this->input->post('lvID');
@@ -1700,7 +1676,8 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    public function loadStateListValues() {
+    public function loadStateListValues()
+    {
         $returnStr['listCountryCnt'] = '<select class="chzn-select required" name="city" tabindex="-1" style="width: 375px;" data-placeholder="Please select the city name">';
         $lid = $this->input->post('lid');
         $lvID = $this->input->post('lvID');
@@ -1724,7 +1701,8 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    public function changePosition() {
+    public function changePosition()
+    {
         if ($this->checkLogin('A') != '') {
             $catID = $this->input->post('catID');
             $pos = $this->input->post('pos');
@@ -1732,7 +1710,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function changeImagePosition() {
+    public function changeImagePosition()
+    {
         if ($this->checkLogin('A') != '') {
             $catID = $this->input->post('catID');
             $pos = $this->input->post('pos');
@@ -1740,7 +1719,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function changeImagetitle() {
+    public function changeImagetitle()
+    {
         if ($this->checkLogin('A') != '') {
             $catID = $this->input->post('catID');
             $title = $this->input->post('title');
@@ -1749,10 +1729,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function loads the contact dashboard
      */
-    public function display_rental_dashboard() {
+    public function display_rental_dashboard()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1767,10 +1748,11 @@ class Product extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * This function loads the Calendar view page
      */
-    public function view_calendar() {
+    public function view_calendar()
+    {
         if ($this->checkLogin('A') == '') {
             redirect('admin_ror');
         } else {
@@ -1783,65 +1765,69 @@ class Product extends MY_Controller {
         }
     }
 
-    public function GetDays($sStartDate, $sEndDate) {
-        // Firstly, format the provided dates.  
-        // This function works best with YYYY-MM-DD  
-        // but other date formats will work thanks  
-        // to strtotime().  
+    public function GetDays($sStartDate, $sEndDate)
+    {
+        // Firstly, format the provided dates.
+        // This function works best with YYYY-MM-DD
+        // but other date formats will work thanks
+        // to strtotime().
         $sStartDate = gmdate("Y-m-d", strtotime($sStartDate));
         $sEndDate = gmdate("Y-m-d", strtotime($sEndDate));
 
-        // Start the variable off with the start date  
+        // Start the variable off with the start date
         $aDays[] = $sStartDate;
 
-        // Set a 'temp' variable, sCurrentDate, with  
-        // the start date - before beginning the loop  
+        // Set a 'temp' variable, sCurrentDate, with
+        // the start date - before beginning the loop
         $sCurrentDate = $sStartDate;
 
-        // While the current date is less than the end date  
+        // While the current date is less than the end date
         while ($sCurrentDate < $sEndDate) {
-            // Add a day to the current date  
+            // Add a day to the current date
             $sCurrentDate = gmdate("Y-m-d", strtotime("+1 day", strtotime($sCurrentDate)));
 
-            // Add this new day to the aDays array  
+            // Add this new day to the aDays array
             $aDays[] = $sCurrentDate;
         }
 
-        // Once the loop has finished, return the  
-        // array of days.  
+        // Once the loop has finished, return the
+        // array of days.
         return $aDays;
     }
 
-    function viewCalendar($id = '') {
-
+    public function viewCalendar($id = '')
+    {
         $idArr = array('id' => $id);
         //print_r($idArr); die;
         $data['idArr'] = $idArr;
         $this->load->view('admin/product/viewcalendar', $data);
     }
 
-    public function pdf_report() {
+    public function pdf_report()
+    {
         $this->load->helper(array('Pdf_create'));   //  Load helper
         $data = file_get_contents(site_url('admin/product/display_product_list')); // Pass the url of html report
         create_pdf($data); //Create pdf
     }
 
-    public function dragimageuploadedit() {
+    public function dragimageuploadedit()
+    {
         $this->data['id'] = $this->uri->segment(4, 0);
         $this->load->view('admin/product/dragndrop', $this->data);
     }
 
-    public function dragupload() {
-
+    public function dragupload()
+    {
         $this->load->view('admin/product/upload');
     }
 
-    public function dragimageuploadinsert() {
-
+    public function dragimageuploadinsert()
+    {
         $this->load->view('admin/product/dragndrop');
     }
 
-    public function get_sub_type_details() {
+    public function get_sub_type_details()
+    {
         $typeId = $this->input->post('typeId');
         //echo $typeId; die;
         $get_sub_types = $this->product_model->get_all_details(PRODUCT_SUBATTRIBUTE, array('attr_id' => $typeId));
@@ -1859,7 +1845,8 @@ class Product extends MY_Controller {
                 </div>';
     }
 
-    public function prop_id_check_dub() {
+    public function prop_id_check_dub()
+    {
         $propId = $this->input->post('propId');
 
         $this->db->select('property_id');
@@ -1874,7 +1861,8 @@ class Product extends MY_Controller {
         }
     }
 
-    public function edit_sub_type_details() {
+    public function edit_sub_type_details()
+    {
         $typeId = $this->input->post('typeId');
         $productID = $this->input->post('prodId');
 
@@ -1887,7 +1875,6 @@ class Product extends MY_Controller {
              <select id="property_sub_type" name="property_sub_type">
                   	<option value="0" selected="selected">Select</option>';
         foreach ($get_sub_types->result() as $typeVals) {
-
             echo '<option value="' . $typeVals->id . '"';
             if ($prodDet->row()->property_sub_type == $typeVals->id) {
                 echo ' ' . 'selected="selected"';
@@ -1899,41 +1886,45 @@ class Product extends MY_Controller {
                 </div>';
     }
 
-    function tessadfasf() {
-		
+    public function tessadfasf()
+    {
         $imageName = @implode(',', $this->input->post('imgUpload'));
 
-
         $imageNameNew = @explode(',', $imageName);
+        if (extension_loaded('gd') && function_exists('gd_info')) {
+            $s = 0;
+            foreach ($this->input->post('imgUploadUrl') as $imgUrl) {
+                $imagPath = getcwd() . '/images/product/';
+                $savepath = getcwd() . '/images/product/thumb/';
 
-        $s = 0;
-        foreach ($this->input->post('imgUploadUrl') as $imgUrl) {
+                copy($imgUrl, $imagPath . $imageNameNew[$s]);
 
-            //echo '<br>'.$imgUrl.$imageNameNew[$s];
-            copy($imgUrl, './images/product/' . $imageNameNew[$s]);
-            unlink('server/php/files/' . $imageNameNew[$s]);
-            unlink('server/php/files/thumbnail/' . $imageNameNew[$s]);
+                unlink('server/php/files/thumbnail/' . $imageNameNew[$s]);
+                $fileName = $imageNameNew[$s];
+                @copy("server/php/files/" . $fileName, $savepath . $fileName);
+                @copy("server/php/files/" . $fileName, $imagPath . $fileName);
+                $target_file = $imagPath . $fileName;
+                unlink('server/php/files/' . $imageNameNew[$s]);
 
-            $fileName = $imageNameNew[$s];
-            $imagPath = 'images/product/';
-            $savepath = 'images/product/thumb/';
-            @copy($imagPath . $fileName, $savepath . $fileName);
-            $target_file = 'images/product/' . $fileName;
-            list($w, $h) = getimagesize($target_file);
-            $option = $this->getImageShape($w, $h, $target_file);
-            $resizeObj = new Resizeimage($target_file);
-            $resizeObj->resizeImage(250, 162, $option);
-            $resizeObj->saveImage('images/product/thumb/' . $fileName, 100);
-            $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
-            $this->ImageCompress($savepath . $fileName, $savepath . $fileName);
+                if (file_exists($target_file) && is_readable($target_file)) {
+                    $size = @getimagesize($target_file);
+                    $w = $size['width'];
+                    $h = $size['height'];
+                    $option = $this->getImageShape($w, $h, $target_file);
+                    $resizeObj = new Resizeimage($target_file);
+                    $resizeObj->resizeImage($w, $h, $option);
+                    $resizeObj->saveImage($savepath . $fileName, 100);
+                    $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
+                    $this->ImageCompress($savepath . $fileName, $savepath . $fileName);
+                } else {
+                    trigger_error('File or permission problems');
+                }
 
-            $s++;
+                $s++;
+            }
+        } else {
+            trigger_error('GD extension not loaded');
         }
-
-        //echo $imageName; 
-        //echo '<pre>'; print_r($_POST); die;
-
-
 
         $id = $this->input->post('id');
         if ($id != '') {
@@ -1960,7 +1951,8 @@ class Product extends MY_Controller {
         redirect(base_url() . 'admin/product/edit_product_form/' . $id);
     }
 
-    function Get_sourcer_value() {
+    public function Get_sourcer_value()
+    {
         $semail = $this->input->post('semail');
         $secretCode = $this->product_model->get_all_details(SOURCER_INFO, array('s_email' => $semail));
         if ($secretCode->num_rows() == 1) {
@@ -1982,7 +1974,8 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    function Get_manager_value() {
+    public function Get_manager_value()
+    {
         $memail = $this->input->post('memail');
         $secretCode = $this->product_model->get_all_details(MANAGER_INFO, array('m_email' => $memail));
         if ($secretCode->num_rows() == 1) {
@@ -2004,7 +1997,8 @@ class Product extends MY_Controller {
         echo json_encode($returnStr);
     }
 
-    public function download_images() {
+    public function download_images()
+    {
         $propertyId = $this->uri->segment(4);
 
         $sortArr1 = array('field' => 'imgPriority', 'type' => 'ASC');
@@ -2024,7 +2018,7 @@ class Product extends MY_Controller {
         }
 
         if (rmdir('zip-image/' . $propertyId)) {
-            //echo "deleted";die;   
+            //echo "deleted";die;
         }
 
         redirect('zip-image/ror-images-' . $propertyId . '.zip');
@@ -2036,7 +2030,8 @@ class Product extends MY_Controller {
           $this->zip->download('ror-images-'.$propertyId.'.zip'); */
     }
 
-    function loadmoreImages() {
+    public function loadmoreImages()
+    {
         //echo '<pre>'; print_r($_POST);die;
 
         $limit = 10;
@@ -2052,7 +2047,6 @@ class Product extends MY_Controller {
         //echo '<pre>'; print_r($prdImg->result());die;
         $trImg = '';
         foreach ($prdImg->result() as $ProImag) {
-
             $trImg.= '<tr id="img_' . $ProImag->id . '">
                 <td class="center tr_select "><input type="text" name="imgtitle[]"  onChange="javascript:ChangeImagetitle(this,' . $ProImag->id . ');" value="' . $ProImag->imgtitle . '" /></td>
 				<td class="center"><img src="' . base_url() . 'images/product/' . $ProImag->product_image . '"  width="200px" /></td>
@@ -2064,7 +2058,8 @@ class Product extends MY_Controller {
         echo $trImg;
     }
 
-    public function image_resize_script() {
+    public function image_resize_script()
+    {
         $basePath = base_url();
         $imagPath = 'images/product/';
         $savepath = 'images/product/thumb/';
@@ -2089,7 +2084,6 @@ class Product extends MY_Controller {
             closedir($handle);
         }
     }
-
 }
 
 /* End of file product.php */

@@ -256,521 +256,489 @@
                                     <li><a href="#" <?php
                                         if ($currentUrl == 'adminlogin') {
                                             echo 'class="active"';
-                                        }
-                                        ?>><span class="nav_icon admin_user"></span> Admin<span class="up_down_arrow">&nbsp;</span></a>
+                                        } ?>><span class="nav_icon admin_user"></span> Admin<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                                                 if ($currentUrl == 'adminlogin' || $currentUrl == 'sitemapcreate') {
                                                     echo 'style="display: block;"';
                                                 } else {
                                                     echo 'style="display: none;"';
-                                                }
-                                                ?>>
+                                                } ?>>
                                             <li><a href="admin/adminlogin/display_admin_list" <?php
                                                    if ($currentPage == 'display_admin_list') {
                                                        echo 'class="active"';
-                                                   }
-                                                   ?>><span class="list-icon">&nbsp;</span>Admin Users</a></li>
+                                                   } ?>><span class="list-icon">&nbsp;</span>Admin Users</a></li>
                                             <li><a href="admin/adminlogin/change_admin_password_form" <?php
                                                 if ($currentPage == 'change_admin_password_form') {
                                                     echo 'class="active"';
-                                                }
-                                                ?>><span class="list-icon">&nbsp;</span>Change Password</a></li>
+                                                } ?>><span class="list-icon">&nbsp;</span>Change Password</a></li>
                                             <li><a href="admin/adminlogin/admin_global_settings_form" <?php
                                                 if ($currentPage == 'admin_global_settings_form') {
                                                     echo 'class="active"';
-                                                }
-                                                ?>><span class="list-icon">&nbsp;</span>Settings</a></li>
+                                                } ?>><span class="list-icon">&nbsp;</span>Settings</a></li>
                                             <li><a href="admin/adminlogin/admin_smtp_settings" <?php
                                         if ($currentPage == 'admin_smtp_settings') {
                                             echo 'class="active"';
-                                        }
-                                        ?>><span class="list-icon">&nbsp;</span>SMTP Settings</a></li>
+                                        } ?>><span class="list-icon">&nbsp;</span>SMTP Settings</a></li>
                                             <li><a href="admin/sitemapcreate" <?php
                                                    if ($currentUrl == 'sitemapcreate') {
                                                        echo 'class="active"';
-                                                   }
-                                                   ?>><span class="list-icon">&nbsp;</span>Sitemap Creation</a></li>
+                                                   } ?>><span class="list-icon">&nbsp;</span>Sitemap Creation</a></li>
                                         </ul>
                                     </li>
 
                                     <li><a href="#" <?php
                                             if ($currentUrl == 'subadmin') {
                                                 echo 'class="active"';
-                                            }
-                                                   ?>><span class="nav_icon user"></span> Subadmin<span class="up_down_arrow">&nbsp;</span></a>
+                                            } ?>><span class="nav_icon user"></span> Subadmin<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                                         if ($currentUrl == 'subadmin') {
                                             echo 'style="display: block;"';
                                         } else {
                                             echo 'style="display: none;"';
-                                        }
-                                        ?>>
+                                        } ?>>
                                             <li><a href="admin/subadmin/display_sub_admin" <?php
                                                 if ($currentPage == 'display_sub_admin') {
                                                     echo 'class="active"';
-                                                }
-                                                ?>><span class="list-icon">&nbsp;</span>Subadmin List</a></li>
+                                                } ?>><span class="list-icon">&nbsp;</span>Subadmin List</a></li>
                                             <li><a href="admin/subadmin/add_sub_admin_form" <?php
                                                    if ($currentPage == 'add_sub_admin_form') {
                                                        echo 'class="active"';
-                                                   }
-                                                   ?>><span class="list-icon">&nbsp;</span>Add New Subadmin</a></li>
+                                                   } ?>><span class="list-icon">&nbsp;</span>Add New Subadmin</a></li>
                                         </ul>
                                     </li>
 
-                                    <?php } if ((isset($user) && is_array($user)) && in_array('0', $user) || $allPrev == '1') { ?>
+                                    <?php
+                                    } if ((isset($user) && is_array($user)) && in_array('0', $user) || $allPrev == '1') {
+                                        ?>
                                     <li><a href="#" <?php
                                     if ($currentUrl == 'users') {
                                         echo 'class="active"';
-                                    }
-                                        ?>><span class="nav_icon users"></span> Users<span class="up_down_arrow">&nbsp;</span></a>
+                                    } ?>><span class="nav_icon users"></span> Users<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                                     if ($currentUrl == 'users') {
                                         echo 'style="display: block;"';
                                     } else {
                                         echo 'style="display: none;"';
-                                    }
-                                        ?>>
+                                    } ?>>
                                             <li><a href="admin/users/display_user_dashboard" <?php
                                             if ($currentPage == 'display_user_dashboard') {
                                                 echo 'class="active"';
-                                            }
-                                            ?>><span class="list-icon">&nbsp;</span>Dashboard</a></li>
+                                            } ?>><span class="list-icon">&nbsp;</span>Dashboard</a></li>
                                             <li><a href="admin/users/display_user_list" <?php
                                             if ($currentPage == 'display_user_list') {
                                                 echo 'class="active"';
-                                            }
-                                            ?>><span class="list-icon">&nbsp;</span>Users List</a></li>
-                                        <?php if ($allPrev == '1' || in_array('1', $user)) { ?>
+                                            } ?>><span class="list-icon">&nbsp;</span>Users List</a></li>
+                                        <?php if ($allPrev == '1' || in_array('1', $user)) {
+                                                ?>
                                                 <li><a href="admin/users/add_user_form" <?php
                                                if ($currentPage == 'add_user_form') {
                                                    echo 'class="active"';
-                                               }
-                                               ?>><span class="list-icon">&nbsp;</span>Add New User</a></li>
-                                        <?php } ?>
+                                               } ?>><span class="list-icon">&nbsp;</span>Add New User</a></li>
+                                        <?php
+                                            } ?>
                                         </ul>
                                     </li>
 
-                                            <?php } if ((isset($renter) && is_array($renter)) && in_array('0', $renter) || $allPrev == '1') { ?>
+                                            <?php
+                                    } if ((isset($renter) && is_array($renter)) && in_array('0', $renter) || $allPrev == '1') {
+                                        ?>
                                     <li><a href="#" <?php
                                                    if ($currentUrl == 'seller' || $currentUrl == 'commission') {
                                                        echo 'class="active"';
-                                                   }
-                                                   ?>><span class="nav_icon users_2"></span> Renters<span class="up_down_arrow">&nbsp;</span></a>
+                                                   } ?>><span class="nav_icon users_2"></span> Renters<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                                                    if ($currentUrl == 'seller' || $currentUrl == 'commission') {
                                                        echo 'style="display: block;"';
                                                    } else {
                                                        echo 'style="display: none;"';
-                                                   }
-                                                   ?>>
+                                                   } ?>>
                                             <li><a href="admin/seller/display_seller_dashboard" <?php
                                             if ($currentPage == 'display_seller_dashboard') {
                                                 echo 'class="active"';
-                                            }
-                                            ?>><span class="list-icon">&nbsp;</span>Dashboard</a></li>
+                                            } ?>><span class="list-icon">&nbsp;</span>Dashboard</a></li>
                                             <li><a href="admin/seller/display_seller_list" <?php
                                             if ($currentPage == 'display_seller_list') {
                                                 echo 'class="active"';
-                                            }
-                                            ?>><span class="list-icon">&nbsp;</span>Renters List</a></li>
+                                            } ?>><span class="list-icon">&nbsp;</span>Renters List</a></li>
                                             <!--<li><a href="admin/seller/display_seller_requests" <?php
                                             if ($currentPage == 'display_seller_requests') {
                                                 echo 'class="active"';
-                                            }
-                                            ?>><span class="list-icon">&nbsp;</span>Seller Requests</a></li>
+                                            } ?>><span class="list-icon">&nbsp;</span>Seller Requests</a></li>
                                             <li><a href="admin/commission/display_commission_lists" <?php
                                         if ($currentPage == 'display_commission_lists') {
                                             echo 'class="active"';
-                                        }
-                                        ?>><span class="list-icon">&nbsp;</span>Commission Tracking</a></li>-->
+                                        } ?>><span class="list-icon">&nbsp;</span>Commission Tracking</a></li>-->
                                         </ul>
                                     </li>
 
-                                        <?php } if ((isset($rental) && is_array($rental)) && in_array('0', $rental) || $allPrev == '1') { ?>
+                                        <?php
+                                    } if ((isset($rental) && is_array($rental)) && in_array('0', $rental) || $allPrev == '1') {
+                                        ?>
                                     <li><a href="#" <?php
                                         if ($currentUrl == 'product' || $currentUrl == 'comments') {
                                             echo 'class="active"';
-                                        }
-                                            ?>><span class="nav_icon folder"></span> Rentals<span class="up_down_arrow">&nbsp;</span></a>
+                                        } ?>><span class="nav_icon folder"></span> Rentals<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                                                 if ($currentUrl == 'product' || $currentUrl == 'comments') {
                                                     echo 'style="display: block;"';
                                                 } else {
                                                     echo 'style="display: none;"';
-                                                }
-                                                ?>>
+                                                } ?>>
 
 
                                             <li><a href="admin/product/display_rental_dashboard" <?php
                                     if ($currentPage == 'display_rental_dashboard') {
                                         echo 'class="active"';
-                                    }
-                                    ?>><span class="list-icon">&nbsp;</span>Dashboard</a></li>
+                                    } ?>><span class="list-icon">&nbsp;</span>Dashboard</a></li>
 
 
                                             <li><a href="admin/product/display_product_list" <?php
                                     if ($currentPage == 'display_product_list') {
                                         echo 'class="active"';
-                                    }
-                                    ?>><span class="list-icon">&nbsp;</span>Rentals List</a></li>
+                                    } ?>><span class="list-icon">&nbsp;</span>Rentals List</a></li>
                                             <!--<li><a href="admin/product/display_user_product_list" <?php
                                 if ($currentPage == 'display_user_product_list') {
                                     echo 'class="active"';
-                                }
-                                    ?>><span class="list-icon">&nbsp;</span>Affiliate Rental List</a></li>
+                                } ?>><span class="list-icon">&nbsp;</span>Affiliate Rental List</a></li>
                         <li><a href="admin/comments/view_product_comments" <?php
                                 if ($currentPage == 'view_product_comments') {
                                     echo 'class="active"';
-                                }
-                                    ?>><span class="list-icon">&nbsp;</span>Rental Comments List</a></li>-->
-                                    <?php if ($allPrev == '1' || in_array('1', $rental)) { ?>
+                                } ?>><span class="list-icon">&nbsp;</span>Rental Comments List</a></li>-->
+                                    <?php if ($allPrev == '1' || in_array('1', $rental)) {
+                                    ?>
                                                 <li><a href="admin/product/add_product_form" <?php
                                         if ($currentPage == 'add_product_form') {
                                             echo 'class="active"';
-                                        }
-                                        ?>><span class="list-icon">&nbsp;</span>Add New Rental</a></li>
-                                    <?php } ?>
+                                        } ?>><span class="list-icon">&nbsp;</span>Add New Rental</a></li>
+                                    <?php
+                                } ?>
                                         </ul>
                                     </li>
 
 
-                                <?php } if ((isset($membership) && is_array($membership)) && in_array('0', $membership) || $allPrev == '1') { ?>
+                                <?php
+                                    } if ((isset($membership) && is_array($membership)) && in_array('0', $membership) || $allPrev == '1') {
+                                        ?>
                                     <li><a href="#" <?php
                                     if ($currentUrl == 'membership') {
                                         echo 'class="active"';
-                                    }
-                                    ?>><span class="nav_icon chart_8"></span> Membership Package<span class="up_down_arrow">&nbsp;</span></a>
+                                    } ?>><span class="nav_icon chart_8"></span> Membership Package<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                                     if ($currentUrl == 'membership') {
                                         echo 'style="display: block;"';
                                     } else {
                                         echo 'style="display: none;"';
-                                    }
-                                    ?>>
+                                    } ?>>
                                             <li><a href="admin/membership/display_membership_dashboard" <?php
                                         if ($currentPage == 'display_membership_dashboard') {
                                             echo 'class="active"';
-                                        }
-                                        ?>><span class="list-icon">&nbsp;</span>Dashboard</a></li>
+                                        } ?>><span class="list-icon">&nbsp;</span>Dashboard</a></li>
                                             <!--<li><a href="admin/membership/membership_list" <?php
                                                 if ($currentPage == 'membership_list') {
                                                     echo 'class="active"';
-                                                }
-                                                ?>><span class="list-icon">&nbsp;</span>Subscribed Members</a></li>-->
+                                                } ?>><span class="list-icon">&nbsp;</span>Subscribed Members</a></li>-->
                                             <li><a href="admin/membership/display_membership" <?php
                                                 if ($currentPage == 'display_membership') {
                                                     echo 'class="active"';
-                                                }
-                                                ?>><span class="list-icon">&nbsp;</span>Membership Package List</a></li>
-                                        <?php if ($allPrev == '1' || in_array('1', $membership)) { ?>
+                                                } ?>><span class="list-icon">&nbsp;</span>Membership Package List</a></li>
+                                        <?php if ($allPrev == '1' || in_array('1', $membership)) {
+                                                    ?>
                                                 <li><a href="admin/membership/add_membership_form" <?php
                                                if ($currentPage == 'add_membership_form') {
                                                    echo 'class="active"';
-                                               }
-                                               ?>><span class="list-icon">&nbsp;</span>Add Membership Package</a></li>
-                                        <?php } ?>
+                                               } ?>><span class="list-icon">&nbsp;</span>Add Membership Package</a></li>
+                                        <?php
+                                                } ?>
                                         </ul>
                                     </li>
 
 
-                                    <!--<?php } if ((isset($rate_package) && is_array($rate_package)) && in_array('0', $rate_package) || $allPrev == '1') { ?>
+                                    <!--<?php
+                                    } if ((isset($rate_package) && is_array($rate_package)) && in_array('0', $rate_package) || $allPrev == '1') {
+                                        ?>
                                                   <li><a href="#" <?php
                                                    if ($currentUrl == 'rate_package') {
                                                        echo 'class="active"';
-                                                   }
-                                                   ?>><span class="nav_icon chart_8"></span> Rental Price Package<span class="up_down_arrow">&nbsp;</span></a>
+                                                   } ?>><span class="nav_icon chart_8"></span> Rental Price Package<span class="up_down_arrow">&nbsp;</span></a>
                                                   <ul class="acitem" <?php
                                                    if ($currentUrl == 'rate_package') {
                                                        echo 'style="display: block;"';
                                                    } else {
                                                        echo 'style="display: none;"';
-                                                   }
-                                                   ?>>
+                                                   } ?>>
                                          
                                                           <li><a href="admin/rate_package/display_package_list" <?php
                                     if ($currentPage == 'display_package_list') {
                                         echo 'class="active"';
-                                    }
-                                    ?>><span class="list-icon">&nbsp;</span>Rental Price Package List</a></li>
-                                        <?php if ($allPrev == '1' || in_array('1', $rate_package)) { ?>
+                                    } ?>><span class="list-icon">&nbsp;</span>Rental Price Package List</a></li>
+                                        <?php if ($allPrev == '1' || in_array('1', $rate_package)) {
+                                        ?>
                                                                   <li><a href="admin/rate_package/add_package_form" <?php
                                             if ($currentPage == 'add_package_form') {
                                                 echo 'class="active"';
-                                            }
-                                            ?>><span class="list-icon">&nbsp;</span>Add Rental Price Package</a></li>
-                                                <?php } ?>
+                                            } ?>><span class="list-icon">&nbsp;</span>Add Rental Price Package</a></li>
+                                                <?php
+                                    } ?>
                                                   </ul>
                                                   </li>
                                   
-                                            <?php }if ((isset($paygateway) && is_array($paygateway)) && in_array('0', $paygateway) || $allPrev == '1') {
-                                                ?>
+                                            <?php
+                                    } if ((isset($paygateway) && is_array($paygateway)) && in_array('0', $paygateway) || $allPrev == '1') {
+                                        ?>
                                   <li><a href="#" <?php
                                                if ($currentUrl == 'order' || $this->uri->segment(1, 0) == 'order-review') {
                                                    echo 'class="active"';
-                                               }
-                                               ?>><span class="nav_icon coverflow"></span> Orders<span class="up_down_arrow">&nbsp;</span></a>
+                                               } ?>><span class="nav_icon coverflow"></span> Orders<span class="up_down_arrow">&nbsp;</span></a>
                                                   <ul class="acitem" <?php
                                         if ($currentUrl == 'order' || $this->uri->segment(1, 0) == 'order-review') {
                                             echo 'style="display: block;"';
                                         } else {
                                             echo 'style="display: none;"';
-                                        }
-                                        ?>>
+                                        } ?>>
                                                           <li><a href="admin/order/display_order_paid" <?php
                                     if ($currentPage == 'display_order_paid') {
                                         echo 'class="active"';
-                                    }
-                                        ?>><span class="list-icon">&nbsp;</span>Paid Payment</a></li>
+                                    } ?>><span class="list-icon">&nbsp;</span>Paid Payment</a></li>
                                                           <li><a href="admin/order/display_order_pending" <?php
                                                 if ($currentPage == 'display_order_pending') {
                                                     echo 'class="active"';
-                                                }
-                                                ?>><span class="list-icon">&nbsp;</span>Failed Payment</a></li>
+                                                } ?>><span class="list-icon">&nbsp;</span>Failed Payment</a></li>
                   
                                                   </ul>
                                                   </li>-->
 
 
-                                <?php } if ((isset($contact) && is_array($contact)) && in_array('0', $contact) || $allPrev == '1') { ?>
+                                <?php
+                                    } if ((isset($contact) && is_array($contact)) && in_array('0', $contact) || $allPrev == '1') {
+                                        ?>
 
                                     <li><a href="#" <?php
                                            if ($currentUrl == 'contact' || $this->uri->segment(1, 0) == 'contact-review') {
                                                echo 'class="active"';
-                                           }
-                                           ?>><span class="nav_icon money_2"></span> Contact Owners <span class="up_down_arrow">&nbsp;</span></a>
+                                           } ?>><span class="nav_icon money_2"></span> Contact Owners <span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                                             if ($currentUrl == 'contact' || $this->uri->segment(1, 0) == 'order-review') {
                                                 echo 'style="display: block;"';
                                             } else {
                                                 echo 'style="display: none;"';
-                                            }
-                                            ?>>
+                                            } ?>>
                                             <li><a href="admin/contact/display_contact_dashboard" <?php
                                             if ($currentPage == 'display_contact_dashboard') {
                                                 echo 'class="active"';
-                                            }
-                                            ?>><span class="list-icon">&nbsp;</span>Dashboard </a></li>
+                                            } ?>><span class="list-icon">&nbsp;</span>Dashboard </a></li>
                                             <li><a href="admin/contact/display_contact_list" <?php
                                             if ($currentPage == 'display_contact_list') {
                                                 echo 'class="active"';
-                                            }
-                                            ?>><span class="list-icon">&nbsp;</span>Contact List </a></li>
+                                            } ?>><span class="list-icon">&nbsp;</span>Contact List </a></li>
                                         </ul>
                                     </li>
 
-<?php } if ((isset($attribute) && is_array($attribute)) && in_array('0', $attribute) || $allPrev == '1') { ?>
+<?php
+                                    } if ((isset($attribute) && is_array($attribute)) && in_array('0', $attribute) || $allPrev == '1') {
+                                        ?>
                                     <li><a href="#" <?php
     if ($currentUrl == 'attribute') {
         echo 'class="active"';
-    }
-    ?>><span class="nav_icon cog_3"></span> List<span class="up_down_arrow">&nbsp;</span></a>
+    } ?>><span class="nav_icon cog_3"></span> List<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                                            if ($currentUrl == 'attribute') {
                                                echo 'style="display: block;"';
                                            } else {
                                                echo 'style="display: none;"';
-                                           }
-                                           ?>>
+                                           } ?>>
                                             <li><a href="admin/attribute/display_attribute_list" <?php
                                                 if ($currentPage == 'display_attribute_list') {
                                                     echo 'class="active"';
-                                                }
-                                                ?>><span class="list-icon">&nbsp;</span>Lists</a></li>
+                                                } ?>><span class="list-icon">&nbsp;</span>Lists</a></li>
                                             <li><a href="admin/attribute/display_list_values" <?php
                                                    if ($currentPage == 'display_list_values') {
                                                        echo 'class="active"';
-                                                   }
-                                                   ?>><span class="list-icon">&nbsp;</span>List Values</a></li>
-                                                   <?php if ($allPrev == '1' || in_array('1', $attribute)) { ?>
+                                                   } ?>><span class="list-icon">&nbsp;</span>List Values</a></li>
+                                                   <?php if ($allPrev == '1' || in_array('1', $attribute)) {
+                                                       ?>
                                                 <li><a href="admin/attribute/add_attribute_form" <?php
                                                if ($currentPage == 'add_attribute_form') {
                                                    echo 'class="active"';
-                                               }
-                                               ?>><span class="list-icon">&nbsp;</span>Add New List</a></li>
+                                               } ?>><span class="list-icon">&nbsp;</span>Add New List</a></li>
                                                 <li><a href="admin/attribute/add_list_value_form" <?php
                                                if ($currentPage == 'add_list_value_form') {
                                                    echo 'class="active"';
-                                               }
-                                                       ?>><span class="list-icon">&nbsp;</span>Add List Value</a></li>
-                                            <?php } ?>
+                                               } ?>><span class="list-icon">&nbsp;</span>Add List Value</a></li>
+                                            <?php
+                                                   } ?>
                                         </ul>
                                     </li>
 
 
-                                            <?php } if ((isset($productattribute) && is_array($productattribute)) && in_array('0', $productattribute) || $allPrev == '1') { ?>
+                                            <?php
+                                    } if ((isset($productattribute) && is_array($productattribute)) && in_array('0', $productattribute) || $allPrev == '1') {
+                                        ?>
                                     <li><a href="#" <?php
                                                    if ($currentUrl == 'productattribute') {
                                                        echo 'class="active"';
-                                                   }
-                                                   ?>><span class="nav_icon computer_imac"></span> Property Type<span class="up_down_arrow">&nbsp;</span></a>
+                                                   } ?>><span class="nav_icon computer_imac"></span> Property Type<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                                     if ($currentUrl == 'productattribute') {
                                         echo 'style="display: block;"';
                                     } else {
                                         echo 'style="display: none;"';
-                                    }
-                                    ?>>
+                                    } ?>>
                                             <li><a href="admin/productattribute/display_product_attribute_list" <?php
                                         if ($currentPage == 'display_product_attribute_list') {
                                             echo 'class="active"';
-                                        }
-                                        ?>><span class="list-icon">&nbsp;</span>Property Type List</a></li>
-                                                <?php if ($allPrev == '1' || in_array('1', $productattribute)) { ?>
+                                        } ?>><span class="list-icon">&nbsp;</span>Property Type List</a></li>
+                                                <?php if ($allPrev == '1' || in_array('1', $productattribute)) {
+                                            ?>
                                                 <li><a href="admin/productattribute/add_product_attribute_form" <?php
                                                        if ($currentPage == 'add_product_attribute_form') {
                                                            echo 'class="active"';
-                                                       }
-                                                       ?>><span class="list-icon">&nbsp;</span>Add Property Type</a></li>
-    <?php } ?>
+                                                       } ?>><span class="list-icon">&nbsp;</span>Add Property Type</a></li>
+    <?php
+                                        } ?>
                                         </ul>
                                     </li>
 
-                                <?php } if ((isset($newsletter) && is_array($newsletter)) && in_array('0', $newsletter) || $allPrev == '1') { ?>
+                                <?php
+                                    } if ((isset($newsletter) && is_array($newsletter)) && in_array('0', $newsletter) || $allPrev == '1') {
+                                        ?>
                                     <li><a href="#" <?php
                                     if ($currentUrl == 'newsletter') {
                                         echo 'class="active"';
-                                    }
-                                    ?>><span class="nav_icon mail"></span> Newsletter Template<span class="up_down_arrow">&nbsp;</span></a>
+                                    } ?>><span class="nav_icon mail"></span> Newsletter Template<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                                     if ($currentUrl == 'newsletter') {
                                         echo 'style="display: block;"';
                                     } else {
                                         echo 'style="display: none;"';
-                                    }
-                                    ?>>
+                                    } ?>>
                                             <li><a href="admin/newsletter/display_subscribers_list" <?php
                                 if ($currentPage == 'display_subscribers_list') {
                                     echo 'class="active"';
-                                }
-                                    ?>><span class="list-icon">&nbsp;</span>Subscription List</a></li>
-                                        <?php if ($allPrev == '1' || in_array('1', $newsletter)) { ?>
+                                } ?>><span class="list-icon">&nbsp;</span>Subscription List</a></li>
+                                        <?php if ($allPrev == '1' || in_array('1', $newsletter)) {
+                                    ?>
                                                 <li><a href="admin/newsletter/display_newsletter" <?php
                                             if ($currentPage == 'display_newsletter') {
                                                 echo 'class="active"';
-                                            }
-                                            ?>><span class="list-icon">&nbsp;</span>Email Template List</a></li>
+                                            } ?>><span class="list-icon">&nbsp;</span>Email Template List</a></li>
                                                 <li><a href="admin/newsletter/add_newsletter" <?php
                                                        if ($currentPage == 'add_newsletter') {
                                                            echo 'class="active"';
-                                                       }
-                                                       ?>><span class="list-icon">&nbsp;</span>Add Email Template</a></li>
-                                    <?php } ?>
+                                                       } ?>><span class="list-icon">&nbsp;</span>Add Email Template</a></li>
+                                    <?php
+                                } ?>
                                         </ul>
                                     </li>
 
-                <?php } if ((isset($location) && is_array($location)) && in_array('0', $location) || $allPrev == '1') { ?>
+                <?php
+                                    } if ((isset($location) && is_array($location)) && in_array('0', $location) || $allPrev == '1') {
+                                        ?>
                                     <li><a href="#" <?php
                     if ($currentUrl == 'location') {
                         echo 'class="active"';
-                    }
-                    ?>><span class="nav_icon globe"></span> Location<span class="up_down_arrow">&nbsp;</span></a>
+                    } ?>><span class="nav_icon globe"></span> Location<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
                     if ($currentUrl == 'location') {
                         echo 'style="display: block;"';
                     } else {
                         echo 'style="display: none;"';
-                    }
-                    ?>>
+                    } ?>>
                                             <li><a href="admin/location/display_location_list" <?php
                     if ($currentPage == 'display_location_list') {
                         echo 'class="active"';
-                    }
-                    ?>><span class="list-icon">&nbsp;</span>Location List</a></li>
-    <?php if ($allPrev == '1' || in_array('1', $location)) { ?>
+                    } ?>><span class="list-icon">&nbsp;</span>Location List</a></li>
+    <?php if ($allPrev == '1' || in_array('1', $location)) {
+                        ?>
                                                 <!-- <li><a href="admin/location/add_location_form" <?php
                                         if ($currentPage == 'add_location_form') {
                                             echo 'class="active"';
-                                        }
-                                        ?>><span class="list-icon">&nbsp;</span>Add Location</a></li>-->
-    <?php } ?>
+                                        } ?>><span class="list-icon">&nbsp;</span>Add Location</a></li>-->
+    <?php
+                    } ?>
                                             <!--<li><a href="admin/state/display_location_list" <?php
     if ($currentUrl == 'state') {
         echo 'class="active"';
-    }
-    ?>><span class="nav_icon cog_3"></span> Country Management</a></li>-->
+    } ?>><span class="nav_icon cog_3"></span> Country Management</a></li>-->
                                             <!-- <li><a href="admin/location/display_country_list" <?php
     if ($currentPage == 'display_country_list') {
         echo 'class="active"';
-    }
-    ?>><span class="list-icon">&nbsp;</span>Country List</a></li>
+    } ?>><span class="list-icon">&nbsp;</span>Country List</a></li>
                                             
                                             <li><a href="admin/location/add_tax_form" <?php
     if ($currentPage == 'add_tax_form') {
         echo 'class="active"';
-    }
-    ?>><span class="list-icon">&nbsp;</span>Add State Tax</a></li>
+    } ?>><span class="list-icon">&nbsp;</span>Add State Tax</a></li>
                                             -->
                                         </ul>
                                     </li>
 
-            <?php } if ((isset($cms) && is_array($cms)) && in_array('0', $cms) || $allPrev == '1') { ?>
+            <?php
+                                    } if ((isset($cms) && is_array($cms)) && in_array('0', $cms) || $allPrev == '1') {
+                                        ?>
                                     <li><a href="#" <?php
             if ($currentUrl == 'cms') {
                 echo 'class="active"';
-            }
-            ?>><span class="nav_icon documents"></span> Pages<span class="up_down_arrow">&nbsp;</span></a>
+            } ?>><span class="nav_icon documents"></span> Pages<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
             if ($currentUrl == 'cms') {
                 echo 'style="display: block;"';
             } else {
                 echo 'style="display: none;"';
-            }
-                ?>>
+            } ?>>
                                             <li><a href="admin/cms/display_cms" <?php
             if ($currentPage == 'display_cms') {
                 echo 'class="active"';
-            }
-            ?>><span class="list-icon">&nbsp;</span>List of pages</a></li>
-    <?php if ($allPrev == '1' || in_array('1', $cms)) { ?>
+            } ?>><span class="list-icon">&nbsp;</span>List of pages</a></li>
+    <?php if ($allPrev == '1' || in_array('1', $cms)) {
+                ?>
                                                 <li><a href="admin/cms/add_cms_form" <?php
         if ($currentPage == 'add_cms_form') {
             echo 'class="active"';
-        }
-        ?>><span class="list-icon">&nbsp;</span>Add Main Page</a></li>
+        } ?>><span class="list-icon">&nbsp;</span>Add Main Page</a></li>
                                                 <li><a href="admin/cms/add_subpage_form" <?php
         if ($currentPage == 'add_subpage_form') {
             echo 'class="active"';
-        }
-        ?>><span class="list-icon">&nbsp;</span>Add Sub Page</a></li>
-    <?php } ?>
+        } ?>><span class="list-icon">&nbsp;</span>Add Sub Page</a></li>
+    <?php
+            } ?>
                                         </ul>
                                     </li>
-<?php } if ((isset($city) && is_array($city)) && in_array('0', $city) || $allPrev == '1') { ?>
+<?php
+                                    } if ((isset($city) && is_array($city)) && in_array('0', $city) || $allPrev == '1') {
+                                        ?>
                                     <li><a href="#" <?php
     if ($currentUrl == 'city') {
         echo 'class="active"';
-    }
-    ?>><span class="nav_icon record"></span> City Management<span class="up_down_arrow">&nbsp;</span></a>
+    } ?>><span class="nav_icon record"></span> City Management<span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
     if ($currentUrl == 'city') {
         echo 'style="display: block;"';
     } else {
         echo 'style="display: none;"';
-    }
-    ?>>
+    } ?>>
                                             <li><a href="admin/city/display_city_list" <?php
     if ($currentPage == 'display_city_list') {
         echo 'class="active"';
-    }
-    ?>><span class="list-icon">&nbsp;</span>City List</a></li>
-    <?php if ($allPrev == '1' || in_array('1', $city)) { ?>
+    } ?>><span class="list-icon">&nbsp;</span>City List</a></li>
+    <?php if ($allPrev == '1' || in_array('1', $city)) {
+        ?>
                                                 <li><a href="admin/city/add_city_form" <?php
         if ($currentPage == 'add_city_form') {
             echo 'class="active"';
-        }
-        ?>><span class="list-icon">&nbsp;</span>Add City</a></li>
-    <?php } ?>
+        } ?>><span class="list-icon">&nbsp;</span>Add City</a></li>
+    <?php
+    } ?>
                                         </ul>
                                     </li>
-<?php } /* <?php 
+<?php
+                                    } /* <?php
   if ((isset($multilang) && is_array($multilang)) && in_array('0', $multilang) || $allPrev == '1'){ ?>
 
   <li><a href="admin/multilanguage" <?php if($currentUrl=='multilanguage'){ echo 'class="active"';} ?>><span class="nav_icon cog_3"></span> Language Management</a></li><?php }?> */ ?>
                                 <li><a href="#" <?php
 if ($currentUrl == 'slider' || $currentUrl == 'comments') {
-    echo 'class="active"';
-}
+                                        echo 'class="active"';
+                                    }
 ?>><span class="nav_icon folder"></span> Slider<span class="up_down_arrow">&nbsp;</span></a>
                                     <ul class="acitem" <?php
 if ($currentUrl == 'slider' || $currentUrl == 'comments') {
@@ -805,30 +773,29 @@ if ($currentPage == 'add_slider_form') {
   </ul>
   </li>
   <?php } */ ?>   
-<?php if ((isset($testimonials) && is_array($testimonials)) && in_array('0', $testimonials) || $allPrev == '1') { ?>
+<?php if ((isset($testimonials) && is_array($testimonials)) && in_array('0', $testimonials) || $allPrev == '1') {
+    ?>
 
                                     <li><a href="#" <?php
     if ($currentUrl == 'testimonials' || $this->uri->segment(1, 0) == 'testimonials-review') {
         echo 'class="active"';
-    }
-    ?>><span class="nav_icon folder"></span> Review <span class="up_down_arrow">&nbsp;</span></a>
+    } ?>><span class="nav_icon folder"></span> Review <span class="up_down_arrow">&nbsp;</span></a>
                                         <ul class="acitem" <?php
     if ($currentUrl == 'testimonials' || $this->uri->segment(1, 0) == 'testimonials-review') {
         echo 'style="display: block;"';
     } else {
         echo 'style="display: none;"';
-    }
-    ?>>
+    } ?>>
 
                                             <li><a href="admin/review/display_review_list" <?php
     if ($currentPage == 'display_testimonials_list') {
         echo 'class="active"';
-    }
-    ?>><span class="list-icon">&nbsp;</span>Review List </a></li>
+    } ?>><span class="list-icon">&nbsp;</span>Review List </a></li>
 
                                         </ul>
                                     </li> 
-<?php } ?>   
+<?php
+} ?>   
                             </ul>
                         </div>
                     </div>
@@ -837,22 +804,28 @@ if ($currentPage == 'add_slider_form') {
 extract($privileges);
 ?>
                 <div class="header_right">
-                    <div id="user_nav" <?php if ($allPrev != '1') { ?>style="width: 250px;"<?php } ?>>
+                    <div id="user_nav" <?php if ($allPrev != '1') {
+    ?>style="width: 250px;"<?php
+} ?>>
                         <ul>
                             <li class="user_thumb"><span class="icon"><img src="images/user_thumb.png" width="30" height="30" alt="User"></span></li>
                             <li class="user_info">
                                 <span class="user_name">Administrator</span>
-<?php if ($allPrev == '1') { ?>
+<?php if ($allPrev == '1') {
+        ?>
                                     <span>
                                         <a href="<?php echo base_url(); ?>" target="_blank" class="tipBot" title="View Site">Visit Site</a> &#124; 
                                         <a href="admin/adminlogin/admin_global_settings_form" class="tipBot" title="Edit account details">Settings</a>
                                     </span>
-<?php } else { ?>
+<?php
+    } else {
+        ?>
                                     <span>
                                         <a href="<?php echo base_url(); ?>" target="_blank" class="tipBot" title="View Site">Visit Site</a> &#124; 
                                         <a href="admin/adminlogin/change_admin_password_form" class="tipBot" title="Click to change your password">Change Password</a> 
                                     </span>
-<?php } ?>
+<?php
+    } ?>
                             </li>
                             <li class="logout"><a href="admin/adminlogin/admin_logout" class="tipBot" title="Logout"><span class="icon"></span>Logout</a></li>
                         </ul>
@@ -877,18 +850,22 @@ extract($privileges);
                 </div>
                 -->
             </div>
-<?php if (validation_errors() != '') { ?>
+<?php if (validation_errors() != '') {
+        ?>
                 <div id="validationErr">
                     <script>setTimeout("hideErrDiv('validationErr')", 3000);</script>
                     <p><?php echo validation_errors(); ?></p>
                 </div>
-<?php } ?>
-<?php if ($flash_data != '') { ?>
+<?php
+    } ?>
+<?php if ($flash_data != '') {
+        ?>
                 <div class="errorContainer" id="<?php echo $flash_data_type; ?>">
                     <script>setTimeout("hideErrDiv('<?php echo $flash_data_type; ?>')", 3000);</script>
                     <p><span><?php echo $flash_data; ?></span></p>
                 </div>
-<?php } ?>
+<?php
+    } ?>
             <!-- Preloader -->
             <script type="text/javascript">// <![CDATA[
                 $(window).load(function () {

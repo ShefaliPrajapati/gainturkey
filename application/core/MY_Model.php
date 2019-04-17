@@ -1,31 +1,32 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
- * 
+ *
  * This model contains all common db related functions
  * @author Teamtweaks
  *
  */
-class My_Model extends CI_Model {
+class My_Model extends CI_Model
+{
 
     /**
-     * 
+     *
      * This function connect the database and load the functions from CI_Model
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         /* Multilanguage start */
         if ($this->uri->segment('1') != 'admin') {
-
             $selectedLanguage = $this->session->userdata('language_code');
             $defaultLanguage = 'en';
             $filePath = APPPATH . "language/" . $selectedLanguage . "/" . $selectedLanguage . "_lang.php";
             if ($selectedLanguage != '') {
-
                 if (!(is_file($filePath))) {
                     $this->lang->load($defaultLanguage, $defaultLanguage);
                 } else {
@@ -39,15 +40,16 @@ class My_Model extends CI_Model {
     }
 
     /**
-     * 
+     *
      * This function returns the table contents based on data
      * @param String $table	->	Table name
      * @param Array $condition	->	Conditions
      * @param Array $sortArr	->	Sorting details
-     * 
+     *
      * return Array
      */
-    public function get_all_details($table = '', $condition = '', $sortArr = '') {
+    public function get_all_details($table = '', $condition = '', $sortArr = '')
+    {
         if ($sortArr != '' && is_array($sortArr)) {
             foreach ($sortArr as $sortRow) {
                 if (is_array($sortRow)) {
@@ -58,7 +60,8 @@ class My_Model extends CI_Model {
         return $this->db->get_where($table, $condition);
     }
 
-    public function reserved_details() {
+    public function reserved_details()
+    {
         $this->db->select('id, property_status, reserved_time');
         $this->db->where('property_status', 'Reserved');
         $this->db->from(PRODUCT);
@@ -66,7 +69,8 @@ class My_Model extends CI_Model {
         return $result;
     }
 
-    public function get_all_details_product($table = '', $condition = '', $sortArr = '') {
+    public function get_all_details_product($table = '', $condition = '', $sortArr = '')
+    {
         if ($sortArr != '' && is_array($sortArr)) {
             foreach ($sortArr as $sortRow) {
                 //echo "<pre>";print_r($sortArr);die;
@@ -79,13 +83,14 @@ class My_Model extends CI_Model {
     }
 
     /**
-     * 
+     *
      * This function update the table contents based on params
      * @param String $table		->	Table name
      * @param Array $data		->	New data
      * @param Array $condition	->	Conditions
      */
-    public function update_details($table = '', $data = '', $condition = '') {
+    public function update_details($table = '', $data = '', $condition = '')
+    {
         $this->db->where($condition);
         $this->db->update($table, $data);
         //echo $this->db->last_query(); die;
@@ -94,32 +99,35 @@ class My_Model extends CI_Model {
     }
 
     /**
-     * 
+     *
      * Simple function for inserting data into a table
      * @param String $table
      * @param Array $data
      */
-    public function simple_insert($table = '', $data = '') {
+    public function simple_insert($table = '', $data = '')
+    {
         //echo "<pre>";print_r($data);die;
         $this->db->insert($table, $data);
     }
 
-    public function simple_copy($tableone = '', $tabletwo = '', $condition = '') {
+    public function simple_copy($tableone = '', $tabletwo = '', $condition = '')
+    {
         $select_qry = "INSERT INTO " . $tableone . " SELECT * FROM " . $tabletwo . " WHERE " . $condition;
         $query = $this->ExecuteQuery($select_qry);
         return $query;
     }
 
     /**
-     * 
+     *
      * This function do all insert and edit operations
      * @param String $table		->	Table name
      * @param String $mode		->	insert, update
-     * @param Array $excludeArr	
+     * @param Array $excludeArr
      * @param Array $dataArr
      * @param Array $condition
      */
-    public function commonInsertUpdate($table = '', $mode = '', $excludeArr = '', $dataArr = '', $condition = '') {
+    public function commonInsertUpdate($table = '', $mode = '', $excludeArr = '', $dataArr = '', $condition = '')
+    {
         $inputArr = array();
         foreach ($this->input->post() as $key => $val) {
             if (!in_array($key, $excludeArr)) {
@@ -129,7 +137,7 @@ class My_Model extends CI_Model {
         $finalArr = array_merge($inputArr, $dataArr);
         if ($mode == 'insert') {
             return $this->db->insert($table, $finalArr);
-        } else if ($mode == 'update') {
+        } elseif ($mode == 'update') {
             $this->db->where($condition);
 
             return $this->db->update($table, $finalArr);
@@ -140,7 +148,8 @@ class My_Model extends CI_Model {
         }
     }
 
-    public function commonInsertUpdate1($table = '', $mode = '', $excludeArr = '', $dataArr = '', $condition = '') {
+    public function commonInsertUpdate1($table = '', $mode = '', $excludeArr = '', $dataArr = '', $condition = '')
+    {
         if ($this->input->post('password') == '') {
             $inputArr = array('first_name' => $this->input->post('first_name'),
                 'last_name' => $this->input->post('last_name'),
@@ -161,35 +170,38 @@ class My_Model extends CI_Model {
         $finalArr = array_merge($inputArr, $dataArr);
         if ($mode == 'insert') {
             return $this->db->insert($table, $finalArr);
-        } else if ($mode == 'update') {
+        } elseif ($mode == 'update') {
             $this->db->where($condition);
             return $this->db->update($table, $finalArr);
         }
     }
 
     /**
-     * 
+     *
      * For getting last insert id
      */
-    public function get_last_insert_id() {
+    public function get_last_insert_id()
+    {
         return $this->db->insert_id();
     }
 
     /**
-     * 
+     *
      * This function do the delete operation
      * @param String $table
      * @param Array $condition
      */
-    public function commonDelete($table = '', $condition = '') {
+    public function commonDelete($table = '', $condition = '')
+    {
         $this->db->delete($table, $condition);
     }
 
     /**
-     * 
+     *
      * This function return the admin settings details
      */
-    public function getAdminSettings() {
+    public function getAdminSettings()
+    {
         $this->db->select('*');
         $this->db->where(ADMIN . '.id', '1');
         $this->db->from(ADMIN_SETTINGS);
@@ -201,11 +213,11 @@ class My_Model extends CI_Model {
     }
 
     /**
-     * 
+     *
      * This function return the Resevation settings details
      */
-    public function getResevationSettings() {
-
+    public function getResevationSettings()
+    {
         $this->db->select('p.id,p.property_id,pi.product_image');
         $this->db->from(PRODUCT . ' as p');
         $this->db->join(PRODUCT_PHOTOS . ' as pi', "pi.property_id=p.id", "LEFT");
@@ -217,8 +229,8 @@ class My_Model extends CI_Model {
         return $result;
     }
 
-    public function changereservedaftertime() {
-
+    public function changereservedaftertime()
+    {
         $this->db->select('*');
         $this->db->from(PRODUCT);
         $this->db->where('property_status = "Reserved" and modified > NOW() + INTERVAL -10 MINUTE');
@@ -228,7 +240,8 @@ class My_Model extends CI_Model {
         return $result;
     }
 
-    public function getSoldSettings() {
+    public function getSoldSettings()
+    {
         $curTimeVal = date('Y-m-d H:i:s');
 
         $this->db->select('p.id,p.property_id,pi.product_image');
@@ -248,8 +261,8 @@ class My_Model extends CI_Model {
         return $result;
     }
 
-    public function getResevationSettingsOnce() {
-
+    public function getResevationSettingsOnce()
+    {
         $curTimeVal = date('Y-m-d H:i:s');
 
         $this->db->select('p.id,p.property_id,pi.product_image');
@@ -264,7 +277,8 @@ class My_Model extends CI_Model {
         return $result;
     }
 
-    public function getResevationSettingslogin() {
+    public function getResevationSettingslogin()
+    {
         $curTimeVal = date('Y-m-d H:i:s');
         $this->db->select('p.id,p.property_id,pi.product_image');
         $this->db->from(PRODUCT . ' as p');
@@ -278,12 +292,13 @@ class My_Model extends CI_Model {
     }
 
     /**
-     * 
+     *
      * This function change the status of records and delete the records
      * @param String $table
      * @param String $column
      */
-    public function activeInactiveCommon($table = '', $column = '') {
+    public function activeInactiveCommon($table = '', $column = '')
+    {
         $data = $_POST['checkbox_id'];
         for ($i = 0; $i < count($data); $i++) {
             if ($data[$i] == 'on') {
@@ -334,12 +349,13 @@ class My_Model extends CI_Model {
     }
 
     /**
-     * 
+     *
      * Common function for selecting records from table
      * @param String $tableName
      * @param Array $paraArr
      */
-    public function selectRecordsFromTable($tableName, $paraArr) {
+    public function selectRecordsFromTable($tableName, $paraArr)
+    {
         extract($paraArr);
         $this->db->select($selectValues);
         $this->db->from($tableName);
@@ -367,25 +383,26 @@ class My_Model extends CI_Model {
     }
 
     /**
-     * 
+     *
      * Common function for executing mysql query
      * @param String $Query	->	Mysql Query
      */
-    public function ExecuteQuery($Query) {
-		ini_set('mysql.connect_timeout', 300);
-		ini_set('default_socket_timeout', 300); 
+    public function ExecuteQuery($Query)
+    {
+        ini_set('mysql.connect_timeout', 300);
+        ini_set('default_socket_timeout', 300);
         $this->db->query('SET SQL_BIG_SELECTS=1');
         return $this->db->query($Query);
     }
 
     /**
-     * 
-     * Category -> product count function 
+     *
+     * Category -> product count function
      * @param String $res	->product category colum values
      * @param String $id	->Category id
      */
-    public function productPerCategory($res, $id) {
-
+    public function productPerCategory($res, $id)
+    {
         $option_exp = "";
 
         echo '<pre>';
@@ -408,7 +425,8 @@ class My_Model extends CI_Model {
         }
     }
 
-    public function mini_cart_view($userid = '') {
+    public function mini_cart_view($userid = '')
+    {
 
         /*         * *****************************Get Language Files Start********************************************* */
 
@@ -483,7 +501,6 @@ class My_Model extends CI_Model {
         if ($cartMiniVal->num_rows() > 0) {
             $s = 0;
             foreach ($cartMiniVal->result() as $CartRow) {
-
                 $newImg = @explode(',', $CartRow->image);
 
                 if ($newImg[0] != '') {
@@ -513,7 +530,6 @@ class My_Model extends CI_Model {
         if ($SubcribeMiniRes->num_rows() > 0) {
             $s = 0;
             foreach ($SubcribeMiniRes->result() as $SubCribRow) {
-
                 $SubscribMiniValue.= '<div id="SubcribtMinidivId_' . $s . '"><table><tbody><tr>
 	        	<th class="info"><a href="fancybox/' . $SubCribRow->fancybox_id . '/' . $SubCribRow->seourl . '"><img src="images/site/blank.gif" style="background-image:url(' . FANCYBOXPATH . $SubCribRow->image . ')" alt="' . $SubCribRow->name . '"><strong>' . $SubCribRow->name . '</strong></a></th>
 	            <td class="qty">1</td>
@@ -527,7 +543,6 @@ class My_Model extends CI_Model {
         if ($giftMiniRes->num_rows() > 0) {
             $k = 0;
             foreach ($giftMiniRes->result() as $giftRow) {
-
                 $GiftMiniValue.= '<div id="GiftMindivId_' . $k . '"><table><tbody><tr>
         	<th class="info"><a href="gift-cards"><img src="images/site/blank.gif" style="background-image:url(' . GIFTPATH . $giftMiniSet->row()->image . ')" alt="' . $giftMiniSet->row()->title . '"><strong>' . $giftMiniSet->row()->title . '</strong><br>' . $giftRow->recipient_name . '</a></th>
             <td class="qty">1</td>
@@ -543,7 +558,6 @@ class My_Model extends CI_Model {
         if ($countMiniVal == 0) {
             $cartMiniDisp = '<ul class="gnb-wrap"><li class="gnb" id="cart-new"><a href="cart" class="mn-cart"><span class="hide">cart</span> <em class="ic-cart"></em> <span>0 ' . $lang_items . '</span></a></li></ul>';
         } else {
-
             $minCartVal.= '<ul class="gnb-wrap"><li class="gnb" id="cart-new"><a href="cart" class="mn-cart"><span class="hide">cart</span> <em class="ic-cart"></em> <span id="Shop_MiniId_count">' . $countMiniVal . ' ' . $lang_items . '</span></a>
 			<div style="display: none;" class="menu-contain-cart after" id="cart_popup">
 			<table><thead><tr><th>' . $lang_description . '</th><td>' . $product_quantity . '</td><td class="price">' . $giftcard_price . '</td></tr></thead></table>';
@@ -561,7 +575,7 @@ class My_Model extends CI_Model {
     }
 
     /**
-     * 
+     *
      * Retrieve records using where_in
      * @param String $table
      * @param Array $fieldsArr
@@ -570,10 +584,11 @@ class My_Model extends CI_Model {
      * @param Array $joinArr
      * @param Array $sortArr
      * @param Integer $limit
-     * 
+     *
      * @return Array
      */
-    public function get_fields_from_many($table = '', $fieldsArr = '', $searchName = '', $searchArr = '', $joinArr = '', $sortArr = '', $limit = '', $condition = '') {
+    public function get_fields_from_many($table = '', $fieldsArr = '', $searchName = '', $searchArr = '', $joinArr = '', $sortArr = '', $limit = '', $condition = '')
+    {
         if ($searchArr != '' && count($searchArr) > 0 && $searchName != '') {
             $this->db->where_in($searchName, $searchArr);
         }
@@ -602,17 +617,20 @@ class My_Model extends CI_Model {
         return $this->db->get();
     }
 
-    public function get_total_records($table = '', $condition = '') {
+    public function get_total_records($table = '', $condition = '')
+    {
         $Query = 'SELECT COUNT(*) as total FROM ' . $table . ' ' . $condition;
         return $this->ExecuteQuery($Query);
     }
 
-    public function get_selected_fields_records($fields = '', $table = '', $condition = '') {
+    public function get_selected_fields_records($fields = '', $table = '', $condition = '')
+    {
         $Query = 'SELECT ' . $fields . ' FROM ' . $table . ' ' . $condition;
         return $this->ExecuteQuery($Query);
     }
 
-    public function common_email_send($eamil_vaues = array()) {
+    public function common_email_send($eamil_vaues = array())
+    {
 
         /* echo  'From : '.$eamil_vaues['from_mail_id'].' <'.$eamil_vaues['mail_name'].'><br/>'.
           'To   : '.$eamil_vaues['to_mail_id'].'<br/>'.
@@ -693,10 +711,10 @@ class My_Model extends CI_Model {
     }
 
     //get newsletter template
-    public function get_newsletter_template_details($apiId = '') {
+    public function get_newsletter_template_details($apiId = '')
+    {
         $twitterQuery = "select * from " . NEWSLETTER . " where id=" . $apiId . " AND status='Active'";
         $twitterQueryDetails = mysql_query($twitterQuery);
         return $twitterFetchDetails = mysql_fetch_assoc($twitterQueryDetails);
     }
-
 }

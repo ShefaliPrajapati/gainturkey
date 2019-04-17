@@ -1,7 +1,7 @@
 <footer class="footer_sec">
     <div class="container">
         <div class="footer_log">
-            <img src="<?php echo base_url(); ?>images/logo.png" alt="logo">
+            <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;">
         </div>
 
         <div class="row">
@@ -9,11 +9,12 @@
                 <div class="footer_box">
                     <h2>address</h2>
                     <ul>
-                        <li><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>4167 Jim Rosa Lane, Oakland, CA, California<br> United States Of Amrica.</li>
+                        <li><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>PMB 321, 425 Carr 693,<br>  Ste 1
+                            Dorado, PR 00646.</li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="footer_box">
                     <h2>Get in touch</h2>
                     <ul>
@@ -26,15 +27,14 @@
                 <div class="footer_box">
                     <h2>Useful Links</h2>
                     <ul>
-                        <li><a href="<?php echo $urlProperty.'pages/about-us'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; About Us</a></li>
-                        <li><a href="#"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Misson</a></li>
-                        <li><a href="<?php echo $urlProperty.'listing/viewall'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Properties</a></li>
-                        <li><a href="<?php echo $urlProperty.'contact'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span>&nbsp; &nbsp; Contact Us</a></li>
+                        <li><a href="<?php echo $urlProperty.'#about'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> About Us</a></li>
+                        <li><a href="<?php echo $urlProperty.'listing/viewall'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> Properties</a></li>
+                        <li><a href="<?php echo $urlProperty.'contact'; ?>"><span><i class="fa fa-caret-right" aria-hidden="true"></i></span> ContactUs</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <div class="footer_box">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="footer_box_img">
                     <img src="<?php echo base_url(); ?>images/map.png" alt="map">
                 </div>
             </div>
@@ -47,7 +47,21 @@
                 advisor regarding any questions you have including the suitability of a specific transaction.</p>
         </div>
         <div class="copy_right">
-            © 2019 - Gain Consulting
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="left_side">
+                        <ul>
+                            <li><a href="<?php echo $urlProperty.'pages/privacy-policy'; ?>">Privacy Policy</a></li>
+                            <li><a href="<?php echo $urlProperty.'pages/terms-conditions'; ?>">Terms And Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="right_side">
+                        © 2019 - Gain Consulting
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </footer>

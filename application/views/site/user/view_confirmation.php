@@ -7,7 +7,7 @@ $newTemp = @explode(',',$signDetails->row()->preview_images);
 			
 			
 	$createdPdfFile.='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Return On Rentals</title></head><body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Gain Turnkey Property</title></head><body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div style="width:50%; margin:0px; padding:0px;">
 ';
 

@@ -397,7 +397,8 @@ function viewAttributes(Val){
                   </div>
                 </div>
               </li>
-              <input type="hidden" tabindex="11" name="status" value="Publish"/>        
+              <input type="hidden" tabindex="11" name="status" value="Publish"/>
+              <input type="hidden"  name="display" id="display" class="publish_unpublish" value="both" />
 <!--             <li>-->
 <!--                <div class="form_grid_12">-->
 <!--                  <label class="field_title" for="admin_name">Display <span class="req">*</span></label>-->
@@ -427,14 +428,6 @@ function viewAttributes(Val){
 <!--                  </div>-->
 <!--                </div>-->
 <!--              </li>-->
-<!--             -->
-              <!-- <li>
-                <div class="form_grid_12">
-                  <div class="form_input">
-                    <button type="submit" class="btn_small btn_blue" tabindex="9"><span>Update</span></button>
-                  </div>
-                </div>
-              </li>-->
             </ul>
             
           </div>
@@ -815,7 +808,7 @@ function viewAttributes(Val){
                 <div class="form_grid_12">
                   <div class="team_location">
                     <label class="field_title" for="attribute_name">Set location Map <br /></label>
-                   <!-- <small style="color:#990000; font-size:9px; text-transform:capitalize;">Eg:(Morocco discovery holidays, Marrakesh, Morocco)</small>--
+                    <small style="color:#990000; font-size:9px; text-transform:capitalize;">Eg:(Morocco discovery holidays, Marrakesh, Morocco)</small>--
                     <div class="form_input">
                              <div id="gmap">
        
@@ -827,7 +820,7 @@ function viewAttributes(Val){
         <p><strong>Google Maps zoom level:</strong> <span id="zoom"></span></p>
        
     </div>
-                      <!--<input type="hidden" name="zoom" id="zoom" value="6" />--
+                      -<input type="hidden" name="zoom" id="zoom" value="6" />--
                     </div>
                   </div>
                 </div>
@@ -1060,7 +1053,7 @@ function viewAttributes(Val){
 					'<span>List Name:</span>&nbsp;'+
 					'<select name="attribute_name[]" onchange="javascript:loadListValues(this)" style="width:200px;color:gray;width:206px;" class="chzn-select">'+
 						'<option value="">--Select--</option>'+
-						<?php foreach ($atrributeValue->result() as $attrRow){ 
+						<?php foreach ($atrributeValue->result() as $attrRow){
 							if (strtolower($attrRow->attribute_name) != 'price'){
 						?>
 						'<option value="<?php echo $attrRow->id; ?>"><?php echo $attrRow->attribute_name; ?></option>'+
@@ -1443,4 +1436,3 @@ document.getElementById('net_income').value=Totvalue;
 $this->load->view('admin/templates/footer.php');
 include_once('googlemap.php');
 ?>
-</strong>

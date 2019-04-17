@@ -13,31 +13,28 @@ jQuery(document).ready(function(e)
 </script>-->
 <!----------listing content------------------>
 <div class="container">
-<div class="listing_content">
-		<div class="cms_view">
-       
-        <h2>Property Reserved Details </h2>
-        <div class="clear"></div>
-        <?php echo $productListPopUp; ?>
-         <div class="clear"></div>
-        					
-                         
-        
+    <div class="listing_content">
+        <div class="cms_view">
+            <h2>Property Reserved Details </h2>
+            <div class="clear"></div>
+                <?php echo $productListPopUp; ?>
+             <div class="clear"></div>
         </div>
+    </div>
 </div>
-<!----------listing end content-------------->
+</div>
 </div>
 <div class="clear"></div>
 
 <script type="text/javascript">
 function printthis()
 {
- var w = window.open('', '', 'width=1000,height=700,resizeable');
- w.document.write($("#printthis").html());
- w.document.close(); // needed for chrome and safari
- javascript:w.print();
- w.close();
- return false;
+    var w = window.open('', '', 'width=1000,height=700,resizeable');
+    w.document.write($("#printthis").html());
+    w.document.close(); // needed for chrome and safari
+    javascript:w.print();
+    w.close();
+    return false;
 }
 </script>
 

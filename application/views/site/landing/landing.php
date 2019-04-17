@@ -1,9 +1,9 @@
 <?php
-$this->load->view('site/templates/header');
-unset($_SESSION['sExistingSold'])
+$this->load->view('site/templates/new_header');
 ?>
-
-<div id="options" class="listing_content">
+<link rel="stylesheet" type="text/css" href="css/site/master.css"/>
+<div class="container">
+<div id="options" class="listing_content" >
     <ul id="filters" class="button_tab option-set clearfix cssmenu" data-option-key="filter">
         <?php
         if ($loginCheck == '') {
@@ -18,7 +18,7 @@ unset($_SESSION['sExistingSold'])
                     if (sizeof($this->data['PropertySubType']) > 0) {
                         foreach ($this->data['PropertySubType'] as $PropertySubRow) {
                             if ($PropertyRow['id'] == $PropertySubRow['attr_id']) {
-                                $SubcatArr .='<li class="active has-sub" style="float:left;"><a style="width:150px" href="' . base_url('signin') . '" onclick="LoginPageRedirect();">' . $PropertySubRow['subattr_name'] . '</a></li>';
+                                $SubcatArr .='<li class="active has-sub" style="float:left;"><a href="' . base_url('signin') . '" onclick="LoginPageRedirect();" style="width:150px" >' . $PropertySubRow['subattr_name'] . '</a></li>';
                             }
                         }
                     }
@@ -28,22 +28,32 @@ unset($_SESSION['sExistingSold'])
                 }
             }
         } else {
+
+            $menuact = $this->uri->segment('2');
+            $menuactcat = $this->uri->segment('3');
             if (sizeof($this->data['PropertyType']) > 0) {
                 $n = 0;
                 foreach ($this->data['PropertyType'] as $PropertyRow) {
                     echo '<li class="active has-sub" ';
                     if ($n == 0) {
                         echo 'style="margin-left:10px;"';
-                    }echo '><a href="javascript:void(0);" onclick="SearchByFeatureCat(' . $PropertyRow['id'] . ',0);">' . $PropertyRow['attr_name'] . '</a>';
+                    }echo '><a href="javascript:void(0);" onclick="SearchByCat(' . $PropertyRow['id'] . ',0)" data-option-value=".cat' . $PropertyRow['id'] . '" id="active_' . $PropertyRow['id'] . '"';
+
+                    if ($menuact == $PropertyRow['id']) {
+                        echo 'class="selected"';
+                    }
+
+
+
+                    echo '>' . $PropertyRow['attr_name'] . '</a>';
                     $SubcatArr = '';
                     if (sizeof($this->data['PropertySubType']) > 0) {
                         foreach ($this->data['PropertySubType'] as $PropertySubRow) {
                             if ($PropertyRow['id'] == $PropertySubRow['attr_id']) {
-                                $SubcatArr .='<li class="active has-sub" style="float:left;"><a style="width:150px" href="javascript:void(0);" onclick="SearchByFeatureCat(' . $PropertyRow['id'] . ',' . $PropertySubRow['id'] . ');">' . $PropertySubRow['subattr_name'] . '</a></li>';
+                                $SubcatArr .='<li class="active has-sub" style="float:left;"><a  onclick="SearchByCat(' . $PropertyRow['id'] . ',' . $PropertySubRow['id'] . ')" href="javascript:void(0);" data-option-value=".subcat' . $PropertySubRow['id'] . '" >' . $PropertySubRow['subattr_name'] . '</a></li>';
                             }
                         }
                     }
-
                     echo '<ul>' . $SubcatArr . '</ul></li>';
                     $n = $n + 1;
                 }
@@ -51,108 +61,101 @@ unset($_SESSION['sExistingSold'])
         }
         ?>
         <span id="sort-by" class="option-set clearfix" data-option-key="sortBy">
-            <li><a href="javascript:void(0);" onclick="SearchByFeatureCat('state', 0)" <?php
+            <li><a id="active_state" onclick="SearchByCat('state', 0)" href="javascript:void(0);" data-option-value="name" <?php
                 if ($menuact == 'state') {
                     echo 'class="selected"';
                 }
                 ?>>Sort By State</a></li>
+            <li class="active has-sub" style="float:left;"><a id="active_price" href="javascript:void(0);" data-option-value="number" <?php
+                if ($menuact == 'price') {
+                    echo 'class="selected"';
+                }
+                ?>>Sort By Price</a>
+                <ul>
+                    <li style="float:left;" class="active has-sub"><a href="javascript:void(0);" onclick="SearchByCat('priceasc', 0)">Low to High </a></li>
+                    <li style="float:left;" class="active has-sub"><a href="javascript:void(0);" onclick="SearchByCat('pricedesc', 0)">High to Low </a></li>
+                </ul>
+            </li>
+            <li><a id="active_viewall" onclick="SearchByCat('viewall', 0)" href="javascript:void(0);"
+                   data-option-value="*" <?php
+                if ($menuact == 'viewall' && $menuactcat == '0') {
+                    echo 'class="selected"';
+                }
+                ?>>All Properties</a></li>
         </span>
-        <li class="active has-sub"><a href="javascript:void(0);" <?php
-            if ($menuact == 'price') {
-                echo 'class="selected"';
-            }
-            ?> >Sort By Price</a>
-            <ul>
-                <li style="float:left;" class="active has-sub"><a href="javascript:void(0);" onclick="SearchByFeatureCat('asc', 0)" style="width:150px">Low to High </a></li>
-                <li style="float:left;" class="active has-sub"><a href="javascript:void(0);" onclick="SearchByFeatureCat('desc', 0)" style="width:150px">High to Low </a></li>
-            </ul>  
-
-        </li>
-
-        <li><a onclick="SearchByFeatureCat('viewall', 0)" href="javascript:void(0);" <?php
-            if ($menuact == 'viewall' && $menuactcat == '0') {
-                echo 'class="selected"';
-            }
-            ?> >All Properties</a></li>
     </ul>
-    <div class="clear"></div>
-    <ul id="container" class="listing_detail">
-        <?php
-        if (count($FeaturedProducts->result()) > 0) {
-            $countid = 0;
-            foreach ($FeaturedProducts->result() as $featureRow) {
-                $countid = $countid + 1;
-                if ($countid < 9) {
-                    ?>
-                    <li class="element subcat<?php echo $featureRow->property_sub_type; ?> cat<?php echo $featureRow->property_type; ?>"  data-category="cat<?php echo $featureRow->property_type; ?>">
-                        <div class="feature"> <img src="images/site/feature.png" /> </div>
-                        <div class="img_content"><a href="<?php
-                            if ($loginCheck == '') {
-                                echo base_url() . 'signin';
-                            } else {
-                                echo base_url() . 'Property/' . $featureRow->id . '/' . $featureRow->property_id;
-                            }
-                            ?>" >
-                                                        <?php
-                                                        $Queryq = "SELECT product_image
-			FROM " . PRODUCT_PHOTOS . " WHERE property_id = " . $featureRow->id . "
+    <div id="fulldiv_container">
+        <?php if ($paginationLink) { ?>
+        <div class="pagination">
+            <ul class="pagination-ul">
+                <?php echo $paginationLink; ?>
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <?php } ?>
+
+        <ul id="container" class="listing_page">
+            <?php foreach ($FeaturedProducts->result() as $row) {
+                ?>
+                <li  class="element subcat<?php echo $row->property_sub_type; ?> cat<?php echo $row->property_type; ?>"  data-category="cat<?php echo $row->property_type; ?>">
+                    <?php
+                    if ($row->featured == 'Yes') {
+                        echo '<div class="feature">
+    					<img src="images/site/feature.png" />
+    					</div>';
+                    }
+
+                    $Queryq = "SELECT product_image
+			FROM " . PRODUCT_PHOTOS . " WHERE property_id = " . $row->id . "
 			ORDER BY imgPriority ASC
 			LIMIT 0 , 1";
-                                                        $Queryres = $this->product_model->ExecuteQuery($Queryq);
+                    $Queryres = $this->product_model->ExecuteQuery($Queryq);
 
-                                                        if ($Queryres->row()->product_image != '') {
-                                                            ?>
-                                    <img src="<?php echo $base_url_image; ?>images/product/thumb/<?php echo trim(stripslashes($Queryres->row()->product_image)); ?>" />
-                                <?php } else { ?>
-                                    <img src="<?php echo $base_url_image; ?>images/product/thumb/dummyProductImage.jpg" />
-                                <?php } ?>
-                            </a></div>
-                        <div class="clear"></div>
-                        <p><?php echo $featureRow->cityname . ',  <span class="name">&nbsp;' . ucwords(str_replace('-', ' ', $featureRow->statename)); ?></span></p>
-                        <div class="clear"></div>
+                    if ($loginCheck == '') {
+                        $url =  base_url() . 'signin';
+                    } else {
+                        if ($row->property_status != 'Sold') {
+                            $url = base_url() . 'Property/' . $row->id . '/' . $row->property_id;
+                        }
+                    }
+                    ?>
+                    <div class="img_content">
 
-                        <div class="rates_full"><b class="doller_user" style="font-size:16px">$</b> <?php echo '<b style="font-size:16px">' . number_format($featureRow->event_price, 0) . '</b>'; ?><span class="number" style="margin-left:0px; display:none"><?php echo $featureRow->event_price; ?></span><a href="<?php
-                            if ($loginCheck == '') {
-                                echo base_url() . 'signin';
-                            } else {
-                                echo base_url() . 'Property/' . $featureRow->id . '/' . $featureRow->property_id;
-                            }
-                            ?>" class="detail_btn ">Details</a> </div>
-                        <div class="sub_title"><a href="<?php
-                            if ($loginCheck == '') {
-                                echo base_url() . 'signin';
-                            } else {
-                                echo base_url() . 'Property/' . $featureRow->id . '/' . $featureRow->property_id;
-                            }
-                            ?>"><?php echo $featureRow->bedrooms; ?> Bedrooms + <?php echo $featureRow->baths; ?> Bathrooms <br /><span class="subtitle_id"> ID: <?php echo $featureRow->property_id; ?></span></a></div>
-                    </li>
-                    <?php
-                }
-            }
-        }
-        ?>
-    </ul>
-    <nav id="page_nav">
+                        <a href="<?php  echo $url; ?>"
+                        ><img src="<?php echo base_url(); ?>images/product/thumb/<?php
+                            if ($Queryres->row()->product_image != '')
+                                echo $Queryres->row()->product_image;
+                            else
+                                echo "dummyProductImage.jpg";
+                            ?>" /></a>
+                    </div>
+                    <div class="clear"></div>
+                    <p><b class="doller_user">$</b><?php echo number_format($row->event_price, 0); ?> <span class="number" style="display:none"><?php echo $row->event_price; ?></span></p><span class="name_con"><?php echo ucwords($row->city) . ', <span class="name">' . ucwords(str_replace('-', ' ', $row->state)); ?></span></span>
+                    <div class="clear"></div>
+                    <div class="rates_full_list">
+                        <span><?php
+                            if ($row->financing == 'Yes' && $row->cash_only == 'Yes')
+                                echo 'FINANCING  AVAILABLE';
+                            else if ($row->financing == 'Yes')
+                                echo 'FINANCING  AVAILABLE';
+                            else if ($row->cash_only == 'Yes')
+                                echo "CASH ONLY";
+                            ?></span>
 
-    </nav> 
-    <!----------listing end content--------------> 
-</div>
-<div class="clear"></div>
-<div class="turn_key">
-    <div class="split_turn1"> <img src="images/site/home.png" />
-        <h2><?php echo $HomePageContentLeft->row()->page_title; ?></h2>
-        <?php echo $HomePageContentLeft->row()->description; ?>
-        <div class="read"> <a href="pages/<?php echo $HomePageContentLeft->row()->seourl; ?>">Read More</a><img src="images/site/arr_read.png" /> </div>
-    </div>
-    <div class="bor_use"></div>
-    <div class="split_turn1" style="margin-left:10px;"> <img src="images/site/box.png" />
-        <h2><?php echo $HomePageContentRight->row()->page_title; ?></h2>
-        <?php echo $HomePageContentRight->row()->description; ?>
-        <div class="read"> <a href="pages/<?php echo $HomePageContentRight->row()->seourl; ?>">Read More</a><img src="images/site/arr_read.png" /> </div>
+                        <a href="<?php  echo $url; ?>" class="detail_btn">Details</a>
+                    </div>
+                    <div class="sub_title_list"><a href="<?php if ($row->property_status != 'Sold') echo base_url() . 'Property/' . $row->id . '/' . $row->property_id; /* else echo base_url(soldlisting); */ ?>"><?php echo $row->bedrooms; ?> Bedrooms + <?php echo $row->baths; ?> Bathrooms <br /><span class="subtitle_id"> ID: <?php echo $row->property_id; ?></span></a></div>
+
+                </li>
+            <?php } ?>
+        </ul>
+        <div class="clear"></div>
+        <div class="pagination">
+            <ul class="pagination-ul"><?php echo $paginationLink; ?></ul>
+        </div>
     </div>
 </div>
-<div class="clear"></div>
-<div class="turn_bor"></div>
+
 <?php if ($videolist->num_rows() > 0) { ?>
     <script type="text/javascript" src="js/site/jcarousellite_1.0.1.pack.js"></script>
 
@@ -172,7 +175,7 @@ unset($_SESSION['sExistingSold'])
     </script>
     <div class="return_bar">
         <div class="split_return">
-            <h2>Return on Rentals has thousands of happy students – listen to just a few of them below:</h2>
+            <h2>Gain Turnkey Property has thousands of happy students – listen to just a few of them below:</h2>
         </div>
         <div class="clear"></div>
         <div class=" scroller_con">
@@ -201,7 +204,6 @@ unset($_SESSION['sExistingSold'])
         </div>
     </div>
 <?php } ?>
-</div>
 </div>
 <script src="js/site/jquery.infinitescroll.min.js"></script> 
 <script src="js/site/jquery.isotope.min.js"></script>
@@ -278,4 +280,4 @@ unset($_SESSION['sExistingSold'])
 
             });
 </script> 
-<?php $this->load->view('site/templates/footer'); ?>
+<?php $this->load->view('site/templates/new_footer'); ?>

@@ -84,14 +84,14 @@ class Order extends MY_Controller {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Return On Rentals</title>
+<title>Gain Turnkey Property</title>
 </head>
 <body style="background:#FFFFFF; width:100%; margin:0; padding:0;">
 <div style="width:50%; margin:0px; padding:0px;">
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.', '.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-',' ',$propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -301,7 +301,7 @@ class Order extends MY_Controller {
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; width:250px; height:100px; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>

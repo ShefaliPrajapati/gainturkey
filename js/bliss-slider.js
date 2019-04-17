@@ -48,7 +48,7 @@
 	        		height: $slidebg.height()+'px'
 	        	});
 
-		        $slide.fadeOut()
+		        $slide
 		              .first()
 		                .addClass('active')
 		                .fadeIn(this.settings.transitionTime);

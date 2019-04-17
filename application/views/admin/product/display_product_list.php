@@ -58,9 +58,9 @@ extract($privileges);
 							<th class="tip_top" title="Click to sort">
 								Event Price
 							</th>
-							<th class="tip_top" title="Click to sort">
-								Display
-							</th>
+<!--							<th class="tip_top" title="Click to sort">-->
+<!--								Display-->
+<!--							</th>-->
                             <th class="tip_top" title="Click to sort">
 								Property Status
 							</th>
@@ -137,21 +137,21 @@ extract($privileges);
 							<td class="center">
 								<?php echo number_format($row->event_price);?>
 							</td>
-							<td class="center">
-								<?php if($row->display_main == 'yes' && $row->display_sub == 'yes')
-											{
-												echo 'All';
-											}
-										else if($row->display_main == 'yes')
-											{
-												echo 'returnonrentals.com';
-											}
-										else if($row->display_sub == 'yes')
-											{
-												echo 'preigrentals.com';
-											}
-								?>
-							</td>
+<!--							<td class="center">-->
+<!--								--><?php //if($row->display_main == 'yes' && $row->display_sub == 'yes')
+//											{
+//												echo 'All';
+//											}
+//										else if($row->display_main == 'yes')
+//											{
+//												echo 'returnonrentals.com';
+//											}
+//										else if($row->display_sub == 'yes')
+//											{
+//												echo 'preigrentals.com';
+//											}
+//								?>
+<!--							</td>-->
                             <td class="center">
 							<?php 
 							echo $row->property_status;
@@ -183,7 +183,7 @@ extract($privileges);
                                 <span>
                                 <!--<a class="iframe cboxElement action-icons c-search" href="https://maps.google.com/?q=<?php echo $row->latitude;?>,<?php echo $row->longitude;?>&amp;ie=UTF8&amp;t=m&amp;z=14&amp;ll=<?php echo $row->latitude;?>,<?php echo $row->longitude;?>&amp;output=embed" title="Map">Map</a>-->
                                 
-                                 <a class="iframe cboxElement action-icons c-search" href="http://regiohelden.de/google-maps/map_en.php?width=1030&amp;height=460&amp;hl=en&amp;q=<?php echo $row->address.','.$row->city.','.$row->state;?>+(Return on Rentals)&amp;ie=UTF8&amp;t=&amp;z=15&amp;iwloc=B&amp;output=embed" title="Map">Map</a>
+                                 <a class="iframe cboxElement action-icons c-search" href="http://regiohelden.de/google-maps/map_en.php?width=1030&amp;height=460&amp;hl=en&amp;q=<?php echo $row->address.','.$row->city.','.$row->state;?>+(Gain Turnkey Property)&amp;ie=UTF8&amp;t=&amp;z=15&amp;iwloc=B&amp;output=embed" title="Map">Map</a>
                                 
                                 </span>
                                 

@@ -343,10 +343,10 @@ class Users extends MY_Controller {
 	}
 	
 	public function admin_reset_password($id='',$pass='')
-		{ 
+		{
 			$Details = $this->user_model->get_all_details(USERS,array('id' => $id));
 			if($Details->num_rows() == 1)
-				{ 
+				{
 					$this->user_model->update_details(USERS,array('password' => md5($pass)),array('id' => $id));
 					$this->send_user_password($pass,$Details);
 					$this->setErrorMessage('success','Password reset successfully');

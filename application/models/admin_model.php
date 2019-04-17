@@ -35,8 +35,8 @@ class Admin_model extends My_Model
 		}
 		$config .= "\n\$config['base_url'] = '".base_url()."'; ";
 		$config .= ' ?>';
-		$file = 'commonsettings/fc_admin_settings.php';
-		file_put_contents($file, $config);
+		$file = getcwd().'/commonsettings/fc_admin_settings.php';
+		return file_put_contents($file, $config);
    }
    
     public function pr_saveAdminSettings(){

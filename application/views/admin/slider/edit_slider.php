@@ -74,26 +74,26 @@ $this->load->view('admin/templates/header.php');
                             </div>
                             <input type="hidden" name="slider_id" value="<?php echo $slider_details->row()->id; ?>"/>
                         </li>
-                        <li>
-                            <div class="form_grid_12">
-                                <label class="field_title" for="admin_name">Site </label>
-                                <div class="form_input">
-                                    <div class="active_inactive">
-                                        <input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="main" <?php
-                                        if ($slider_details->row()->site == 'main') {
-                                            echo 'checked="checked"';
-                                        }
-                                        ?> /> returnonrentals.com
-                                        <input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="sub" <?php
-                                        if ($slider_details->row()->site == 'sub') {
-                                            echo 'checked="checked"';
-                                        }
-                                        ?>/> preigrentals.com
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+<!--                        <li>-->
+<!--                            <div class="form_grid_12">-->
+<!--                                <label class="field_title" for="admin_name">Site </label>-->
+<!--                                <div class="form_input">-->
+<!--                                    <div class="active_inactive">-->
+<!--                                        <input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="main" --><?php
+//                                        if ($slider_details->row()->site == 'main') {
+//                                            echo 'checked="checked"';
+//                                        }
+//                                        ?><!-- /> returnonrentals.com-->
+<!--                                        <input type="radio" tabindex="11" name="site" id="site" class="publish_unpublish" value="sub" --><?php
+//                                        if ($slider_details->row()->site == 'sub') {
+//                                            echo 'checked="checked"';
+//                                        }
+//                                        ?><!--/> preigrentals.com-->
+<!---->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </li>-->
                         <li>
                             <div class="form_grid_12">
                                 <div class="form_input">

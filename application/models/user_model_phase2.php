@@ -1,33 +1,35 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
- * 
+ *
  * This model contains all db functions related to user management
  * @author Teamtweaks
  *
  */
-class User_model extends My_Model {
-
-    public function __construct() {
+class User_model extends My_Model
+{
+    public function __construct()
+    {
         parent::__construct();
     }
 
     /**
-     * 
+     *
      * Getting Users details
      * @param String $condition
      */
-    public function get_users_details($condition = '') {
+    public function get_users_details($condition = '')
+    {
         $Query = " select * from " . USERS . " " . $condition;
         return $this->ExecuteQuery($Query);
     }
 
-    public function ownerinsert($first_name = '', $last_name = '', $email = '', $pass = '', $phone = '', $about = '', $renter = '', $membership = '') {
-
-
+    public function ownerinsert($first_name = '', $last_name = '', $email = '', $pass = '', $phone = '', $about = '', $renter = '', $membership = '')
+    {
         $thumbnail = $this->input->post('thumbnail');
 
         $dataArr = array(
@@ -54,9 +56,8 @@ class User_model extends My_Model {
         }
     }
 
-    public function ownerpaymentinsert($first_name = '', $last_name = '', $payment = '') {
-
-
+    public function ownerpaymentinsert($first_name = '', $last_name = '', $payment = '')
+    {
         $dataArr = array(
             'first_name' => $first_name,
             'last_name' => $last_name,
@@ -71,7 +72,8 @@ class User_model extends My_Model {
         }
     }
 
-    public function updateUserQuick($fullname = '', $username = '', $email = '', $pwd = '') {
+    public function updateUserQuick($fullname = '', $username = '', $email = '', $pwd = '')
+    {
         $dataArr = array(
             'full_name' => $fullname,
             'user_name' => $username,
@@ -81,18 +83,21 @@ class User_model extends My_Model {
         $this->update_details(USERS, $dataArr, $conditionArr);
     }
 
-    public function updategiftcard($table = '', $temp_id = '', $user_id = '') {
+    public function updategiftcard($table = '', $temp_id = '', $user_id = '')
+    {
         $dataArr = array('user_id' => $user_id,);
         $conditionArr = array('user_id' => $temp_id);
         $this->update_details($table, $dataArr, $conditionArr);
     }
 
-    public function get_purchase_details($uid = '0') {
+    public function get_purchase_details($uid = '0')
+    {
         $Query = "select p.*,u.full_name from " . PAYMENT . " p JOIN " . USERS . " u on u.id=p.user_id where p.user_id='" . $uid . "' group by p.dealCodeNumber order by created desc";
         return $this->ExecuteQuery($Query);
     }
 
-    public function get_like_details_fully($uid = '0') {
+    public function get_like_details_fully($uid = '0')
+    {
         $Query = 'select p.*,u.full_name,u.user_name from ' . PRODUCT_LIKES . ' pl
    					JOIN ' . PRODUCT . ' p on pl.product_id=p.seller_product_id
    					LEFT JOIN ' . USERS . ' u on p.user_id=u.id
@@ -100,7 +105,8 @@ class User_model extends My_Model {
         return $this->ExecuteQuery($Query);
     }
 
-    public function get_like_details_fully_user_products($uid = '0') {
+    public function get_like_details_fully_user_products($uid = '0')
+    {
         $Query = 'select p.*,u.full_name,u.user_name from ' . PRODUCT_LIKES . ' pl
    					JOIN ' . USER_PRODUCTS . ' p on pl.product_id=p.seller_product_id
    					LEFT JOIN ' . USERS . ' u on p.user_id=u.id
@@ -108,7 +114,8 @@ class User_model extends My_Model {
         return $this->ExecuteQuery($Query);
     }
 
-    public function get_activity_details($uid = '0', $limit = '5', $sort = 'desc') {
+    public function get_activity_details($uid = '0', $limit = '5', $sort = 'desc')
+    {
         $Query = 'select a.*,p.product_name,p.id as productID,up.product_name as user_product_name,u.full_name,u.user_name from ' . USER_ACTIVITY . ' a
    					LEFT JOIN ' . PRODUCT . ' p on a.activity_id=p.seller_product_id
    					LEFT JOIN ' . USER_PRODUCTS . ' up on a.activity_id=up.seller_product_id
@@ -117,14 +124,16 @@ class User_model extends My_Model {
         return $this->ExecuteQuery($Query);
     }
 
-    public function get_list_details($tid = '0', $uid = '0') {
+    public function get_list_details($tid = '0', $uid = '0')
+    {
         $Query = 'select l.*,c.cat_name from ' . LISTS_DETAILS . ' l
    					LEFT JOIN ' . CATEGORY . ' c on l.category_id=c.id
    					where l.user_id=' . $uid . ' and l.product_id=' . $tid . ' or l.user_id=' . $uid . ' and l.product_id like "' . $tid . ',%" or l.user_id=' . $uid . ' and l.product_id like "%,' . $tid . '" or l.user_id=' . $uid . ' and l.product_id like "%,' . $tid . ',%"';
         return $this->ExecuteQuery($Query);
     }
 
-    public function get_search_user_list($search_key = '', $uid = '0') {
+    public function get_search_user_list($search_key = '', $uid = '0')
+    {
         $Query = 'select * from ' . USERS . ' where
    					`full_name` like "%' . $search_key . '%" and `id` != "' . $uid . '" and `status` = "Active"
    					or 
@@ -132,7 +141,8 @@ class User_model extends My_Model {
         return $this->ExecuteQuery($Query);
     }
 
-    public function social_network_login_check($apiId = '') {
+    public function social_network_login_check($apiId = '')
+    {
         $twitterQuery = "select api_id from " . USERS . " where api_id=" . $apiId . " AND status='Active'";
 
         $twitterQueryDetails = mysql_query($twitterQuery);
@@ -141,7 +151,8 @@ class User_model extends My_Model {
         return $twitterCountById = mysql_num_rows($twitterQueryDetails);
     }
 
-    public function get_social_login_details($apiId = '') {
+    public function get_social_login_details($apiId = '')
+    {
         $twitterQuery = "select * from " . USERS . " where api_id=" . $apiId . " AND status='Active'";
 
         $twitterQueryDetails = mysql_query($twitterQuery);
@@ -150,7 +161,8 @@ class User_model extends My_Model {
         //return $twitterCountById = mysql_num_rows($twitterQueryDetails);
     }
 
-    public function googleLoginCheck($email = '') {
+    public function googleLoginCheck($email = '')
+    {
         // echo $email;die;
         $this->db->select('id');
         $this->db->from(USERS);
@@ -160,7 +172,8 @@ class User_model extends My_Model {
         return $googleResult = $googleQuery->num_rows();
     }
 
-    public function google_user_login_details($email = '') {
+    public function google_user_login_details($email = '')
+    {
         $this->db->select('*');
         $this->db->from(USERS);
         $this->db->where('email', $email);
@@ -169,7 +182,8 @@ class User_model extends My_Model {
         return $googleResult1 = $googleQuery1->row_array();
     }
 
-    public function getReferalUserId() {
+    public function getReferalUserId()
+    {
         $referenceName = $this->session->userdata('referenceName');
         $referenceId = '';
         if ($referenceName != '') {
@@ -189,7 +203,8 @@ class User_model extends My_Model {
         }
     }
 
-    public function getReferalList($perpage = '', $start = '') {
+    public function getReferalList($perpage = '', $start = '')
+    {
         //echo $this->session->userdata('fc_session_user_id');die;
         $this->db->select('full_name,user_name,email,thumbnail');
         $this->db->from(USERS);
@@ -205,29 +220,34 @@ class User_model extends My_Model {
         return $referResult = $referQuery->result_array();
     }
 
-    public function get_userlike_products($uid = '0', $limit = '5') {
+    public function get_userlike_products($uid = '0', $limit = '5')
+    {
         $Query = "select pl.*,p.id as pid,p.product_name,p.image from " . PRODUCT_LIKES . ' pl 
 					JOIN ' . PRODUCT . ' p on pl.product_id=p.seller_product_id 
 					where pl.user_id=' . $uid . ' limit ' . $limit;
         return $this->ExecuteQuery($Query);
     }
 
-    public function get_user_orders_list($uid = '0') {
+    public function get_user_orders_list($uid = '0')
+    {
         $Query = "select *, sum(sumtotal) as TotalPrice from " . PAYMENT . ' where sell_id=' . $uid . ' and status="Paid" group by dealCodeNumber order by created desc';
         return $this->ExecuteQuery($Query);
     }
 
-    public function get_subscriptions_list($uid = '0') {
+    public function get_subscriptions_list($uid = '0')
+    {
         $Query = "select * from " . FANCYYBOX_USES . ' where user_id=' . $uid . ' group by invoice_no order by created desc';
         return $this->ExecuteQuery($Query);
     }
 
-    public function get_gift_cards_list($email = '') {
+    public function get_gift_cards_list($email = '')
+    {
         $Query = "select * from " . GIFTCARDS . ' where recipient_mail=\'' . $email . '\' order by created desc';
         return $this->ExecuteQuery($Query);
     }
 
-    public function get_purchase_list($uid = '0', $dealCode = '0') {
+    public function get_purchase_list($uid = '0', $dealCode = '0')
+    {
         $this->db->select('p.*,u.email,u.full_name,u.address,u.phone_no,u.postal_code,u.state,u.country,u.city,pd.product_name,pd.id as PrdID,pd.image,pAr.attr_name');
         $this->db->from(PAYMENT . ' as p');
         $this->db->join(USERS . ' as u', 'p.user_id = u.id');
@@ -237,7 +257,8 @@ class User_model extends My_Model {
         return $this->db->get();
     }
 
-    public function get_order_list($uid = '0', $dealCode = '0') {
+    public function get_order_list($uid = '0', $dealCode = '0')
+    {
         $this->db->select('p.*,u.email,u.full_name,u.address,u.phone_no,u.postal_code,u.state,u.country,u.city,pd.product_name,pd.id as PrdID,pd.image,pAr.attr_name');
         $this->db->from(PAYMENT . ' as p');
         $this->db->join(USERS . ' as u', 'p.user_id = u.id');
@@ -249,15 +270,16 @@ class User_model extends My_Model {
 
     /*     * **********Edited by Mano************* */
 
-    public function insertOwnerQuick($first_name = '', $last_name = '', $username = '', $email = '', $pwd = '', $brand = 'no') {
-
+    public function insertOwnerQuick($first_name = '', $last_name = '', $username = '', $email = '', $pwd = '', $brand = 'no')
+    {
         $api_id = $this->input->post('api_id');
         $thumbnail = $this->input->post('thumbnail');
 
-        if ($thumbnail != '')
+        if ($thumbnail != '') {
             $thumbnail = $thumbnail;
-        else
+        } else {
             $thumbnail = '';
+        }
 
         /* get Referal user id start */
 
@@ -291,7 +313,8 @@ class User_model extends My_Model {
 
     /*     * *************** */
 
-    public function get_user_order_Details($uid = '0') {
+    public function get_user_order_Details($uid = '0')
+    {
         $this->db->select('p.*,u.email,u.first_name,u.address,u.phone_no,u.postal_code,u.state,u.country,u.city,pd.id as PrdID,pp.product_image,pAr.attr_name');
         $this->db->from(PAYMENT . ' as p');
         $this->db->join(USERS . ' as u', 'p.user_id = u.id', 'left');
@@ -304,7 +327,8 @@ class User_model extends My_Model {
         return $this->db->get();
     }
 
-    public function get_resevation_Details($uid = '') {
+    public function get_resevation_Details($uid = '')
+    {
         $this->db->select('p.*,u.monthly_rent,u.annual_rent,u.hazard_ins,u.property_tax,u.management_expenses,u.utilities,u.net_income');
         $this->db->from(RESERVED_INFO . ' as p');
         $this->db->join(PRODUCT . ' as u', 'p.property_id = u.id', 'left');
@@ -315,5 +339,4 @@ class User_model extends My_Model {
         $this->db->order_by('p.dateAdded', 'desc');
         return $this->db->get();
     }
-
 }

@@ -13,7 +13,6 @@ class Adminlogin extends MY_Controller {
 		$this->load->helper(array('cookie','date','form'));
 		$this->load->library(array('encrypt','form_validation'));		
 		$this->load->model('admin_model');
-		$this->load->library('upload');
     }
     
     /**
@@ -201,7 +200,7 @@ class Adminlogin extends MY_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('crmadmin/templates/forgot_password.php',$this->data);
-		} else {
+		}else {
 			$email = $this->input->post('email');
 			$mode = SUBADMIN;
 			if ($email == $this->config->item('email')){
@@ -425,10 +424,10 @@ class Adminlogin extends MY_Controller {
 	 * This function validates the admin settings form
 	 */
 	public function admin_global_settings(){
-        if (strpos(base_url(),'pleasureriver.com') === false) {
-            $form_mode = $this->input->post('form_mode');
-            if ($form_mode == 'main_settings'){
-                $datestring = "%Y-%m-%d";
+		if (strpos(base_url(),'pleasureriver.com') === false){
+			$form_mode = $this->input->post('form_mode');
+			if ($form_mode == 'main_settings'){
+				$datestring = "%Y-%m-%d";
 				$time = time();
 				$dataArr = array('modified'=>mdate($datestring,$time));
 				$admin_name = $this->input->post('admin_name');

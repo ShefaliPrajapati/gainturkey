@@ -11,7 +11,7 @@ $this->load->view('site/templates/new_header');
         <div class="row justify-content-md-center">
             <div class="col-md-12 text-center">
                 <h2>Forgot Password</h2>
-                <B>Forgot your password? Enter your email address to reset it.</B>
+                <p class="mt-2 mb-2">Forgot your password? Enter your email address to reset it.</p>
             </div>
             <div class="clear"></div>
             <div class="col-md-6">

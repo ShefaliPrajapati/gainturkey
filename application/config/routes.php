@@ -42,7 +42,7 @@ if (!defined('BASEPATH'))
  */
 
 $route['default_controller'] = "site/landing/home";
-$route['property'] = "site/landing";
+$route['properties'] = "site/landing";
 $route['404_override'] = '';
 $route['login'] = "site/user/signin_form";
 $route['admin'] = "";

@@ -3887,7 +3887,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3cb7dd', end
 	height: 100%;
 	width:100%;
 	position:fixed;
-	background:#4BB749;
+	background:#fff;
 	/*background: #41a8c4;  Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' 
 background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNDFhOGM0IiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iNTElIiBzdG9wLWNvbG9yPSIjMWM1OTdlIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iNTElIiBzdG9wLWNvbG9yPSIjMTg0ZTZmIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAzMjE0NiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);*/
@@ -3968,6 +3968,7 @@ background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIH
 	font-weight:normal;
 	color:#FFF;
 	padding:0 18px;
+	background: #dda049;
 }
 .login_form ul li, .forgot_pass ul li {
 	height: 50px;
@@ -4051,20 +4052,21 @@ background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIH
 	border:#002e43 1px solid;
 }
 .login_header .login_branding {
-	width:auto;
-	overflow:hidden;
-	height:68px;
-	width:325px;
-	border:#002e4a 1px solid;
-	margin:5px;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-	background:#92C2D8;
+	width: auto;
+	overflow: hidden;
+	height: 68px;
+	width: 325px;
+	border: #f9efab 1px solid;
+	margin: 5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 	-moz-box-shadow: inset 0 0 5px #666;
-	-webkit-box-shadow: inset 0 0 5px #666;
+	-webkit-box-shadow: inset 0 0 5px #f6e59f;
 	box-shadow: inner 0 0 5px #666;
-	position:relative;
+	position: relative;
+	background: rgb(186,113,42) !important;
+	background: linear-gradient(90deg, rgba(186,113,42,1) 0%, rgba(252,247,181,1) 35%, rgba(212,136,42,1) 100%)!important;
 }
 .login_success {
 	background: #c3d93b; /* Old browsers */

@@ -321,7 +321,7 @@
                             <div class="header">
                                 <div class="logo">
                                     <h1>
-                                        <a href="<?php echo base_url(); ?>"><img src="images/logo/<?php echo $this->config->item('logo_image'); ?>" title="return on rentals" alt="return on rentals" /></a>
+                                        <a href="<?php echo base_url(); ?>"><img src="images/logo/<?php echo $this->config->item('logo_image'); ?>" title="Gain Turnkey Property" alt="return on rentals" /></a>
                                     </h1>
                                 </div>
                                 <div class="top_support">

@@ -3,10 +3,11 @@
 
 /* My Account ======================================================== */
 .freemember {
-	margin: 80px 0 0 0;
+	margin: 0px 0 0 0;
 }
 .freemember h2 {
 	margin: 0 0 30px 0;
+	text-align: center;
 }
 .view_invoice {
 	float: left;
@@ -149,7 +150,7 @@ img{ border: none;}
 .TabbedPanels {
 	clear: none;
 	float: left;
-	margin: 0 0 80px 0;
+	margin: 0 0 0px 0;
 	padding: 0;
 	width: 100%;
 }
@@ -209,7 +210,7 @@ img{ border: none;}
 	background:#FFFFFF;
 }
 .TabbedPanelsContent {
-	padding:15px;line-height:28px; text-align:justify ; font-weight:normal; overflow:hidden;  font-family: 'OpenSansRegular';
+	padding:0px;line-height:28px; text-align:justify ; font-weight:normal; overflow:hidden;  font-family: 'OpenSansRegular';
 	
 }
 .TabbedPanelsContentVisible {
@@ -253,10 +254,10 @@ img{ border: none;}
 
 
 .tab_box{
-	width:98%;
-	margin:0px 10px 0px 10px;
+	width:100%;
+	margin:0px
 	float:left;
-	padding-right:5px;
+	padding-right:0px;
 }
 .tab_box h1 {
 	color:##2b3743;
