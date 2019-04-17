@@ -1845,7 +1845,8 @@ class Product extends MY_Controller
                 </div>';
     }
 
-    public function prop_id_check_dub(){
+    public function prop_id_check_dub()
+    {
         $propId = $this->input->post('propId');
         $propertyID = $this->input->post('propertyID');
         $this->db->select('property_id,id');
