@@ -52,7 +52,7 @@ $active_record = TRUE;
 if ($_SERVER['HTTP_HOST'] == 'localhost') {
 	$db['default']['hostname'] = 'localhost';
 	$db['default']['username']  = 'admin';
-	$db['default']['password']  = 'admin@123';
+	$db['default']['password']  = 'ts1234';
 	$db['default']['database'] = 'gainturkey';
 }
 else if($_SERVER['HTTP_HOST'] == '192.168.1.253') {
