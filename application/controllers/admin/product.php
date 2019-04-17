@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  *
@@ -70,7 +71,6 @@ class Product extends MY_Controller
                     }
                 }
             }
-
             $this->data['createrArr'] = $createrArr;
             #echo '<pre>'; print_r($this->data['createrArr']); die;
             #echo '<pre>'; print_r($this->data['productList']->result_array()); die;
@@ -78,10 +78,11 @@ class Product extends MY_Controller
             $this->data['confirm_code'] = $this->product_model->get_confirm_code();
             $this->data['product_image'] = $this->product_model->Display_product_image_details();
             $this->data['code'] = $this->data['confirm_code']->row();
+
             $this->load->view('admin/product/display_product_list', $this->data);
         }
     }
-     
+
     public function reserved_product_details()
     {
         if ($this->checkLogin('A') == '') {
@@ -92,7 +93,7 @@ class Product extends MY_Controller
             $this->data['productList'] = $this->product_model->get_all_details(RESERVED_INFO, $condition);
             //print_r($this->data['productList']->result());die;
             $PropertyList=$this->data['productList'];
-                    
+
             if ($PropertyList->row()->image!='') {
                 $imgName = $PropertyList->row()->image;
             } else {
@@ -276,7 +277,7 @@ class Product extends MY_Controller
            <tr>
            
             <td><span style="display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Sale Type:  '.$PropertyList->row()->sales_cash.' '.$PropertyList->row()->sales_cf.' '.$PropertyList->row()->sales_cs.' '.$PropertyList->row()->sales_fs.' '.$PropertyList->row()->sales_sdira.' '.$PropertyList->row()->sales_sl.'</span></td>';
-            
+
             if ($PropertyList->row()->sales_sdira !='' || $PropertyList->row()->sales_sl !='') {
                 $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Custodian name: '.$PropertyList->row()->cust_name.'</span></td>';
             } else {
@@ -288,13 +289,13 @@ class Product extends MY_Controller
             <tr>
            
             <td><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Note: '.$PropertyList->row()->note.'</span></td>';
-            
+
             if ($PropertyList->row()->sales_sdira !='' || $PropertyList->row()->sales_sl !='') {
                 $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">Account number: '.$PropertyList->row()->account_no.'</span></td>';
             } else {
                 $this->data['productListPopUp'] .= '<td colspan="2"><span style=" display:inline-block; font-weight:bold; margin:0 0 15px;  font-size:14px; font-family:Arial, Helvetica, sans-serif">&nbsp;</span></td>';
             }
-            
+
             $this->data['productListPopUp'] .= '</tr>
             
     </table>   
@@ -543,7 +544,7 @@ class Product extends MY_Controller
          </div>
 </body>
 </html>';
-                    
+
             $this->load->view('admin/product/reserved_detail', $this->data);
         }
     }
@@ -603,9 +604,9 @@ class Product extends MY_Controller
      * This function insert and edit product
     //  */
     // public function insertEditProduct() {
-      
+
     //             redirect('admin/product/display_product_list');
-            
+
     // }
     public function insertEditProduct()
     {
@@ -615,7 +616,7 @@ class Product extends MY_Controller
             $headline = $this->input->post('headline');
             $property_id = $this->input->post('propertyID');
             $price = $this->input->post('event_price');
-                
+
             if ($property_id == '') {
                 $old_product_details = array();
                 $condition = array('headline' => $headline);
@@ -625,16 +626,16 @@ class Product extends MY_Controller
                 $condition = array('headline' => $headline,'id !=' => $property_id);
                 $soldmode=$old_product_details->row()->property_status;
             }
-                
-                
-                
+
+
+
             if ($property_id != '') {
                 if ($this->input->post('property_status') == 'Active') {
                     $this->product_model->commonDelete(RESERVED_INFO, array('property_id' => $property_id));
                 }
             }
-        
-        
+
+
             $price_range = '';
             if ($price>0 && $price<30000) {
                 $price_range = '1-30000';
@@ -647,15 +648,15 @@ class Product extends MY_Controller
             } elseif ($price>60000) {
                 $price_range = '60000+';
             }
-                
+
             $excludeArr = array('imgtitle', 'imgPriority', 'address', 'state', 'city', 'post_code', 'latitude', 'longitude', 'product_id', 'changeorder', 'propertyID', 'b1_firstname', 'b1_lastname', 'b2_firstname', 'b2_lastname', 'b_entityname', 'b_entitytype', 'b_address', 'b_city', 'b_state', 'b_zipcode', 'b_phone1', 'b_phone2', 'b_email1', 'b_email2', 'b_purchase_price', 'sale_date', 'reservedTime', 'googlelat', 'googlelng', 'q', 'output', 'Reload', 'submit_button', 'display', 'comp_prop_address', 'comp_purchase_price', 'comp_date_sold', 'comp_type_deal', 'comp_beds', 'comp_baths', 'comp_id', 'modified');
-                
+
             if ($this->input->post('status') != '') {
                 $product_status = 'Publish';
             } else {
                 $product_status = 'UnPublish';
             }
-            
+
             $display_main = 'no';
             $display_sub = 'no';
             if ($this->input->post('display') == 'main') {
@@ -666,7 +667,7 @@ class Product extends MY_Controller
                 $display_main = 'yes';
                 $display_sub = 'yes';
             }
-                    
+
             $seourl = url_title($headline, '-', true);
             $checkSeo = $this->product_model->get_all_details(PRODUCT, array('seourl'=>$seourl,'id !='=>$property_id));
             $seo_count = 1;
@@ -675,9 +676,9 @@ class Product extends MY_Controller
                 $seo_count++;
                 $checkSeo = $this->product_model->get_all_details(PRODUCT, array('seourl'=>$seourl,'id !='=>$property_id));
             }
-            
+
             $ImageName = '';
-            
+
             $datestring = "%Y-%m-%d %H:%i:%s";
             $time = time();
             if ($property_id == '') {
@@ -695,12 +696,13 @@ class Product extends MY_Controller
                                           'display_main' => $display_main,
                                           'display_sub' => $display_sub,
                                           'price_range'=> $price_range,
-                                        
+
                                         );
             }
-                    
-                    
-                        
+
+            //var_dump($inputArr);
+
+
             //$config['encrypt_name'] = TRUE;
             //$config['overwrite'] = FALSE;
             /*  $config['allowed_types'] = 'jpg|jpeg|gif|png|bmp';
@@ -731,80 +733,79 @@ class Product extends MY_Controller
             $config['remove_spaces'] = false;
             $config['upload_path'] = $logoDirectory;
             $config['allowed_types'] = 'jpg|jpeg|gif|png';
-                       
+
             $this->upload->initialize($config);
             $this->load->library('upload', $config);
-                       
+
             $file_element_name = 'product_image';
             $ImageName_orig_name ='';
             $ImageName_encrypt_name ='';
-                       
+
             $file_element_name = 'product_image';
-               
+
             $filePRoductUploadData = array();
             $setPriority = 0;
             $imgtitle = $this->input->post('imgtitle');
-              
+
             if ($this->upload->do_multi_upload('product_image')) {
             }
-            
+
             // echo "<pre>";print_r($_FILES['product_image']);die;
             $logoDetails = $this->upload->get_multi_upload_data();
             //$logoDetails = $_FILES['product_image'];
 
-            
-            
+
+
             if ($property_id != '') {
                 $this->update_old_list_values($property_id, $list_val_arr, $old_product_details);
             }
             $dataArr = $inputArr;
-            
-            
+
             if ($property_id == '') {
                 $condition = array();
-                
+
                 $this->product_model->commonInsertUpdate(PRODUCT, 'insert', $excludeArr, $dataArr, $condition);
-                
+
                 $property_id = $this->product_model->get_last_insert_id();
-                
+
                 $Attr_val_str = '';
-                
-                
+
+
                 $this->setErrorMessage('success', 'Property added successfully');
-                
-            
+
+
                 $this->update_price_range_in_table('add', $price_range, $property_id, $old_product_details);
                 //echo '<pre>';
                 //print_r($excludeArr);print_r($dataArr);print_r($condition);die;
                 //echo $this->input->post('status');die;
-                
+
                 $inputArr1 = array(
-                            'property_id' =>$property_id,
-                            //'country' => $this->input->post('country'),
-                            'state' => $this->input->post('state'),
-                            'city' => $this->input->post('city'),
-                            'post_code' => $this->input->post('post_code'),
-                            'property_name' => $this->input->post('property_name'),
-                            
-                            
-                            'address'=> $this->input->post('address'),
-                            'latitude'=> $this->input->post('latitude'),
-                            'longitude'=> $this->input->post('longitude')
+                    'property_id' =>$property_id,
+                    //'country' => $this->input->post('country'),
+                    'state' => $this->input->post('state'),
+                    'city' => $this->input->post('city'),
+                    'post_code' => $this->input->post('post_code'),
+                    'property_name' => $this->input->post('property_name'),
+
+
+                    'address'=> $this->input->post('address'),
+                    'latitude'=> $this->input->post('latitude'),
+                    'longitude'=> $this->input->post('longitude')
                 );
                 $this->product_model->simple_insert(PRODUCT_ADDRESS, $inputArr1);
-                
-                
+
+
                 $inputArr2=array();
                 $inputArr2 = array(
-                            'property_id' =>$property_id,
-                            'feature' => $this->input->post('feature'),
-                            'google_map' => $this->input->post('google_map'),
-                            'add_feature' => $this->input->post('add_feature'),
-                            'rentals_policy' => $this->input->post('rentals_policy'),
-                            'trams_condition' => $this->input->post('trams_condition'),
-                            'confirm_email' => $this->input->post('confirm_email'),
-                            'order_email' => $this->input->post('order_email'),
-                            'invoice_template'=> $this->input->post('invoice_template')
+                    'property_id' =>$property_id,
+                    'feature' => $this->input->post('feature'),
+                    'google_map' => $this->input->post('google_map'),
+                    'add_feature' => $this->input->post('add_feature'),
+                    'rentals_policy' => $this->input->post('rentals_policy'),
+                    'trams_condition' => $this->input->post('trams_condition'),
+                    'confirm_email' => $this->input->post('confirm_email'),
+                    'order_email' => $this->input->post('order_email'),
+                    'invoice_template'=> $this->input->post('invoice_template')
                 );
 
                 $compCount = count($this->input->post('comp_prop_address'));
@@ -824,8 +825,8 @@ class Product extends MY_Controller
                         $this->product_model->simple_insert(RENTALCOMPS, $inputArrComp);
                     }
                 }
-                
-        
+
+
                 //Update user table count
                 if ($this->checkLogin('U') != '') {
                     $user_details = $this->product_model->get_all_details(USERS, array('id'=>$this->checkLogin('U')));
@@ -859,51 +860,47 @@ class Product extends MY_Controller
                     }
                 }
 
-                    
-                 
+
+
                 $condition = array('id'=>$property_id);
                 $this->product_model->commonInsertUpdate(PRODUCT, 'update', $excludeArr, $dataArr, $condition);
                 $this->product_model->saveResevedSettings();
                 $this->product_model->saveSoldSettings();
-                
+
                 $condition1 = array('property_id'=>$property_id);
                 $inputArr1 = array(
-                            'property_id' =>$property_id,
-                            'country' => $this->input->post('country'),
-                            'state' => $this->input->post('state'),
-                            'city' => $this->input->post('city'),
-                            'post_code' => $this->input->post('post_code'),
-                            'property_name' => $this->input->post('property_name'),
-                            
-                            'address'=> $this->input->post('address'),
-                            'latitude'=> $this->input->post('latitude'),
-                            'longitude'=> $this->input->post('longitude')
+                    'property_id' =>$property_id,
+                    'country' => $this->input->post('country'),
+                    'state' => $this->input->post('state'),
+                    'city' => $this->input->post('city'),
+                    'post_code' => $this->input->post('post_code'),
+                    'property_name' => $this->input->post('property_name'),
+
+                    'address'=> $this->input->post('address'),
+                    'latitude'=> $this->input->post('latitude'),
+                    'longitude'=> $this->input->post('longitude')
                 );
                 $this->product_model->update_details(PRODUCT_ADDRESS, $inputArr1, $condition1);
-                
+
                 $inputArr2=array();
                 $inputArr2 = array(
-                            'property_id' =>$property_id,
-                            'feature' => $this->input->post('feature'),
-                            'google_map' => $this->input->post('google_map'),
-                            'add_feature' => $this->input->post('add_feature'),
-                            'rentals_policy' => $this->input->post('rentals_policy'),
-                            'trams_condition' => $this->input->post('trams_condition'),
-                            'confirm_email' => $this->input->post('confirm_email'),
-                            'order_email' => $this->input->post('order_email'),
-                            'invoice_template'=> $this->input->post('invoice_template')
+                    'property_id' =>$property_id,
+                    'feature' => $this->input->post('feature'),
+                    'google_map' => $this->input->post('google_map'),
+                    'add_feature' => $this->input->post('add_feature'),
+                    'rentals_policy' => $this->input->post('rentals_policy'),
+                    'trams_condition' => $this->input->post('trams_condition'),
+                    'confirm_email' => $this->input->post('confirm_email'),
+                    'order_email' => $this->input->post('order_email'),
+                    'invoice_template'=> $this->input->post('invoice_template')
                 );
-                
+
                 $this->product_model->update_details(PRODUCT_FEATURES, $inputArr2, $condition1);
-                
-                
-                
-                
+
                 $this->setErrorMessage('success', 'Property updated successfully');
                 $this->update_price_range_in_table('edit', $price_range, $property_id, $old_product_details);
             }
-            
-            
+
             //upload image the table
             foreach ($logoDetails as $fileVal) {
                 if (!$this->imageResizeWithSpace(600, 600, $file_element_name[$setPriority], './images/product/')) {
@@ -911,9 +908,9 @@ class Product extends MY_Controller
                 } else {
                     $sliderUploadedData = array($this->upload->data());
                 }
-                                              
+
                 $filePRoductUploadData = array('property_id'=>$property_id,'product_image'=>$fileVal['file_name']);
-                       
+
                 $this->product_model->simple_insert(PRODUCT_PHOTOS, $filePRoductUploadData);
                 $setPriority = $setPriority + 1;
             }
@@ -929,22 +926,22 @@ class Product extends MY_Controller
             $inputArrPrWeekly=$this->input->post('Weekly');
             $inputArrPrMonthly=$this->input->post('Monthly');
             $inputArrPrEvent=$this->input->post('Event');
-                
+
             if (count($inputArrPrName)>0) {
                 for ($i=0;$i < count($inputArrPrName);$i++) {
                     if ($inputArrPrName[$i]!='') {
                         $inputArrRateVal = array(
-                                        'property_id' =>$property_id,
-                                        'PrName' => $inputArrPrName[$i],
-                                        'PrStartDate' => $inputArrPrStartDate[$i],
-                                        'PrEndDate' => $inputArrPrEndDate[$i],
-                                        'Nightly' => $inputArrPrNightly[$i],
-                                        'WkndNight' => $inputArrPrWkndNight[$i],
-                                        'Weekend' => $inputArrPrWeekend[$i],
-                                        'Weekly' => $inputArrPrWeekly[$i],
-                                        'Monthly' => $inputArrPrMonthly[$i],
-                                        'Event' => $inputArrPrEvent[$i]
-                            );
+                            'property_id' =>$property_id,
+                            'PrName' => $inputArrPrName[$i],
+                            'PrStartDate' => $inputArrPrStartDate[$i],
+                            'PrEndDate' => $inputArrPrEndDate[$i],
+                            'Nightly' => $inputArrPrNightly[$i],
+                            'WkndNight' => $inputArrPrWkndNight[$i],
+                            'Weekend' => $inputArrPrWeekend[$i],
+                            'Weekly' => $inputArrPrWeekly[$i],
+                            'Monthly' => $inputArrPrMonthly[$i],
+                            'Event' => $inputArrPrEvent[$i]
+                        );
                         $this->product_model->simple_insert(PRODUCT_PACKAGES, $inputArrRateVal);
                     }
                 }
@@ -970,7 +967,7 @@ class Product extends MY_Controller
                     }
                 }
             }
-            
+
             if ($this->input->post('submit_button') == 'savencont') {
                 $this->source_info_form($property_id);
             } else {
@@ -979,11 +976,11 @@ class Product extends MY_Controller
             //if($soldmode=='Sold'){
             //  redirect('admin/product/display_product_list');
             //}else{
-                //redirect('admin/product/display_user_product_list');
+            //redirect('admin/product/display_user_product_list');
             //}
         }
     }
-    
+
 
     /**
      *
@@ -1257,7 +1254,7 @@ class Product extends MY_Controller
             $this->product_model->update_details(PRODUCT, $newdata, $condition);
             $this->setErrorMessage('success', 'Property Status Changed Successfully');
             echo '1';
-            
+
             // redirect('admin/product/display_product_list');
         }
     }
@@ -1425,7 +1422,7 @@ class Product extends MY_Controller
             $condition = array('property_id' => $this->input->post('id'));
             $id = $this->input->post('id');
 
-            
+
             $this->setErrorMessage('success', 'Property source info details added successfully');
 
             redirect(base_url() . 'admin/product/display_product_list');
@@ -1439,14 +1436,17 @@ class Product extends MY_Controller
         } else {
             $value = $this->input->post();
             $data = serialize($value);
-            $condition = array('property_id' => $this->input->post('id'));
+            $condition = array('property_id'=>$this->input->post('id'));
             $id = $this->input->post('id');
             $rows = $this->product_model->get_all_details(SOURCE_INFO, $condition);
             if ($rows->num_rows() == 1) {
+                $this->product_model->update_details(SOURCE_INFO, array('datavalues'=>$data), $condition);
                 $this->setErrorMessage('success', 'Property source info details updated successfully');
             } elseif ($rows->num_rows() == 0) {
+                $this->product_model->simple_insert(SOURCE_INFO, array('datavalues'=>$data,'property_id'=>$id));
                 $this->setErrorMessage('success', 'Property source info details added successfully');
             }
+
             redirect(base_url() . 'admin/product/display_product_list');
         }
     }
@@ -2008,26 +2008,25 @@ class Product extends MY_Controller
 
         foreach ($product_image->result() as $ProImag) {
             $name = $ProImag->product_image;
-            @copy('./images/product/' . $ProImag->product_image, './zip-image/' . $propertyId . '/' . $ProImag->product_image);
+            @copy('./images/product/thumb/' . $ProImag->product_image, './zip-image/' . $propertyId . '/' . $ProImag->product_image);
         }
 
         exec("zip -r zip-image/ror-images-" . $propertyId . ".zip zip-image/" . $propertyId . "/");
 
         foreach ($product_image->result() as $ProImag) {
             @unlink('zip-image/' . $propertyId . '/' . $ProImag->product_image);
+            $name = $ProImag->product_image;
+            $this->load->library('zip');
+            $data = file_get_contents(base_url().'images/product/thumb/'.$ProImag->product_image);
+            $this->zip->add_data($name, $data);
         }
 
         if (rmdir('zip-image/' . $propertyId)) {
             //echo "deleted";die;
         }
 
-        redirect('zip-image/ror-images-' . $propertyId . '.zip');
-        exit();
-        /*
-          $this->load->library('zip');
-          $data = file_get_contents(base_url().'images/product/'.$ProImag->product_image);
-          $this->zip->add_data($name, $data);
-          $this->zip->download('ror-images-'.$propertyId.'.zip'); */
+        $this->zip->download('ror-images-'.$propertyId.'.zip');
+        return Zredirect('zip-image/ror-images-' . $propertyId . '.zip');
     }
 
     public function loadmoreImages()
