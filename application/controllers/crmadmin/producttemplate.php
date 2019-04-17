@@ -1094,14 +1094,18 @@ class Producttemplate extends MY_Controller
             redirect('deals_crm');
         } else {
             $value = $this->input->post();
-                    
+
             $data = serialize($value);
             $condition = array('property_id'=>$this->input->post('id'));
             $id = $this->input->post('id');
-                    
-            $this->product_model->simple_insert(SOURCE_INFO, array('datavalues'=>$data,'property_id'=>$id));
-            $this->setErrorMessage('success', 'Property source info details added successfully');
-                        
+            $rows = $this->product_model->get_all_details(SOURCE_INFO, $condition);
+            if ($rows->num_rows() == 1) {
+                $this->product_model->update_details(SOURCE_INFO, array('datavalues'=>$data), $condition);
+                $this->setErrorMessage('success', 'Property source info details updated successfully');
+            } elseif ($rows->num_rows() == 0) {
+                $this->product_model->simple_insert(SOURCE_INFO, array('datavalues'=>$data,'property_id'=>$id));
+                $this->setErrorMessage('success', 'Property source info details added successfully');
+            }
             redirect(base_url().'crmadmin/product/display_product_list');
         }
     }

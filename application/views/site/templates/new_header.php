@@ -183,7 +183,7 @@
                         <a class="nav-link " href="<?php echo $urlProperty.'#about'; ?>">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $urlProperty.'properties'; ?>">Properties</a>
+                        <a class="nav-link" href="<?php echo $urlProperty.'listing/viewall/0'; ?>">Properties</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $urlProperty.'contact'; ?>">Contact Us</a>
@@ -198,7 +198,7 @@
                     <?php } else {
                         ?>
                         <li class="nav-item bt_box">
-                            <a class="nav-link" href="<?php echo $urlProperty.'signup'; ?>">Sign up</a>
+                            <a class="nav-link" href="<?php echo $urlProperty.'signup'; ?>">Sign up/Login</a>
                         </li>
                     <?php } ?>
                 </ul>
