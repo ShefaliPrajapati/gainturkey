@@ -1422,7 +1422,7 @@ class Product extends MY_Controller
             $condition = array('property_id' => $this->input->post('id'));
             $id = $this->input->post('id');
 
-
+            $this->product_model->simple_insert(SOURCE_INFO, array('datavalues'=>$data,'property_id'=>$id));
             $this->setErrorMessage('success', 'Property source info details added successfully');
 
             redirect(base_url() . 'admin/product/display_product_list');
@@ -1445,6 +1445,7 @@ class Product extends MY_Controller
             } elseif ($rows->num_rows() == 0) {
                 $this->product_model->simple_insert(SOURCE_INFO, array('datavalues'=>$data,'property_id'=>$id));
                 $this->setErrorMessage('success', 'Property source info details added successfully');
+                echo $this->db->last_query();
             }
 
             redirect(base_url() . 'admin/product/display_product_list');
