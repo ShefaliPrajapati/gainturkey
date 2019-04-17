@@ -1845,15 +1845,16 @@ class Product extends MY_Controller
                 </div>';
     }
 
-    public function prop_id_check_dub()
-    {
+    public function prop_id_check_dub(){
         $propId = $this->input->post('propId');
-
-        $this->db->select('property_id');
+        $propertyID = $this->input->post('propertyID');
+        $this->db->select('property_id,id');
         $this->db->from(PRODUCT);
         $this->db->where('property_id', $propId);
+        if(!empty($propertyID) && $propertyID > 0){
+            $this->db->where('id !=', $propertyID);    
+        }
         $PrdtDets = $this->db->get();
-
         if ($PrdtDets->num_rows() > 0) {
             echo '1';
         } else {

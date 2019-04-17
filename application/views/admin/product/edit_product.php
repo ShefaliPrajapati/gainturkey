@@ -392,7 +392,7 @@ function viewAttributes(Val){
                 <div class="form_grid_12">
                   <label class="field_title" for="bedroom">Property ID<span class="req">*</span></label>
                   <div class="form_input">
-                    <input id="property_id" type="text" tabindex="1" value="<?php echo stripslashes($product_details->row()->property_id); ?>" class="required large tipTop" name="property_id" title="Please enter the property id" onchange="javascript:prpIdCheck()" onblur="javascript:prpIdCheck()" />
+                    <input id="property_id" type="text" tabindex="1" value="<?php echo stripslashes($product_details->row()->property_id); ?>" class="required large tipTop" name="property_id" title="Please enter the property id" onchange="javascript:prpIdCheck()" onkeyup="javascript:prpIdCheck()"  onblur="javascript:prpIdCheck()" />
                       <span id="property_id_warn" class="redfont" style="color:#F00;"></span>
                   </div>
                 </div>
@@ -1033,7 +1033,7 @@ function viewAttributes(Val){
               </li>
             </ul>
           </div>
-          <input type="hidden" name="propertyID" value="<?php echo $product_details->row()->id;?>"/>
+          <input type="hidden" id="propertyID" class="propertyID" name="propertyID" value="<?php echo $product_details->row()->id;?>"/>
           </form>
         </div>
       </div>
@@ -1338,22 +1338,16 @@ function removeError(idval){
 function SelectSubType(Id)
 { 
 var prodId = <?php echo $product_details->row()->id;?>;
-		$.ajax(
-		{
-				type: 'POST',
-				url: baseURL+'admin/product/edit_sub_type_details',
-				data:{'typeId':Id, 'prodId':prodId},
-				success: function(data) 
-				{
-					//alert(data);return false;
-					$("#property_sub_type_disp").html(data);
-					//window.location.reload();
-					
-					
-				}
-				
-			});
-	
+	$.ajax({
+		type: 'POST',
+		url: baseURL+'admin/product/edit_sub_type_details',
+		data:{'typeId':Id, 'prodId':prodId},
+		success: function(data){
+			//alert(data);return false;
+			$("#property_sub_type_disp").html(data);
+			//window.location.reload();
+		}
+	});
 }
 
 function loadmoreImage(PrdId,PgId){
@@ -1379,12 +1373,14 @@ function loadmoreImage(PrdId,PgId){
 
 function prpIdCheck()
 { 
+
 		var propID = $('#property_id').val();
+		var propertyID = $('#propertyID').val();
 		$.ajax(
 		{
 				type: 'POST',
 				url: baseURL+'admin/product/prop_id_check_dub',
-				data:{'propId':propID},
+				data:{'propId':propID,'propertyID':propertyID},
 				success: function(data) 
 				{
 					//alert(data);return false;

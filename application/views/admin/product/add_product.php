@@ -538,7 +538,7 @@ function removeError(idval){
                 <div class="form_grid_12">
                   <label class="field_title" for="bedroom">Property ID<span class="req">*</span></label>
                   <div class="form_input">
-                    <input id="property_id" type="text" tabindex="1" class="required large tipTop" name="property_id" title="Please enter the property id" />
+                    <input id="property_id" type="text" tabindex="1" class="required large tipTop" name="property_id" title="Please enter the property id" onchange="javascript:prpIdCheck()" onkeyup="javascript:prpIdCheck()"  onblur="javascript:prpIdCheck()" />
                       <span id="property_id_warn" class="redfont" style="color:#F00;"></span>
                   </div>
                 </div>
@@ -1317,6 +1317,26 @@ function SelectSubType(Id)
 				
 			});
 	
+}
+function prpIdCheck(){ 
+		var propID = $('#property_id').val();
+		$.ajax({
+				type: 'POST',
+				url: baseURL+'admin/product/prop_id_check_dub',
+				data:{'propId':propID},
+				success: function(data) 
+				{
+					//alert(data);return false;
+					if(data==1){
+						$("#property_id_warn").html('Property Id Already Exists.');
+						$('#property_id').val('');
+					}else{
+						$("#property_id_warn").html('');
+					}
+					
+				}
+				
+			});
 }
 </script>
 
