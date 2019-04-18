@@ -27,7 +27,7 @@ $this->load->view('crmadmin/templates/header.php');
 				echo form_open_multipart('crmadmin/report/createreport',$attributes)  */
 			?>
              
-			<form id="createreport_form" method="GET" action="crmadmin/report/createreport" class="form_container left_label"> 
+			<form id="createreport_form" method="GET" action="crmadmin/report/createreport" class="form_container left_label" autocomplete="off"> 
             <ul>
             <li>
 				<div class="form_grid_12">
