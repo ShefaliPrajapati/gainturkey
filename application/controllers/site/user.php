@@ -5160,10 +5160,20 @@ class User extends MY_Controller
             $this->data['ViewList'] = $msgprop;
             $this->data['propertyAddres'] = url_title($PropertyList->row()->prop_address, '-', true);
             
-        
-            
-            
-            $this->load->view('site/product/view_orders', $this->data);
+        require_once("pdfdownload/dompdf_config.inc.php");
+
+        $html =  $this->data['ViewList'];
+        $orientation = 'portrait';
+        $paper = 'letter';
+        $dompdf = new DOMPDF();
+        $dompdf->load_html($html);
+        $dompdf->set_paper($paper,$orientation);
+        $dompdf->render();
+        $invoice = 'return_on_rentals_'.$propertyAddres.'.pdf';
+        $dompdf->stream($invoice,array('Attachment'=>0));
+
+        // Download Pdf File
+            // $this->load->view('site/product/view_orders', $this->data);
         }
     }
 }
