@@ -1,7 +1,7 @@
-<?php  
-$hostName = '166.62.84.16';
-$dbUserName = 'cashflow_cfrror';
-$dbPassword = ']y)%#Wxi1uII';
-$databaseName = 'cashflow_cfrrorpip';
+<?php
+$hostName = '';
+$dbUserName = '';
+$dbPassword = '';
+$databaseName = '';
 define('SITE_COMMON_DEFINE', 'fancyy-');
 ?>

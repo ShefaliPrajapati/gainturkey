@@ -1,5 +1,7 @@
 <?php include_once './databaseValues.php';
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
@@ -18,7 +20,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 |	['password'] The password used to connect to the database
 |	['database'] The name of the database you want to connect to
 |	['dbdriver'] The database type. ie: mysql.  Currently supported:
-				 mysql, mysqli, postgre, odbc, mssql, sqlite, oci8
+                 mysql, mysqli, postgre, odbc, mssql, sqlite, oci8
 |	['dbprefix'] You can add an optional prefix, which will be added
 |				 to the table name when using the  Active Record class
 |	['pconnect'] TRUE/FALSE - Whether to use a persistent connection
@@ -47,44 +49,36 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 */
 
 $active_group = 'default';
-$active_record = TRUE;
+$active_record = true;
 
-if ($_SERVER['HTTP_HOST'] == 'localhost') {
-	$db['default']['hostname'] = 'localhost';
-	$db['default']['username']  = 'admin';
-	$db['default']['password']  = 'ts1234';
-	$db['default']['database'] = 'gainturkey';
+if ($_SERVER['HTTP_HOST'] == 'beta.gainturnkeyproperty.com') {
+    $db['default']['hostname'] = 'localhost';
+    $db['default']['username'] = 'gainturn_beta';
+    $db['default']['password'] = '6mQlAo)TcuFq';
+    $db['default']['database'] = 'gainturn_beta_v1';
+} elseif ($_SERVER['HTTP_HOST'] == 'localhost') {
+    $db['default']['hostname'] = 'localhost';
+    $db['default']['username'] = 'admin';
+    $db['default']['password'] = 'admin@123';
+    $db['default']['database'] = 'gainturkey';
+} elseif ($_SERVER['HTTP_HOST'] == 'gainturnkeyproperty.com') {
+    $db['default']['hostname'] = '192.169.226.64';
+    $db['default']['username'] = 'gainturn_keyispl';
+    $db['default']['password'] = 'EHFc*nhIM9KA';
+    $db['default']['database'] = 'gainturn_key_v1';
 }
-else if($_SERVER['HTTP_HOST'] == '192.168.1.253') {
-	$db['default']['hostname'] = 'localhost';
-	$db['default']['username']  = 'root';
-	$db['default']['password']  = '';
-	$db['default']['database'] = 'return_onrentals';
-}
-else if($_SERVER['HTTP_HOST']=='projects.teamtweaks.com') {
-	$db['default']['hostname'] = 'localhost';
-	$db['default']['username']  = 'surisiva_ram';
-	$db['default']['password']  = 'ramansamy123!@#';
-	$db['default']['database'] = 'surisiva_returnonrentals';
-} else {
-	$db['default']['hostname'] = $hostName;
-	$db['default']['username'] = $dbUserName;
-	$db['default']['password'] = $dbPassword;
-	$db['default']['database'] = $databaseName;
-}
-
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
+$db['default']['pconnect'] = true;
+$db['default']['db_debug'] = true;
+$db['default']['cache_on'] = false;
 $db['default']['cachedir'] = '';
 $db['default']['char_set'] = 'utf8';
 $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
+$db['default']['autoinit'] = true;
+$db['default']['stricton'] = false;
 $db['default']['options'] =''; //array(PDO::ATTR_TIMEOUT => 5);
 
 

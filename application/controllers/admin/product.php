@@ -1654,7 +1654,7 @@ class Product extends MY_Controller
 
     public function loadCountryListValues()
     {
-        $returnStr['listCountryCnt'] = '<select class="chzn-select required" name="state" tabindex="-1" style="width: 375px;" onchange="javascript:loadStateListValues(this)"  data-placeholder="Please select the state name">';
+        $returnStr['listCountryCnt'] = '<select class="chzn-select required" name="state" tabindex="-1" style="width: 375px;" onchange="loadStateListValues(this)"  data-placeholder="Please select the state name">';
         $lid = $this->input->post('lid');
         $lvID = $this->input->post('lvID');
         if ($lid != '') {
@@ -2050,9 +2050,9 @@ class Product extends MY_Controller
         $trImg = '';
         foreach ($prdImg->result() as $ProImag) {
             $trImg.= '<tr id="img_' . $ProImag->id . '">
-                <td class="center tr_select "><input type="text" name="imgtitle[]"  onChange="javascript:ChangeImagetitle(this,' . $ProImag->id . ');" value="' . $ProImag->imgtitle . '" /></td>
+                <td class="center tr_select "><input type="text" name="imgtitle[]"  onChange="ChangeImagetitle(this,' . $ProImag->id . ');" value="' . $ProImag->imgtitle . '" /></td>
 				<td class="center"><img src="' . base_url() . 'images/product/' . $ProImag->product_image . '"  width="200px" /></td>
-				<td class="center"><div id="imgmsg_' . $ProImag->id . '"></div><span><input type="text" style="width: 15%;" name="changeorder[]" onChange="javascript:ChangeImagePriority(this,' . $ProImag->id . ');" value="' . $ProImag->imgPriority . '" size="3" /></span></td>
+				<td class="center"><div id="imgmsg_' . $ProImag->id . '"></div><span><input type="text" style="width: 15%;" name="changeorder[]" onChange="ChangeImagePriority(this,' . $ProImag->id . ');" value="' . $ProImag->imgPriority . '" size="3" /></span></td>
                 <td class="center"><ul class="action_list" style="background:none;border-top:none;">
                  <li style="width:100%;"><a class="p_del tipTop" href="javascript:void(0)" onClick="DeletePictureProducts(' . $ProImag->id . ');" title="Delete this  image">Remove</a></li></ul></td>
                  </tr>';

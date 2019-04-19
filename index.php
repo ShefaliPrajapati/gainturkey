@@ -25,8 +25,8 @@
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
-define('ENVIRONMENT', 'development');
-	
+
+
 if (defined('ENVIRONMENT'))
 {
 	switch (ENVIRONMENT)
