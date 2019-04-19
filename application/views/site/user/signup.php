@@ -9,6 +9,8 @@
         <div class="row justify-content-md-center">
             <div class="col-md-12 text-center">
                 <h2><?php echo $signup->row()->page_title; ?></h2>
+                -----------------------OR----------------------<br/>
+                <h5><?php echo 'Already a Member? '; echo '<a href="'.base_url(signin).'" >Click Here</a>'; ?></h5>
                 <p><?php echo $signup->row()->description; ?></p>
                 <br>
             </div>
@@ -101,13 +103,10 @@
                                     <input type="text" name="captcha" id="captcha" class="field_login form-control required" value="" equalto="#captcha_original" >
                                     <div id="captcha_warn"  style="color:#FF0000;"></div>
                                 </div>
-
-                                
                                 <div class="field_login form-group" >
-                           
                                          <input type="submit" name="signin" id="signin" class="member_btn btn btn-primary" value="REGISTER"  style="border:none;" />
 
-                                    <div class="pull-right"><?php echo 'Already a Member? '; echo '<a href="'.base_url(signin).'" >Click Here</a>'; ?></div>
+                                   <!--  <div class="pull-right"><?php echo 'Already a Member? '; echo '<a href="'.base_url(signin).'" >Click Here</a>'; ?></div> -->
                                     
                                 </div>
         				</form>

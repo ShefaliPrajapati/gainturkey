@@ -543,8 +543,7 @@ class User extends MY_Controller
         }
     }
     
-    public function registerUser()
-    {
+    public function registerUser(){
         $username = $this->input->post('user_name');
         $email = $this->input->post('email');
         if (valid_email($email)) {
@@ -570,21 +569,21 @@ class User extends MY_Controller
                     redirect('signup');
                 } else {
                     $dataArr = array('first_name'	=>		$this->input->post('first_name'),
-                                                    'last_name'		=>		$this->input->post('last_name'),
-                                                    'user_name'		=>		$username,
-                                                    'email'			=>		$email,
-                                                    'password'		=>		md5($this->input->post('password')),
-                                                    'address'		=>		$this->input->post('address'),
-                                                    'address1'		=>		$this->input->post('address1'),
-                                                    'city'			=>		$this->input->post('city'),
-                                                    'state'			=>		$this->input->post('state'),
-                                                    'country'		=>		$this->input->post('country'),
-                                                    'postal_code'	=>		$this->input->post('post'),
-                                                    'phone_no'		=>		$this->input->post('ph_no'),
-                                                    'how_know'		=>		$this->input->post('how_heared'),
-                                                    'status'		=>		'Active',
-                                                    'is_verified'	=>		'No'
-                                                );
+                        'last_name'		=>		$this->input->post('last_name'),
+                        'user_name'		=>		$username,
+                        'email'			=>		$email,
+                        'password'		=>		md5($this->input->post('password')),
+                        'address'		=>		$this->input->post('address'),
+                        'address1'		=>		$this->input->post('address1'),
+                        'city'			=>		$this->input->post('city'),
+                        'state'			=>		$this->input->post('state'),
+                        'country'		=>		$this->input->post('country'),
+                        'postal_code'	=>		$this->input->post('post'),
+                        'phone_no'		=>		$this->input->post('ph_no'),
+                        'how_know'		=>		$this->input->post('how_heared'),
+                        'status'		=>		'Active',
+                        'is_verified'	=>		'No'
+                        );
                     $this->user_model->simple_insert(USERS, $dataArr);
                     $this->session->set_userdata('fc_session_user_name', $username);
                     $this->setErrorMessage('success', 'Congratulations!  You are now registered in our website.  Please check for our Welcome Email to complete your registration.');
@@ -593,10 +592,7 @@ class User extends MY_Controller
                         $this->send_confirm_mail($details);
                         $this->send_admin_mail_userdetails($details);
                     }
-                                    
-                                    
-                                    
-                    redirect(base_url());
+                    redirect(base_url().'site/user/verify_email/'.$details->row()->id);
                 }
             }
         } else {
@@ -645,6 +641,21 @@ class User extends MY_Controller
             $this->setErrorMessage('error', 'Invalid email id');
             redirect('signin');
         }
+    }  
+    
+    public function verify_email($uid){
+        $signId = $this->uri->segment(2);
+        $urlval = $this->uri->segment(3);
+        $condition = array('id'=>$uid);
+        $checkUser = $this->user_model->get_all_details(USERS, $condition);
+        if ($checkUser->num_rows() == 1) {
+            if ($checkUser->row()->is_verified == 'Yes') {
+                $this->setErrorMessage('error', 'You already verified your email');
+                redirect(base_url().'signin');
+            }
+        } 
+        $this->data = array();
+        $this->load->view('site/user/verify_email', $this->data);
     }
     
     public function registerOwner($payment='')
@@ -1202,14 +1213,14 @@ class User extends MY_Controller
             if ($checkUser->num_rows() == 1) {
                 if ($checkUser->row()->is_verified == 'Yes') {
                     $this->setErrorMessage('error', 'You already verified your email');
-                    redirect(base_url());
+                    redirect(base_url().'signin');
                 }
                 $conditionArr = array('id'=>$uid,'verify_code'=>$code);
                 $dataArr = array('is_verified'=>'Yes');
                 $this->user_model->update_details(USERS, $dataArr, $condition);
                 $this->setErrorMessage('success', 'Great going ! Your mail ID has been verified');
                 //$this->login_after_signup($checkUser);
-                redirect(base_url());
+                redirect(base_url().'signin');
             } else {
                 $this->setErrorMessage('error', 'Invalid confirmation link');
                 redirect(base_url());
@@ -2808,7 +2819,7 @@ class User extends MY_Controller
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.$_SERVER['DOCUMENT_ROOT'].'/images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.', '.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-', ' ', $propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -2828,7 +2839,7 @@ class User extends MY_Controller
     	<tr style="margin:20px 0 20px;">
         
         	<td  width="200">
-            	<img src="'.base_url().'images/product/'.$imgName.'" style="width:250px !important; height:190px;  " />
+            	<img src="'.$_SERVER['DOCUMENT_ROOT'].'/images/product/'.$imgName.'" style="width:250px !important; height:190px;  " />
             </td>
             
             <td width="300">
@@ -3010,7 +3021,7 @@ class User extends MY_Controller
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.$_SERVER['DOCUMENT_ROOT'].'/images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -3452,7 +3463,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px; ">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.'<br>'.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-', ' ', $propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -3653,7 +3664,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -3916,7 +3927,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; " src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left; " src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">Comps</span>
@@ -3973,7 +3984,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px; ">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.', '.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-', ' ', $propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -4172,7 +4183,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -4415,7 +4426,7 @@ class User extends MY_Controller
 	<table border="0" width="750" align="center" cellpadding="0" cellspacing="0" style="max-width: 750px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.base_url().'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">Comps</span>
@@ -4513,7 +4524,7 @@ class User extends MY_Controller
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left;" src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left;" src="'.$_SERVER['DOCUMENT_ROOT'].'/images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100%!important; vertical-align:top; text-align:right;">'.$propAddress->row()->address.', '.ucwords($propAddress->row()->city).', '.ucwords(str_replace('-', ' ', $propAddress->row()->state)).' '.$propAddress->row()->post_code.'</span>
@@ -4533,7 +4544,7 @@ class User extends MY_Controller
     	<tr style="margin:20px 0 20px;">
         
         	<td  width="200">
-            	<img src="'.base_url().'images/product/'.$imgName.'" style="width:250px !important; height:190px;  " />
+            	<img src="'.$_SERVER['DOCUMENT_ROOT'].'/images/product/'.$imgName.'" style="width:250px !important; height:190px;  " />
             </td>
             
             <td width="300">
@@ -4718,7 +4729,7 @@ class User extends MY_Controller
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
 		
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; " src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left; " src="'.$_SERVER['DOCUMENT_ROOT'].'/images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">INTENT to PURCHASE AGREEMENT</span>
@@ -5102,7 +5113,7 @@ class User extends MY_Controller
 	 <div style="width:50%; margin:0px; padding:0px;">
 	<table border="0" width="550" align="center" cellpadding="0" cellspacing="0" style="max-width: 550px;">
         <tr style="background:#c4c4c4; height:85px; width:50%;">
-        	<td width="10%;"><img style="float:left; " src="'.$baseUrl.'images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
+        	<td width="10%;"><img style="float:left; " src="'.$_SERVER['DOCUMENT_ROOT'].'/images/logo/'.$this->config->item('logo_image').'" alt="'.$this->config->item('meta_title').'" />
 			</td>
 			<td  width="13%;" style="vertical-align:top; text-align:right;">
 			<span style="float:right;  margin:0px 0 0 0px !important; font-family:Arial, Helvetica, sans-serif;  font-size:16px; font-weight:bold; width:100% !important; vertical-align:top; text-align:right;">Comps</span>
@@ -5149,10 +5160,20 @@ class User extends MY_Controller
             $this->data['ViewList'] = $msgprop;
             $this->data['propertyAddres'] = url_title($PropertyList->row()->prop_address, '-', true);
             
-        
-            
-            
-            $this->load->view('site/product/view_orders', $this->data);
+        require_once("pdfdownload/dompdf_config.inc.php");
+
+        $html =  $this->data['ViewList'];
+        $orientation = 'portrait';
+        $paper = 'letter';
+        $dompdf = new DOMPDF();
+        $dompdf->load_html($html);
+        $dompdf->set_paper($paper,$orientation);
+        $dompdf->render();
+        $invoice = 'return_on_rentals_'.$propertyAddres.'.pdf';
+        $dompdf->stream($invoice,array('Attachment'=>0));
+
+        // Download Pdf File
+            // $this->load->view('site/product/view_orders', $this->data);
         }
     }
 }
