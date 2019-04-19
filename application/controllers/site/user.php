@@ -260,7 +260,7 @@ class User extends MY_Controller
             
             /*			unset($createdPdf);
                         $createdPdf = '';
-            
+
                         $createdPdf .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
@@ -275,9 +275,9 @@ class User extends MY_Controller
                 }
             }
             $createdPdf .='</body></html>';
-            
-            
-            
+
+
+
                     /*unset($pdfPath);
                     $finalPDF = $createdPdf;
                      $tempFile = time().'.html';
@@ -285,22 +285,22 @@ class User extends MY_Controller
                       $file_to_save = './images/crm-popup-images/'.$tempFile;
                       file_put_contents($file_to_save, $finalPDF);
                     echo '<img src="images/ajax-loader/ajax-loader(4).gif" alt="Loading...">';
-            
+
                     sleep(5);
-            
+
                 ini_set('display_errors','off');
                 require_once("pdfdownload/dompdf_config.inc.php");
                //$orientation = 'portrait';
                //$paper = 'letter';
             // return_on_rentals_101-Floss-Avenue-Buffalo-NY-14211_3223
-            
+
               $dompdf = new DOMPDF();
               //$dompdf->load_html(file_get_contents($pdfPath));
               $dompdf->load_html($createdPdf);
               //$dompdf->set_paper($paper,$orientation);
               $dompdf->render();
               $invoice = 'return_on_rentals_agreement_'.$signId.'_'.$urlval.'.pdf';
-            
+
               $output = $dompdf->output();
               $file_to_save = './images/crm-popup-images/'.$invoice;
              // file_put_contents($file_to_save, $output);
@@ -337,7 +337,7 @@ class User extends MY_Controller
             $message .= '<!DOCTYPE HTML><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"/><title>Signature Agreement</title></head><body>';
             $message .= '<div style="width:692px;background:#FFFFFF; margin:0 auto;">
 <div style="width:100%;background:#454B56; float:left; margin:0 auto;">
-    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="'.base_url().'" target="_blank" id="logo"><img src="'.$baseUrl.'images/logo/'.$this->data['logo'].'" alt="'.$this->data['WebsiteTitle'].'" title="'.$this->data['WebsiteTitle'].'"></a></div>
+    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="' . base_url() . '" target="_blank" id="logo"><img src="' . $baseUrl . 'images/logo/' . base_url() . 'images/logo/logo.png' . '" alt="' . $this->data['WebsiteTitle'] . '" title="' . $this->data['WebsiteTitle'] . '"></a></div>
 	
 </div>			
 <!--END OF LOGO-->
@@ -542,8 +542,9 @@ class User extends MY_Controller
             }
         }
     }
-    
-    public function registerUser(){
+
+    public function registerUser()
+    {
         $username = $this->input->post('user_name');
         $email = $this->input->post('email');
         if (valid_email($email)) {
@@ -641,9 +642,10 @@ class User extends MY_Controller
             $this->setErrorMessage('error', 'Invalid email id');
             redirect('signin');
         }
-    }  
-    
-    public function verify_email($uid){
+    }
+
+    public function verify_email($uid)
+    {
         $signId = $this->uri->segment(2);
         $urlval = $this->uri->segment(3);
         $condition = array('id'=>$uid);
@@ -653,7 +655,7 @@ class User extends MY_Controller
                 $this->setErrorMessage('error', 'You already verified your email');
                 redirect(base_url().'signin');
             }
-        } 
+        }
         $this->data = array();
         $this->load->view('site/user/verify_email', $this->data);
     }
@@ -787,7 +789,7 @@ class User extends MY_Controller
         $message = str_replace('{$cfmurl}', $cfmurl, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
         $message = str_replace('{base_url()}', base_url(), $message);
 
         $email_values = array('mail_type'=>'html',
@@ -908,8 +910,8 @@ class User extends MY_Controller
         $message = str_replace('{$cfmurl}', $cfmurl, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
         $message = str_replace('{base_url()}', base_url(), $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
 
         $email_values = array('mail_type'=>'html',
                             'from_mail_id'=>$sender_email,
@@ -928,39 +930,43 @@ class User extends MY_Controller
         $email = $userDetails->row()->email;
         
         $condition = array('id'=>$uid);
+        $header = '';
         //$dataArr = array('verify_code'=>$randStr);
         //$this->user_model->update_details(USERS,$dataArr,$condition);
         $newsid='18';
         $template_values=$this->user_model->get_newsletter_template_details($newsid);
-        
-        
-        $subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-        $adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),
-                                    'logo'=> $this->data['logo'],
-                                    'First_Name'=>$userDetails->row()->first_name,
-                                    'Last_Name' =>$userDetails->row()->last_name,
-                                    'User_Name' =>$userDetails->row()->user_name,
-                                    'Email' =>$userDetails->row()->email,
-                                    'Address' => $userDetails->row()->address,
-                                    'City' => $userDetails->row()->city,
-                                    'State' =>str_replace('-', ' ', $userDetails->row()->state),
-                                    'Country'=>$userDetails->row()->country,
-                                    'Post_Code'=>$userDetails->row()->postal_code,
-                                    'Phone'=>$userDetails->row()->phone_no
-                                    );
-        extract($adminnewstemplateArr);
-        //$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
-        $header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";
-        
-        $message .= '<!DOCTYPE HTML>
+
+        $subject = 'From: ' . $template_values['news_title'] . ' - ' . $template_values['news_subject'];
+
+        $message = '<!DOCTYPE HTML>
 			<html>
 			<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-			<meta name="viewport" content="width=device-width"/><body>';
-        include('./newsletter/registeration'.$newsid.'.php');
-        
-        $message .= '</body>
+			<meta name="viewport" content="width=device-width"/><body>' . $template_values['news_descrip'] . '</body>
 			</html>';
+
+        if ($template_values['sender_name'] == '' && $template_values['sender_email'] == '') {
+            $sender_email = $this->config->item('site_contact_mail');
+            $sender_name = $this->config->item('email_title');
+        } else {
+            $sender_name = $template_values['sender_name'];
+            $sender_email = $template_values['sender_email'];
+        }
+
+        $message = str_replace('{$email_title}', $sender_name, $message);
+        $message = str_replace('{$meta_title}', $sender_name, $message);
+        $message = str_replace('{$First_Name}', $userDetails->row()->first_name, $message);
+        $message = str_replace('{$Last_Name}', $userDetails->row()->last_name, $message);
+        $message = str_replace('{$User_Name}', $userDetails->row()->user_name, $message);
+        $message = str_replace('{$Email}', $userDetails->row()->email, $message);
+        $message = str_replace('{$Address}', $userDetails->row()->address, $message);
+        $message = str_replace('{$City}', $userDetails->row()->city, $message);
+        $message = str_replace('{$State}', str_replace('-', ' ', $userDetails->row()->state), $message);
+        $message = str_replace('{$Country}', $userDetails->row()->country, $message);
+        $message = str_replace('{$Post_Code}', $userDetails->row()->postal_code, $message);
+        $message = str_replace('{$Phone}', $userDetails->row()->phone_no, $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
+        $message = str_replace('{base_url()}', base_url(), $message);
         
         if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
             $sender_email=$this->data['siteContactMail'];
@@ -974,7 +980,7 @@ class User extends MY_Controller
                             'from_mail_id'=>$sender_email,
                             'mail_name'=>$sender_name,
                             'to_mail_id'=>$this->data['adminEmail'],
-                            'subject_message'=>$template_values['news_subject'],
+            'subject_message' => $subject,
                             'body_messages'=>$message
                             );
         $email_send_to_common = $this->product_model->common_email_send($email_values);
@@ -1416,7 +1422,7 @@ class User extends MY_Controller
         $message = str_replace('{$pwd}', $pwd, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
 
         $email_values = array('mail_type'=>'html',
                             'from_mail_id'=>$sender_email,
@@ -2022,7 +2028,7 @@ class User extends MY_Controller
             $checkbox = $this->input->post('checkbox');
             $brand = 'no';
             $returnStr['success'] = '0';
-    
+
            if (valid_email($email)){
                 $condition = array('user_name'=>$username);
                 $duplicateName = $this->user_model->get_all_details(USERS,$condition);
@@ -2121,7 +2127,7 @@ class User extends MY_Controller
 <body>
 <div style="width:1012px;background:#FFFFFF; margin:0 auto;">
 <div style="width:100%;background:#454B56; float:left; margin:0 auto;">
-    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="'.base_url().'" target="_blank" id="logo"><img src="'.$baseUrl.'images/logo/'.$this->data['logo'].'" alt="'.$this->data['WebsiteTitle'].'" title="'.$this->data['WebsiteTitle'].'"></a></div>
+    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="' . base_url() . '" target="_blank" id="logo"><img src="' . $baseUrl . 'images/logo/' . base_url() . 'images/logo/logo.png' . '" alt="' . $this->data['WebsiteTitle'] . '" title="' . $this->data['WebsiteTitle'] . '"></a></div>
 	
 </div>			
 <!--END OF LOGO-->
@@ -2588,7 +2594,7 @@ class User extends MY_Controller
                 $message = str_replace('{$cfmurl}', $cfmurl, $message);
                 $message = str_replace('{$email_title}', $sender_name, $message);
                 $message = str_replace('{$meta_title}', $sender_name, $message);
-                $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+                $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
                 $message = str_replace('{base_url()}', base_url(), $message);
 
                 $email_values = array('mail_type'=>'html',
@@ -2610,7 +2616,7 @@ class User extends MY_Controller
             if (in_array('following', $emailNoty)) {
                 $newsid='9';
                 $template_values=$this->product_model->get_newsletter_template_details($newsid);
-                $adminnewstemplateArr=array('logo'=> $this->data['logo'],
+                $adminnewstemplateArr = array('logo' => base_url() . 'images/logo/logo.png',
                     'meta_title'=>$this->config->item('meta_title'),
                     'full_name'=>$followUserDetails[0]['full_name'],
                     'cfull_name'=>$this->data['userDetails']->row()->full_name,
@@ -2640,7 +2646,7 @@ class User extends MY_Controller
                 $message = str_replace('{$Message}', $this->data['userDetails']->row()->user_name, $message);
                 $message = str_replace('{$email_title}', $sender_name, $message);
                 $message = str_replace('{$meta_title}', $sender_name, $message);
-                $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+                $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
 
                 $email_values = array('mail_type'=>'html',
                                     'from_mail_id'=>$sender_email,
@@ -5159,20 +5165,20 @@ class User extends MY_Controller
 </html>';
             $this->data['ViewList'] = $msgprop;
             $this->data['propertyAddres'] = url_title($PropertyList->row()->prop_address, '-', true);
-            
-        require_once("pdfdownload/dompdf_config.inc.php");
 
-        $html =  $this->data['ViewList'];
-        $orientation = 'portrait';
-        $paper = 'letter';
-        $dompdf = new DOMPDF();
-        $dompdf->load_html($html);
-        $dompdf->set_paper($paper,$orientation);
-        $dompdf->render();
-        $invoice = 'return_on_rentals_'.$propertyAddres.'.pdf';
-        $dompdf->stream($invoice,array('Attachment'=>0));
+            require_once("pdfdownload/dompdf_config.inc.php");
 
-        // Download Pdf File
+            $html = $this->data['ViewList'];
+            $orientation = 'portrait';
+            $paper = 'letter';
+            $dompdf = new DOMPDF();
+            $dompdf->load_html($html);
+            $dompdf->set_paper($paper, $orientation);
+            $dompdf->render();
+            $invoice = 'return_on_rentals_' . $propertyAddres . '.pdf';
+            $dompdf->stream($invoice, array('Attachment' => 0));
+
+            // Download Pdf File
             // $this->load->view('site/product/view_orders', $this->data);
         }
     }

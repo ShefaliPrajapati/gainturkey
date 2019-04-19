@@ -1032,7 +1032,7 @@ class Product extends MY_Controller
         $message = str_replace('{$Comment}', $thing['msg'], $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
         $message = str_replace('{base_url()}', base_url(), $message);
 
         $email_values = array('mail_type' => 'html',
@@ -2588,7 +2588,7 @@ class Product extends MY_Controller
         $message = str_replace('{$soldAdmin}', $data->sold_admin_name, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
         $message = str_replace('{base_url()}', base_url(), $message);
 
         $sender_email = $this->data['siteContactMail'];
@@ -2637,7 +2637,7 @@ class Product extends MY_Controller
         $message = str_replace('{$cfmurl}', $cfmurl, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
         $message = str_replace('{base_url()}', base_url(), $message);
 
         $email_values = array('mail_type' => 'html',
@@ -2685,7 +2685,7 @@ class Product extends MY_Controller
         $message = str_replace('{$Comment}', $contactDetails->row()->message, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
         $message = str_replace('{base_url()}', base_url(), $message);
 
 

@@ -268,7 +268,7 @@ class Contact extends MY_Controller {
 					
 					$cfmurl = base_url().'site/user/confirm_register/'.$uid."/".$randStr."/confirmation";
 					$subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-					$adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo'],'first_name'=>$this->input->post('first_name'),'last_name'=>$this->input->post('last_name'),'adults'=>$this->input->post('adults'),'children'=>$this->input->post('children'),'email_address'=>$this->input->post('email_address'),'ph_no'=>$this->input->post('ph_no'),'Message'=>$this->input->post('Message'),'Arr_date'=>$this->input->post('Arr_date'),'Dep_date'=>$this->input->post('Dep_date'),'renter_id'=>$this->input->post('renter_id'),'rental_id'=>$this->input->post('rental_id'),'renter_fname'=>$Renter_details->row()->first_name,'renter_lname'=>$Renter_details->row()->last_name,'rental_name'=>$Rental_details->row()->product_name);
+                    $adminnewstemplateArr = array('email_title' => $this->config->item('email_title'), 'logo' => base_url() . 'images/logo/logo.png', 'first_name' => $this->input->post('first_name'), 'last_name' => $this->input->post('last_name'), 'adults' => $this->input->post('adults'), 'children' => $this->input->post('children'), 'email_address' => $this->input->post('email_address'), 'ph_no' => $this->input->post('ph_no'), 'Message' => $this->input->post('Message'), 'Arr_date' => $this->input->post('Arr_date'), 'Dep_date' => $this->input->post('Dep_date'), 'renter_id' => $this->input->post('renter_id'), 'rental_id' => $this->input->post('rental_id'), 'renter_fname' => $Renter_details->row()->first_name, 'renter_lname' => $Renter_details->row()->last_name, 'rental_name' => $Rental_details->row()->product_name);
 					extract($adminnewstemplateArr);
 					//$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
 					$header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";
@@ -309,7 +309,7 @@ class Contact extends MY_Controller {
 					$cfmurl = base_url().'site/user/confirm_register/'.$uid."/".$randStr."/confirmation";
 					$subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
 
-//					$adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo'],'first_name'=>$this->input->post('first_name'),'last_name'=>$this->input->post('last_name'),'adults'=>$this->input->post('adults'),'children'=>$this->input->post('children'),'email_address'=>$this->input->post('email_address'),'ph_no'=>$this->input->post('ph_no'),'Message'=>$this->input->post('Message'),'Arr_date'=>$this->input->post('Arr_date'),'Dep_date'=>$this->input->post('Dep_date'),'renter_id'=>$this->input->post('renter_id'),'rental_id'=>$this->input->post('rental_id'),'renter_fname'=>$Renter_details->row()->first_name,'renter_lname'=>$Renter_details->row()->last_name,'rental_name'=>$Rental_details->row()->product_name);
+//					$adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> base_url().'images/logo/logo.png','first_name'=>$this->input->post('first_name'),'last_name'=>$this->input->post('last_name'),'adults'=>$this->input->post('adults'),'children'=>$this->input->post('children'),'email_address'=>$this->input->post('email_address'),'ph_no'=>$this->input->post('ph_no'),'Message'=>$this->input->post('Message'),'Arr_date'=>$this->input->post('Arr_date'),'Dep_date'=>$this->input->post('Dep_date'),'renter_id'=>$this->input->post('renter_id'),'rental_id'=>$this->input->post('rental_id'),'renter_fname'=>$Renter_details->row()->first_name,'renter_lname'=>$Renter_details->row()->last_name,'rental_name'=>$Rental_details->row()->product_name);
 //					extract($adminnewstemplateArr);
 
                     $message = '<!DOCTYPE HTML>
@@ -334,7 +334,7 @@ class Contact extends MY_Controller {
                     $message = str_replace('{$Message}', $this->input->post('Message'), $message);
                     $message = str_replace('{$email_title}', $sender_name, $message);
                     $message = str_replace('{$meta_title}', $sender_name, $message);
-                    $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+                $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
 					
 					$email_values2 = array('mail_type'=>'html',
 										'from_mail_id'=>$sender_email,
@@ -402,7 +402,7 @@ class Contact extends MY_Controller {
 					
 					$cfmurl = base_url().'site/user/confirm_register/'.$uid."/".$randStr."/confirmation";
 					$subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-					$adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo'],'first_name'=>$this->input->post('first_name'),'last_name'=>$this->input->post('last_name'),'adults'=>$this->input->post('adults'),'children'=>$this->input->post('children'),'email_address'=>$this->input->post('email_address'),'ph_no'=>$this->input->post('ph_no'),'Message'=>$this->input->post('Message'),'Arr_date'=>$this->input->post('Arr_date'),'Dep_date'=>$this->input->post('Dep_date'),'renter_id'=>$this->input->post('renter_id'),'rental_id'=>$this->input->post('rental_id'),'renter_fname'=>$Renter_details->row()->first_name,'renter_lname'=>$Renter_details->row()->last_name,'rental_name'=>$Rental_details->row()->product_name);
+                    $adminnewstemplateArr = array('email_title' => $this->config->item('email_title'), 'logo' => base_url() . 'images/logo/logo.png', 'first_name' => $this->input->post('first_name'), 'last_name' => $this->input->post('last_name'), 'adults' => $this->input->post('adults'), 'children' => $this->input->post('children'), 'email_address' => $this->input->post('email_address'), 'ph_no' => $this->input->post('ph_no'), 'Message' => $this->input->post('Message'), 'Arr_date' => $this->input->post('Arr_date'), 'Dep_date' => $this->input->post('Dep_date'), 'renter_id' => $this->input->post('renter_id'), 'rental_id' => $this->input->post('rental_id'), 'renter_fname' => $Renter_details->row()->first_name, 'renter_lname' => $Renter_details->row()->last_name, 'rental_name' => $Rental_details->row()->product_name);
 					extract($adminnewstemplateArr);
 					//$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
 					$header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";

@@ -261,7 +261,7 @@ class Order_model extends My_Model
 <body>
 <div style="width:1012px;background:#FFFFFF; margin:0 auto;">
 <div style="width:100%;background:#454B56; float:left; margin:0 auto;">
-    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="'.base_url().'" target="_blank" id="logo"><img src="'.base_url().'images/logo/'.$this->data['logo'].'" alt="'.$this->data['WebsiteTitle'].'" title="'.$this->data['WebsiteTitle'].'"></a></div>
+    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="' . base_url() . '" target="_blank" id="logo"><img src="' . base_url() . 'images/logo/' . base_url() . 'images/logo/logo.png' . '" alt="' . $this->data['WebsiteTitle'] . '" title="' . $this->data['WebsiteTitle'] . '"></a></div>
 	
 </div>			
 <!--END OF LOGO-->
@@ -453,7 +453,7 @@ $message.='</td>
 <body>
 <div style="width:1012px;background:#FFFFFF; margin:0 auto;">
 <div style="width:100%;background:#454B56; float:left; margin:0 auto;">
-    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="'.base_url().'" target="_blank" id="logo"><img src="'.base_url().'images/logo/'.$this->data['logo'].'" alt="'.$this->data['WebsiteTitle'].'" title="'.$this->data['WebsiteTitle'].'"></a></div>
+    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="' . base_url() . '" target="_blank" id="logo"><img src="' . base_url() . 'images/logo/' . base_url() . 'images/logo/logo.png' . '" alt="' . $this->data['WebsiteTitle'] . '" title="' . $this->data['WebsiteTitle'] . '"></a></div>
 	
 </div>			
 <!--END OF LOGO-->
@@ -631,7 +631,7 @@ $message1.='</td>
 			<table width="610" border="0" cellpadding="0" cellspacing="0" style="border:#1d4567 1px solid; font-family:Arial, Helvetica, sans-serif;">
 				<tr>
 				<td>
-				<a href="'.base_url().'"><img src="'.base_url().'images/logo/'.$this->data['logo'].'" alt="'.$this->config->item('meta_title').'" style="margin:15px 5px 0; padding:0px; border:none;"></a>
+				<a href="' . base_url() . '"><img src="' . base_url() . 'images/logo/' . base_url() . 'images/logo/logo.png' . '" alt="' . $this->config->item('meta_title') . '" style="margin:15px 5px 0; padding:0px; border:none;"></a>
 				</td>
 				</tr>
 				<tr>
@@ -764,7 +764,7 @@ $message1.='</td>
 			<table width="610" border="0" cellpadding="0" cellspacing="0" style="border:#1d4567 1px solid; font-family:Arial, Helvetica, sans-serif;">
 				<tr>
 				<td>
-				<a href="'.base_url().'"><img src="'.base_url().'images/logo/'.$this->data['logo'].'" alt="'.$this->config->item('meta_title').'" style="margin:15px 5px 0; padding:0px; border:none;"></a>
+				<a href="' . base_url() . '"><img src="' . base_url() . 'images/logo/' . base_url() . 'images/logo/logo.png' . '" alt="' . $this->config->item('meta_title') . '" style="margin:15px 5px 0; padding:0px; border:none;"></a>
 				</td>
 				</tr>
 				<tr>
@@ -1002,7 +1002,7 @@ $message1.='</td>
 <body>
 <div style="width:1012px;background:#FFFFFF; margin:0 auto;">
 <div style="width:100%;background:#454B56; float:left; margin:0 auto;">
-    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="'.base_url().'" target="_blank" id="logo"><img src="'.base_url().'images/logo/'.$this->data['logo'].'" alt="'.$this->data['WebsiteTitle'].'" title="'.$this->data['WebsiteTitle'].'"></a></div>
+    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="' . base_url() . '" target="_blank" id="logo"><img src="' . base_url() . 'images/logo/' . base_url() . 'images/logo/logo.png' . '" alt="' . $this->data['WebsiteTitle'] . '" title="' . $this->data['WebsiteTitle'] . '"></a></div>
 	
 </div>			
 <!--END OF LOGO-->

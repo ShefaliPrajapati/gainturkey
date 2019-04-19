@@ -1336,7 +1336,7 @@ class Producttemplate extends MY_Controller
     
     public function loadCountryListValues()
     {
-        $returnStr['listCountryCnt'] = '<select class="chzn-select required" name="state" tabindex="-1" style="width: 375px;" onchange="javascript:loadStateListValues(this)"  data-placeholder="Please select the state name">';
+        $returnStr['listCountryCnt'] = '<select class="chzn-select required" name="state" tabindex="-1" style="width: 375px;" onchange="loadStateListValues(this)"  data-placeholder="Please select the state name">';
         $lid = $this->input->post('lid');
         $lvID = $this->input->post('lvID');
         if ($lid != '') {
@@ -1762,7 +1762,7 @@ class Producttemplate extends MY_Controller
         $template_values=$this->product_model->get_newsletter_template_details($newsid);
         
         $subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-        $adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo'], 'prop_address'=> $details->row()->prop_address);
+        $adminnewstemplateArr = array('email_title' => $this->config->item('email_title'), 'logo' => base_url() . 'images/logo/logo.png', 'prop_address' => $details->row()->prop_address);
         extract($adminnewstemplateArr);
         //$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
         $header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";

@@ -674,7 +674,7 @@ class Product extends MY_Controller
             
         $message .= '<!DOCTYPE HTML><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"/><title>Signature Agreement</title></head><body>';
         $message .= '<div style="width:692px; background:#FFFFFF; margin:0 auto;"><div style="width:100%;background:#454B56; float:left; margin:0 auto;">
-    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="'.base_url().'" target="_blank" id="logo"><img src="'.base_url().'images/logo/'.$this->data['logo'].'" alt="'.$this->data['WebsiteTitle'].'" title="'.$this->data['WebsiteTitle'].'"></a></div>
+    <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="' . base_url() . '" target="_blank" id="logo"><img src="' . base_url() . 'images/logo/' . base_url() . 'images/logo/logo.png' . '" alt="' . $this->data['WebsiteTitle'] . '" title="' . $this->data['WebsiteTitle'] . '"></a></div>
 	
 </div>			
 <!--END OF LOGO-->
@@ -1773,7 +1773,7 @@ class Product extends MY_Controller
 
     public function loadCountryListValues()
     {
-        $returnStr['listCountryCnt'] = '<select class="chzn-select required" name="state" tabindex="-1" style="width: 375px;" onchange="javascript:loadStateListValues(this)"  data-placeholder="Please select the state name">';
+        $returnStr['listCountryCnt'] = '<select class="chzn-select required" name="state" tabindex="-1" style="width: 375px;" onchange="loadStateListValues(this)"  data-placeholder="Please select the state name">';
         $lid = $this->input->post('lid');
         $lvID = $this->input->post('lvID');
         if ($lid != '') {
@@ -2320,7 +2320,7 @@ class Product extends MY_Controller
         $template_values=$this->product_model->get_newsletter_template_details($newsid);
 
         $subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-        $adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo'], 'prop_address'=> $details->row()->prop_address);
+        $adminnewstemplateArr = array('email_title' => $this->config->item('email_title'), 'logo' => base_url() . 'images/logo/logo.png', 'prop_address' => $details->row()->prop_address);
         extract($adminnewstemplateArr);
         //$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
         $header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";

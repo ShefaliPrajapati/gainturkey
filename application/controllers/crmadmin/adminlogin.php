@@ -294,7 +294,7 @@ class Adminlogin extends MY_Controller {
         $message = str_replace('{$pwd}', $pwd, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
 
         $email_values = array('mail_type'=>'html',
             'from_mail_id'=>$sender_email,

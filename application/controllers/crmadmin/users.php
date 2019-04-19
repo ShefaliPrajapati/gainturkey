@@ -228,7 +228,7 @@ class Users extends MY_Controller {
 		
 		$cfmurl = base_url().'site/user/confirm_register/'.$uid."/".$randStr."/confirmation";
 		$subject = 'From: '.$this->config->item('email_title').' - '.$template_values['news_subject'];
-		$adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo']);
+        $adminnewstemplateArr = array('email_title' => $this->config->item('email_title'), 'logo' => base_url() . 'images/logo/logo.png');
 		extract($adminnewstemplateArr);
 
         $message = '<!DOCTYPE HTML>
@@ -249,7 +249,7 @@ class Users extends MY_Controller {
         $message = str_replace('{$cfmurl}', $cfmurl, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
         $message = str_replace('{base_url()}', base_url(), $message);
 
         $email_values = array('mail_type'=>'html',
@@ -359,7 +359,7 @@ class Users extends MY_Controller {
 		$group = $query->row()->group;
 		$newsid='11';
 		$template_values=$this->user_model->get_newsletter_template_details($newsid);
-		$adminnewstemplateArr=array('email_title'=> $this->config->item('email_title'),'logo'=> $this->data['logo']);
+        $adminnewstemplateArr = array('email_title' => $this->config->item('email_title'), 'logo' => base_url() . 'images/logo/logo.png');
 		extract($adminnewstemplateArr);
 		$subject = 'From: '.$template_values['news_title'].' - '.$template_values['news_subject'];
 
@@ -383,7 +383,7 @@ class Users extends MY_Controller {
         $message = str_replace('{$pwd}', $pwd, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}images/logo/{$logo}', $this->data['logo'], $message);
+        $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
 
         $email_values = array('mail_type'=>'html',
             'from_mail_id'=>$sender_email,
