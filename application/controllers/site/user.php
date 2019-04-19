@@ -910,8 +910,8 @@ class User extends MY_Controller
         $message = str_replace('{$cfmurl}', $cfmurl, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
-        $message = str_replace('{base_url()}', base_url(), $message);
         $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
+        $message = str_replace('{base_url()}', base_url(), $message);
 
         $email_values = array('mail_type'=>'html',
                             'from_mail_id'=>$sender_email,
@@ -1423,6 +1423,7 @@ class User extends MY_Controller
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
         $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
+        $message = str_replace('{base_url()}', base_url(), $message);
 
         $email_values = array('mail_type'=>'html',
                             'from_mail_id'=>$sender_email,
@@ -2647,6 +2648,7 @@ class User extends MY_Controller
                 $message = str_replace('{$email_title}', $sender_name, $message);
                 $message = str_replace('{$meta_title}', $sender_name, $message);
                 $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
+                $message = str_replace('{base_url()}', base_url(), $message);
 
                 $email_values = array('mail_type'=>'html',
                                     'from_mail_id'=>$sender_email,
