@@ -2461,7 +2461,7 @@ class Product extends MY_Controller
 
         $this->product_model->saveResevedSettings();
         $this->setErrorMessage('error', 'Your time has expired Please try again.');
-        redirect(base_url().'properties');
+        redirect('listing/viewall/0');
     }
 
     public function changetoReserverd()

@@ -1218,16 +1218,16 @@ class User extends MY_Controller
                 $conditionArr = array('id'=>$uid,'verify_code'=>$code);
                 $dataArr = array('is_verified'=>'Yes');
                 $this->user_model->update_details(USERS, $dataArr, $condition);
-                $this->setErrorMessage('success', 'Great going ! Your mail ID has been verified');
+                $this->setErrorMessage('success', 'Email address verified.  Please log in.');
                 //$this->login_after_signup($checkUser);
                 redirect(base_url().'signin');
             } else {
                 $this->setErrorMessage('error', 'Invalid confirmation link');
-                redirect(base_url());
+                redirect(base_url() . 'signin');
             }
         } else {
             $this->setErrorMessage('error', 'Invalid confirmation link');
-            redirect(base_url());
+            redirect(base_url() . 'signin');
         }
     }
     
