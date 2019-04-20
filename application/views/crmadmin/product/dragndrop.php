@@ -33,13 +33,69 @@
 <!-- CSS adjustments for browsers with JavaScript disabled -->
 <noscript><link rel="stylesheet" href="css/upload/jquery.fileupload-noscript.css"></noscript>
 <noscript><link rel="stylesheet" href="css/upload/jquery.fileupload-ui-noscript.css"></noscript>
+    <script src="js/jquery.colorbox.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#cboxClose1").click(function () {
+                $("#cboxOverlay,#colorbox").hide();
+            });
+            $(".popup_dragndrop1").colorbox({
+                width: "1000px",
+                height: "500px",
+                returnFocus: true,
+                href: baseURL + "crmadmin/product/popup_drag/loi/<?php echo $reserved_id . '/' . $uri6; ?>"
+            });
+            $(".popup_dragndrop2").colorbox({
+                width: "1000px",
+                height: "500px",
+                returnFocus: true,
+                href: baseURL + "crmadmin/product/popup_drag/articles/<?php echo $reserved_id . '/' . $uri6; ?>"
+            });
+            $(".popup_dragndrop3").colorbox({
+                width: "1000px",
+                height: "500px",
+                returnFocus: true,
+                href: baseURL + "crmadmin/product/popup_drag/pa/<?php echo $reserved_id . '/' . $uri6; ?>"
+            });
+            $(".popup_dragndrop4").colorbox({
+                width: "1000px",
+                height: "500px",
+                href: baseURL + "crmadmin/product/popup_drag/loan/<?php echo $reserved_id . '/' . $uri6; ?>"
+            });
+            $(".popup_dragndrop5").colorbox({
+                width: "1000px",
+                height: "500px",
+                href: baseURL + "crmadmin/product/popup_drag/fedex/<?php echo $reserved_id . '/' . $uri6; ?>"
+            });
+            $(".popup_dragndrop6").colorbox({
+                width: "1000px",
+                height: "500px",
+                href: baseURL + "crmadmin/product/popup_drag/doi/<?php echo $reserved_id . '/' . $uri6; ?>"
+            });
+            $(".popup_dragndrop7").colorbox({
+                width: "1000px",
+                height: "500px",
+                href: baseURL + "crmadmin/product/popup_drag/ror_iv/<?php echo $reserved_id . '/' . $uri6; ?>"
+            });
+            $(".popup_dragndrop8").colorbox({
+                width: "1000px",
+                height: "500px",
+                href: baseURL + "crmadmin/product/popup_drag/gen_iv/<?php echo $reserved_id . '/' . $uri6; ?>"
+            });
+            $(".popup_dragndrop9").colorbox({
+                width: "1000px",
+                height: "500px",
+                href: baseURL + "crmadmin/product/popup_drag/closed/<?php echo $reserved_id . '/' . $uri6; ?>"
+            });
+        });
+    </script>
 </head>
 <body>
 
 <div class="container">
-    
-    
-    
+
+
     <!-- The file upload form used as target for the file upload widget -->
     <form id="fileupload" name="fileuploadform" action="crmadmin/product/tessadfasf" method="POST" enctype="multipart/form-data">
         <!-- Redirect browsers with JavaScript disabled to the origin page -->
@@ -228,5 +284,4 @@ $.noConflict();
 </body> 
 </html>
 
-   
    

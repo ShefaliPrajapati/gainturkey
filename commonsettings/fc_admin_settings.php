@@ -55,4 +55,5 @@ $config['last_logout_date'] = '2019-04-10 10:52:31';
 $config['last_login_ip'] = '219.91.191.199'; 
 $config['is_verified'] = 'Yes';
 $config['status'] = 'Active';
-$config['base_url'] = 'http://beta.gainturnkeyproperty.com/'; ?>
+$config['base_url'] = 'http://localhost/gainturkey/';
+?>

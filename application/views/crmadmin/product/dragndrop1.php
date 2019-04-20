@@ -13,35 +13,66 @@
 -->
 <html lang="en">
 <head>
-<!-- Force latest IE rendering engine or ChromeFrame if installed -->
-<!--[if IE]>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<![endif]-->
-<meta charset="utf-8">
-<title>jQuery File Upload Demo</title>
+    <!-- Force latest IE rendering engine or ChromeFrame if installed -->
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <meta charset="utf-8">
+    <title>jQuery File Upload Demo</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Bootstrap styles -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/upload/bootstrap.min.css">
-<!-- Generic page styles -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/upload/style.css">
-<!-- blueimp Gallery styles -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/upload/blueimp-gallery.min.css">
-<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/upload/jquery.fileupload.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/upload/jquery.fileupload-ui.css">
-<!-- CSS adjustments for browsers with JavaScript disabled -->
-<noscript><link rel="stylesheet" href="<?php echo base_url(); ?>css/upload/jquery.fileupload-noscript.css"></noscript>
-<noscript><link rel="stylesheet" href="<?php echo base_url(); ?>css/upload/jquery.fileupload-ui-noscript.css"></noscript>
+    <script src="js/jquery.colorbox.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $(".cboxClose1").click(function () {
+                $("#cboxOverlay,#colorbox").hide();
+            });
+
+            $(".popup_dragndrop1").colorbox({
+                width: "1000px",
+                height: "500px",
+                href: baseURL + "crmadmin/product/popup_drag/loi/" +<?php echo $reserved_id;?>});
+
+
+            //Example of preserving a JavaScript event for inline calls.
+            $("#onLoad").click(function () {
+                $('#onLoad').css({
+                    "background-color": "#f00",
+                    "color": "#fff",
+                    "cursor": "inherit"
+                }).text("Open this window again and this message will still be here.");
+                return false;
+            });
+
+        });
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/upload/bootstrap.min.css">
+    <!-- Generic page styles -->
+    <link rel="stylesheet" href="css/upload/style.css">
+    <!-- blueimp Gallery styles -->
+    <link rel="stylesheet" href="css/upload/blueimp-gallery.min.css">
+    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+    <link rel="stylesheet" href="css/upload/jquery.fileupload.css">
+    <link rel="stylesheet" href="css/upload/jquery.fileupload-ui.css">
+    <!-- CSS adjustments for browsers with JavaScript disabled -->
+    <noscript>
+        <link rel="stylesheet" href="css/upload/jquery.fileupload-noscript.css">
+    </noscript>
+    <noscript>
+        <link rel="stylesheet" href="css/upload/jquery.fileupload-ui-noscript.css">
+    </noscript>
 </head>
 <body>
 
 <div class="container">
-    
-    
-    
+
+
     <!-- The file upload form used as target for the file upload widget -->
-    <form id="fileupload" name="fileuploadform" action="crmadmin/product/tessadfasf" method="POST" enctype="multipart/form-data">
+    <form id="fileupload" name="fileuploadform" action="crmadmin/product/popup_upload" method="POST"
+          enctype="multipart/form-data">
         <!-- Redirect browsers with JavaScript disabled to the origin page -->
         <noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -65,11 +96,12 @@
                     <i class="glyphicon glyphicon-trash"></i>
                     <span>Delete</span>
                 </button>
-                
-                
+
+
                 <input type="checkbox" class="toggle">
-               
-                 <button onClick="imageupload()" style="float:right; margin-right:50px;" class="btn-success">Continue</button>
+
+                <button onClick="imageupload()" style="float:right; margin-right:50px;" class="btn-success">Continue
+                </button>
                 <!-- The global file processing state -->
                 <span class="fileupload-process"></span>
             </div>
@@ -86,10 +118,12 @@
         </div>
         <!-- The table listing the files available for upload/download -->
         <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-        <input type="hidden" name="id" value="<?php echo $id;?>">
+        <input type="hidden" name="id" value="<?php echo $reserved_id; ?>">
+        <input type="hidden" name="type" value="<?php echo $type; ?>">
+        <input type="hidden" name="uri6" value="<?php echo $sixuri; ?>">
     </form>
-    
-   
+
+
 </div>
 <!-- The blueimp Gallery widget -->
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
@@ -103,17 +137,15 @@
 </div>
 <!-- The template to display files available for upload -->
 <script>
-function imageupload()
-	{
-		$("#fileupload").submit();
-	}
+    function imageupload() {
+        $("#fileupload").submit();
+    }
 </script>
 
 <script>
-$.noConflict();
-// Code that uses other library's $ can follow here.
+    $.noConflict();
+    // Code that uses other library's $ can follow here.
 </script>
-
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-upload fade">
@@ -153,9 +185,10 @@ $.noConflict();
             <span class="preview">
                 {% if (file.thumbnailUrl) { %}
                     <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-					<input type="hidden" name="imgUpload[]" value="{%=file.name%}">
-					<input type="hidden" name="imgUploadUrl[]" value="{%=file.url%}">
+
                 {% } %}
+				<input type="hidden" name="imgUpload[]" value="{%=file.name%}">
+				<input type="hidden" name="imgUploadUrl[]" value="{%=file.url%}">
             </span>
         </td>
         <td>
@@ -190,68 +223,39 @@ $.noConflict();
     </tr>
 {% } %}
 </script>
-<script src="<?php echo base_url(); ?>js/upload/jquery.1.10.js"></script>
+<script src="js/upload/jquery.1.10.js"></script>
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<script src="<?php echo base_url(); ?>js/upload/vendor/jquery.ui.widget.js"></script>
+<script src="js/upload/vendor/jquery.ui.widget.js"></script>
 <!-- The Templates plugin is included to render the upload/download listings -->
-<script src="<?php echo base_url(); ?>js/upload/tmpl.min.js"></script>
+<script src="js/upload/tmpl.min.js"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="<?php echo base_url(); ?>js/upload/load-image.min.js"></script>
+<script src="js/upload/load-image.min.js"></script>
 <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="<?php echo base_url(); ?>js/upload/canvas-to-blob.min.js"></script>
+<script src="js/upload/canvas-to-blob.min.js"></script>
 <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
-<script src="<?php echo base_url(); ?>js/upload/bootstrap.min.js"></script>
+<script src="js/upload/bootstrap.min.js"></script>
 <!-- blueimp Gallery script -->
-<script src="<?php echo base_url(); ?>js/upload/jquery.blueimp-gallery.min.js"></script>
+<script src="js/upload/jquery.blueimp-gallery.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="<?php echo base_url(); ?>js/upload/jquery.iframe-transport.js"></script>
+<script src="js/upload/jquery.iframe-transport.js"></script>
 <!-- The basic File Upload plugin -->
-<script src="<?php echo base_url(); ?>js/upload/jquery.fileupload.js"></script>
+<script src="js/upload/jquery.fileupload.js"></script>
 <!-- The File Upload processing plugin -->
-<script src="<?php echo base_url(); ?>js/upload/jquery.fileupload-process.js"></script>
+<script src="js/upload/jquery.fileupload-process.js"></script>
 <!-- The File Upload image preview & resize plugin -->
-<script src="<?php echo base_url(); ?>js/upload/jquery.fileupload-image.js"></script>
+<script src="js/upload/jquery.fileupload-image.js"></script>
 <!-- The File Upload audio preview plugin -->
-<script src="<?php echo base_url(); ?>js/upload/jquery.fileupload-audio.js"></script>
+<script src="js/upload/jquery.fileupload-audio.js"></script>
 <!-- The File Upload video preview plugin -->
-<script src="<?php echo base_url(); ?>js/upload/jquery.fileupload-video.js"></script>
+<script src="js/upload/jquery.fileupload-video.js"></script>
 <!-- The File Upload validation plugin -->
-<script src="<?php echo base_url(); ?>js/upload/jquery.fileupload-validate.js"></script>
+<script src="js/upload/jquery.fileupload-validate.js"></script>
 <!-- The File Upload user interface plugin -->
-<script src="<?php echo base_url(); ?>js/upload/jquery.fileupload-ui.js"></script>
+<script src="js/upload/jquery.fileupload-ui.js"></script>
 <!-- The main application script -->
-<script src="<?php echo base_url(); ?>js/upload/main.js"></script>
+<script src="js/upload/main.js"></script>
 
-<script src="<?php echo base_url(); ?>js/cors/jquery.xdr-transport.js"></script>
-<script src="<?php echo base_url(); ?>js/jquery.colorbox.js"></script>
-
-<script>
-    $(document).ready(function () {
-
-        $(".cboxClose1").click(function () {
-            $("#cboxOverlay,#colorbox").hide();
-        });
-
-        $(".popup_dragndrop1").colorbox({width: "1000px", height: "500px", returnFocus: true, href: baseURL + "crmadmin/product/popup_drag/loi/<?php echo $buyer_info->row()->id . '/' . $uri6; ?>"});
-        $(".popup_dragndrop2").colorbox({width: "1000px", height: "500px", returnFocus: true, href: baseURL + "crmadmin/product/popup_drag/articles/<?php echo $buyer_info->row()->id . '/' . $uri6; ?>"});
-        $(".popup_dragndrop3").colorbox({width: "1000px", height: "500px", returnFocus: true, href: baseURL + "crmadmin/product/popup_drag/pa/<?php echo $buyer_info->row()->id . '/' . $uri6; ?>"});
-        $(".popup_dragndrop4").colorbox({width: "1000px", height: "500px", href: baseURL + "crmadmin/product/popup_drag/loan/<?php echo $buyer_info->row()->id . '/' . $uri6; ?>"});
-        $(".popup_dragndrop5").colorbox({width: "1000px", height: "500px", href: baseURL + "crmadmin/product/popup_drag/fedex/<?php echo $buyer_info->row()->id . '/' . $uri6; ?>"});
-        $(".popup_dragndrop6").colorbox({width: "1000px", height: "500px", href: baseURL + "crmadmin/product/popup_drag/doi/<?php echo $buyer_info->row()->id . '/' . $uri6; ?>"});
-        $(".popup_dragndrop7").colorbox({width: "1000px", height: "500px", href: baseURL + "crmadmin/product/popup_drag/ror_iv/<?php echo $buyer_info->row()->id . '/' . $uri6; ?>"});
-        $(".popup_dragndrop8").colorbox({width: "1000px", height: "500px", href: baseURL + "crmadmin/product/popup_drag/gen_iv/<?php echo $buyer_info->row()->id . '/' . $uri6; ?>"});
-        $(".popup_dragndrop9").colorbox({width: "1000px", height: "500px", href: baseURL + "crmadmin/product/popup_drag/closed/<?php echo $buyer_info->row()->id . '/' . $uri6; ?>"});
-        $(".gen-invoice-popup").colorbox({width: "1000px", height: "500px", inline: true, href: "#gen-invoice"});
-        $(".gen-invoice-popup").colorbox({width: "1000px", height: "500px", inline: true, href: "#ror-invoice"});
-
-        //Example of preserving a JavaScript event for inline calls.
-        $("#onLoad").click(function () {
-            $('#onLoad').css({"background-color": "#f00", "color": "#fff", "cursor": "inherit"}).text("Open this window again and this message will still be here.");
-            return false;
-        });
-    });
-</script>
-</body> 
+</body>
 </html>
 
    

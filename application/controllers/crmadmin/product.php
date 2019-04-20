@@ -83,7 +83,7 @@ class Product extends MY_Controller
                     $whereCnd = array('pa.state'=>$urlState);
                 }
             }
-                
+
             if ($this->session->userdata('fieldType')!='' && $this->session->userdata('fieldVal')!='') {
                 $newCnd = array($this->session->userdata('fieldType') => $this->session->userdata('fieldVal'));
                 $admindata = array('fieldType' => '','fieldVal' => '');
@@ -279,7 +279,7 @@ class Product extends MY_Controller
    
 </body>
 </html>';
-                
+
             $this->load->view('crmadmin/product/reserved_detail', $this->data);
         }
     }
@@ -298,7 +298,7 @@ class Product extends MY_Controller
             $this->data['confirm_code'] = $this->product_model->get_confirm_code();
             $this->data['product_image'] = $this->product_model->Display_product_image_details();
             $this->data['code'] = $this->data['confirm_code']->row();
-                
+
             $this->load->view('crmadmin/product/display_user_product_list', $this->data);
         }
     }
@@ -324,8 +324,8 @@ class Product extends MY_Controller
             $this->data['heading'] = 'View Signed Document';
             $this->data['detailsSold'] = $signTemplats= $this->product_model->get_all_details(SIGNTEMPLATE, array('id'=>$this->uri->segment(4, 0)));
             //echo '<pre>'; print_r($this->data['detailsSold']->result()); die;
-                
-                
+
+
             $this->load->view('crmadmin/product/display_signed_template', $this->data);
         }
     }
@@ -346,11 +346,10 @@ class Product extends MY_Controller
             $this->data['uri_val'] = $this->uri->segment(8, 0);
             $uploadVal = $this->uri->segment(9, 0);
 
-                
+
             $this->data['detailsSold']= $this->product_model->get_all_details(SIGNTEMPLATE, array('reserve_id'=>$this->uri->segment(4, 0),'property_id'=>$this->uri->segment(5, 0),'user_id'=>$this->uri->segment(6, 0),$this->uri->segment(7, 0)=>$this->uri->segment(7, 0)));
-                
-                
-                
+
+
             //echo '<pre>'; print_r($this->data['detailsSold']->result()); die;
             if ($this->data['detailsSold']->num_rows()==0) {
                 $this->data['detailsSold']= $this->product_model->get_all_details(RESERVED_INFO, array('id'=>$this->uri->segment(4, 0)));
@@ -364,13 +363,13 @@ class Product extends MY_Controller
 
             //echo '<pre>'; print_r($this->data['detailsSold']->result_array()); die;
             //echo $this->data['reserve_id'].'-'.$this->data['Product_id'].'-'.$this->data['user_id'];
-                
+
             /*if($uploadVal=='upload'){
                 $this->load->view('crmadmin/product/display_template_upload',$this->data);
                 }else{
                 $this->load->view('crmadmin/product/display_producttemplate',$this->data);
                 }*/
-                
+
             $this->load->view('crmadmin/product/display_producttemplate', $this->data);
         }
     }
@@ -388,11 +387,11 @@ class Product extends MY_Controller
             $this->data['agree_module'] = $this->uri->segment(7, 0);
             $this->data['uri_val'] = $this->uri->segment(8, 0);
             $uploadVal = $this->uri->segment(9, 0);
-                
-                
+
+
             $this->data['detailsSold']= $this->product_model->get_all_details(SIGNTEMPLATE, array('id'=>$uploadVal));
             //$this->data['detailsSold']= $this->product_model->get_all_details(SIGNUPLOAD,array('id'=>$uploadVal));
-                
+
             //echo '<pre>'; print_r($this->data['detailsSold']->result()); die;
             if ($this->data['detailsSold']->num_rows()==0) {
                 $this->data['detailsSold']= $this->product_model->get_all_details(RESERVED_INFO, array('id'=>$this->uri->segment(4, 0)));
@@ -437,36 +436,35 @@ class Product extends MY_Controller
         if ($_FILES['uploadDocName']['name']) {
             //echo 'siva';
             if (move_uploaded_file($_FILES['uploadDocName']['tmp_name'], $destination.$_FILES['uploadDocName']['name'])) {
-                    
+
                 //echo 'sivaprakash';
                 $file = $destination."/".$_FILES['uploadDocName']['name'];
-                 
+
                 $data = $this->content($file);
                 //echo $data;
                 $output = @explode('ENDDOCUMENT', $data);
             }
         }
-            
+
         $rental_id = $this->input->post('rental_id');
         $prop_address = $this->input->post('prop_address');
-            
+
         $reserve_id = $this->input->post('reserve_id');
         $property_id = $this->input->post('property_id');
         $user_id = $this->input->post('user_id');
         $agree_module = $this->input->post('agree_module');
         $uri_val = $this->input->post('uri_val');
-            
-        $dataArr = array('rental_id'=>$rental_id,'prop_address'=>$prop_address,'file_name'=>$filename,'reserve_id'=>$reserve_id,'property_id'=>$property_id,'user_id'=>$user_id,$agree_module=>$agree_module,'file_description'=>$output[0]);
-            
 
-            
+        $dataArr = array('rental_id'=>$rental_id,'prop_address'=>$prop_address,'file_name'=>$filename,'reserve_id'=>$reserve_id,'property_id'=>$property_id,'user_id'=>$user_id,$agree_module=>$agree_module,'file_description'=>$output[0]);
+
+
         //	echo '<pre>'; print_r($dataArr); die;
         $this->product_model->simple_insert(SIGNUPLOAD, $dataArr);
         $last_id=$this->product_model->get_last_insert_id();
         $this->setErrorMessage('success', 'Document Convert to Html Successfully');
         $this->send_sign_template_confirmation();
 
-            
+
         //124/1/65/pa/all/upload
         redirect('crmadmin/product/displayproducttemplate/'.$rental_id.'/'.$property_id.'/'.$user_id.'/'.$agree_module.'/'.$uri_val.'/'.$last_id);
     }
@@ -502,7 +500,7 @@ class Product extends MY_Controller
 
             $pdfDirectory = "images/pdf-upload/";
             $thumbDirectory = "images/pdf-images/";
-                
+
             //get the name of the file
             $filename = basename($_FILES['upload_pdf']['name'], ".pdf");
             //echo '<br>'.$filename;
@@ -657,7 +655,7 @@ class Product extends MY_Controller
 
 
         $UserDetails = $this->product_model->get_all_details(USERS, array('id'=>$user_id));
-            
+
         if ($agree_module == 'pa') {
             $Agree = 'Purchase Agreement';
         } elseif ($agree_module == 'loan') {
@@ -665,13 +663,13 @@ class Product extends MY_Controller
         } elseif ($agree_module == 'doi') {
             $Agree = 'DOI and RBP';
         }
-            
+
         //---------------email to user---------------------------
 
         $subject = 'From: '.$this->config->item('email_title').' - Your '.$Agree.' Ready to be Signed';
 
         $header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";
-            
+
         $message .= '<!DOCTYPE HTML><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width"/><title>Signature Agreement</title></head><body>';
         $message .= '<div style="width:692px; background:#FFFFFF; margin:0 auto;"><div style="width:100%;background:#454B56; float:left; margin:0 auto;">
     <div style="padding:20px 0 10px 15px;float:left; width:50%;"><a href="' . base_url() . '" target="_blank" id="logo"><img src="' . base_url() . 'images/logo/' . base_url() . 'images/logo/logo.png' . '" alt="' . $this->data['WebsiteTitle'] . '" title="' . $this->data['WebsiteTitle'] . '"></a></div>
@@ -699,7 +697,7 @@ class Product extends MY_Controller
 
         $sender_email=$this->data['siteContactMail'];
         $sender_name=$this->data['siteTitle'];
-            
+
         $email_values = array('mail_type'=>'html',
                                 'from_mail_id'=>$sender_email,
                                 'mail_name'=>$sender_name,
@@ -729,8 +727,8 @@ class Product extends MY_Controller
             $this->data['RentalCity'] =  $this->product_model->get_all_details(CITY, array('status'=>'Active'));
             $this->data['Property_Type'] = $this->product_model->get_all_details(PRODUCT_ATTRIBUTE, array('status'=>'Active'));
             $this->data['Property_Sub_Type'] = $this->product_model->get_all_details('fc_subattribute', array('status'=>'Active'));
-                
-                
+
+
             $this->data['atrributeValue'] = $this->product_model->view_atrribute_details();
             $this->data['PrdattrVal'] = $this->product_model->view_product_atrribute_details();
             $this->data['LastInsertRentalId'] = $this->product_model->LastInsertRentalId();
@@ -794,8 +792,8 @@ class Product extends MY_Controller
             } else {
                 $product_status = 'UnPublish';
             }
-                
-                
+
+
             $seourl = url_title($headline, '-', true);
             $checkSeo = $this->product_model->get_all_details(PRODUCT, array('seourl'=>$seourl,'id !='=>$property_id));
             $seo_count = 1;
@@ -804,17 +802,17 @@ class Product extends MY_Controller
                 $seo_count++;
                 $checkSeo = $this->product_model->get_all_details(PRODUCT, array('seourl'=>$seourl,'id !='=>$property_id));
             }
-                
+
             $ImageName = '';
-                
+
             $datestring = "%Y-%m-%d %H:%i:%s";
             $time = time();
             if ($property_id == '') {
                 $inputArr = array('created' => mdate($datestring, $time),
                                           'seourl' => $seourl,
                                           'price_range'=> $price_range,
-                    
-                                          'status' => 'Publish'
+
+                    'status' => 'Publish'
                                           );
             } else {
                 $inputArr = array('modified' => mdate($datestring, $time),
@@ -824,8 +822,7 @@ class Product extends MY_Controller
 
                 );
             }
-                
-                
+
 
             //$config['encrypt_name'] = TRUE;
             //$config['overwrite'] = FALSE;
@@ -856,21 +853,21 @@ class Product extends MY_Controller
             //$config['overwrite'] = FALSE;
             $config['remove_spaces'] = false;
             $config['upload_path'] = $logoDirectory;
-            $config['allowed_types'] = 'jpg|jpeg|gif|png';
-             
+            $config['allowed_types'] = 'jpg|jpeg|gif|png|pdf';
+
             $this->upload->initialize($config);
             $this->load->library('upload', $config);
-             
+
             $file_element_name = 'product_image';
             $ImageName_orig_name ='';
             $ImageName_encrypt_name ='';
-             
+
             $file_element_name = 'product_image';
-             
+
             $filePRoductUploadData = array();
             $setPriority = 0;
             $imgtitle = $this->input->post('imgtitle');
-                
+
             if ($this->upload->do_multi_upload('product_image')) {
             }
 
@@ -878,14 +875,13 @@ class Product extends MY_Controller
             $logoDetails = $this->upload->get_multi_upload_data();
             //$logoDetails = $_FILES['product_image'];
 
-                
-                
+
             if ($property_id != '') {
                 $this->update_old_list_values($property_id, $list_val_arr, $old_product_details);
             }
             $dataArr = $inputArr;
-                
-                
+
+
             if ($property_id == '') {
                 $condition = array();
 
@@ -898,7 +894,7 @@ class Product extends MY_Controller
 
                 $this->setErrorMessage('success', 'Property added successfully');
 
-                    
+
                 $this->update_price_range_in_table('add', $price_range, $property_id, $old_product_details);
                 //echo '<pre>';
                 //print_r($excludeArr);print_r($dataArr);print_r($condition);die;
@@ -911,9 +907,9 @@ class Product extends MY_Controller
                             'city' => $this->input->post('city'),
                             'post_code' => $this->input->post('post_code'),
                             'property_name' => $this->input->post('property_name'),
-                    
-                    
-                            'address'=> $this->input->post('address'),
+
+
+                    'address'=> $this->input->post('address'),
                             'latitude'=> $this->input->post('latitude'),
                             'longitude'=> $this->input->post('longitude')
                 );
@@ -957,8 +953,8 @@ class Product extends MY_Controller
                             'city' => $this->input->post('city'),
                             'post_code' => $this->input->post('post_code'),
                             'property_name' => $this->input->post('property_name'),
-                    
-                            'address'=> $this->input->post('address'),
+
+                    'address'=> $this->input->post('address'),
                             'latitude'=> $this->input->post('latitude'),
                             'longitude'=> $this->input->post('longitude')
                 );
@@ -985,8 +981,8 @@ class Product extends MY_Controller
                 $this->setErrorMessage('success', 'Property updated successfully');
                 $this->update_price_range_in_table('edit', $price_range, $property_id, $old_product_details);
             }
-                
-                
+
+
             //upload image the table
             foreach ($logoDetails as $fileVal) {
                 if (!$this->imageResizeWithSpace(600, 600, $file_element_name[$setPriority], './images/product/')) {
@@ -1053,7 +1049,7 @@ class Product extends MY_Controller
                     }
                 }
             }
-                
+
             if ($this->input->post('submit_button') == 'savencont') {
                 $this->source_info_form($property_id);
             } else {
@@ -1131,9 +1127,9 @@ class Product extends MY_Controller
 
             /*** Delete product id from product likes table and decrease the user likes count ***/
 
-    
+
             /*** Delete product id from activity, notification and product comment tables ***/
-                
+
             $this->product_model->commonDelete(USER_ACTIVITY, array('activity_id'=>$old_product_details->row()->seller_product_id));
             $this->product_model->commonDelete(NOTIFICATIONS, array('activity_id'=>$old_product_details->row()->seller_product_id));
         }
@@ -1212,7 +1208,7 @@ class Product extends MY_Controller
             $this->session->unset_userdata('product_image_'.$ingIDD);
             $resultVar = $this->setPictureProducts($productImage, $this->input->post('position'));
             $insertArrayItems = trim(implode(',', $resultVar)); //need validation here...because the array key changed here
-                
+
             $this->session->set_userdata(array('product_image_'.$ingIDD => $insertArrayItems));
             $dataArr = array('image' => $insertArrayItems);
             $condition = array('id' => $ingIDD);
@@ -1288,13 +1284,13 @@ class Product extends MY_Controller
         } else {
             $this->data['heading'] = 'Edit Property';
             $product_id = $this->uri->segment(4, 0);
-                
+
             $condition = array('id' => $product_id);
             $this->data['product_details'] = $this->product_model->view_product1($product_id);
-                
+
             //print_r($this->data['product_details']->row());
             //die;
-                
+
             if ($this->data['product_details']->num_rows() == 1) {
                 $userid = $this->data['product_details']->row()->user_id;
                 $this->data['userDetails'] = $this->product_model->get_all_details(USERS, array('id'=>$userid));
@@ -1465,7 +1461,7 @@ class Product extends MY_Controller
                 $marker['ondragend'] = 'updateDatabase(event.latLng.lat(), event.latLng.lng());';
                 $this->googlemaps->add_marker($marker);
                 $this->data['map']= $this->googlemaps->create_map();
-                    
+
                 $this->load->view('crmadmin/product/view_product', $this->data);
             } else {
                 redirect('deals_crm');
@@ -1489,8 +1485,8 @@ class Product extends MY_Controller
                 $this->data['heading'] = 'Edit Source Info';
                 $condition = array('property_id'=>$id);
                 //$this->data['product_source_details'] = $this->product_model->get_all_details(SOURCE_INFO,$condition);
-                    
-                    
+
+
                 $get_source_info = $this->product_model->get_all_details(SOURCE_INFO, $condition);
                 $data = $get_source_info->row()->datavalues;
                 $this->data['source_info'] = unserialize(stripslashes($data));
@@ -1512,13 +1508,13 @@ class Product extends MY_Controller
             $condition = array('property_id' => $product_id);
             $this->data['propertyID'] = $this->product_model->get_all_details(PRODUCT, array('id'=>$product_id));
             $this->data['propertyaddress'] = $this->product_model->get_all_details(PRODUCT_ADDRESS, array('property_id' => $product_id));
-                
+
             $this->data['product_source_details'] = $this->product_model->get_all_details(SOURCE_INFO, $condition);
             if ($this->data['product_source_details']->num_rows() == 1) {
                 $get_source_info = $this->product_model->get_all_details(SOURCE_INFO, $condition);
                 $data = $get_source_info->row()->datavalues;
                 $this->data['source_info'] = unserialize(stripslashes($data));
-                    
+
                 $this->load->view('crmadmin/product/edit_source_info', $this->data);
             } elseif ($this->data['product_source_details']->num_rows() == 0) {
                 $this->load->view('crmadmin/product/edit_source_info', $this->data);
@@ -1535,11 +1531,11 @@ class Product extends MY_Controller
             redirect('deals_crm');
         } else {
             $value = $this->input->post();
-                
+
             $data = serialize($value);
             $condition = array('property_id'=>$this->input->post('id'));
             $id = $this->input->post('id');
-                
+
             $this->product_model->simple_insert(SOURCE_INFO, array('datavalues'=>$data,'property_id'=>$id));
             $this->setErrorMessage('success', 'Property source info details added successfully');
 
@@ -1553,7 +1549,7 @@ class Product extends MY_Controller
             redirect('deals_crm');
         } else {
             $value = $this->input->post();
-                
+
             $data = serialize($value);
             $condition = array('property_id'=>$this->input->post('id'));
             $id = $this->input->post('id');
@@ -1565,7 +1561,7 @@ class Product extends MY_Controller
                 $this->product_model->simple_insert(SOURCE_INFO, array('datavalues'=>$data,'property_id'=>$id));
                 $this->setErrorMessage('success', 'Property source info details added successfully');
             }
-                
+
             redirect(base_url().'crmadmin/product/display_product_list');
         }
     }
@@ -1862,8 +1858,7 @@ class Product extends MY_Controller
             $this->data['ProductList'] = $this->product_model->get_contactAll_details();
             $this->data['TopRenterList'] = $this->product_model->get_contactAllSeller_details();
 
-                
-                
+
             $this->load->view('crmadmin/product/display_rental_dashboard', $this->data);
         }
     }
@@ -1949,12 +1944,15 @@ class Product extends MY_Controller
 
     public function popup_drag()
     {
-        $buyerDetails = $this->product_model->get_all_details(CANCELLED, array('id'=>$this->uri->segment(4)));
-        $this->data['buyer_info'] = $buyerDetails;
-        $this->data['type'] = $this->uri->segment(4);
-        $this->data['reserved_id'] = $this->uri->segment(5);
-        $this->data['sixuri'] = $this->uri->segment(6);
-        $this->load->view('crmadmin/product/dragndrop1', $this->data);
+        $id = $this->uri->segment(5);
+        $detailsSold = $this->product_model->get_all_details(RESERVED_INFO, array('id' => $id));
+        $data['type'] = $this->uri->segment(4);
+        $data['buyerinfo'] = $detailsSold;
+        $data['reserved_id'] = $this->uri->segment(5);
+        $id['sixuri'] = $this->uri->segment(6);
+        $data['product_id'] = $detailsSold->row()->property_id;
+        $data['uri6'] = 'all';
+        $this->load->view('crmadmin/product/dragndrop1', $data);
     }
 
     public function get_sub_type_details()
@@ -1962,7 +1960,7 @@ class Product extends MY_Controller
         $typeId = $this->input->post('typeId');
         //echo $typeId; die;
         $get_sub_types = $this->product_model->get_all_details(PRODUCT_SUBATTRIBUTE, array('attr_id' => $typeId));
-            
+
         echo '<div class="form_grid_12">
                   <label class="field_title" for="property_sub_type">Property Sub Type</label>
                   <div class="form_input">
@@ -1980,10 +1978,10 @@ class Product extends MY_Controller
     {
         $typeId = $this->input->post('typeId');
         $productID = $this->input->post('prodId');
-            
+
         $prodDet = 	$this->product_model->get_all_details(PRODUCT, array('id' => $productID));
         $get_sub_types = $this->product_model->get_all_details(PRODUCT_SUBATTRIBUTE, array('attr_id' => $typeId));
-            
+
         echo '<div class="form_grid_12">
                   <label class="field_title" for="property_sub_type">Property Sub Type</label>
                   <div class="form_input">
@@ -2008,18 +2006,29 @@ class Product extends MY_Controller
 
         $imageNameNew = @explode(',', $imageName);
 
-        $s=0;
+        $s = 0;
         foreach ($this->input->post('imgUploadUrl') as $imgUrl) {
+            copy($imgUrl, './images/product/' . $imageNameNew[$s]);
+            unlink('server/php/files/' . $imageNameNew[$s]);
+            unlink('server/php/files/thumbnail/' . $imageNameNew[$s]);
 
-            //echo '<br>'.$imgUrl.$imageNameNew[$s];
-            copy($imgUrl, './images/product/'.$imageNameNew[$s]);
-            unlink('server/php/files/'.$imageNameNew[$s]);
-            unlink('server/php/files/thumbnail/'.$imageNameNew[$s]);
+            $fileName = $imageNameNew[$s];
+            $imagPath = 'images/product/';
+            $savepath = 'images/product/thumb/';
+            @copy($imagPath . $fileName, $savepath . $fileName);
+            $target_file = 'images/product/' . $fileName;
+            list($w, $h) = getimagesize($target_file);
+            $option = $this->getImageShape($w, $h, $target_file);
+            $resizeObj = new Resizeimage($target_file);
+            $resizeObj->resizeImage(250, 162, $option);
+            $resizeObj->saveImage('images/product/thumb/' . $fileName, 100);
+            $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
+            $this->ImageCompress($savepath . $fileName, $savepath . $fileName);
+
             $s++;
         }
 
         //echo $imageName;
-
         //echo '<pre>'; print_r($_POST); die;
 
 
@@ -2027,15 +2036,21 @@ class Product extends MY_Controller
         $id = $this->input->post('id');
         if ($id != '') {
             foreach ($imageNameNew as $name) {
-                $this->product_model->simple_insert(PRODUCT_PHOTOS, array('product_image' => $name,'status' => 'Active', 'property_id' => $id)) ;
+                $this->product_model->simple_insert(PRODUCT_PHOTOS, array('product_image' => $name, 'status' => 'Active', 'property_id' => $id));
                 $this->db->last_query();
             }
         } else {
-            $this->product_model->simple_insert(PRODUCT, array('option' => 'dummy'));
+            if ($this->session->userdata('fc_session_admin_name') == $this->config->item('admin_name')) {
+                $user_id = 0;
+            } else {
+                $user_id = $this->checkLogin('A');
+            }
+
+            $this->product_model->simple_insert(PRODUCT, array('user_id' => $user_id, 'option' => 'dummy'));
             $id = $this->product_model->get_last_insert_id();
             $this->product_model->simple_insert(PRODUCT_ADDRESS, array('property_id' => $id));
             foreach ($imageNameNew as $name) {
-                $this->product_model->simple_insert(PRODUCT_PHOTOS, array('product_image' => $name,'status' => 'Active', 'property_id' => $id)) ;
+                $this->product_model->simple_insert(PRODUCT_PHOTOS, array('product_image' => $name, 'status' => 'Active', 'property_id' => $id));
                 $this->db->last_query();
             }
         }
@@ -2094,9 +2109,9 @@ class Product extends MY_Controller
         /*echo '<script>history.go(-1);</script>';*/
         //$dd['value'] = 'ty';
 
-        redirect(base_url().'crmadmin/product/display_product_list/'.$lasturi.'/'.$id.'/'.$type);
+        //redirect(base_url().'crmadmin/product/display_product_list/'.$lasturi.'/'.$id.'/'.$type);
 
-        //redirect(base_url().'crmadmin/product/display_product_list/all');
+        redirect(base_url() . 'crmadmin/product/display_product_list/all');
     }
 
     public function genereal_note()
@@ -2118,13 +2133,13 @@ class Product extends MY_Controller
         } else {
             $cash =  '';
         }
-            
+
         if ($this->input->post('check_payment')) {
             $check = 'Check';
         } else {
             $check = '';
         }
-            
+
         if ($this->input->post('credit_payment')) {
             $credit ='Credit Card';
         } else {
@@ -2137,13 +2152,13 @@ class Product extends MY_Controller
         } else {
             $sl_cash =  '';
         }
-            
+
         if ($this->input->post('sales_cf')) {
             $sl_casfin = 'Cash And Finance';
         } else {
             $sl_casfin = '';
         }
-            
+
         if ($this->input->post('sales_sdira')) {
             $sl_sdira ='SDIRA';
         } else {
@@ -2161,7 +2176,7 @@ class Product extends MY_Controller
         } else {
             $sl_sdllc = '';
         }
-            
+
         $data = array('cash_payment' => $cash,
                           'check_payment' => $check,
                           'credit_payment' => $credit,
@@ -2331,7 +2346,7 @@ class Product extends MY_Controller
 						<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 						<meta name="viewport" content="width=device-width"/><body>';
         include('./newsletter/registeration'.$newsid.'.php');
-            
+
         $message .= '</body>
 						</html>';
 
@@ -2358,7 +2373,7 @@ class Product extends MY_Controller
     {
         $admindata = array('displaySearchedResult' => '','fieldType' => '','fieldVal' => '');
         $this->session->unset_userdata($admindata);
-            
+
         if ($this->input->post('searchByField') == 'Search') {
             if ($this->input->post('fieldVal') !='Search Text') {
                 $admindata1 = array('fieldType' => $this->input->post('fieldType'),'fieldVal' => $this->input->post('fieldVal'));
@@ -2495,7 +2510,7 @@ class Product extends MY_Controller
             }
         }
     }
-    
+
     public function swappedProperty()
     {
         $id = $this->input->post('id');
@@ -2634,7 +2649,7 @@ class Product extends MY_Controller
         $data = $sourceInfo->row()->datavalues;
         $values = unserialize(stripslashes($data));
         //echo $values['b1_firstname']; die;
-            
+
         $this->data['ViewList']='
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -2897,12 +2912,10 @@ class Product extends MY_Controller
  
 </body>
 </html>';
-            
-        $this->data['propertyAddres'] = 'invoice_RR'.$count;
-            
 
-            
-            
+        $this->data['propertyAddres'] = 'invoice_RR'.$count;
+
+
         $this->load->view('crmadmin/product/view_orders', $this->data);
     }
 
@@ -2910,7 +2923,7 @@ class Product extends MY_Controller
     {
         $this->product_model->update_details(STATUS, array('ror_iv_fee' => $this->input->post('fee')), array('id' => $this->input->post('id')));
     }
-    
+
     // Process start for phase 8
     public function popup_creat_alert()
     {
@@ -2923,14 +2936,14 @@ class Product extends MY_Controller
             $alert_hour = $this->input->post('alert_hour');
             $alert_minutes = $this->input->post('alert_minutes');
             $alert_meridiem = $this->input->post('alert_meridiem');
-            
+
             $reserved_id = $this->input->post('reserved_id');
             $property_id = $this->input->post('property_id');
-            
-            
+
+
             $temp_alert_date=$alert_year.'-'.$alert_month.'-'.$alert_day.' '.$alert_hour.':'.$alert_minutes.':00 '.$alert_meridiem;
             $alert_date=date("Y-m-d H:i:s", strtotime($temp_alert_date));
-                
+
             $dataArr = array('reserved_id'=>$reserved_id,
                                         'property_id'=>$property_id,
                                         'alert_person'=>$this->checkLogin('CA'),
