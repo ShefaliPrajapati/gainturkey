@@ -30,7 +30,6 @@ $thumbDirectory = "./Signature/all.pdf";
 
 //exec("convert $pdfDirectory $thumbDirectory");
 
-die;
 	ini_set('display_errors','off');
 	require_once("pdfdownload/dompdf_config.inc.php");
   	

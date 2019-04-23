@@ -2063,9 +2063,12 @@ class Product extends MY_Controller
         $imageName = @implode(',', $this->input->post('imgUpload'));
 
         $imageNameNew = @explode(',', $imageName);
+        $id = $this->input->post('id');
+        $type = $this->input->post('type');
+        $lasturi = $this->input->post('uri6');
+        $admin_name = $this->session->userdata('ror_crm_session_admin_name');
 
-        //echo '<pre>'; print_r($imageName);
-        //echo '<pre>'; print_r($imageNameNew);
+        $ImageNameseourl = [];
 
         $s=0;
         foreach ($this->input->post('imgUploadUrl') as $imgUrl) {
@@ -2076,38 +2079,18 @@ class Product extends MY_Controller
             $TempNames = url_title($str, '-', true);
             //echo $TempNames;
             $ImageNameseourl[] = $newImgNames = $TempNames.'.'.$ext;
-            //echo '<br>'.$imgUrl.$imageNameNew[$s];
-            //echo $newImgNames;die;
-            @copy($imgUrl, './images/crm-popup-images/'.$newImgNames);
+
+            shell_exec("cp -r " . getcwd() . "/server/php/files/$imageNameNew[$s] " . getcwd() . "/images/crm-popup-images/$newImgNames");
+
+            if (file_exists(getcwd() . "/images/crm-popup-images/$newImgNames")) {
+                $this->product_model->simple_insert('notes_image', array($type => $newImgNames, 'reserved_id' => $id, 'admin_name' => $admin_name));
+            }
+
             unlink('server/php/files/'.$imageNameNew[$s]);
             unlink('server/php/files/thumbnail/'.$imageNameNew[$s]);
 
-            $dir = "server/php/files/";//dir absolute path
-            foreach (glob($dir."*.*") as $file) {
-                unlink($file);
-            }
-
-            $dir1 = "server/php/files/thumbnail/";//dir absolute path
-            foreach (glob($dir1."*.*") as $file1) {
-                unlink($file1);
-            }
-
             $s++;
         }
-
-        //echo $imageName;
-        //echo '<pre>'; print_r($ImageNameseourl);
-
-        $id = $this->input->post('id');
-        $type = $this->input->post('type');
-        $lasturi = $this->input->post('uri6');
-        $admin_name = $this->session->userdata('ror_crm_session_admin_name');
-        foreach ($ImageNameseourl as $name) {
-            $this->product_model->simple_insert('notes_image', array($type => $name, 'reserved_id' => $id, 'admin_name' => $admin_name)) ;
-            // echo $this->db->last_query(); exit;
-        }
-        /*echo '<script>history.go(-1);</script>';*/
-        //$dd['value'] = 'ty';
 
         //redirect(base_url().'crmadmin/product/display_product_list/'.$lasturi.'/'.$id.'/'.$type);
 

@@ -787,6 +787,10 @@ class User extends MY_Controller
         }
 
         $message = str_replace('{$cfmurl}', $cfmurl, $message);
+        $message = str_replace('{$price}', $price, $message);
+        $message = str_replace('{$first_name}', $details->row()->first_name, $message);
+        $message = str_replace('{$last_name}', $details->row()->last_name, $message);
+        $message = str_replace('{$membership}', $membership, $message);
         $message = str_replace('{$email_title}', $sender_name, $message);
         $message = str_replace('{$meta_title}', $sender_name, $message);
         $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
@@ -967,14 +971,6 @@ class User extends MY_Controller
         $message = str_replace('{$Phone}', $userDetails->row()->phone_no, $message);
         $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
         $message = str_replace('{base_url()}', base_url(), $message);
-        
-        if ($template_values['sender_name']=='' && $template_values['sender_email']=='') {
-            $sender_email=$this->data['siteContactMail'];
-            $sender_name=$this->data['siteTitle'];
-        } else {
-            $sender_name=$template_values['sender_name'];
-            $sender_email=$template_values['sender_email'];
-        }
 
         $email_values = array('mail_type'=>'html',
                             'from_mail_id'=>$sender_email,
@@ -2592,7 +2588,9 @@ class User extends MY_Controller
                     $sender_email=$template_values['sender_email'];
                 }
 
-                $message = str_replace('{$cfmurl}', $cfmurl, $message);
+                $message = str_replace('{$cfull_name}', $this->data['userDetails']->row()->full_name, $message);
+                $message = str_replace('{$full_name}', $followUserDetails[0]['full_name'], $message);
+                $message = str_replace('{$user_name}', $this->data['userDetails']->row()->user_name, $message);
                 $message = str_replace('{$email_title}', $sender_name, $message);
                 $message = str_replace('{$meta_title}', $sender_name, $message);
                 $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
@@ -2641,14 +2639,14 @@ class User extends MY_Controller
                     $sender_email=$template_values['sender_email'];
                 }
 
-                $message = str_replace('{$rental_id}', $this->data['userDetails']->row()->user_name, $message);
-                $message = str_replace('{$Arr_date}', $this->data['userDetails']->row()->user_name, $message);
-                $message = str_replace('{$Dep_date}', $this->data['userDetails']->row()->user_name, $message);
-                $message = str_replace('{$Message}', $this->data['userDetails']->row()->user_name, $message);
+                $message = str_replace('{$cfull_name}', $this->data['userDetails']->row()->full_name, $message);
+                $message = str_replace('{$user_name}', $this->data['userDetails']->row()->user_name, $message);
+                $message = str_replace('{$full_name}', $followUserDetails[0]['full_name'], $message);
                 $message = str_replace('{$email_title}', $sender_name, $message);
                 $message = str_replace('{$meta_title}', $sender_name, $message);
                 $message = str_replace('{base_url()}images/logo/{$logo}', base_url() . 'images/logo/logo.png', $message);
                 $message = str_replace('{base_url()}', base_url(), $message);
+
 
                 $email_values = array('mail_type'=>'html',
                                     'from_mail_id'=>$sender_email,
