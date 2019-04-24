@@ -1,7 +1,9 @@
 <footer class="footer_sec">
     <div class="container">
         <div class="footer_log">
-            <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;">
+            <a class="navbar-brand" href="<?php echo base_url(); ?>">
+                <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;">
+            </a>
         </div>
 
         <div class="row">

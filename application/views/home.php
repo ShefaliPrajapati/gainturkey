@@ -93,7 +93,7 @@ $urlProperty = base_url();
                 </div>
                 <div class="slide-content">
                     <h2>Building Sustainable Wealth Through Real Estate</h2>
-                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty . 'listing/viewall'; ?>">View Properties</a>
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -103,7 +103,7 @@ $urlProperty = base_url();
                 <div class="slide-content">
                     <h2>We locate, purchase, and remodel homes in the best cash flow markets<br>
                         (All the hard work is done!) </h2>
-                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty . 'listing/viewall'; ?>">View Properties</a>
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -113,7 +113,7 @@ $urlProperty = base_url();
                 <div class="slide-content">
                     <h2>Our professional property managers place tenants, collect rents, and deal with maintenance<br>
                         (All the management is done!)</h2>
-                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty . 'listing/viewall'; ?>">View Properties</a>
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -123,7 +123,7 @@ $urlProperty = base_url();
                 <div class="slide-content">
                     <h2>Clients purchase a turnkey rental property and receive the cash flow, appreciation, and tax benefits that come with it<br>
                         (Risk mitigated, time saved, GAIN up!)</h2>
-                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty . 'listing/viewall'; ?>">View Properties</a>
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -132,7 +132,7 @@ $urlProperty = base_url();
                 </div>
                 <div class="slide-content">
                     <h2>We supply property in the BEST cash flow markets in the country. Times change, markets change, and we change accordingly.  View our inventory to see where we are currently investing </h2>
-                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty . 'listing/viewall'; ?>">View Properties</a>
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -141,7 +141,7 @@ $urlProperty = base_url();
                 </div>
                 <div class="slide-content">
                     <h2>With over 1,500 properties sold to investors,<br> our experience sets us apart from the competition.</h2>
-                    <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
+                    <a href="<?php echo $urlProperty . 'listing/viewall'; ?>">View Properties</a>
                 </div>
             </li>
         </ul>
@@ -191,7 +191,7 @@ $urlProperty = base_url();
                     <img src="<?php echo base_url(); ?>images/right.jpg" alt="">
                 </div>
             </div>
-            <a href="<?php echo $urlProperty.'signin'; ?>">View Our Turnkey Properties Here</a>
+            <a href="<?php echo $urlProperty . 'listing/viewall'; ?>">View Our Turnkey Properties Here</a>
         </div>
     </div>
 </section>
@@ -199,7 +199,8 @@ $urlProperty = base_url();
 <footer class="footer_sec">
     <div class="container">
         <div class="footer_log">
-            <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;">
+            <a href="<?php echo url(); ?>">
+                <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;"></a>
         </div>
 
         <div class="row">
