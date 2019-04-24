@@ -1949,7 +1949,7 @@ class Product extends MY_Controller
         $data['type'] = $this->uri->segment(4);
         $data['buyerinfo'] = $detailsSold;
         $data['reserved_id'] = $this->uri->segment(5);
-        $id['sixuri'] = $this->uri->segment(6);
+        $data['sixuri'] = $this->uri->segment(6);
         $data['product_id'] = $detailsSold->row()->property_id;
         $data['uri6'] = 'all';
         $this->load->view('crmadmin/product/dragndrop1', $data);
@@ -2092,9 +2092,9 @@ class Product extends MY_Controller
             $s++;
         }
 
+        redirect(base_url() . 'crmadmin/product/display_product_list/' . $lasturi . '/' . $id . '/' . $type);
         //redirect(base_url().'crmadmin/product/display_product_list/'.$lasturi.'/'.$id.'/'.$type);
-
-        redirect(base_url() . 'crmadmin/product/display_product_list/all');
+        //redirect(base_url() . 'crmadmin/product/display_product_list/all');
     }
 
     public function genereal_note()

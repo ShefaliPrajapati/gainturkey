@@ -100,6 +100,7 @@ $urlProperty = base_url();
                         ?>
                        <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
                     <?php } ?>
+
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -116,6 +117,7 @@ $urlProperty = base_url();
                         ?>
                        <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
                     <?php } ?>
+
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -132,6 +134,7 @@ $urlProperty = base_url();
                         ?>
                        <a href="<?php echo $urlProperty.'signin'; ?>">View Properties</a>
                     <?php } ?>
+
                 </div>
             </li>
             <li class="slide" style="display: none;">
@@ -240,9 +243,8 @@ $urlProperty = base_url();
 <footer class="footer_sec">
     <div class="container">
         <div class="footer_log">
-            <a class="navbar-brand" href="<?php echo base_url(); ?>">
-                <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;">
-            </a>
+            <a href="<?php echo url(); ?>">
+                <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;"></a>
         </div>
 
         <div class="row">
