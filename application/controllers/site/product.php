@@ -422,6 +422,8 @@ class Product extends MY_Controller
             if ($this->data['productDetails']->row()->meta_description != '') {
                 $this->data['meta_description'] = $this->data['productDetails']->row()->meta_description;
             }
+
+            $this->data['detail_page'] = true;
             //echo "<pre>"; print_r(get_defined_vars()); die;
             $this->load->view('site/product/details', $this->data);
         }
