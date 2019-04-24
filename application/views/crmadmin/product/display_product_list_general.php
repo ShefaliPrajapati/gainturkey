@@ -536,8 +536,6 @@
                     }
                     ?>
                 <div class="popup_middle">
-                    <span style="width:42%;">"Must Have" Information</span>
-
                     <?php if ($details->sales_cash != '' || $details->sales_cf != '' || $details->sales_sl != '' || $details->sales_sl_fs != '') { ?>
 
                         <div class="popup_field">
@@ -804,8 +802,9 @@
         }
     }
     ?>
-                    <div style="float:left; width:100%; min-height:100px"></div>
-                    <a href="crmadmin/product/displayproducttemplate/<?php echo $details->id . '/' . $details->property_id . '/' . $details->user_id . '/pa/' . $uri6 . '/upload'; ?>"><button class="sub-btn">Add / Edit Purchase Agreement</button></a>
+
+                    <!--                    <a href="crmadmin/product/displayproducttemplate/-->
+                    <?php //echo $details->id . '/' . $details->property_id . '/' . $details->user_id . '/pa/' . $uri6 . '/upload'; ?><!--"><button class="sub-btn">Add / Edit Purchase Agreement</button></a>-->
 
 
 
