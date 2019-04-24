@@ -267,9 +267,10 @@ $urlProperty = base_url();
         </div>
     </div>
 </footer>
-<script src="<?php echo base_url(); ?>js/bootstrap-min.js"></script>
+<!-- <script src="<?php echo base_url(); ?>js/site/jquery-1.7.1.min.js"></script> -->
+<script src="<?php echo base_url(); ?>js/site/jquery3.0.0.min.js"></script>
 <script src="<?php echo base_url(); ?>js/popper-min.js"></script>
-<script src="<?php echo base_url(); ?>js/site/jquery-1.7.1.min.js"></script>
+<script src="<?php echo base_url(); ?>js/bootstrap-min.js"></script>
 <script src="<?php echo base_url(); ?>js/bliss-slider.js"></script>
 <script type="text/javascript">
     $(function() {

@@ -7,7 +7,18 @@ $this->load->view('crmadmin/templates/header.php');
 	width:97.2%;
 }
 </style>
+<script type="text/javascript">
+function printDiv(){
 
+    var divToPrint=document.getElementById('widget_content');
+    var newWin=window.open('','Print-Window');
+    // var newWin= window.open("");
+    newWin.document.open();
+    newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+    newWin.document.close();
+	setTimeout(function(){newWin.close();},0);
+}
+</script>
 <div id="content">
 		<div class="grid_container">
 			<?php 
@@ -25,7 +36,8 @@ $this->load->view('crmadmin/templates/header.php');
 						<div class="btn_30_light" style="height: 29px;">
 								<a href="crmadmin/report/printexcel?<?php echo $CUrurl[1]; ?>" onclick="" class="tipTop" title="Click here to Download records"><span class="icon accept_co"></span><span class="btn_link">Download</span></a>
 								
-								<a href="crmadmin/report/printexcel?<?php echo $CUrurl[1]; ?>" onclick="" class="tipTop" title="Click here to Print records"><span class="icon accept_co"></span><span class="btn_link">Print</span></a>
+								<a href="javascript:;"  onclick='printDiv();' class="tipTop" title="Click here to Print records"><span class="icon accept_co"></span><span class="btn_link">Print</span></a>
+								<!-- <a href="crmadmin/report/printexcel?<?php echo $CUrurl[1]; ?>" onclick="" class="tipTop" title="Click here to Print records"><span class="icon accept_co"></span><span class="btn_link">Print</span></a> -->
 								
 						<?php 
 						if ($allPrev == '1' || in_array('2', $rental)){?>
@@ -46,7 +58,7 @@ $this->load->view('crmadmin/templates/header.php');
 						</div>
 					</div>
                     
-					<div class="widget_content" style="height:100%;">
+					<div class="widget_content" id="widget_content" style="height:100%;">
 						<table class="display display_tbl" id="report_tbl" style="float:left;">
 						<thead>
 						<tr>							

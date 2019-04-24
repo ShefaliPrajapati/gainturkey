@@ -5,7 +5,8 @@
                 <img src="<?php echo base_url(); ?>images/logo.png" alt="logo" style="width:114px;">
             </a>
         </div>
-
+         
+            
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="footer_box">
@@ -185,6 +186,7 @@ function GetHTTPObject()  {
   </script>
   <script id="godaddy-security-s" src="https://cdn.sucuri.net/badge/badge.js" data-s="205" data-i="8d7b9eaf239072b5bbdc5a8a16c72148180d0eb2d3" data-p="r" data-c="d" data-t="g"></script>
 <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+<script src="<?php echo base_url(); ?>js/site/jquery3.0.0.min.js"></script>
 <script src="<?php echo base_url(); ?>js/bliss-slider.js"></script>
 <script src="<?php echo base_url(); ?>js/popper-min.js"></script>
 <script src="<?php echo base_url(); ?>js/bootstrap-min.js"></script>
