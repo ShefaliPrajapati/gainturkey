@@ -37,11 +37,14 @@ $urlProperty = base_url();
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>images/logo/<?php echo $this->config->item('fevicon_image'); ?>">
     <?php
     if ($heading == '') {
-    ?>
+        ?>
     <title><?php echo $title; ?></title>
-    <?php } else { ?>
+        <?php
+    } else {
+        ?>
     <title><?php echo $heading; ?></title>
-    <?php } ?>
+        <?php
+    } ?>
 
 </head>
 
@@ -68,16 +71,19 @@ $urlProperty = base_url();
                         <a class="nav-link" href="<?php echo $urlProperty.'contact'; ?>">Contact Us</a>
                     </li>
                     <?php
-                    if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
+                    if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) {
+                        ?>
                         <li class="nav-item bt_box">
                             <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Sign Out</a>
                         </li>
-                    <?php } else {
+                        <?php
+                    } else {
                         ?>
                         <li class="nav-item bt_box">
                             <a class="nav-link" style="width: auto;" href="<?php echo $urlProperty.'signup'; ?>">Sign up/Login</a>
                         </li>
-                    <?php } ?>
+                        <?php
+                    } ?>
                 </ul>
             </div>
         </div>

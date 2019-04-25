@@ -1,4 +1,37 @@
 <?php $this->load->view('site/templates/new_header'); ?>
+
+<?php if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="right_bt">
+                    <a class="btn btn-primary <?php
+                    if ($this->uri->segment(1, 0) == 'listing') {
+                        echo 'nav-link';
+                    }
+                    ?>" href="<?php
+                    if ($loginCheck == '') {
+                        echo base_url() . 'signin';
+                    } else {
+                        echo base_url() . 'listing/viewall/0';
+                    }
+                    ?> ">Current Inventory</a>
+                    <a class="btn btn-primary <?php
+                    if ($this->uri->segment(1, 0) == 'soldlisting') {
+                        echo 'nav-link';
+                    }
+                    ?>" href="<?php
+                    if ($loginCheck == '') {
+                        echo base_url() . 'signin';
+                    } else {
+                        echo base_url() . 'soldlisting/viewall/0';
+                    }
+                    ?>">Past/Sold Inventory </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 <link rel="stylesheet" type="text/css" href="css/site/master.css"/>
 <?php
 $iiii = $this->session->userdata('proID');

@@ -1,5 +1,37 @@
 <?php $this->load->view('site/templates/new_header'); ?>
 
+<?php if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="right_bt">
+                    <a class="btn btn-primary <?php
+                    if ($this->uri->segment(1, 0) == 'listing') {
+                        echo 'nav-link';
+                    }
+                    ?>" href="<?php
+                    if ($loginCheck == '') {
+                        echo base_url() . 'signin';
+                    } else {
+                        echo base_url() . 'listing/viewall/0';
+                    }
+                    ?> ">Current Inventory</a>
+                    <a class="btn btn-primary <?php
+                    if ($this->uri->segment(1, 0) == 'soldlisting') {
+                        echo 'nav-link';
+                    }
+                    ?>" href="<?php
+                    if ($loginCheck == '') {
+                        echo base_url() . 'signin';
+                    } else {
+                        echo base_url() . 'soldlisting/viewall/0';
+                    }
+                    ?>">Past/Sold Inventory </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 <link rel="stylesheet" type="text/css" href="css/site/master.css"/>
 
 
@@ -14,11 +46,9 @@
     #defaultCountdown { width: 240px; height: 45px; }
 </style>
 
-<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
--->
+
 
 <script src="js/timer2/jquery.plugin.js"></script>
-
 <script src="js/timer2/jquery.countdown.js"></script>
 <script src="js/site/jquery.cookie.js"></script>
 <script type="text/javascript">
@@ -214,7 +244,8 @@
                         <div style="display:none" id="adjustment_div">
                             <div class="form-group" style="width:100%;">
                                 <label>Adjustment $</label>
-                                <input type="text" name="adjustment" id="adjustment" class="form-control" onkeyup="javascript:adjustprice();" onkeypress="javascript:adjustprice();" onkeydown="javascript:adjustprice();"  />
+                                <input type="text" name="adjustment" id="adjustment" class="form-control"
+                                       onkeyup="adjustprice();" onkeypress="adjustprice();" onkeydown="adjustprice();"/>
                             </div>
                             <div class="buyer_field" id="netErr"></div>
                             <div class="form-group"  style="width:100%">
@@ -544,7 +575,7 @@
         if(parseFloat(adjPrice)>0){
             if(parseFloat(salePrice) > parseFloat(adjPrice)){
                 var newPrice = parseFloat(salePrice) - parseFloat(adjPrice);
-                var NwPric = new Number(newPrice).toFixed(parseInt(2));
+                var NwPric = Number(newPrice).toFixed(parseInt(2));
 
                 if($.isNumeric(NwPric)==true){
                     $('#net_purchase_price').val(NwPric);

@@ -1,4 +1,37 @@
 <?php $this->load->view('site/templates/new_header'); ?>
+
+<?php if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="right_bt">
+                    <a class="btn btn-primary <?php
+                    if ($this->uri->segment(1, 0) == 'listing') {
+                        echo 'nav-link';
+                    }
+                    ?>" href="<?php
+                    if ($loginCheck == '') {
+                        echo base_url() . 'signin';
+                    } else {
+                        echo base_url() . 'listing/viewall/0';
+                    }
+                    ?> ">Current Inventory</a>
+                    <a class="btn btn-primary <?php
+                    if ($this->uri->segment(1, 0) == 'soldlisting') {
+                        echo 'nav-link';
+                    }
+                    ?>" href="<?php
+                    if ($loginCheck == '') {
+                        echo base_url() . 'signin';
+                    } else {
+                        echo base_url() . 'soldlisting/viewall/0';
+                    }
+                    ?>">Past/Sold Inventory </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
 <link rel="stylesheet" type="text/css" href="css/site/master.css"/>
 <style>
 .comp_h2 {
@@ -185,9 +218,7 @@ $(function() {
 <script type="text/javascript">
 
 	$(function(){
-
 		$('#myGallery').galleryView({
-
 		transition_speed: 1000, 		//INT - duration of panel/frame transition (in milliseconds)
 
 		transition_interval: 4000, 		//INT - delay between panel/frame transitions (in milliseconds)
@@ -200,15 +231,14 @@ $(function() {
 
 		enable_overlays: true, 			//BOOLEAN - flag to show or hide panel overlays
 
-		
 
-		panel_width: 416, 				//INT - width of gallery panel (in pixels)
+            panel_width: 550, 				//INT - width of gallery panel (in pixels)
 
 		panel_height: 300, 				//INT - height of gallery panel (in pixels)
 
 		panel_animation: 'slide', 		//STRING - animation method for panel transitions (crossfade,fade,slide,none)
 
-		panel_scale: 'crop', 			//STRING - cropping option for panel images (crop = scale image and fit to aspect ratio determined by panel_width and panel_height, fit = scale image and preserve original aspect ratio)
+            panel_scale: 'original', 			//STRING - cropping option for panel images (crop = scale image and fit to aspect ratio determined by panel_width and panel_height, fit = scale image and preserve original aspect ratio)
 
 		overlay_position: 'bottom', 	//STRING - position of panel overlay (bottom, top)
 
@@ -236,19 +266,19 @@ $(function() {
 
 		filmstrip_position: 'bottom', 	//STRING - position of filmstrip within gallery (bottom, top, left, right)
 
-		frame_width: 65, 				//INT - width of filmstrip frames (in pixels)
+            frame_width: 70, 				//INT - width of filmstrip frames (in pixels)
 
-		frame_height: 80, 				//INT - width of filmstrip frames (in pixels)
+            frame_height: 65, 				//INT - width of filmstrip frames (in pixels)
 
 		frame_opacity: 1, 			//FLOAT - transparency of non-active frames (1.0 = opaque, 0.0 = transparent)
 
-		frame_scale: 'crop', 			//STRING - cropping option for filmstrip images (same as above)
+            frame_scale: 'original', 			//STRING - cropping option for filmstrip images (same as above)
 
-		frame_gap: 5, 					//INT - spacing between frames within filmstrip (in pixels)
+            frame_gap: 1, 					//INT - spacing between frames within filmstrip (in pixels)
 
 		show_infobar: false,				//BOOLEAN - flag to show or hide infobar
 
-		infobar_opacity: 1				//FLOAT - transparency for info bar
+            infobar_opacity: 5				//FLOAT - transparency for info bar
 
 		});
 
