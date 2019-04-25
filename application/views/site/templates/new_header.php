@@ -122,9 +122,6 @@
             });
         }
 
-
-
-
         function displayBlock1() {
             $(".fadein-showold-st").fadeIn(4000).delay(8000).fadeOut(5000);
             //$( ".fadein-showold-st" ).fadeIn(3000).delay(3000).fadeOut(5000);
@@ -158,16 +155,143 @@
         </script>
 
     <?php } ?>
-    <!--Popup-->
     <link rel="stylesheet" href="css/site/popup.css" type="text/css" media="all"/>
-    <!-- End pop up-->
-
     <script src="js/site/jquery.colorbox.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/site/colorbox.css" />
+
 </head>
 
 <body>
+<script type="text/javascript">
+    $(document).ready(function () {
 
+        $('#cboxClose').click(function () {
+            $("#details").hide();
+            return false;
+        });
+        $('#cboxClose1').click(function () {
+            $("#brochure-details").hide();
+            return false;
+        });
+        $(".cboxClose").click(function () {
+            $("#cboxOverlay,#colorbox,#draggable,#draggable1").hide();
+            //alert("jj");
+            window.location.href = baseURL + 'signin';
+        });
+
+
+        $(".inquiry-popup").colorbox({width: "365px", height: "380px", inline: true, href: "#inline_reg"});
+
+        $(".click").colorbox({width: "500px", height: "150px", inline: true, href: "#inline_login"});
+        $(".click1").colorbox({width: "500px", height: "150px", inline: true, href: "#inline_login1"});
+
+
+        $(".clickreserved").colorbox({width: "500px", height: "150px", inline: true, href: "#inline_reserved"});
+        $(".clicksold").colorbox({width: "500px", height: "150px", inline: true, href: "#inline_sold"});
+
+        $(".dragndropimage").colorbox({width: "500px", height: "150px", inline: true, href: "#dragandrophandler"});
+
+        $(".youtubevideo1").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video1"});
+        $(".youtubevideo2").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video2"});
+        $(".youtubevideo3").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video3"});
+        $(".youtubevideo4").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video4"});
+        $(".youtubevideo5").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video5"});
+        $(".youtubevideo6").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video6"});
+        $(".youtubevideo7").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video7"});
+        $(".youtubevideo8").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video8"});
+        $(".youtubevideo9").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video9"});
+        $(".youtubevideo10").colorbox({width: "625px", height: "375px", inline: true, href: "#youtube_video10"});
+
+
+        $(".clickcalc").colorbox({width: "800px", height: "650px", opacity: 0, inline: true, href: "#draggable"});
+
+        $(".calculatercal").colorbox({
+            width: "800px",
+            height: "900px",
+            opacity: 0,
+            inline: true,
+            href: "#draggablecalci"
+        });
+
+        //$(".signpopup-2").colorbox({width:"750px", height:"590px", opacity:0, inline:true, href:"#draggablesign"});
+
+        $(".example16").colorbox({width: "800px", height: "700px", inline: true, href: "#inline_example11"});
+        //Example of preserving a JavaScript event for inline calls.
+        $("#onLoad").click(function () {
+            $('#onLoad').css({
+                "background-color": "#f00",
+                "color": "#fff",
+                "cursor": "inherit"
+            }).text("Open this window again and this message will still be here.");
+            return false;
+        });
+
+    });
+</script>
+<?php
+//$this->product_model->saveResevedSettings();
+
+$reservedID = array_filter(explode(',', $this->config->item('id_reservation')));
+$soldID = array_filter(explode(',', $this->config->item('id_sold')));
+?>
+
+<!--popup-->
+<div class='popup'>
+    <div class='content'>
+        <img src='images/x.png' alt='quit' class='x' id='x'/>
+
+        <div class="property_view propertyStatus">
+            <p>Please login to view property</p>
+
+        </div>
+
+    </div>
+</div>
+<div style='display:none;'>
+    <div id='inline_login' style='background:#fff;'>
+        <div class="property_view propertyStatus">
+            <p style="margin:34px 0 0 0px;">
+                <blink>Please login to view property</blink>
+            </p>
+
+        </div>
+    </div>
+</div>
+<div style='display:none;'>
+    <div id='inline_login1' style='background:#fff;'>
+        <?php
+        echo $BuyNowPages[0]['description'];
+        ?>
+
+        <!--<div class="property_view">
+<p style="margin:27px 0 10px 0px;">Please contact a property specialist to reserve this property</p>
+
+</div>-->
+    </div>
+</div>
+<?php if ($this->uri->segment(1) == 'Property') { ?>
+    <div style='display:none;'>
+        <div id='inline_reserved' style='background:#fff;'>
+            <div class="property_view propertyStatus">
+                <p style="margin:27px 0 10px 0px;">
+                    <blink>Property id(<?php echo $productDetails->row()->property_id; ?>) is <b style="color:#C00">Reserved</b>
+                    </blink>
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <div style='display:none;'>
+        <div id='inline_sold' style='background:#fff;'>
+
+            <div class="property_view propertyStatus">
+                <p style="margin:27px 0 10px 0px;">Property id(<?php echo $productDetails->row()->property_id; ?>) is <b
+                            style="color:#C00">Sold</b></p>
+
+            </div>
+        </div>
+    </div>
+<?php } ?>
 <div class="top_nav">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
@@ -192,6 +316,9 @@
 
                     <?php
                     if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo $urlProperty . 'my_account'; ?>">MyAccount</a>
+                        </li>
                         <li class="nav-item bt_box">
                             <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Sign out</a>
                         </li>
