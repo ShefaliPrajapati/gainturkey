@@ -111,11 +111,12 @@ function validateFn(){
     border: medium none !important;
 	background-size:100% 100% !important;
 }
-#cboxLoadedContent{
-	background:none !important;
-	box-shadow:none !important;
-	width: 86% !important;
-	margin:40px 40px 20px 40px !important;
+#cboxLoadedContent {
+    background: none !important;
+    box-shadow: none !important;
+    width: 96% !important;
+    margin: 0px !important;
+    height: 1000px !important;
 }
 #colorbox{
 	z-index:999 !important;
@@ -296,7 +297,103 @@ input[type=checkbox].css-checkbox:checked + label.css-label { background-positio
 }
 
 
+#cboxContent {
+    background: #f8f8f8 !important;
+    border: 7px solid #c7812b !important;
+    color: #222222 !important;
+    height: 850px !important;
+    width: 660px !important;
+    border-radius: 5px!important;
+    overflow: auto;
+}
 
+
+.calculatorPopUpMain h2 {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0 10px 10px;
+    padding: 0px;
+}
+
+.outLink a {
+    color: #c7812b !important;
+    font-size: 17px;
+    margin: 20px 15px 10px 0px;
+    padding: 0px;
+    float: right;
+}
+.popupFormBox {
+    margin: 11px 0px 11px 0px;
+    padding: 0px;
+    float: left;
+}
+
+
+.popupFormBox label {
+    width: 175px;
+    font-size: 12px;
+    margin: 0 0 0 5px;
+    padding: 0px;
+    color: #333333;
+    float: left;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.popupFormBox input {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    float: left;
+    margin: 1px 0 0 15px;
+    background: none repeat scroll 0 0 #e8e8e8;
+    border: 1px solid #C9BDB4;
+    color: #4A4A4A;
+    height: 20px;
+    padding: 0 0 0 4px;
+    width: 96px;
+}
+.ccrighttxt {
+    font-size: 11px;
+    color: #666666;
+    margin: 0 0 0 15px;
+    padding: 0px;
+    width: 335px;
+    overflow: hidden;
+    text-align: left;
+    float: left;
+}
+.popupFormBox input {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    float: left;
+    margin: 1px 0 0 15px;
+    background: none repeat scroll 0 0 #e8e8e8;
+    border: 1px solid #C9BDB4;
+    color: #4A4A4A;
+    height: 20px;
+    padding: 0 0 0 4px;
+    width: 96px;
+}
+
+.bt_c {
+    background: url(./images/site/by_tt.jpg) repeat-x scroll 0 0 rgba(0, 0, 0, 0) !important;
+    border: medium none;
+    border-radius: 5px;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    float: right;
+    font-size: 12px !important;
+    font-weight: bold;
+    margin: 5px 10px 0 0;
+    outline: medium none;
+    padding: 4px 28px;
+    text-transform: uppercase !important;
+    height: 25px !important;
+}
+.bt_c:hover {
+    background: #c7812b !important;
+}
 					
 .css-label{ /*background-image:url(images/radio_btn.png);*/ }
 
@@ -660,12 +757,8 @@ function compute_pvalue(form)
   <div><a id="edit_options" onclick="return displayfunction89('details','details_parent');" href="javascript:void(0);" class="calculatercal" ><img src="images/site/cal.png" /></a></div>
                 
         <div style="display:none" >
-		<style>
-			#cboxLoadedContent, #cboxContent{
-				height: 1200px !important;
-			}
-		</style>
-                <div id="draggablecalci" style="height:1200px;">
+
+                <div id="draggablecalci">
                  <span class="calculatorPopUpTop" ></span>
                 
                 <div class="calculatorPopUpMain datatable  " >
