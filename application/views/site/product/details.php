@@ -272,7 +272,7 @@ $(function() {
 
 		frame_opacity: 1, 			//FLOAT - transparency of non-active frames (1.0 = opaque, 0.0 = transparent)
 
-            frame_scale: 'original', 			//STRING - cropping option for filmstrip images (same as above)
+            frame_scale: 'crop', 			//STRING - cropping option for filmstrip images (same as above)
 
             frame_gap: 1, 					//INT - spacing between frames within filmstrip (in pixels)
 

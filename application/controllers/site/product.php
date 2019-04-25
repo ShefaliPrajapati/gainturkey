@@ -38,6 +38,33 @@ class Product extends MY_Controller
         }
     }
 
+    public function download_images()
+    {
+        $propertyId = $this->uri->segment(4);
+
+        $sortArr1 = array('field' => 'imgPriority', 'type' => 'ASC');
+        $product_image = $this->product_model->get_all_details_product(PRODUCT_PHOTOS, array('property_id' => $propertyId), $sortArr1);
+
+        if (!is_dir(getcwd() . '/zip-image/' . $propertyId)) {
+            mkdir(getcwd() . '/zip-image/' . $propertyId, 0777, true);
+        }
+
+        foreach ($product_image->result() as $ProImag) {
+            $name = $ProImag->product_image;
+            @copy('./images/product/' . $ProImag->product_image, './zip-image/' . $propertyId . '/' . $name);
+        }
+
+        exec("zip -r zip-image/ror-images-" . $propertyId . ".zip zip-image/" . $propertyId . "/");
+
+        foreach ($product_image->result() as $ProImag) {
+            @unlink('zip-image/' . $propertyId . '/' . $ProImag->product_image);
+            @unlink('zip-image/' . $propertyId . '/');
+        }
+
+        redirect('zip-image/ror-images-' . $propertyId . '.zip');
+        exit();
+    }
+
     public function onboarding()
     {
         if ($this->checkLogin('U') == '') {

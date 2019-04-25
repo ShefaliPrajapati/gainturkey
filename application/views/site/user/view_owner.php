@@ -1,6 +1,6 @@
-<?php 
-$this->load->view('site/templates/header');
-?><script src="js/site/menu.js" type="text/javascript"></script>
+<?php
+$this->load->view('site/templates/new_header');
+?>
 <section>
 	<div class="main">
     			    <div class="feature_list">
@@ -141,6 +141,6 @@ $this->load->view('site/templates/header');
 	  }
   });
 </script>
-<?php 
-$this->load->view('site/templates/footer');
+<?php
+$this->load->view('site/templates/new_footer');
 ?>

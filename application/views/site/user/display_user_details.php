@@ -4,15 +4,17 @@ $SignId=$this->session->userdata('SignID');
 $UrlId=$this->session->userdata('UrlID');
 
 $this->session->unset_userdata('SignID');
-$this->session->unset_userdata('UrlID');	
+$this->session->unset_userdata('UrlID');
 
-if($SignId != '' && $UrlId !=''){ ?>
+if ($SignId != '' && $UrlId != '') {
+    ?>
 	<script type="text/javascript">
 	jQuery(document).ready(function(e){
 		window.open("viewconfirmation/<?php echo $SignId; ?>/<?php echo $UrlId; ?>",'_blank');
 	});
 	</script>
-<?php } ?>
+    <?php
+} ?>
 
 
 <script type="text/javascript" src="js/site/SpryTabbedPanels.js"></script>
@@ -90,6 +92,13 @@ function validateFn(){
 </script>
 
 <style>
+    .pdf_btn, .dwn_btn {
+        background: #c7812b;
+        color: #FFFFFF;
+        margin: 10px 0 0 5px;
+        padding: 3px 0;
+        text-transform: uppercase;
+    }
 #draggablecalci { padding: 0.5em; }
 
 .account_popup {
@@ -297,7 +306,7 @@ input[type=checkbox].css-checkbox:checked + label.css-label { background-positio
 
 
 
-					
+
 .css-label{ /*background-image:url(images/radio_btn.png);*/ }
 
 </style>
@@ -441,7 +450,10 @@ function compute_pvalue(form)
            
             <ul class="TabbedPanelsTabGroup">
               <li class="TabbedPanelsTab " tabindex="0">View Profile</li>
-             <?php if($UserDetails->row()->group!='Admin'){ ?> <li class="TabbedPanelsTab " tabindex="0">Reserved Property</li><?php } ?>
+                <?php if ($UserDetails->row()->group != 'Admin') {
+                    ?>
+                    <li class="TabbedPanelsTab " tabindex="0">Reserved Property</li><?php
+                } ?>
              <li class="TabbedPanelsTab " tabindex="0">Documents</li>
             </ul>
             
@@ -488,7 +500,7 @@ function compute_pvalue(form)
                                     
                                      <li>
                                          <label>State </label><em>:</em>
-                                        <span><?php echo str_replace('-',' ',$UserDetails->row()->state); ?></span>
+                                         <span><?php echo str_replace('-', ' ', $UserDetails->row()->state); ?></span>
                                     </li>
                                     
                                      <li>
@@ -524,7 +536,7 @@ function compute_pvalue(form)
                                 </div>
                                 <?php
                     $attributes = array('id'=>'SignupForm', 'enctype' => 'multipart/form-data');
-                    echo form_open('site/user/EditSiteUserLoginDetails',$attributes); ?>
+                                echo form_open('site/user/EditSiteUserLoginDetails', $attributes); ?>
                                 <ul class="personal_text">
                                 
                                     <li>
@@ -559,7 +571,9 @@ function compute_pvalue(form)
                                     
                                      <li>
                                         <label>State </label><span>:</span>
-                                        <input type="text" name="state" id="state" value="<?php echo str_replace('-',' ',$UserDetails->row()->state); ?>" class="text_field_use required" />
+                                         <input type="text" name="state" id="state"
+                                                value="<?php echo str_replace('-', ' ', $UserDetails->row()->state); ?>"
+                                                class="text_field_use required"/>
                                     </li>
                                     
                                      <li>
@@ -609,10 +623,10 @@ function compute_pvalue(form)
                                 </div>
                                 
                                 <ul class="personal_text">
-             
-								 <?php 
-					$attributes = array('id'=>'passwordChangeForm');
-					echo form_open_multipart('site/user/changeOwnpassword',$attributes) ?>
+
+                                    <?php
+                                    $attributes = array('id' => 'passwordChangeForm');
+                                    echo form_open_multipart('site/user/changeOwnpassword', $attributes) ?>
 					
                                         <li>
                                             <label>Current Password </label><span>:</span>
@@ -667,169 +681,167 @@ function compute_pvalue(form)
 		</style>
                 <div id="draggablecalci" style="height:1200px;">
                  <span class="calculatorPopUpTop" ></span>
-                
-                <div class="calculatorPopUpMain datatable  " >
-            
-            	<a  id="cboxClose"  ></a>
-                
+
+                    <div class="calculatorPopUpMain datatable">
+
+                        <a  id="cboxClose"  ></a>
+
                 <h2>Calculate Your Own Estimated Return</h2>
                <div class="outLink"><a href="http://www.realtytrac.com/content/news-and-opinion/single-family-rentals-top-20-markets-7670" target="_blank" >Nationwide Cap Rate Averages</a></div>
                <div class="clear"></div>
-              <form name="frm" id="frm">  
+                        <form name="frm" id="frm">
                 <!--popupFormEnclose starts here-->
                 <div class="popupFormEnclose width100">
-                
+
                     <!--popupFormBox starts here-->
                     <div class="popupFormBox width100">
                      <label>Monthly Rent</label> <input type="text" name="rent" size="10" value="" />
 					  <div class="ccrighttxt">Enter the total monthly rent you receive</div>
              </div>
                     <!--popupFormBox ends here-->
-                    
+
                     <!--popupFormBox starts here-->
                     <div class="popupFormBox width100">
-                    	
+
                         <label>Gross Annual Income</label>
                       <input type="text" disabled="disabled" name="gross" size="10" class="disabled" />
                         <div class="ccrighttxt">Calculated as monthly rent * 12</div>
-                        
+
                     </div>
                     <!--popupFormBox ends here-->
-                    
+
                     <!--popupFormBox starts here-->
                     <div class="popupFormBox width100">
-                    	
+
                         <label>Other Income</label>
                        <input type="text" name="other" size="10" />
                         <div class="ccrighttxt">Enter the annual amount of any other income (e.g. Laundry)</div>
-                        
+
                     </div>
                     <!--popupFormBox ends here-->
-                    
+
                     <!--popupFormBox starts here-->
                     <div class="popupFormBox width100">
-                    	
+
                         <label>Total Gross</label>
                         <input type="text"  name="total_gross" size="10" />
                        <div class="ccrighttxt">Calculated as the annual rent plus other income.</div>
-                        
+
                     </div>
                     <!--popupFormBox ends here-->
-                    
+
                     <!--popupFormBox starts here-->
                     <div class="popupFormBox width100">
-                    	
+
                         <label style="width:50px;">Vacancy</label>  <input type="text"name="vc_pct" size="2" class="vc_pct" value="0" style="width:20px; " /> <label style="width:20px ;margin-right:57px;">%</label>
                        <input type="text"  name="vc_act" size="10" />
                         <div class="ccrighttxt">Estimate a value for expected vacancies (5% is typical)</div>
-                        
+
                     </div>
                     <!--popupFormBox ends here-->
-                    
+
                                     <!--popupFormBox starts here-->
-               
+
                     <!--popupFormBox ends here-->
                       <input name="impr" type="hidden" size="10" value="0" />
                                     <!--popupFormBox starts here-->
   <!--                  <div class="popupFormBox width100">
-                    	
+
                         <label>Amortized Costs </label>-->
-                   
+
                        <!-- <h5>Estimate an annual amortized value for repairs and capital improvements (e.g. a $10,000 roof amortized over 10 years = $1,000)</h5>
-                        
+
                     </div>-->
                     <!--popupFormBox ends here-->
-                    
-                             <div class="popupFormBox width100">
-                    	
+
+                    <div class="popupFormBox width100">
+
                         <label  style="width:75px;">Maintenance</label> <input  type="text"name="maintes" size="2" class="vc_pct" value="0" style="width:20px;  " /><label style="width:20px ;margin-right:32px;"> % </label>
                     <input name="maint" size="10" value="" type="text" />
                         <div class="ccrighttxt">Estimate an annual amortized value for repairs and capital improvements (e.g. a $10,000 roof amortized over 10 years = $1,000)</div>
-                        
+
                     </div>
-                   
-                    
-                    
-                          <div class="popupFormBox width100">
-                    	
+
+
+                    <div class="popupFormBox width100">
+
                         <label>Utilities </label>
                    <input name="util" size="10" value=""  type="text" />
                         <div class="ccrighttxt">Enter the amount spent on utilities this year.</div>
-                        
+
                     </div>
-                    
-                    
+
+
                     <div class="popupFormBox width100">
-                    	
+
                         <label>Property Taxes </label>
                   <input name="tax" size="10" value="" type="text" />
                         <div class="ccrighttxt">Enter the annual property tax amount for the building.</div>
-                        
+
                     </div>
-                    
-                      <div class="popupFormBox width100">
-                    	
+
+                    <div class="popupFormBox width100">
+
                         <label>Insurance </label>
                              <input name="ins" size="10" value="0" type="text" />
-          
+
                         <div class="ccrighttxt">Enter the annual property insurance premium.</div>
-                        
+
                     </div>
-                    
-                 
-                    
-                   <div class="popupFormBox width100">
-                    	
+
+
+                    <div class="popupFormBox width100">
+
                         <label style="width:115px;">Management Fees </label>  <input  type="text"name="mang_fee" size="2" class="vc_pct" value="0" style="width:20px; margin-left:7px; " /><label style="width:20px ;margin-right:16px;"> % </label>
                      <input name="mgt" size="10" type="text" style="margin-left:0px;" />
                         <div class="ccrighttxt">Net Operating Income</div>
-                        
+
                     </div>
-                    
-                                       
-                    
-                    
-                <div class="popupFormBox width100">
+
+
+                    <div class="popupFormBox width100">
                 <label>Net Operating Income</label>
-                
-                <input disabled="disabled" name="noi" class="disabled"  size="10"   type="text" />
-                
-                <div class="ccrighttxt">Calculated as the annual gross income minus expenses</div> 
+
+                        <input disabled="disabled" name="noi" class="disabled"  size="10"   type="text" />
+
+                        <div class="ccrighttxt">Calculated as the annual gross income minus expenses</div>
                 </div>
-                    
-                    
-			      <div class="popupFormBox width100">
+
+
+                    <div class="popupFormBox width100">
 					 <label>Sale Price</label>
 					<input name="cur_value" id="cur_value" size="10"  type="text" />
 					<div class="ccrighttxt">Enter the current market value <u>and leave the CAP Rate blank</u> to calculate the CAP Rate</div>
                     </div>
-                    
-                    
-			      <div class="popupFormBox width100">
+
+
+                    <div class="popupFormBox width100">
 					 <label>CAP Rate</label>
-					<input name="cap_rate" size="10"  type="text" class="result"   />        
+                        <input name="cap_rate" size="10" type="text" class="result"/>
 					<div class="ccrighttxt">Enter a CAP Rate <u>and leave the sale Price blank</u> to calulate the property value</div>
                     </div>
-                    
-                     <div>
+
+                    <div>
 			      <div class="popupFormBox  floatLeft" style="width:21%;">
-			
-					<input name="Button" class="bt_c " style="padding-top:3px; padding-bottom:5px; " onclick="compute_pvalue(this.form)" type="button" value="Calculate" style="width:103px; float:left; "  /> 
+
+                      <input name="Button" class="bt_c " style="padding-top:3px; padding-bottom:5px; "
+                             onclick="compute_pvalue(this.form)" type="button" value="Calculate"
+                             style="width:103px; float:left; "/>
 					</div>
                     <div class="popupFormBox  floatLeft" style="width:70%; margin-top:10px;">
-                    	
+
                         <label style="width:75px; margin-top:3px;" >Value at</label> <input  type="text"name="vcp_per" size="2" class="vc_pct" value="0" style="width:22px; margin:0px; float:left" /> <label style="width:44px;" >% Cap </label> <input name="vcp" size="10" type="text" style="margin:0px 0 0 20px;" />
-                                               
+
                     </div>
-                    
+
                     </div>
-                    
-                
+
+
                 </div>
                 <!--popupFormEnclose ends here-->
                 </form>
-                
-            </div>
+
+                    </div>
          
                  <span class="calculatorPopUpBotttom"></span>
                 </div>
@@ -845,10 +857,10 @@ function compute_pvalue(form)
                         <td width="30%"><span class="heading">Cash Flow Analysis</span></td>
                         <td width="19%"><span class="heading">View PDF</span></td>
                       </tr>
-                      <?php 
-						if ($orderList->num_rows() > 0){
-							foreach ($orderList->result() as $row){
-						?>
+                  <?php
+                  if ($orderList->num_rows() > 0) {
+                      foreach ($orderList->result() as $row) {
+                          ?>
                       <tr>
                         <td><ul class="order_number"><li> <?php echo $row->rental_id; ?><?php $atts = array(
               'width'      => '1100',
@@ -857,11 +869,15 @@ function compute_pvalue(form)
             );/*
 echo  anchor_popup("view_orders/".$row->property_id, $atts); */?></li></ul>
                         </td><td>
-                        <?php if($row->image!=''){ $imgName = $row->image;}else{ $imgName = 'dummyProductImage.jpg';}?>
-                        <img src="images/product/thumb/<?php echo $imgName;?>" width="250px" />
+                              <?php if ($row->image != '') {
+                                  $imgName = $row->image;
+                              } else {
+                                  $imgName = 'dummyProductImage.jpg';
+                              } ?>
+                              <img src="images/product/thumb/<?php echo $imgName; ?>" width="250px"/>
                        <!-- <ul class="order_number">
                         <li>
-                         <?php echo $row->product_name;?><br />
+                         <?php echo $row->product_name; ?><br />
                         </li><li>
                           Status: <?php echo $row->images; ?>
                         </li></ul>-->
@@ -886,18 +902,16 @@ echo  anchor_popup("view_orders/".$row->property_id, $atts); */?></li></ul>
                             Estimated* Annual Utilities Exp : $<?php echo number_format($row->utilities); ?><br />
                             Estimated* Net Income : $<?php echo number_format($row->net_income); ?>
                         </td>
-                        <td><a href="<?php echo "view_orders/".$row->id; ?>" class="pdf_btn">VIEW PDF</a>
-						<a href="<?php echo "site/product/download_images/".$row->prdId; ?>" class="dwn_btn" >Download
-						Images</a><!--<ul class="order_number">
-						<!--<ul class="order_number">
-                          
-                        <li>
-                        <?php echo  anchor_popup("user/view_orders/".$row->id."", 'See Order Details', $atts); ?></li></ul>--></td>
+                          <td>
+                              <a href="<?php echo "view_orders/" . $row->id; ?>" class="pdf_btn btn btn-sm">VIEW PDF</a>
+                              <a href="<?php echo "site/product/download_images/" . $row->prdId; ?>"
+                                 class="dwn_btn btn btn-sm">Download Images</a>
+                          </td>
                       </tr>
                       <?php
-                      } 
-						}
-					  ?>
+                      }
+                  }
+                  ?>
                     </table>
                     </tr>
                     </div>
@@ -915,37 +929,36 @@ echo  anchor_popup("view_orders/".$row->property_id, $atts); */?></li></ul>
                         <td width="25%"><span class="heading">DOI / Reoccuring Bill Pay</span></td>
                         <td width="25%"><span class="heading">Closing Docs</span></td>
                       </tr>
-                      <?php 
-						if ($signDetailsGroup->num_rows() > 0){
-							foreach ($signDetailsGroup->result() as $row){
-									$paVal = $loanVal = $doiVal = '---';
-							     foreach ($signDetails->result() as $signrow){ if($signrow->reserve_id == $row->reserve_id){
-								 	if($signrow->pa !=''){
-										if($signrow->pa_signed =='Yes'){
-										$paVal = '<a href="'.base_url().'images/crm-popup-images/'.$signrow->download_name.'" class="green_sign" target="_blank"><b>Signed and Verified</b></a>'; 
-										}else{
-										$paVal = '<a id="edit_options" onclick="showPopUpOrg();" href="javascript:void(0);" data-url="displaysign/'.$signrow->id.'/pa" class=" red_sign" ><b>Click to Sign</b></a>'; 
-										}
-									}
-									
-									if($signrow->doi !=''){
-										if($signrow->doi_signed =='Yes'){
-										$doiVal = '<a href="'.base_url().'images/crm-popup-images/'.$signrow->download_name.'" class="green_sign" target="_blank"><b>Signed and Verified</b></a>'; 
-										}else{
-										$doiVal = '<a id="edit_options" onclick="showPopUpOrg();" href="javascript:void(0);" data-url="displaysign/'.$signrow->id.'/doi" class=" red_sign" ><b>Click to Sign</b></a>'; 
-										}
-									}
-									if($signrow->loan !=''){
-										if($signrow->loan_signed =='Yes'){
-										$loanVal = '<a href="'.base_url().'images/crm-popup-images/'.$signrow->download_name.'" class="green_sign" target="_blank"><b>Signed and Verified</b></a>'; 
-										}else{
-										$loanVal = '<a id="edit_options" onclick="showPopUpOrg();" href="javascript:void(0);" data-url="displaysign/'.$signrow->id.'/loan" class=" red_sign" ><b>Click to Sign</b></a>'; 
-										
-										}
-									}
-						  
-	                        
-                        		 }} ?>
+                  <?php
+                  if ($signDetailsGroup->num_rows() > 0) {
+                      foreach ($signDetailsGroup->result() as $row) {
+                          $paVal = $loanVal = $doiVal = '---';
+                          foreach ($signDetails->result() as $signrow) {
+                              if ($signrow->reserve_id == $row->reserve_id) {
+                                  if ($signrow->pa != '') {
+                                      if ($signrow->pa_signed == 'Yes') {
+                                          $paVal = '<a href="' . base_url() . 'images/crm-popup-images/' . $signrow->download_name . '" class="green_sign" target="_blank"><b>Signed and Verified</b></a>';
+                                      } else {
+                                          $paVal = '<a id="edit_options" onclick="showPopUpOrg();" href="javascript:void(0);" data-url="displaysign/' . $signrow->id . '/pa" class=" red_sign" ><b>Click to Sign</b></a>';
+                                      }
+                                  }
+
+                                  if ($signrow->doi != '') {
+                                      if ($signrow->doi_signed == 'Yes') {
+                                          $doiVal = '<a href="' . base_url() . 'images/crm-popup-images/' . $signrow->download_name . '" class="green_sign" target="_blank"><b>Signed and Verified</b></a>';
+                                      } else {
+                                          $doiVal = '<a id="edit_options" onclick="showPopUpOrg();" href="javascript:void(0);" data-url="displaysign/' . $signrow->id . '/doi" class=" red_sign" ><b>Click to Sign</b></a>';
+                                      }
+                                  }
+                                  if ($signrow->loan != '') {
+                                      if ($signrow->loan_signed == 'Yes') {
+                                          $loanVal = '<a href="' . base_url() . 'images/crm-popup-images/' . $signrow->download_name . '" class="green_sign" target="_blank"><b>Signed and Verified</b></a>';
+                                      } else {
+                                          $loanVal = '<a id="edit_options" onclick="showPopUpOrg();" href="javascript:void(0);" data-url="displaysign/' . $signrow->id . '/loan" class=" red_sign" ><b>Click to Sign</b></a>';
+                                      }
+                                  }
+                              }
+                          } ?>
 
 						
                       <tr>
@@ -972,12 +985,14 @@ echo  anchor_popup("view_orders/".$row->property_id, $atts); */?></li></ul>
                          <!--href="site/user/display_signaturepad" >Click to Sign</a>-->
                       </tr>
                       <?php
-                      } 
-					  } else{ ?>
+                      }
+                  } else {
+                      ?>
 							<tr>
                             	<td colspan="5">Oops.... No Signature Document Found.</td>
-                            </tr>  
-					  <?php } ?>
+                            </tr>
+                      <?php
+                  } ?>
                     </table>
                     </tr>
                     </div>
@@ -1054,7 +1069,7 @@ echo  anchor_popup("view_orders/".$row->property_id, $atts); */?></li></ul>
                 
                 <div class="next_btn_main">
                 <input type="hidden" name="customUrl" id="customUrl" />
-                <input type="button" value="Next" class="next_btn" onclick="javascript:validateFn();" /></div>
+                    <input type="button" value="Next" class="next_btn" onclick="validateFn();"/></div>
                 
                
                

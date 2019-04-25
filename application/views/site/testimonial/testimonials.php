@@ -1,5 +1,5 @@
-<?php 
-$this->load->view('site/templates/header');
+<?php
+$this->load->view('site/templates/new_header');
 ?>
 
 <script src="js/site/jquery-1.2.1.min.js" type="text/javascript"></script>
@@ -212,8 +212,8 @@ return true;
    
 <!--body content-->
 </section>
-<?php 
-$this->load->view('site/templates/footer');
+<?php
+$this->load->view('site/templates/new_footer');
 ?>
 </body>
 </html>

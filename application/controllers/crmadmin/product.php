@@ -2022,7 +2022,7 @@ class Product extends MY_Controller
             $resizeObj = new Resizeimage($target_file);
             $resizeObj->resizeImage(250, 162, $option);
             $resizeObj->saveImage('images/product/thumb/' . $fileName, 100);
-            $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
+//            $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
             $this->ImageCompress($savepath . $fileName, $savepath . $fileName);
 
             $s++;

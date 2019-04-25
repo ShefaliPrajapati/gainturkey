@@ -1,50 +1,45 @@
 <?php 
 $this->load->view('site/templates/new_header');
-?><script src="js/site/menu.js" type="text/javascript"></script>
+?>
 <section>
-	<div class="main"> 
-    			    <div class="feature_list">
-    			<div class="page_title W99">Change Password</div>
-                <div class="map_page">
-                	
-                    <div class="dashboard_full_tex">
-                    
-                	<div class="login_left">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 text-center">
+                <h2>Change Password</h2>
+            </div>
+            <div class="col col-lg-6">
+                <div class="dashboard_full_tex">
                     <?php 
 					$attributes = array('id'=>'passwordChangeForm');
 					echo form_open_multipart('site/user/changeOwnpassword',$attributes) ?>
-                    	<h2>Change Password</h2>
-                        <div class="field_login">
+                    <div class="form-group">
                             <label>Current Password<span>*</span></label>
-                            <input type="password" name="old_password" id="old_password" class="required scroll_5" >
+                        <input type="password" name="old_password" id="old_password" class="required form-control">
                             <div id="old_password_warn"  style="float:left; color:#FF0000;"></div>
                         </div>
-                        <div class="field_login">
+                    <div class="form-group">
                             <label>New Password<span>*</span></label>
-                            <input type="password" name="password" id="password" class="required scroll_5" >
+                        <input type="password" name="password" id="password" class="required form-control">
                             <div id="password_warn"  style="float:left; color:#FF0000;"></div>
                         </div>
-                        <div class="field_login">
+                    <div class="form-group">
                             <label>Retype New Password<span>*</span></label>
-                            <input type="password" name="repeat_password" id="repeat_password" class="required scroll_5" >
+                        <input type="password" name="repeat_password" id="repeat_password"
+                               class="required form-control">
                             <div id="repeat_password_warn"  style="float:left; color:#FF0000;"></div>
                         </div>
-                       		<input type="hidden" name="pass_inDb" value="<?php echo $AdminDisplay->row()->password; ?>" />
-                            <input type="hidden" name="group" value="<?php echo $AdminDisplay->row()->group; ?>" />
-                            <input type="hidden" name="id" value="<?php echo $AdminDisplay->row()->id;?>" />
-                                             
-                        <div class="field_login">
-                   
-                                 <input type="submit" name="signin" id="signin" class="submit_btn" value="UPDATE">
-                            
-	                      </div> 
-                          <?php echo form_close(); ?>                        
-        				</div>
+                    <input type="hidden" name="pass_inDb" value="<?php echo $AdminDisplay->row()->password; ?>"/>
+                    <input type="hidden" name="group" value="<?php echo $AdminDisplay->row()->group; ?>"/>
+                    <input type="hidden" name="id" value="<?php echo $AdminDisplay->row()->id; ?>"/>
+
+                    <div class="form-group">
+                        <input type="submit" name="signin" id="signin" class="btn btn-md submit_btn" value="UPDATE">
+                    </div>
+                    <?php echo form_close(); ?>
                 </div>
                 </div>
-		    </div>
+        </div>
     </div>
-<!--body content-->
 </section>
 <script type="text/javascript">
 $(function() {
@@ -90,6 +85,6 @@ function removeError(idval){
 	$("#"+idval+"_warn").html('');}
 </script>
 
-<?php 
-$this->load->view('site/templates/footer');
+<?php
+$this->load->view('site/templates/new_footer');
 ?>

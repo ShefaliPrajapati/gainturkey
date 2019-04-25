@@ -1,8 +1,10 @@
-<?php $this->load->view('site/templates/header');  ob_start(); session_start(); ?>
+<?php $this->load->view('site/templates/new_header');
+ob_start();
+session_start(); ?>
 <script type="text/javascript" src="js/site/SpryTabbedPanels.js"></script>
 <link href="css/site/my-account.css" type="text/css" rel="stylesheet" media="all" />
 
-<?php //unlink('Signature/1_signature.png'); ?>
+<?php //unlink('Signature/1_signature.png');?>
 <!-- singature pad start -->
 
 <style>
@@ -188,310 +190,351 @@ $( "#draggablecalci" ).draggable();
 	<script src="<?php echo base_url(); ?>js/calculator/custom_jscalc.js"></script>   
 
 <!--<a id="openPopUp" class="calculateBtn" href="javascript:void(0);"></a>-->
- <div class="calculatorPopUp"   >
-        <script type="text/javascript">
+<div class="calculatorPopUp container">
+    <script type="text/javascript">
 function addCommas(nStr)
 {
-	nStr += '';
-	x = nStr.split('.');
-	x1 = x[0];
-	x2 = x.length > 1 ? '.' + x[1] : '';
-	var rgx = /(\d+)(\d{3})/;
-	while (rgx.test(x1)) {
-		x1 = x1.replace(rgx, '\$1' + ',' + '\$2');
-	}
-	return x1 + x2;
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '\$1' + ',' + '\$2');
+    }
+    return x1 + x2;
 }
- 
+
 function stripCommas(nStr)
 {
-  return nStr.replace(',', '') *1;
+    return nStr.replace(',', '') * 1;
 }
- 
+
 function compute_pvalue(form)
 {
 // Calculate total gross income
-  var gross = 0;
-  gross = stripCommas(form.rent.value) * 12;
-  form.gross.value =  addCommas(gross);
- 
- 
-  var other = stripCommas(form.other.value) * 1;
-  var total_gross = gross + other;
-   form.total_gross.value =  addCommas(total_gross);
-   
-   
-	/*	vc = total_gross * form.vc_pct.value/100;
-		mv = total_gross * form.maintes.value/100;
-		mf = total_gross * form.mang_fee.value/100;
-		form.vc_act.value = addCommas(vc);
-		form.maint.value = addCommas(mv); 
-		form.mgt.value = addCommas(mf); 
-	*/
+    var gross = 0;
+    gross = stripCommas(form.rent.value) * 12;
+    form.gross.value = addCommas(gross);
 
- 
-   if(form.vc_pct.value == 0)
-   		{
-			vc = (form.vc_act.value * 100) / total_gross;
-			form.vc_pct.value = vc;
-		}
-	else
-		{
-			vc = total_gross * form.vc_pct.value/100;
-			form.vc_act.value = addCommas(vc);
-		}
-	if(form.maintes.value == 0)
-		{
-			mv = (form.maint.value * 100) / total_gross;
-			form.maintes.value = mv;
-		}
-	else
-		{
-			mv = total_gross * form.maintes.value/100;
-			form.maint.value = addCommas(mv); 
-		}
-	if(form.mang_fee.value == 0)
-		{
-			mf = (form.mgt.value * 100) / total_gross;
-			form.mang_fee.value = mf;
-		}
-	else
-		{
-			mf = total_gross * form.mang_fee.value/100;
-			form.mgt.value = addCommas(mf); 
-		}
-		
-		
-  var noi = total_gross - vc
-                  - stripCommas(form.impr.value)
-                  - stripCommas(form.maint.value)
-                  - stripCommas(form.util.value)
-                  - stripCommas(form.tax.value)
-                  - stripCommas(form.ins.value)
-                  - stripCommas(form.mgt.value);
-  form.noi.value = addCommas(noi);
- 
-  var cap_rate = form.cap_rate.value   * 1;
-  var cur_value = stripCommas(form.cur_value.value) * 1;
- 
-  if (cur_value != 0) 
-   {
-    cap_rate = (noi * 100)/cur_value;
-    form.cap_rate.value = cap_rate.toFixed(2);
-   }
- 
-  if (cap_rate == 0)
-      {cap_rate = 7.5;
-       form.cap_rate.value = cap_rate;
-      }
- 
-    
-    cur_value = (noi * 100)/cap_rate;
+
+    var other = stripCommas(form.other.value) * 1;
+    var total_gross = gross + other;
+    form.total_gross.value = addCommas(total_gross);
+
+
+    /*	vc = total_gross * form.vc_pct.value/100;
+        mv = total_gross * form.maintes.value/100;
+        mf = total_gross * form.mang_fee.value/100;
+        form.vc_act.value = addCommas(vc);
+        form.maint.value = addCommas(mv);
+        form.mgt.value = addCommas(mf);
+    */
+
+
+    if (form.vc_pct.value == 0) {
+        vc = (form.vc_act.value * 100) / total_gross;
+        form.vc_pct.value = vc;
+    } else {
+        vc = total_gross * form.vc_pct.value / 100;
+        form.vc_act.value = addCommas(vc);
+    }
+    if (form.maintes.value == 0) {
+        mv = (form.maint.value * 100) / total_gross;
+        form.maintes.value = mv;
+    } else {
+        mv = total_gross * form.maintes.value / 100;
+        form.maint.value = addCommas(mv);
+    }
+    if (form.mang_fee.value == 0) {
+        mf = (form.mgt.value * 100) / total_gross;
+        form.mang_fee.value = mf;
+    } else {
+        mf = total_gross * form.mang_fee.value / 100;
+        form.mgt.value = addCommas(mf);
+    }
+
+
+    var noi = total_gross - vc
+        - stripCommas(form.impr.value)
+        - stripCommas(form.maint.value)
+        - stripCommas(form.util.value)
+        - stripCommas(form.tax.value)
+        - stripCommas(form.ins.value)
+        - stripCommas(form.mgt.value);
+    form.noi.value = addCommas(noi);
+
+    var cap_rate = form.cap_rate.value * 1;
+    var cur_value = stripCommas(form.cur_value.value) * 1;
+
+    if (cur_value != 0) {
+        cap_rate = (noi * 100) / cur_value;
+        form.cap_rate.value = cap_rate.toFixed(2);
+    }
+
+    if (cap_rate == 0) {
+        cap_rate = 7.5;
+        form.cap_rate.value = cap_rate;
+    }
+
+
+    cur_value = (noi * 100) / cap_rate;
     form.cur_value.value = addCommas(cur_value.toFixed(0));
-	var capvalue = 0.00;
-	if(noi){
+    var capvalue = 0.00;
+    if (noi) {
 
-		if(form.vcp_per.value>0){
-			capvalue =  noi/(form.vcp_per.value/100);
-		}else{
-			capvalue =  '';
-		}
-     }
-	 else{
-	 		capvalue=0;
-	 }
-		form.vcp.value=addCommas(capvalue.toFixed(0));
+        if (form.vcp_per.value > 0) {
+            capvalue = noi / (form.vcp_per.value / 100);
+        } else {
+            capvalue = '';
+        }
+    } else {
+        capvalue = 0;
+    }
+    form.vcp.value = addCommas(capvalue.toFixed(0));
 }
 
 </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/calculator/simplecalendar.js" ></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/calculator/simplecalendar.js"></script>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="TabbedPanels1" class="TabbedPanels mt-5">
+                <div class="TabbedPanelsContentGroup">
+                    <div class="TabbedPanelsContent ">
+                        <div class="tab_box">
+                            <div>
+                                <div class="personal_detail" id="details_parent" style="margin-top: 45px !important;">
+                                    <div class="personal_title">
+                                        <span>Your Signature</span>
 
+                                    </div>
 
-
-
-
-
-
-<div class="listing_content" style="margin:20px 0 15px 0px;">
-        <div id="TabbedPanels1" class="TabbedPanels" style="margin-top:20px;">
-            <div class="TabbedPanelsContentGroup">
-              <div class="TabbedPanelsContent ">
-            	  	<div class="tab_box">
-                      <div>
-                          <div class="personal_detail" id="details_parent">
-                                <div class="personal_title">
-                                    <span>Your Signature</span>
-                                    
                                 </div>
-                              
-                          </div>
-                          <div class="personal_detail" id="details" style="display:block;">
-					<p style="margin:10px; font-size:14px;">Please create your initials and signature below. Once you create them, you will have a chance to review the document and input your initials and signature in designated spots. </p>                          
-						  <form method="post" action="demo.php" class="sigPad">
-						  <input type="hidden" id="signID" name="signID" value="<?php echo $userId; ?>" />
-  
-  <div id="signature">
-    <!--<label for="name">Print your name</label>-->
-    <?php /*?>   <div>
-   <img src="<?php echo base_url().'Signature/'.$userId."_signature.png" ?>" id="imgsign" style="dispaly:none;" >
-   
-   </div><?php */?>
+                                <div class="personal_detail" id="details">
+                                    <p style="margin:10px; font-size:14px;">Please create your initials and signature
+                                        below. Once you create them, you will have a chance to review the document and
+                                        input your initials and signature in designated spots. </p>
+                                    <form method="post" action="demo.php" class="sigPad">
+                                        <input type="hidden" id="signID" name="signID" value="<?php echo $userId; ?>"/>
+                                        <input type="hidden" id="signID" name="signID" value="<?php echo $userId; ?>"/>
 
-    
-    <table cellpadding="0"  cellspacing="0" width="100%" >
-    <tr>
-    <td width="40%">Your Initial :</td>
-    <td width="60%"><input type="text" name="initial_name" id="initial_name"  /></td>
-    </tr>
-    <tr>
-    <td>Initial Type</td>
-    <td><select name="initial_font" id="initial_font" style="width:200px; height:28px;">
-    	    <option value=""> Select Initial Type</option>
-        	<!--<option value="Arty" style="font-family:Arty; font-size:20px;">Initial 1</option>-->
-	        <option value="Crazy" style="font-family:Crazy; font-size:20px;">Initial 1</option>
-	        <option value="Heart" style="font-family:Heart; font-size:20px;">Initial 2</option>
-            <option value="Journal" style="font-family:Journal; font-size:20px;">Initial 3</option>
-            <!--<option value="Mayqueen" style="font-family:Mayqueen; font-size:20px;">Initial 5</option>-->
-            <option value="Monsieur" style="font-family:Monsieur; font-size:20px;">Initial 4</option>
-            <option value="MrsSaint" style="font-family:MrsSaint; font-size:20px;">Initial 5</option>
-            <option value="Notera" style="font-family:Notera; font-size:20px;">Initial 6</option>
-            <!--<option value="PWSignatures" style="font-family:PWSignatures; font-size:20px;">Initial 9</option>-->
-            <option value="PWSignaturetwo" style="font-family:PWSignaturetwo; font-size:20px;">Initial 7</option>
-            <option value="Signerica" style="font-family:Signerica; font-size:20px;">Initial 8</option>
-            <option value="Smile" style="font-family:Smile; font-size:20px;">Initial 9</option>
-            <option value="Tamoro" style="font-family:Tamoro; font-size:20px;">Initial 10</option>                                    
-	    </select></td>
-    </tr>
-     <tr>
-    <td>&nbsp;</td>
-    <td>
-    	<div id="loadingInitial"></div>	
-    </td>
-    </tr>
-    </table>
-    <span id="ErrDivSign"></span>
-    <div id="signCloseVal">
-    <table cellpadding="0"  cellspacing="0" width="100%" >
-    <tr>
-    <td width="40%">Signature Name</td>
-    <td width="60%"><input type="text" name="name" id="name" class="name"></td>
-    </tr>
-    <tr>
-    <td>Signature Type</td>
-    <td><select name="font" id="font" style="width:200px;  height:28px;">
-    	    <option value=""> Select Signature Type</option>
-        	<option value="Arty" style="font-family:Arty; font-size:20px;">Signatue 1</option>
-	        <option value="Crazy" style="font-family:Crazy; font-size:20px;">Signatue 2</option>
-	        <option value="Heart" style="font-family:Heart; font-size:20px;">Signatue 3</option>
-            <option value="Journal" style="font-family:Journal; font-size:20px;">Signatue 4</option>
-            <option value="Mayqueen" style="font-family:Mayqueen; font-size:20px;">Signatue 5</option>
-            <option value="Monsieur" style="font-family:Monsieur; font-size:20px;">Signatue 6</option>
-            <option value="MrsSaint" style="font-family:MrsSaint; font-size:20px;">Signatue 7</option>
-            <option value="Notera" style="font-family:Notera; font-size:20px;">Signatue 8</option>
-            <option value="PWSignatures" style="font-family:PWSignatures; font-size:20px;">Signatue 9</option>
-            <option value="PWSignaturetwo" style="font-family:PWSignaturetwo; font-size:20px;">Signatue 10</option>
-            <option value="Signerica" style="font-family:Signerica; font-size:20px;">Signatue 11</option>
-            <option value="Smile" style="font-family:Smile; font-size:20px;">Signatue 12</option>
-            <option value="Tamoro" style="font-family:Tamoro; font-size:20px;">Signatue 13</option>                                    
-	    </select></td>
-    </tr>
-    </table>
-    
-    
-    </div>
-    <table cellpadding="0"  cellspacing="0" width="100%" >
-    <tr>
-    <td width="40%">Your Signature</td>
-    <td width="60%"><div id="loading"></div>	
- 
-    <div class="sig sigWrapper" id="drawpad">
-    
-      <!--<div class="typed"></div>-->
-      <div class="typed" id="demotest"></div>
-      
-      <canvas class="pad" width="198" height="55" style="color:#000 !important;"></canvas>
-    
-      <input type="hidden" name="output" id="output" class="output">
-      
-     <!-- <p class="typeItDesc">your signature</p>-->
-    
-    </div>
-    </td>
-    </tr>
-    <tr>
-    <td>Signature Option</td>
-    <td><p class="drawItDesc">Draw your signature</p>  
-    <ul class="sigNav">
-		<li class="typeIt"><a href="#type-it" class="current" onClick="hideTypeit('type');">Type It</a></li>
-       	<li class="drawIt"><a href="#draw-it"  onClick="hideTypeit('draw');" >Draw It</a></li>
-	    <li class="clearButton"><a href="#clear">Clear</a></li>
-    </ul></td>
-    </tr>
-	<tr>
-    <td></td>
-    <td><button type="button" id="test">Click to review document</button>
-    	<span id="loadingImg" style="display:none;"><img src="images/ajax-loader/ajax-loader(1).gif"</span>
-    </td>
-    </tr>	    
-    
-    
-   
-    
-   
-   </td>
-    
-    </tr>
-    
-    
-    
-    </table>
-    
-   <input type="hidden"   id="txt"/> 
-    </div> 
- 
-  
-    </form>
+                                        <div id="signature">
 
-                         
-  
-                          </div>
-                          </div>
-                          <div>
-                          
-                      <div>
-                          
-                          
-                      </div>
-                     </div>
-             	   <div class="clear"></div>
-              </div>
-              </div>
-             
-              
-            
-              
-              
-		
-            
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td width="40%">Your Initial :</td>
+                                                    <td width="60%"><input type="text" name="initial_name"
+                                                                           id="initial_name" class="form-control"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Initial Type</td>
+                                                    <td><select name="initial_font" id="initial_font"
+                                                                class="form-control">
+                                                            <option value=""> Select Initial Type</option>
+                                                            <!--<option value="Arty" style="font-family:Arty; font-size:20px;">Initial 1</option>-->
+                                                            <option value="Crazy"
+                                                                    style="font-family:Crazy; font-size:20px;">Initial 1
+                                                            </option>
+                                                            <option value="Heart"
+                                                                    style="font-family:Heart; font-size:20px;">Initial 2
+                                                            </option>
+                                                            <option value="Journal"
+                                                                    style="font-family:Journal; font-size:20px;">Initial
+                                                                3
+                                                            </option>
+                                                            <!--<option value="Mayqueen" style="font-family:Mayqueen; font-size:20px;">Initial 5</option>-->
+                                                            <option value="Monsieur"
+                                                                    style="font-family:Monsieur; font-size:20px;">
+                                                                Initial 4
+                                                            </option>
+                                                            <option value="MrsSaint"
+                                                                    style="font-family:MrsSaint; font-size:20px;">
+                                                                Initial 5
+                                                            </option>
+                                                            <option value="Notera"
+                                                                    style="font-family:Notera; font-size:20px;">Initial
+                                                                6
+                                                            </option>
+                                                            <!--<option value="PWSignatures" style="font-family:PWSignatures; font-size:20px;">Initial 9</option>-->
+                                                            <option value="PWSignaturetwo"
+                                                                    style="font-family:PWSignaturetwo; font-size:20px;">
+                                                                Initial 7
+                                                            </option>
+                                                            <option value="Signerica"
+                                                                    style="font-family:Signerica; font-size:20px;">
+                                                                Initial 8
+                                                            </option>
+                                                            <option value="Smile"
+                                                                    style="font-family:Smile; font-size:20px;">Initial 9
+                                                            </option>
+                                                            <option value="Tamoro"
+                                                                    style="font-family:Tamoro; font-size:20px;">Initial
+                                                                10
+                                                            </option>
+                                                        </select></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>
+                                                        <div id="loadingInitial"></div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <span id="ErrDivSign"></span>
+                                            <div id="signCloseVal">
+                                                <table cellpadding="0" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td width="40%">Signature Name</td>
+                                                        <td width="60%"><input type="text" name="name" id="name"
+                                                                               class="form-control"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Signature Type</td>
+                                                        <td><select name="font" id="font" class="form-control">
+                                                                <option value=""> Select Signature Type</option>
+                                                                <option value="Arty"
+                                                                        style="font-family:Arty; font-size:20px;">
+                                                                    Signatue 1
+                                                                </option>
+                                                                <option value="Crazy"
+                                                                        style="font-family:Crazy; font-size:20px;">
+                                                                    Signatue 2
+                                                                </option>
+                                                                <option value="Heart"
+                                                                        style="font-family:Heart; font-size:20px;">
+                                                                    Signatue 3
+                                                                </option>
+                                                                <option value="Journal"
+                                                                        style="font-family:Journal; font-size:20px;">
+                                                                    Signatue 4
+                                                                </option>
+                                                                <option value="Mayqueen"
+                                                                        style="font-family:Mayqueen; font-size:20px;">
+                                                                    Signatue 5
+                                                                </option>
+                                                                <option value="Monsieur"
+                                                                        style="font-family:Monsieur; font-size:20px;">
+                                                                    Signatue 6
+                                                                </option>
+                                                                <option value="MrsSaint"
+                                                                        style="font-family:MrsSaint; font-size:20px;">
+                                                                    Signatue 7
+                                                                </option>
+                                                                <option value="Notera"
+                                                                        style="font-family:Notera; font-size:20px;">
+                                                                    Signatue 8
+                                                                </option>
+                                                                <option value="PWSignatures"
+                                                                        style="font-family:PWSignatures; font-size:20px;">
+                                                                    Signatue 9
+                                                                </option>
+                                                                <option value="PWSignaturetwo"
+                                                                        style="font-family:PWSignaturetwo; font-size:20px;">
+                                                                    Signatue 10
+                                                                </option>
+                                                                <option value="Signerica"
+                                                                        style="font-family:Signerica; font-size:20px;">
+                                                                    Signatue 11
+                                                                </option>
+                                                                <option value="Smile"
+                                                                        style="font-family:Smile; font-size:20px;">
+                                                                    Signatue 12
+                                                                </option>
+                                                                <option value="Tamoro"
+                                                                        style="font-family:Tamoro; font-size:20px;">
+                                                                    Signatue 13
+                                                                </option>
+                                                            </select></td>
+                                                    </tr>
+                                                </table>
+
+
+                                            </div>
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td width="40%">Your Signature</td>
+                                                    <td width="60%">
+                                                        <div id="loading"></div>
+
+                                                        <div class="sig sigWrapper" id="drawpad">
+
+                                                            <!--<div class="typed"></div>-->
+                                                            <div class="typed" id="demotest"></div>
+
+                                                            <canvas class="pad" width="250" height="50"
+                                                                    style="color:#000 !important;"></canvas>
+
+                                                            <input type="hidden" name="output" id="output"
+                                                                   class="output">
+
+                                                            <!-- <p class="typeItDesc">your signature</p>-->
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Signature Option</td>
+                                                    <td><p class="drawItDesc">Draw your signature</p>
+                                                        <ul class="sigNav">
+                                                            <li class="typeIt"><a href="#type-it" class="current"
+                                                                                  onClick="hideTypeit('type');">Type
+                                                                    It</a></li>
+                                                            <li class="drawIt"><a href="#draw-it"
+                                                                                  onClick="hideTypeit('draw');">Draw
+                                                                    It</a></li>
+                                                            <li class="clearButton"><a href="#clear">Clear</a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-add" id="test">Click
+                                                            to review document
+                                                        </button>
+                                                        <span id="loadingImg" style="display:none;"><img
+                                                                    src="images/ajax-loader/ajax-loader(1).gif"</span>
+                                                    </td>
+                                                </tr>
+
+
+                                                </td>
+
+                                                </tr>
+
+
+                                            </table>
+
+                                            <input type="hidden" id="txt"/>
+                                        </div>
+
+
+                                    </form>
+
+
+                                </div>
+                            </div>
+                            <div>
+
+                                <div>
+
+
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="clear"></div>
+                <!--end of tab panels-->
             </div>
-            
-           <div class="clear"></div>
-           <!--end of tab panels-->
-          </div> 
-       
-        
-        
-        
-
-<!----------listing end content-------------->
+        </div>
+    </div>
 </div>
-<div class="clear"></div>
 
-
-	
-
- </div>
-	 </div>
      <script>
 $('#font').on('change', function() {
   //alert( this.value );
@@ -503,7 +546,7 @@ $('#font').on('change', function() {
 //$('#loading').html('<img src="http://preloaders.net/preloaders/287/Filling%20broken%20ring.gif"> loading...');
   
  var curName = document.getElementById('name').value;
- var fontname = document.getElementById('font').value
+    var fontname = document.getElementById('font').value;
  
   var data = {
 	 inputtext: document.getElementById('name').value,
@@ -526,8 +569,8 @@ $('#font').on('change', function() {
 			
 		}
     });
-  
-})
+
+});
 
 
 $('#initial_font').on('change', function() {
@@ -538,7 +581,7 @@ $('#initial_font').on('change', function() {
   
   
  var curName = document.getElementById('initial_name').value;
- var fontname = document.getElementById('initial_font').value
+    var fontname = document.getElementById('initial_font').value;
  
   var data = {
 	 inputtext: document.getElementById('initial_name').value,
@@ -571,4 +614,4 @@ $('#initial_font').on('change', function() {
 
 
 </script>
-<?php $this->load->view('site/templates/footer'); ?>
+<?php $this->load->view('site/templates/new_footer'); ?>

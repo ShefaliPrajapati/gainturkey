@@ -123,14 +123,13 @@ class User extends MY_Controller
             @unlink($dateNameInit);
             @unlink($signNameInit);
             @unlink($fullSignInit);
-            
-            
-            //$userProfileDetails = $this->user_model->get_all_details(USERS,array('id'=>$this->checkLogin('U'),'status'=>'Active'));
-            //$this->data['UserDetails'] = $userProfileDetails;
-            //$this->data['orderList'] = $this->user_model->get_resevation_Details($userProfileDetails->row()->email);
-            //$this->data['orderList'] = $this->user_model->get_resevation_Details($this->checkLogin('U'));
-            
-            //echo '<pre>';print_r($this->data['orderList']->result());die;
+
+
+            $userProfileDetails = $this->user_model->get_all_details(USERS, array('id' => $this->checkLogin('U'), 'status' => 'Active'));
+            $this->data['UserDetails'] = $userProfileDetails;
+            $this->data['orderList'] = $this->user_model->get_resevation_Details($userProfileDetails->row()->email);
+            $this->data['orderList'] = $this->user_model->get_resevation_Details($this->checkLogin('U'));
+
             
             $this->load->view('site/user/display_signaturepad', $this->data);
         } else {
@@ -147,14 +146,14 @@ class User extends MY_Controller
             //echo '<pre>';print_r($signDetails->result());die;
             $intiname = $signDetails->row()->initial_name;
             $this->data['signDetails'] = $signDetails;
-            /*$signval = '<div style="background-color:#FFFF00; width:200px; padding:5px;"><img src="'.base_url().'Signature/'.$userId.'_signature.png" ></div>';
+            $signval = '<div style="background-color:#FFFF00; width:200px; padding:5px;"><img src="' . base_url() . 'Signature/' . $userId . '_signature.png" ></div>';
             $contents = $signDetails->row()->description;
             $contents = str_replace('{$INITIAL}','<div style="background-color:#FFFF00; display:inline; padding:5px;">'.$intiname.'</div>',$contents);
             $contents = str_replace('{$SIGNATURE}',$signval,$contents);
-            $this->data['contents'] = $contents;*/
+            $this->data['contents'] = $contents;
             
             //$this->load->view('site/user/display_agreement',$this->data);
-            $this->load->view('site/user/display_view_agreement', $this->data);
+            $this->load->view('site/user/display_agreement', $this->data);
         } else {
             $this->setErrorMessage('error', 'User details not available');
             redirect(base_url());
@@ -163,10 +162,6 @@ class User extends MY_Controller
     
     public function previewagreementview()
     {
-        error_reporting(-1);
-        
-        //echo '<pre>'; print_r($_POST); die;
-        
         $this->data['userId'] = $userId = $this->checkLogin('U');
         if ($userId!= '') {
             $base64_str = substr($this->input->post('pricevalue'), strpos($this->input->post('pricevalue'), ",")+1);
@@ -1238,28 +1233,26 @@ class User extends MY_Controller
         $excludeArr=array('signin');
         $condition = array('id' => $this->checkLogin('U'));
         $dataArr=array();
-                
 
-                
-        /*$logoDirectory ='./images/users';
-        if(!is_dir($logoDirectory))
-        {
-            mkdir($logoDirectory,0777);
-         }
-                $config['allowed_types'] = 'jpg|jpeg|gif|png';
-                $config['remove_spaces'] = FALSE;
-                $config['upload_path'] = $logoDirectory;
-                $this->upload->initialize($config);
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('user_image')){
-           $logoDetails = $this->upload->data();
-           $logoDetails['file_name'];
-           $dataArr['thumbnail'] = $logoDetails['file_name'];
-                }*/
-               
-        // $filePRoductUploadData = array();
-        //  $setPriority = 0;
-        //$imgtitle = $this->input->post('usre_image');
+
+        $logoDirectory = './images/users';
+        if (!is_dir($logoDirectory)) {
+            mkdir($logoDirectory, 0777);
+        }
+        $config['allowed_types'] = 'jpg|jpeg|gif|png';
+        $config['remove_spaces'] = false;
+        $config['upload_path'] = $logoDirectory;
+        $this->upload->initialize($config);
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('user_image')) {
+            $logoDetails = $this->upload->data();
+            $logoDetails['file_name'];
+            $dataArr['thumbnail'] = $logoDetails['file_name'];
+        }
+
+        $filePRoductUploadData = array();
+        $setPriority = 0;
+        $imgtitle = $this->input->post('usre_image');
                
                 
         $this->user_model->commonInsertUpdate(USERS, 'update', $excludeArr, $dataArr, $condition);
@@ -2666,9 +2659,11 @@ class User extends MY_Controller
         if ($this->checkLogin('U')=='') {
             show_404();
         } else {
-            $uid = $this->uri->segment(2, 0);
-            $sid = $this->uri->segment(3, 0);
+
+            $uid = $this->uri->segment(3, 0);
+            $sid = $this->uri->segment(4, 0);
             $dealCode = $this->uri->segment(4, 0);
+
             if ($uid == $this->checkLogin('U')) {
                 $view_mode = 'user';
             } elseif ($sid == $this->checkLogin('U')) {
@@ -2676,6 +2671,7 @@ class User extends MY_Controller
             } else {
                 $view_mode = '';
             }
+
             if ($view_mode == '') {
                 show_404();
             } else {
@@ -2684,6 +2680,7 @@ class User extends MY_Controller
                 } else {
                     $order_details = $this->user_model->get_all_details(PAYMENT, array('dealCodeNumber'=>$dealCode,'status'=>'Paid'));
                 }
+
                 if ($order_details->num_rows()==0) {
                     show_404();
                 } else {
@@ -2722,7 +2719,7 @@ class User extends MY_Controller
     public function changeOwnpassword()
     {
         if ($this->input->post('pass_inDb')!= md5($this->input->post('old_password'))) {
-            $this->setErrorMessage('error', 'Current password entred is wrong');
+            $this->setErrorMessage('error', 'Current password entered is wrong');
             redirect(base_url('my_account'));
         } else {
             $excludeArr=array('signin','old_password','repeat_password','pass_inDb');
@@ -2799,8 +2796,6 @@ class User extends MY_Controller
         if ($this->checkLogin('U')=='') {
             redirect(base_url());
         } else {
-            //echo $this->uri->segment(2,0);
-                    
             $condition	=	array('id' => $this->uri->segment(2, 0));
             $this->data['heading'] = 'Reserved Property Information';
             $this->data['productList'] = $this->product_model->get_all_details(RESERVED_INFO, $condition);
@@ -3426,10 +3421,6 @@ class User extends MY_Controller
             $dompdf->render();
             $invoice = 'return_on_rentals_'.$propertyAddres.'.pdf';
             $dompdf->stream($invoice);
-
-
-   
-
 
             //redirect('my_account');
             //$this->load->view('site/user/view_user',$this->data);

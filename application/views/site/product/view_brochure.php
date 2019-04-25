@@ -1,4 +1,4 @@
-<?php $this->load->view('site/templates/header'); ?>
+<?php $this->load->view('site/templates/new_header'); ?>
 <div class="listing_content" style="margin:20px 0 15px 0px;">
 <?php
 echo $ViewList;
@@ -21,4 +21,4 @@ echo $ViewList;
 <a href="<?php echo base_url().'site/product/downloadbrochure/'.$prdid; ?>" style="cursor:pointer;"><button>Download PDF</button></a>
 </div>
 </div>
-<?php $this->load->view('site/templates/footer'); ?>
+<?php $this->load->view('site/templates/new_footer'); ?>

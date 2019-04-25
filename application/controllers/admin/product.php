@@ -1915,9 +1915,9 @@ class Product extends MY_Controller
                     $h = $size['height'];
                     $option = $this->getImageShape($w, $h, $target_file);
                     $resizeObj = new Resizeimage($target_file);
-                    $resizeObj->resizeImage($w, $h, $option);
+                    $resizeObj->resizeImage('300', '200', $option);
                     $resizeObj->saveImage($savepath . $fileName, 100);
-                    $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
+                    //$this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
                     $this->ImageCompress($savepath . $fileName, $savepath . $fileName);
                 } else {
                     trigger_error('File or permission problems');

@@ -1,6 +1,7 @@
 <?php $this->load->view('site/templates/new_header'); ?>
 
-<?php if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
+<?php if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) {
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -8,30 +9,27 @@
                     <a class="btn btn-primary <?php
                     if ($this->uri->segment(1, 0) == 'listing') {
                         echo 'nav-link';
-                    }
-                    ?>" href="<?php
+                    } ?>" href="<?php
                     if ($loginCheck == '') {
                         echo base_url() . 'signin';
                     } else {
                         echo base_url() . 'listing/viewall/0';
-                    }
-                    ?> ">Current Inventory</a>
+                    } ?> ">Current Inventory</a>
                     <a class="btn btn-primary <?php
                     if ($this->uri->segment(1, 0) == 'soldlisting') {
                         echo 'nav-link';
-                    }
-                    ?>" href="<?php
+                    } ?>" href="<?php
                     if ($loginCheck == '') {
                         echo base_url() . 'signin';
                     } else {
                         echo base_url() . 'soldlisting/viewall/0';
-                    }
-                    ?>">Past/Sold Inventory </a>
+                    } ?>">Past/Sold Inventory </a>
                 </div>
             </div>
         </div>
     </div>
-<?php } ?>
+    <?php
+} ?>
 <link rel="stylesheet" type="text/css" href="css/site/master.css"/>
 
 
@@ -106,7 +104,7 @@
                         <p>ID :</p>
                         <span><?php echo $productDetails->row()->property_id; ?></span></li>
                     <li>
-                        <p><?php echo $productAddress->row()->address.', '.$productAddress->row()->city.', '.str_replace('-',' ',$productAddress->row()->state).' '.$productAddress->row()->post_code; ?></p>
+                        <p><?php echo $productAddress->row()->address . ', ' . $productAddress->row()->city . ', ' . str_replace('-', ' ', $productAddress->row()->state) . ' ' . $productAddress->row()->post_code; ?></p>
                     </li>
                     <li>
                         <p>EVENT PRICE :</p>
@@ -128,7 +126,8 @@
             <div id="userMail_val" ></div>
             <form name="reservationform" id="ReservationForm" action="site/product/ReservationForm_Submit" method="post" autocomplete="off">
                     <input type="hidden" name="property_id" id="property_id" value="<?php echo $productDetails->row()->id; ?>" />
-                    <input type="hidden" name="prop_address" value="<?php echo $productAddress->row()->address.', '.ucwords($productAddress->row()->city).', '.ucwords(str_replace('-',' ',$productAddress->row()->state)).' '.$productAddress->row()->post_code; ?>" />
+                <input type="hidden" name="prop_address"
+                       value="<?php echo $productAddress->row()->address . ', ' . ucwords($productAddress->row()->city) . ', ' . ucwords(str_replace('-', ' ', $productAddress->row()->state)) . ' ' . $productAddress->row()->post_code; ?>"/>
                     <input type="hidden" name="prop_price" id="prop_price" value="<?php echo $productDetails->row()->event_price; ?>" />
                     <input type="hidden" name="baths" value="<?php echo $productDetails->row()->baths; ?>" />
                     <input type="hidden" name="bedrooms" value="<?php echo $productDetails->row()->bedrooms; ?>" />
@@ -146,22 +145,34 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>First Name<span>*</span></label>
-                                <input type="text" name="first_name" id="first_name" class="form-control"  value="<?php if (($_SESSION['rfname']) != 'null') echo $_SESSION['rfname'];?>" />
+                                <input type="text" name="first_name" id="first_name" class="form-control"
+                                       value="<?php if (($_SESSION['rfname']) != 'null') {
+                                           echo $_SESSION['rfname'];
+                                       } ?>"/>
                                 <span class="error" id="first_name_warn"></span>
                             </div>
                             <div class="form-group">
                                 <label>ENTITY NAME<span>*</span></label>
-                                <input type="text" name="entity_name" id="entity_name" class="form-control"  value="<?php if (($_SESSION['rename']) != 'null') echo $_SESSION['rename'];?>" />
+                                <input type="text" name="entity_name" id="entity_name" class="form-control"
+                                       value="<?php if (($_SESSION['rename']) != 'null') {
+                                           echo $_SESSION['rename'];
+                                       } ?>"/>
                                 <span class="error" id="entity_name_warn"></span>
                             </div>
                             <div class="form-group">
                                 <label>Phone 1<span>*</span></label>
-                                <input type="text" name="phone_no" id="phone_no" class="form-control" value="<?php if (($_SESSION['rphno']) != 'null') echo $_SESSION['rphno'];?>" />
+                                <input type="text" name="phone_no" id="phone_no" class="form-control"
+                                       value="<?php if (($_SESSION['rphno']) != 'null') {
+                                           echo $_SESSION['rphno'];
+                                       } ?>"/>
                                 <span class="error" id="phone_no_warn"></span>
                             </div>
                             <div class="form-group">
                                 <label>Email 1<span>*</span></label>
-                                <input type="text" name="email" id="email" class="form-control" value="<?php if (($_SESSION['remail']) != 'null') echo $_SESSION['remail'];?>" />
+                                <input type="text" name="email" id="email" class="form-control"
+                                       value="<?php if (($_SESSION['remail']) != 'null') {
+                                           echo $_SESSION['remail'];
+                                       } ?>"/>
                                 <span class="error" id="email_warn"></span>
                             </div>
                             <div class="form-group">
@@ -170,12 +181,18 @@
                             </div>
                             <div class="form-group" >
                                 <label >ADDRESS<span>*</span></label>
-                                <textarea name="address" id="address" class="form-control" ><?php if (($_SESSION['raddress']) != 'null') echo $_SESSION['raddress'];?></textarea>
+                                <textarea name="address" id="address"
+                                          class="form-control"><?php if (($_SESSION['raddress']) != 'null') {
+                                        echo $_SESSION['raddress'];
+                                    } ?></textarea>
                                 <span class="error" id="address_warn"></span>
                             </div>
                             <div class="form-group">
                                 <label>COUNTRY<span>*</span></label>
-                                <input type="text" name="country" id="country" class="form-control"  value="<?php if (($_SESSION['rcountry']) != 'null') echo $_SESSION['rcountry'];?>" />
+                                <input type="text" name="country" id="country" class="form-control"
+                                       value="<?php if (($_SESSION['rcountry']) != 'null') {
+                                           echo $_SESSION['rcountry'];
+                                       } ?>"/>
                                 <span class="error" id="country_warn"></span>
 
                             </div>
@@ -183,28 +200,55 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Last Name<span>*</span></label>
-                                <input type="text" name="last_name" id="last_name" class="form-control"  value="<?php if (($_SESSION['rlname']) != 'null') echo $_SESSION['rlname'];?>" />
+                                <input type="text" name="last_name" id="last_name" class="form-control"
+                                       value="<?php if (($_SESSION['rlname']) != 'null') {
+                                           echo $_SESSION['rlname'];
+                                       } ?>"/>
                                 <span class="error" id="last_name_warn"></span>
                             </div>
                             <div class="form-group">
                                 <label>TYPE<span>*</span></label>
                                 <select class="form-control" name="resrv_type" id="resrv_type" >
-                                    <option value="INDIVIDUAL" <?php if($_SESSION['rreservtype'] == 'INDIVIDUAL') echo 'selected="selected"';?>>INDIVIDUAL</option>
-                                    <option value="Corp" <?php if($_SESSION['rreservtype'] == 'Corp') echo 'selected="selected"';?>>Corp</option>
-                                    <option value="LLC" <?php if($_SESSION['rreservtype'] == 'LLC') echo 'selected="selected"';?>>LLC</option>
-                                    <option value="Trust" <?php if($_SESSION['rreservtype'] == 'Trust') echo 'selected="selected"';?>>Trust</option>
-                                    <option value="Partnership" <?php if($_SESSION['rreservtype'] == 'Partnership') echo 'selected="selected"';?>>Partnership</option>
-                                    <option value="IRA" <?php if($_SESSION['rreservtype'] == 'IRA') echo 'selected="selected"';?>>IRA</option>
+                                    <option value="INDIVIDUAL" <?php if ($_SESSION['rreservtype'] == 'INDIVIDUAL') {
+                                        echo 'selected="selected"';
+                                    } ?>>INDIVIDUAL
+                                    </option>
+                                    <option value="Corp" <?php if ($_SESSION['rreservtype'] == 'Corp') {
+                                        echo 'selected="selected"';
+                                    } ?>>Corp
+                                    </option>
+                                    <option value="LLC" <?php if ($_SESSION['rreservtype'] == 'LLC') {
+                                        echo 'selected="selected"';
+                                    } ?>>LLC
+                                    </option>
+                                    <option value="Trust" <?php if ($_SESSION['rreservtype'] == 'Trust') {
+                                        echo 'selected="selected"';
+                                    } ?>>Trust
+                                    </option>
+                                    <option value="Partnership" <?php if ($_SESSION['rreservtype'] == 'Partnership') {
+                                        echo 'selected="selected"';
+                                    } ?>>Partnership
+                                    </option>
+                                    <option value="IRA" <?php if ($_SESSION['rreservtype'] == 'IRA') {
+                                        echo 'selected="selected"';
+                                    } ?>>IRA
+                                    </option>
                                 </select>
                                 <span class="error" id="resrv_type_warn"></span>
                             </div>
                             <div class="form-group">
                                 <label>Phone 2</label>
-                                <input type="text" name="phone_no1" id="phone_no1" class="form-control" value="<?php if (($_SESSION['rphno1']) != 'null') echo $_SESSION['rphno1'];?>" />
+                                <input type="text" name="phone_no1" id="phone_no1" class="form-control"
+                                       value="<?php if (($_SESSION['rphno1']) != 'null') {
+                                           echo $_SESSION['rphno1'];
+                                       } ?>"/>
                             </div>
                             <div class="form-group">
                                 <label>Email 2</label>
-                                <input type="text" name="email1" id="email1" class="form-control" value="<?php if (($_SESSION['remail1']) != 'null') echo $_SESSION['remail1'];?>" />
+                                <input type="text" name="email1" id="email1" class="form-control"
+                                       value="<?php if (($_SESSION['remail1']) != 'null') {
+                                           echo $_SESSION['remail1'];
+                                       } ?>"/>
                             </div>
                             <div class="form-group">
                                 <label id="cnfpassword_text">Confirm Password<span>*</span></label>
@@ -213,17 +257,26 @@
                             </div>
                             <div class="form-group">
                                 <label>State<span>*</span></label>
-                                <input type="text" name="state" id="state" class="form-control" value="<?php if (($_SESSION['rstate']) != 'null') echo $_SESSION['rstate'];?>" />
+                                <input type="text" name="state" id="state" class="form-control"
+                                       value="<?php if (($_SESSION['rstate']) != 'null') {
+                                           echo $_SESSION['rstate'];
+                                       } ?>"/>
                                 <span class="error" id="state_warn"></span>
                             </div>
                             <div class="form-group">
                                 <label>City<span>*</span></label>
-                                <input type="text" name="city" id="city" class="form-control" value="<?php if (($_SESSION['rcity']) != 'null') echo $_SESSION['rcity'];?>" />
+                                <input type="text" name="city" id="city" class="form-control"
+                                       value="<?php if (($_SESSION['rcity']) != 'null') {
+                                           echo $_SESSION['rcity'];
+                                       } ?>"/>
                                 <span class="error" id="city_warn"></span>
                             </div>
                             <div class="form-group">
                                 <label>Zip<span>*</span></label>
-                                <input type="text" name="postal_code" id="postal_code" class="form-control" value="<?php if (($_SESSION['rzip']) != 'null') echo $_SESSION['rzip'];?>" />
+                                <input type="text" name="postal_code" id="postal_code" class="form-control"
+                                       value="<?php if (($_SESSION['rzip']) != 'null') {
+                                           echo $_SESSION['rzip'];
+                                       } ?>"/>
                                 <span class="error" id="postal_code_warn"></span>
                             </div>
                         </div>
@@ -255,20 +308,32 @@
                         </div>
                         <div class="form-group"  style="width:100%">
                             <label>RESV.FEE $<span style="color: red;">*</span></label>
-                            <input type="text" name="reserv_price" id="reserv_price" class="form-control" value="<?php if (($_SESSION['rreservprice']) != 'null') echo $_SESSION['rreservprice'];?>" />
+                            <input type="text" name="reserv_price" id="reserv_price" class="form-control"
+                                   value="<?php if (($_SESSION['rreservprice']) != 'null') {
+                                       echo $_SESSION['rreservprice'];
+                                   } ?>"/>
                             <span class="error" id="reserv_price_warn"></span>
                         </div>
                         <div class="form-group"  >
                             <label >IN FORM OF:</label>
                             <ul class="list_check" style="width:50%;">
                                 <li>
-                                    <input type="checkbox" name="cash_payment" id="cash_payment" value="Cash" <?php if($_SESSION['rcashpt'] == 'true') echo 'checked="checked"';?> />
+                                    <input type="checkbox" name="cash_payment" id="cash_payment"
+                                           value="Cash" <?php if ($_SESSION['rcashpt'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?> />
                                     <span>Cash </span></li>
                                 <li>
-                                    <input type="checkbox" name="check_payment" id="check_payment" value="Check" <?php if($_SESSION['rcheckpt'] == 'true') echo 'checked="checked"';?>/>
+                                    <input type="checkbox" name="check_payment" id="check_payment"
+                                           value="Check" <?php if ($_SESSION['rcheckpt'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?>/>
                                     <span>CHECK</span></li>
                                 <li>
-                                    <input type="checkbox"  name="credit_payment" id="credit_payment" value="Credit Card" <?php if($_SESSION['rcreditpt'] == 'true') echo 'checked="checked"';?>/>
+                                    <input type="checkbox" name="credit_payment" id="credit_payment"
+                                           value="Credit Card" <?php if ($_SESSION['rcreditpt'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?>/>
                                     <span>Credit Card</span></li>
                             </ul>
                         </div>
@@ -278,41 +343,71 @@
                             <span class="list_usetite">Sales Type<br /> </span>
                             <ul class="list_check">
                                 <li>
-                                    <input type="checkbox" name="sales_cash" id="sales_cash" value="Cash Purchase" <?php if($_SESSION['rsalescash'] == 'true') echo 'checked="checked"';?>/>
+                                    <input type="checkbox" name="sales_cash" id="sales_cash"
+                                           value="Cash Purchase" <?php if ($_SESSION['rsalescash'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?>/>
                                     <span>Cash Purchase</span></li>
                                 <li>
-                                    <input type="checkbox" name="sales_cf" id="sales_cf" value="Cash And Finance" <?php if($_SESSION['rsalescf'] == 'true') echo 'checked="checked"';?>/>
+                                    <input type="checkbox" name="sales_cf" id="sales_cf"
+                                           value="Cash And Finance" <?php if ($_SESSION['rsalescf'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?>/>
                                     <span>Cash + Finance</span></li>
                                 <li>
-                                    <input type="checkbox" name="sales_sdira" id="sales_sdira" onclick="select_sdira()" value="SDIRA" <?php if($_SESSION['rsalessdira'] == 'true') echo 'checked="checked"';?>/>
+                                    <input type="checkbox" name="sales_sdira" id="sales_sdira" onclick="select_sdira()"
+                                           value="SDIRA" <?php if ($_SESSION['rsalessdira'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?>/>
                                     <span>SDIRA</span></li>
                                 <li>
-                                    <input type="checkbox" name="sales_fs" id="sales_fs" onclick="select_sdira()" value="FINANCE And SDIRA" <?php if($_SESSION['rsalesfs'] == 'true') echo 'checked="checked"';?>/>
+                                    <input type="checkbox" name="sales_fs" id="sales_fs" onclick="select_sdira()"
+                                           value="FINANCE And SDIRA" <?php if ($_SESSION['rsalesfs'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?>/>
                                     <span>FINANCE + SDIRA</span></li>
                                 <li>
-                                    <input type="checkbox" name="sales_sl" id="sales_sl" onclick="select_sdira()" value="SDIRA LLC" <?php if($_SESSION['rsalessl'] == 'true') echo 'checked="checked"';?>/>
+                                    <input type="checkbox" name="sales_sl" id="sales_sl" onclick="select_sdira()"
+                                           value="SDIRA LLC" <?php if ($_SESSION['rsalessl'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?>/>
                                     <span>SDIRA LLC</span></li>
                                 <li>
-                                    <input type="checkbox" name="sales_sl_fs" id="sales_sl_fs" onclick="select_sdira()" value="SDIRA LLC And FINANCE" <?php if($_SESSION['rsalesslfs'] == 'true') echo 'checked="checked"';?>/>
+                                    <input type="checkbox" name="sales_sl_fs" id="sales_sl_fs" onclick="select_sdira()"
+                                           value="SDIRA LLC And FINANCE" <?php if ($_SESSION['rsalesslfs'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?>/>
                                     <span>SDIRA LLC + FINANCE</span></li>
                             </ul>
                         </div>
                         <div class="form-group" id="cust_name_field" style="display: none;">
                             <label style="width: 25%;margin: 0 0 0 21px;"> Custodian Name:</label>
-                            <input type="text" name="cust_name" id="cust_name"  class="form-control" style="width: 52%" value="<?php if (($_SESSION['cust_name']) != 'null') echo $_SESSION['cust_name'];?>"/>
+                            <input type="text" name="cust_name" id="cust_name" class="form-control" style="width: 52%"
+                                   value="<?php if (($_SESSION['cust_name']) != 'null') {
+                                       echo $_SESSION['cust_name'];
+                                   } ?>"/>
                         </div>
                         <div class="form-group" id="account_no_field" style="display: none;">
                             <label style="width: 25%;margin: 0 0 0 21px;"> Account Number:</label>
-                            <input type="text" name="account_no" id="account_no" class="form-control" style="width: 52%" value="<?php if (($_SESSION['acco_no']) != 'null') echo $_SESSION['acco_no'];?>" />
+                            <input type="text" name="account_no" id="account_no" class="form-control" style="width: 52%"
+                                   value="<?php if (($_SESSION['acco_no']) != 'null') {
+                                       echo $_SESSION['acco_no'];
+                                   } ?>"/>
                         </div>
                         <div class="form-group">
                             <span class="list_usetite">Reservation Source <span style="color: red;">*</span> </span>
                             <ul class="list_check">
                                 <li>
-                                    <input type="radio" name="res_source" id="office_source" value="office" <?php if($_SESSION['office_source'] == 'true') echo 'checked="checked"';?>/> <span>Office</span>
+                                    <input type="radio" name="res_source" id="office_source"
+                                           value="office" <?php if ($_SESSION['office_source'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?>/> <span>Office</span>
                                 </li>
                                 <li>
-                                    <input type="radio" name="res_source" id="event_source" value="event" <?php if($_SESSION['event_source'] == 'true') echo 'checked="checked"';?>/> <span>Event</span>
+                                    <input type="radio" name="res_source" id="event_source"
+                                           value="event" <?php if ($_SESSION['event_source'] == 'true') {
+                                        echo 'checked="checked"';
+                                    } ?>/> <span>Event</span>
                                 </li>
 
                             </ul>
@@ -321,8 +416,8 @@
                             <label style="width: 25%;margin: 0 0 0 21px;">CODE <span style="color: red;">*</span></label>
                             <select name="res_code" id="rese_code" class="form-control"  style="width: 52%" >
                                 <option value="" selected="selected" disabled="disabled">Select</option>
-                                <?php foreach($reservationCode->result() as $code){
-                                    echo '<option value="'.$code->attribute_name.'">'.$code->attribute_name.'</option>';
+                                <?php foreach ($reservationCode->result() as $code) {
+                                    echo '<option value="' . $code->attribute_name . '">' . $code->attribute_name . '</option>';
                                 }
                                 ?>
                             </select>
@@ -330,7 +425,10 @@
                         </div>
                         <div class="form-group" >
                             <label for="note" style="width: 25%;margin: 0 0 0 21px;">NOTE </label>
-                            <textarea id="note" name="note" rows="4" cols="55" id="note" class="form-control"  style="width: 52%" ><?php if (($_SESSION['rnote']) != 'null') echo $_SESSION['rnote'];?></textarea>
+                            <textarea id="note" name="note" rows="4" cols="55" id="note" class="form-control"
+                                      style="width: 52%"><?php if (($_SESSION['rnote']) != 'null') {
+                                    echo $_SESSION['rnote'];
+                                } ?></textarea>
 
                         </div>
                     </div>

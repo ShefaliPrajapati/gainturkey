@@ -1,5 +1,5 @@
-<?php 
-$this->load->view('site/templates/header');
+<?php
+$this->load->view('site/templates/new_header');
 ?>
 <div style="display:none">
 <div class="popup" id="inquiry_popup" style="display:none;">
@@ -102,6 +102,6 @@ $this->load->view('site/templates/header');
    
 <!--body content-->
 </section>
-<?php 
-$this->load->view('site/templates/footer');
+<?php
+$this->load->view('site/templates/new_footer');
 ?>

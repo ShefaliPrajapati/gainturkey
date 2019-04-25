@@ -1,13 +1,22 @@
-<?php $this->load->view('site/templates/header'); ?>
+<?php $this->load->view('site/templates/new_header'); ?>
 
-<div class="listing_content" style="margin:20px 0 15px 0px;">
-	<div style="padding:30px;">
-		<?php echo $contents; ?>
-    </div>    
-	<div style="text-align:center; vertical-align:middle; margin:20px;" >
-    
-    <a style="text-decoration:none; margin-left:5px; padding:3px 11px 3px 11px; float:none !important;" class="detail_btn" href="<?php echo base_url().'displaysign/'.$this->uri->segment(2).'/'.$this->uri->segment(3); ?>">Edit</a>
-    <a style="text-decoration:none; margin-left:5px; padding:3px 11px 3px 11px; float:none !important;" class="detail_btn" href="<?php echo base_url().'confirm-signature/'.$this->uri->segment(2).'/'.$this->uri->segment(3); ?>">Submit</a>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div>
+                <?php echo $contents; ?>
+            </div>
+            <div style="text-align:center; vertical-align:middle; margin:20px;">
+
+                <a class="btn btn-sm"
+                   href="<?php echo base_url() . 'displaysign/' . $this->uri->segment(2) . '/' . $this->uri->segment(3); ?>"
+                   style="text-decoration:none; margin-left:5px; padding:3px 11px 3px 11px; float:none !important; background: #de8940; border: none; border-radius: 0px; color: white;">Edit</a>
+                <a class="btn btn-sm"
+                   href="<?php echo base_url() . 'confirm-signature/' . $this->uri->segment(2) . '/' . $this->uri->segment(3); ?>"
+                   style="text-decoration:none; margin-left:5px; padding:3px 11px 3px 11px; float:none !important; background: #de8940; border: none; border-radius: 0px; color: white;">Submit</a>
+            </div>
+        </div>
     </div>
 </div> 
         
@@ -39,4 +48,4 @@
 
  </div>
 	 </div>
-<?php $this->load->view('site/templates/footer'); ?>
+<?php $this->load->view('site/templates/new_footer'); ?>

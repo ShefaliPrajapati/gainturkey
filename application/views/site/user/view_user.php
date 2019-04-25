@@ -1,62 +1,62 @@
-<?php 
-$this->load->view('site/templates/header');
-?><script src="js/site/menu.js" type="text/javascript"></script>
+<?php
+$this->load->view('site/templates/new_header');
+?>
 <section>
-	<div class="main">
-    			    <div class="feature_list">
-    			<div class="page_title W99">User Account Setting</div>
-                <div class="map_page">
-                	
-                    <div class="dashboard_full_tex">
-                    <?php //$this->load->view('site/templates/dashboard_side'); ?>
-                	<div class="login_left">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-12 text-center">
+                <h2>User Account Setting</h2>
+                <br/>
+                <h5>Edit Profile</h5>
+            </div>
+            <div class="col col-lg-6">
+                <div class="dashboard_full_tex">
                     <?php
-                    $attributes = array('id'=>'SignupForm', 'enctype' => 'multipart/form-data');
-                    echo form_open('site/user/EditSiteUserLoginDetails',$attributes); ?>
-                    	<h2>Edit Profile</h2>
-                       <div class="field_login">
-                            <label>First Name<span>*</span></label>
-                            <input type="text" name="first_name" id="first_name" value="<?php echo $AdminDisplay->row()->first_name; ?>" class="scroll_5 required" >
-                        </div>
-                        <div class="field_login">
-                            <label>Last Name<span>*</span></label>
-                            <input type="text" name="last_name" id="last_name" value="<?php echo $AdminDisplay->row()->last_name; ?>" class="scroll_5 required" >
-                        </div>
-                        <div class="field_login">
-                            <label>Email Address<span>*</span></label>
-                            <input type="text" name="email" value="<?php echo $AdminDisplay->row()->email; ?>" id="email" class="scroll_5 required email">
-                        </div>
-                       <!-- <div class="field_login">
-                            <label>Password</label>
-                            <input type="password" name="password" id="password" class="scroll_5" >
-                        </div>-->
-                        <div class="field_login">
+                    $attributes = array('id' => 'SignupForm', 'enctype' => 'multipart/form-data');
+                    echo form_open('site/user/EditSiteUserLoginDetails', $attributes); ?>
+                    <div class="form-group">
+                        <label>First Name<span>*</span></label>
+                        <input type="text" name="first_name" id="first_name"
+                               value="<?php echo $AdminDisplay->row()->first_name; ?>" class="form-control required">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name<span>*</span></label>
+                        <input type="text" name="last_name" id="last_name"
+                               value="<?php echo $AdminDisplay->row()->last_name; ?>" class="form-control required">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address<span>*</span></label>
+                        <input type="text" name="email" value="<?php echo $AdminDisplay->row()->email; ?>" id="email"
+                               class="form-control required email">
+                    </div>
+                    <div class="form-group">
                             <label>Image</label>
-                            <input type="file" name="user_image" id="user_image" class="scroll_5" >
-                            <div class="field_login"> <img src="<?php echo base_url();?>images/users/<?php if($AdminDisplay->row()->thumbnail !='') echo $AdminDisplay->row()->thumbnail; else echo "owner_img.png"; ?>" width="150" height="150"  />
+                        <input type="file" name="user_image" id="user_image">
+                        <div class="m-2">
+                            <img src="<?php echo base_url(); ?>images/users/<?php if ($AdminDisplay->row()->thumbnail != '') echo $AdminDisplay->row()->thumbnail; else echo "owner_img.png"; ?>"
+                                 width="150" height="100"/>
                         </div>
-                        <div class="field_login">
-                            <label>Phone<span>*</span></label>
-                            <input type="text" name="phone_no" value="<?php echo $AdminDisplay->row()->phone_no; ?>" id="phone_no" class="scroll_5 required ">
-                        </div>
-                         <div class="field_login">
-                            <label>About</label>
-                            <textarea name="about" id="about" class="scroll_5"><?php echo $AdminDisplay->row()->about; ?></textarea>
-                         </div>
-                        
-                        
-                        <div class="field_login">
-                   <a href="site/user/changeOwnpasswordForm">Change Password</a><br /><br />
-                                 <input type="submit" name="signin" id="signin" class="submit_btn" value="UPDATE">
-                            
-	                      </div> 
-                          <?php echo form_close(); ?>                        
-        				</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone<span>*</span></label>
+                        <input type="text" name="phone_no" value="<?php echo $AdminDisplay->row()->phone_no; ?>"
+                               id="phone_no" class="form-control required ">
+                    </div>
+                    <div class="form-group">
+                        <label>About</label>
+                        <textarea name="about" id="about"
+                                  class="form-control"><?php echo $AdminDisplay->row()->about; ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <a href="<?php base_url() ?>site/user/changeOwnpasswordForm">Change Password</a>
+                        <input type="submit" name="signin" id="signin" class="pull-right btn btn-md submit_btn"
+                               value="UPDATE">
+                    </div>
+                    <?php echo form_close(); ?>
                 </div>
-                </div>
-		    </div>
+            </div>
+        </div>
     </div>
-<!--body content-->
 </section>
 <script type="text/javascript" src="js/site/jquery.validate.js"></script>
 <script>
@@ -132,6 +132,6 @@ $this->load->view('site/templates/header');
 	  }
   });
 </script>
-<?php 
-$this->load->view('site/templates/footer');
+<?php
+$this->load->view('site/templates/new_footer');
 ?>

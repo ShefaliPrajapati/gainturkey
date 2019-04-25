@@ -127,7 +127,7 @@
                     $(".fadein-shownone-fn").fadeIn(3000).delay(3000).fadeOut(5000);
                 }
 
-                </script> 
+        </script>
                 <?php
                 if ($loginCheck != '' && $this->config->item('id_reservation') != '') {
                     ?>    
@@ -184,8 +184,7 @@
                     <!--popup-->
 
 
-
-                    <script>
+                    <script type="text/javascript">
                         $(document).ready(function () {
 
                             $('#cboxClose').click(function () {
