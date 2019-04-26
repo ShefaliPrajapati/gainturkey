@@ -1,6 +1,7 @@
 <?php $this->load->view('site/templates/new_header'); ?>
 
-<?php if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
+<?php if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) {
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -8,30 +9,27 @@
                     <a class="btn btn-primary <?php
                     if ($this->uri->segment(1, 0) == 'listing') {
                         echo 'nav-link';
-                    }
-                    ?>" href="<?php
+                    } ?>" href="<?php
                     if ($loginCheck == '') {
                         echo base_url() . 'signin';
                     } else {
                         echo base_url() . 'listing/viewall/0';
-                    }
-                    ?> ">Current Inventory</a>
+                    } ?> ">Current Inventory</a>
                     <a class="btn btn-primary <?php
                     if ($this->uri->segment(1, 0) == 'soldlisting') {
                         echo 'nav-link';
-                    }
-                    ?>" href="<?php
+                    } ?>" href="<?php
                     if ($loginCheck == '') {
                         echo base_url() . 'signin';
                     } else {
                         echo base_url() . 'soldlisting/viewall/0';
-                    }
-                    ?>">Past/Sold Inventory </a>
+                    } ?>">Past/Sold Inventory </a>
                 </div>
             </div>
         </div>
     </div>
-<?php } ?>
+    <?php
+} ?>
 <link rel="stylesheet" type="text/css" href="css/site/master.css"/>
 <style>
 .comp_h2 {
@@ -238,7 +236,7 @@ $(function() {
 
 		panel_animation: 'slide', 		//STRING - animation method for panel transitions (crossfade,fade,slide,none)
 
-            panel_scale: 'original', 			//STRING - cropping option for panel images (crop = scale image and fit to aspect ratio determined by panel_width and panel_height, fit = scale image and preserve original aspect ratio)
+            panel_scale: 'crop', 			//STRING - cropping option for panel images (crop = scale image and fit to aspect ratio determined by panel_width and panel_height, fit = scale image and preserve original aspect ratio)
 
 		overlay_position: 'bottom', 	//STRING - position of panel overlay (bottom, top)
 
@@ -266,9 +264,9 @@ $(function() {
 
 		filmstrip_position: 'bottom', 	//STRING - position of filmstrip within gallery (bottom, top, left, right)
 
-            frame_width: 70, 				//INT - width of filmstrip frames (in pixels)
+            frame_width: 50, 				//INT - width of filmstrip frames (in pixels)
 
-            frame_height: 65, 				//INT - width of filmstrip frames (in pixels)
+            frame_height: 50, 				//INT - width of filmstrip frames (in pixels)
 
 		frame_opacity: 1, 			//FLOAT - transparency of non-active frames (1.0 = opaque, 0.0 = transparent)
 
@@ -844,7 +842,8 @@ function compute_pvalue(form)
 
 					 <label>Sale Price</label>
 
-					<input name="cur_value" id="cur_value" size="10"  type="text" value="<?php echo number_format($productDetails->row()->event_price,0); ?>"  />
+                      <input name="cur_value" id="cur_value" size="10" type="text"
+                             value="<?php echo number_format($productDetails->row()->event_price, 0); ?>"/>
 
 					<div class="ccrighttxt">Enter the current market value <u>and leave the CAP Rate blank</u> to calculate the CAP Rate</div>
 
@@ -932,15 +931,17 @@ function compute_pvalue(form)
 
     </ul>
 
-    
 
-     <h2><?php echo $productAddress->row()->address.', '.$productAddress->row()->city.', '.str_replace('-',' ',$productAddress->row()->state).' '.$productAddress->row()->post_code; ?></h2>
+    <h2><?php echo $productAddress->row()->address . ', ' . $productAddress->row()->city . ', ' . str_replace('-', ' ', $productAddress->row()->state) . ' ' . $productAddress->row()->post_code; ?></h2>
 
-<?php if($userDetails->row()->reservation == 'Yes') { ?>
+    <?php if ($userDetails->row()->reservation == 'Yes') {
+        ?>
 
-<a href="<?php echo base_url().'reservation-continue/'.$userDetails->row()->property_id ;?>" class="detail_btn"> Back To Reservation</a>
+        <a href="<?php echo base_url() . 'reservation-continue/' . $userDetails->row()->property_id; ?>"
+           class="detail_btn"> Back To Reservation</a>
 
-<?php } ?>
+        <?php
+    } ?>
 
 </div>
 
@@ -952,24 +953,23 @@ function compute_pvalue(form)
 
    <ul id="myGallery">
 
-   <?php foreach($productImages->result() as $Image)
-
-   			{
-
-			?> 
+       <?php foreach ($productImages->result() as $Image) {
+           ?>
 
            <li><img src="<?php echo $base_url_image; ?>images/product/<?php
-                        if ($Image->product_image != '')
+               if ($Image->product_image != '') {
                             echo $Image->product_image;
-                        else
+               } else {
                             echo 'no_image.jpg';
-                        ?>"  alt="<?php echo $Image->imgtitle; ?>" data-description=" " data-thumb="<?php echo $base_url_image; ?>images/product/thumb/<?php
-                             if ($Image->product_image != '')
+               } ?>" alt="<?php echo $Image->imgtitle; ?>" data-description=" "
+                    data-thumb="<?php echo $base_url_image; ?>images/product/thumb/<?php
+                    if ($Image->product_image != '') {
                                  echo $Image->product_image;
-                             else
+                    } else {
                                  echo 'no_image.jpg';
-                             ?>" /></li>
-            <?php } ?>
+                    } ?>"/></li>
+           <?php
+       } ?>
 
            
 
@@ -1009,15 +1009,9 @@ function compute_pvalue(form)
 
  <div class="inside_right">
 
- 
 
- <?php if($this->session->userdata('fc_session_group') == 'Admin')
-
- { 
-
- 
-
- ?>
+     <?php if ($this->session->userdata('fc_session_group') == 'Admin') {
+         ?>
 
  <form id="buy_property" name="buy_property" method="post" action="reservation/<?php echo $productDetails->row()->id; ?>">
 
@@ -1027,35 +1021,50 @@ function compute_pvalue(form)
 
  	<ul class="proinform_list">
 
-    	<li><p>Member Price :</p><span><?php echo "$".number_format($productDetails->row()->member_price,0); ?></span></li>
+        <li><p>Member Price :</p>
+            <span><?php echo "$" . number_format($productDetails->row()->member_price, 0); ?></span></li>
 
-        <li><p>Event only price :</p><span> <?php echo "$".number_format($productDetails->row()->event_price,0); ?></span></li>
+        <li><p>Event only price :</p>
+            <span> <?php echo "$" . number_format($productDetails->row()->event_price, 0); ?></span></li>
 
     
 
     </ul>
 
- <input type="submit" name="buy" class="buyer_btn <?php if($productDetails->row()->property_status=='Sold'){echo 'clicksold';}else if($productDetails->row()->property_status=='Reserved'){echo 'clickreserved';} ?>" value="BUY NOW">
+     <input type="submit" name="buy" class="buyer_btn <?php if ($productDetails->row()->property_status == 'Sold') {
+         echo 'clicksold';
+     } elseif ($productDetails->row()->property_status == 'Reserved') {
+         echo 'clickreserved';
+     } ?>" value="BUY NOW">
      <div id="reservationconfirmcode_warn" style="float:left; color:#FF0000;margin: 5px 0 0 0;"></div>
  </form>
 
- <?php } 
-
- else {?>
+         <?php
+     } else {
+         ?>
 
  <ul class="proinform_list">
 
-    	<li><p>Member Price :</p><span><?php echo "$".number_format($productDetails->row()->member_price,0); ?></span></li>
+     <li><p>Member Price :</p><span><?php echo "$" . number_format($productDetails->row()->member_price, 0); ?></span>
+     </li>
 
-        <li><p>Event only price :</p><span> <?php echo "$".number_format($productDetails->row()->event_price,0); ?></span></li>
+     <li><p>Event only price :</p>
+         <span> <?php echo "$" . number_format($productDetails->row()->event_price, 0); ?></span></li>
 
     
 
     </ul>
 
- <a href="#" class="buyer_btn <?php if($productDetails->row()->property_status=='Sold'){echo 'clicksold';}else if($productDetails->row()->property_status=='Reserved'){echo 'clickreserved';}else {echo 'click1'; } ?>">BUY NOW</a>
+         <a href="#" class="buyer_btn <?php if ($productDetails->row()->property_status == 'Sold') {
+             echo 'clicksold';
+         } elseif ($productDetails->row()->property_status == 'Reserved') {
+             echo 'clickreserved';
+         } else {
+             echo 'click1';
+         } ?>">BUY NOW</a>
 
- <?php } ?>
+         <?php
+     } ?>
 
  <div class="clear"></div>
 
@@ -1073,37 +1082,33 @@ function compute_pvalue(form)
 
         <li><p>Baths: </p><span> <?php echo $productDetails->row()->baths; ?></span></li>
 
-        <li><p>Sq FT: </p><span>  <?php echo number_format($productDetails->row()->sq_feet,0); ?></span></li>
+     <li><p>Sq FT: </p><span>  <?php echo number_format($productDetails->row()->sq_feet, 0); ?></span></li>
 
         <li><p>YEAR Built: </p><span> <?php echo $productDetails->row()->built; ?></span></li>
 
-        
 
-                    <?php if($productDetails->row()->property_sub_type != 0)
+     <?php if ($productDetails->row()->property_sub_type != 0) {
+         ?>
 
-							{ ?>
+         <li><p>TYPE: </p><span> <?php foreach ($PropertySubType->result() as $row1) {
+                     if ($productDetails->row()->property_sub_type == $row1->id) {
+                         echo $row1->subattr_name;
+                     }
+                 } ?></span></li>
 
-         <li><p>TYPE: </p><span> <?php foreach($PropertySubType->result() as $row1){ 
 
-										if($productDetails->row()->property_sub_type == $row1->id){
+         <?php
+     } else {
+         ?>
 
-											echo $row1->subattr_name; } } ?></span></li>
+         <li><p>TYPE: </p><span> <?php foreach ($PropertyType->result() as $row) {
+                     if ($productDetails->row()->property_type == $row->id) {
+                         echo $row->attr_name;
+                     }
+                 } ?></span></li>
 
-                                            
-
-                     <?php } 
-
-					 else
-
-					 {?>
-
-        <li><p>TYPE: </p><span> <?php foreach($PropertyType->result() as $row){ 
-
-										if($productDetails->row()->property_type == $row->id){
-
-											echo $row->attr_name; } } ?></span></li>
-
-                                           <?php } ?>
+         <?php
+     } ?>
 
         <li><p>LOT SIZE:</p><span> <?php echo number_format($productDetails->row()->lot_size); ?></span></li>
 
@@ -1119,9 +1124,11 @@ function compute_pvalue(form)
 
          <li><p style="color:#104c89; font-size:15px;">Cash Flow analysis</p></li>
 
-    	<li><p>MONTHLY RENT PMT :</p><span><?php echo "$".number_format($productDetails->row()->monthly_rent,0); ?></span></li>
+      <li><p>MONTHLY RENT PMT :</p>
+          <span><?php echo "$" . number_format($productDetails->row()->monthly_rent, 0); ?></span></li>
 
-        <li><p>ANNUAL RENT :</p><span><?php echo "$".number_format($productDetails->row()->annual_rent,0); ?></span></li>
+      <li><p>ANNUAL RENT :</p><span><?php echo "$" . number_format($productDetails->row()->annual_rent, 0); ?></span>
+      </li>
 
     
 
@@ -1189,13 +1196,17 @@ function compute_pvalue(form)
 
   <ul class="splitdetai_list2" style="margin-top:0px;">
 
-       <li><p>Estimated* Hazard Insurance: </p><span><?php echo "$".number_format($productDetails->row()->hazard_ins,0); ?></span></li>
+      <li><p>Estimated* Hazard Insurance: </p>
+          <span><?php echo "$" . number_format($productDetails->row()->hazard_ins, 0); ?></span></li>
 
-        <li><p>Estimated* Property Taxes: </p><span> <?php echo "$".number_format($productDetails->row()->property_tax,0); ?></span></li>
+      <li><p>Estimated* Property Taxes: </p>
+          <span> <?php echo "$" . number_format($productDetails->row()->property_tax, 0); ?></span></li>
 
-		  <li><p>Property Managment Exp: </p><span><?php echo "$".number_format($productDetails->row()->management_expenses,0); ?></span></li>
+      <li><p>Property Managment Exp: </p>
+          <span><?php echo "$" . number_format($productDetails->row()->management_expenses, 0); ?></span></li>
 
-           <li><p> Annual Utilites Exp: </p><span><?php echo "$".number_format($productDetails->row()->utilities,0); ?></span></li>
+      <li><p> Annual Utilites Exp: </p>
+          <span><?php echo "$" . number_format($productDetails->row()->utilities, 0); ?></span></li>
 
     		
 
@@ -1211,7 +1222,7 @@ function compute_pvalue(form)
 
  <p>Estimated* Net Income: </p>
 
- <span><?php echo "$".number_format($productDetails->row()->net_income,0); ?></span>
+     <span><?php echo "$" . number_format($productDetails->row()->net_income, 0); ?></span>
 
   </div>
 
@@ -1233,11 +1244,11 @@ function compute_pvalue(form)
 
  <!--<div class="map_con"> <iframe width="550" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?q=,<?php echo $productAddress->row()->longitude;?>&amp;ie=UTF8&amp;t=m&amp;z=14&amp;ll=<?php echo $productAddress->row()->latitude;?>,<?php echo $productAddress->row()->longitude;?>&amp;output=embed"></iframe></div>-->
 
- 
 
- 
-
- <div class="map_con"><iframe width="550" height="350" src="https://maps.google.com/maps?width=550&amp;height=350&amp;hl=en&amp;q=<?php echo $productAddress->row()->address.','.$productAddress->row()->city.','.str_replace('-',' ',$productAddress->row()->state);?>+(Gain Turnkey Property)&amp;ie=UTF8&amp;t=&amp;z=15&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+     <div class="map_con">
+         <iframe width="550" height="350"
+                 src="https://maps.google.com/maps?width=550&amp;height=350&amp;hl=en&amp;q=<?php echo $productAddress->row()->address . ',' . $productAddress->row()->city . ',' . str_replace('-', ' ', $productAddress->row()->state); ?>+(Gain Turnkey Property)&amp;ie=UTF8&amp;t=&amp;z=15&amp;iwloc=B&amp;output=embed"
+                 frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
  
  
  </div>

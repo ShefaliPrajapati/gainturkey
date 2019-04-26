@@ -408,6 +408,8 @@ class Product extends MY_Controller
     {
         if ($this->checkLogin('U') == '') {
             redirect(base_url(signin));
+        } elseif ($_SESSION['differenceTime'] > 0 && $_SESSION['reservation_property_id'] == $seourl) {
+            redirect(base_url("reservation-continue/$seourl"));
         } else {
             $where = array('property_status !=' => 'Staging', 'property_status !=' => 'Sold', 'id' => $seourl);
             $this->load->model('admin_model');
@@ -2143,6 +2145,7 @@ class Product extends MY_Controller
                         $_SESSION['endtimer'] = time()+600;
                         $_SESSION['reservation'] = time()+600;
                         $_SESSION['differenceTime'] = 600;
+                        $_SESSION['reservation_property_id'] = $this->data['productDetails']->row()->id;
                     } else {
                         $differenceTime = $_SESSION['endtimer'] - time();
                         $_SESSION['differenceTime'] = $differenceTime;
@@ -2173,7 +2176,7 @@ class Product extends MY_Controller
                 } else {
                     //$this->setErrorMessage('error',"<div  style='display:none;'>  <div id='inline_reserved' style='background:#fff;'> <div class='property_view'> <p style='margin:27px 0 10px 0px;'>Property id(".echo $productDetails->row()->id.") is reserved</p>  </div> </div> </div>");
                     $this->setErrorMessage('error', 'The property '.$this->data['productDetails']->row()->property_id.' is Reserved');
-                    redirect('listing');
+                    redirect('listing/viewall');
                 }
             }
         }
@@ -2310,6 +2313,7 @@ class Product extends MY_Controller
         }
         echo json_encode($returnStr);
     }
+
     public function ReservationForm_Submit()
     {
         $product_source_details = $this->product_model->get_all_details(SOURCE_INFO, array('property_id'=>$this->input->post('property_id')));
@@ -2380,7 +2384,8 @@ class Product extends MY_Controller
         unset($_SESSION['differenceTime']);
         unset($_SESSION['endtimer']);
         unset($_SESSION['reservation']);
-            
+        unset($_SESSION['reservation_property_id']);
+
             
             
             
@@ -2442,7 +2447,6 @@ class Product extends MY_Controller
         //redirect(base_url());
     }
 
-
     public function changetoActive()
     {
         $userID = $this->checkLogin('U');
@@ -2454,6 +2458,7 @@ class Product extends MY_Controller
         unset($_SESSION['differenceTime']);
         unset($_SESSION['endtimer']);
         unset($_SESSION['reservation']);
+        unset($_SESSION['reservation_property_id']);
 
         unset($_SESSION['rfname']);
         unset($_SESSION['rlname']);

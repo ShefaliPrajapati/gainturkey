@@ -96,7 +96,11 @@
         <h2 class="tit_head">Property Reservation & Agreement to Purchase</h2>
         <div class="reservation_cont">
             <div class="clear"></div>
-            <div class="property_title"> Property Information<a href="javascript:void(0);" class="detail_btn back_btn_reservation"  onclick="SaveReserveDetails();" > Back To Listing</a>
+            <div class="property_title"> Property Information
+                <a href="javascript:void(0);" href="" class="detail_btn back_btn_reservation" onclick="liftOff();">Cancel
+                    Reservation</a>
+                <a href="javascript:void(0);" class="detail_btn back_btn_reservation" onclick="SaveReserveDetails();">
+                    Back To Listing</a>
         </div>
             <div class="property_informaton">
                 <ul class="proinform_list">
@@ -617,7 +621,7 @@
                 success: function(data)
                 {
                     //alert(data);return false;
-                    location.href = baseURL+'Property/'+rsId;
+                    location.href = baseURL + 'listing/viewall';
                     //window.location.reload();
                 }
 
