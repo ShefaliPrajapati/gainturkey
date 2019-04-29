@@ -302,6 +302,12 @@ $soldID = array_filter(explode(',', $this->config->item('id_sold')));
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
+<!--                <ul class="navbar-nav ml-auto">-->
+<!--                    <li class="nav-item"><a target="_blank" href="--><?php //echo $this->config->item('facebook_link'); ?><!--" title="facebook"> <i class="fa fa-facebook"></i></a></li>-->
+<!--                    <li class="nav-item"><a target="_blank" href="--><?php //echo $this->config->item('linkedin_link'); ?><!--"> <i class="fa fa-linkedin"></i></a></li>-->
+<!--                    <li class="nav-item"> <a target="_blank" href="--><?php //echo $this->config->item('twitter_link'); ?><!--" title="twitter"> <i class="fa fa-twitter"></i></a>-->
+<!--                    </li>-->
+<!--                </ul>-->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link " href="<?php echo $urlProperty.'#about'; ?>">About Us</a>
@@ -312,12 +318,12 @@ $soldID = array_filter(explode(',', $this->config->item('id_sold')));
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $urlProperty.'contact'; ?>">Contact Us</a>
                     </li>
-
-
                     <?php
                     if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $urlProperty . 'my_account'; ?>">MyAccount</a>
+<!--                            <p>--><?php //echo "Welcome <br> " . $this->session->userdata('fc_session_user_name'); ?><!--</p>-->
+                            <?php if ($this->session->userdata('fc_session_group') != 'Admin') { ?>
+                                <a class="nav-link" href="<?php echo $urlProperty . 'my_account'; ?>">MyAccount</a> <?php } ?>
                         </li>
                         <li class="nav-item bt_box">
                             <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Sign out</a>

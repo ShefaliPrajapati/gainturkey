@@ -672,7 +672,7 @@ class My_Model extends CI_Model
         $this->email->set_newline("\r\n");
         // Set email preferences
         $this->email->set_mailtype($eamil_vaues['mail_type']);
-        $this->email->from($from['email'], $from['name']);
+        $this->email->from('info@gainturnkeyproperty.com', $from['name']);
         $this->email->to($to);
         if ($eamil_vaues['cc_mail_id'] != '') {
             $this->email->cc($eamil_vaues['cc_mail_id']);
