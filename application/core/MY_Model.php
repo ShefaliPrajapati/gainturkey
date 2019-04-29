@@ -713,13 +713,12 @@ class My_Model extends CI_Model
     //get newsletter template
     public function get_newsletter_template_details($apiId = '')
     {
+        $this->db->select('*');
+        $this->db->from(NEWSLETTER);
 
-    $this->db->select('*');
-    $this->db->from(NEWSLETTER);
-
-    $this->db->where('id', $apiId );
-    $this->db->where('status', 'Active');
-    $query = $this->db->get()->result_array();
+        $this->db->where('id', $apiId);
+        $this->db->where('status', 'Active');
+        $query = $this->db->get()->result_array();
 
 
         $twitterQuery = "select * from " . NEWSLETTER . " where id=" . $apiId . " AND status='Active'";
