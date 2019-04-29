@@ -8,9 +8,12 @@
     if ($heading == '') {
         ?>
         <title><?php echo $title; ?></title>
-    <?php } else { ?>
+    <?php
+    } else {
+        ?>
         <title><?php echo $heading; ?></title>
-    <?php } ?>
+    <?php
+    } ?>
 
     <meta name="Title" content="<?php echo $meta_title; ?>" />
     <meta name="keywords" content="<?php echo $meta_keyword; ?>" />
@@ -154,7 +157,8 @@
 
         </script>
 
-    <?php } ?>
+    <?php
+    } ?>
     <link rel="stylesheet" href="css/site/popup.css" type="text/css" media="all"/>
     <script src="js/site/jquery.colorbox.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/site/colorbox.css" />
@@ -269,7 +273,8 @@ $soldID = array_filter(explode(',', $this->config->item('id_sold')));
 </div>-->
     </div>
 </div>
-<?php if ($this->uri->segment(1) == 'Property') { ?>
+<?php if ($this->uri->segment(1) == 'Property') {
+            ?>
     <div style='display:none;'>
         <div id='inline_reserved' style='background:#fff;'>
             <div class="property_view propertyStatus">
@@ -291,7 +296,8 @@ $soldID = array_filter(explode(',', $this->config->item('id_sold')));
             </div>
         </div>
     </div>
-<?php } ?>
+<?php
+        } ?>
 <div class="top_nav">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
@@ -303,9 +309,9 @@ $soldID = array_filter(explode(',', $this->config->item('id_sold')));
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
 <!--                <ul class="navbar-nav ml-auto">-->
-<!--                    <li class="nav-item"><a target="_blank" href="--><?php //echo $this->config->item('facebook_link'); ?><!--" title="facebook"> <i class="fa fa-facebook"></i></a></li>-->
-<!--                    <li class="nav-item"><a target="_blank" href="--><?php //echo $this->config->item('linkedin_link'); ?><!--"> <i class="fa fa-linkedin"></i></a></li>-->
-<!--                    <li class="nav-item"> <a target="_blank" href="--><?php //echo $this->config->item('twitter_link'); ?><!--" title="twitter"> <i class="fa fa-twitter"></i></a>-->
+<!--                    <li class="nav-item"><a target="_blank" href="--><?php //echo $this->config->item('facebook_link');?><!--" title="facebook"> <i class="fa fa-facebook"></i></a></li>-->
+<!--                    <li class="nav-item"><a target="_blank" href="--><?php //echo $this->config->item('linkedin_link');?><!--"> <i class="fa fa-linkedin"></i></a></li>-->
+<!--                    <li class="nav-item"> <a target="_blank" href="--><?php //echo $this->config->item('twitter_link');?><!--" title="twitter"> <i class="fa fa-twitter"></i></a>-->
 <!--                    </li>-->
 <!--                </ul>-->
                 <ul class="navbar-nav ml-auto">
@@ -319,21 +325,26 @@ $soldID = array_filter(explode(',', $this->config->item('id_sold')));
                         <a class="nav-link" href="<?php echo $urlProperty.'contact'; ?>">Contact Us</a>
                     </li>
                     <?php
-                    if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) { ?>
+                    if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) {
+                        ?>
                         <li class="nav-item">
-<!--                            <p>--><?php //echo "Welcome <br> " . $this->session->userdata('fc_session_user_name'); ?><!--</p>-->
-                            <?php if ($this->session->userdata('fc_session_group') != 'Admin') { ?>
-                                <a class="nav-link" href="<?php echo $urlProperty . 'my_account'; ?>">MyAccount</a> <?php } ?>
+<!--                            <p>--><?php //echo "Welcome <br> " . $this->session->userdata('fc_session_user_name');?><!--</p>-->
+                            <?php if ($this->session->userdata('fc_session_group') != 'Admin') {
+                            ?>
+                                <a class="nav-link" href="<?php echo $urlProperty . 'my_account'; ?>">MyAccount</a> <?php
+                        } ?>
                         </li>
                         <li class="nav-item bt_box">
                             <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Sign out</a>
                         </li>
-                    <?php } else {
+                    <?php
+                    } else {
                         ?>
                         <li class="nav-item bt_box">
                             <a class="nav-link" href="<?php echo $urlProperty.'signup'; ?>">Sign up/Login</a>
                         </li>
-                    <?php } ?>
+                    <?php
+                    } ?>
                 </ul>
             </div>
         </div>
@@ -348,19 +359,23 @@ $soldID = array_filter(explode(',', $this->config->item('id_sold')));
 
     }</script>
 <div class="container">
-    <?php if (validation_errors() != '') { ?>
+    <?php if (validation_errors() != '') {
+                        ?>
         <div id="validationErr" >
             <script>setTimeout("hideErrDiv('validationErr')", 6000);</script>
             <p><?php echo validation_errors(); ?></p>
         </div>
-    <?php } ?>
+    <?php
+                    } ?>
     <script>setTimeout("hideErrDiv('location_val')", 6000);</script>
-    <?php if ($flash_data != '') { ?>
+    <?php if ($flash_data != '') {
+                        ?>
         <div class="errorContainer"  id="<?php echo $flash_data_type; ?>">
             <script>setTimeout("hideErrDiv('<?php echo $flash_data_type; ?>')", 6000);</script>
             <p ><span><?php echo $flash_data; ?></span></p>
         </div>
-    <?php } ?>
+    <?php
+                    } ?>
 </div>
 <?php
 //$this->load->view('site/templates/popup_templates.php',$this->data);
