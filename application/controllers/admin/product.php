@@ -617,6 +617,10 @@ class Product extends MY_Controller
             $property_id = $this->input->post('propertyID');
             $price = $this->input->post('event_price');
 
+            if ($this->input->post('property_status') == 'Active') {
+                $this->changetoActive($property_id);
+            }
+
             if ($property_id == '') {
                 $old_product_details = array();
                 $condition = array('headline' => $headline);
@@ -1210,6 +1214,54 @@ class Product extends MY_Controller
                 redirect('admin_ror');
             }
         }
+    }
+
+    public function changetoActive($id)
+    {
+        $userID = $this->checkLogin('U');
+        $dataArr = array('property_status' => 'Active');
+        $condition = array('id' => $id);
+        $this->product_model->update_details(PRODUCT, $dataArr, $condition);
+        $this->product_model->update_details(SUBADMIN, array('reservation' => 'No', 'property_id' => $id), array('id' => $userID));
+        unset($_SESSION['differenceTime']);
+        unset($_SESSION['endtimer']);
+        unset($_SESSION['reservation']);
+        unset($_SESSION['reservation_property_id']);
+
+        unset($_SESSION['rfname']);
+        unset($_SESSION['rlname']);
+        unset($_SESSION['rename']);
+        unset($_SESSION['rtype']);
+        unset($_SESSION['raddress']);
+        unset($_SESSION['rcountry']);
+        unset($_SESSION['rstate']);
+        unset($_SESSION['rcity']);
+        unset($_SESSION['rzip']);
+        unset($_SESSION['rphno']);
+        unset($_SESSION['rphno1']);
+        unset($_SESSION['remail']);
+        unset($_SESSION['remail1']);
+        unset($_SESSION['rreservprice']);
+        unset($_SESSION['rnote']);
+
+        unset($_SESSION['rcashpt']);
+        unset($_SESSION['rcheckpt']);
+        unset($_SESSION['rcreditpt']);
+        unset($_SESSION['rdotpt']);
+        unset($_SESSION['rsalescash']);
+        unset($_SESSION['rsalescf']);
+        unset($_SESSION['rsalescs']);
+        unset($_SESSION['rsalessdira']);
+        unset($_SESSION['rsalesfs']);
+        unset($_SESSION['rsalessl']);
+
+        unset($_SESSION['cust_name']);
+        unset($_SESSION['acco_no']);
+        unset($_SESSION['office_source']);
+        unset($_SESSION['event_source']);
+
+
+        $this->product_model->saveResevedSettings();
     }
 
     /* Ajax update for edit product */
