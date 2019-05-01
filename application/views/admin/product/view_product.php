@@ -1,7 +1,38 @@
 <?php
 $this->load->view('admin/templates/header.php');
 ?>
+<style type="text/css">
+#tab2 ul.imagesList{
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+}
+#tab2 ul.imagesList li {
+    display: inline;
+    height: 200px;
+    width: 200px;    
+    float: left;
+    vertical-align: middle;
+    margin:10px 0;
+    padding:10px 0;
+}
 
+#tab2  ul.imagesList li img {
+    vertical-align: middle;
+    height:95%;
+    width: 95%;
+    margin: 0 auto;
+}
+#tab2  ul.imagesList li span{
+	padding:5px 0 5px 0;
+	display:block;
+	width: 95%;
+	margin: 0 auto;
+}
+
+
+
+</style>
 <div id="content">
 		<div class="grid_container">
 			<div class="grid_12">
@@ -144,21 +175,24 @@ $this->load->view('admin/templates/header.php');
                      </div>
                       
                       <div id="tab2">
-									<ul>
+									<ul class="imagesList">
                                     
 										 <?php if($product_image->num_rows() > 0){ foreach($product_image->result() as $ProImag){
 					  ?>
 										<li style="float: left;">
-										<div class="widget_thumb" style="margin-left: 2%;width:auto;height:auto;">
+										
 										 	<img width="" height="" src="<?php echo base_url();?>images/product/thumb/<?php echo $ProImag->product_image; ?>" />
-										</div>
-                                            <div class="center tr_select ">&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $ProImag->imgtitle; ?></div>
+										 	<span>
+										
+                                         <?php echo $ProImag->imgtitle; ?></span>
 										</li>
 										 <?php 
 					  }
-					  }?>
+					  }?></ul>
+
 					  
 					  <?php if($product_image->num_rows() > 0){ ?>
+					  	<ul>
 			  <li>
                 <div class="form_grid_12">
                   <label class="field_title">&nbsp;</label>
@@ -166,9 +200,9 @@ $this->load->view('admin/templates/header.php');
                     <a href="admin/product/download_images/<?php echo $product_details->row()->id;?>" class="btn_small btn_blue" target="_blank">Download Images</a>
                   </div>
                 </div>
-              </li>
+              </li>			</ul>
 			  <?php } ?>
-										</ul>
+							
 								<ul>
                            <li>
 								<div class="form_grid_12">
