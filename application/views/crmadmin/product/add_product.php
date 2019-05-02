@@ -1297,7 +1297,7 @@ function SelectSubType(Id)
 }
 </script>
 
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCMzMDYjFaRZ4z3rlY__4vYkNZkj8qX6qI&sensor=false"></script>
 
 	<!-- CSS and JS for our code -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/site/jquery-gmaps-latlon-picker.css"/>

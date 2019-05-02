@@ -264,10 +264,10 @@ function viewAttributes(Val){
 						if($g<11){
 					  ?>
 					  <tr id="img_<?php echo $ProImag->id; ?>">
-                        <td class="center tr_select "><input type="text" name="imgtitle[]"  onChange="javascript:ChangeImagetitle(this,<?php echo $ProImag->id; ?>);" value="<?php echo $ProImag->imgtitle; ?>" /></td>
+                        <td class="center tr_select "><input type="text" name="imgtitle[]"  onChange="ChangeImagetitle(this,<?php echo $ProImag->id; ?>);" value="<?php echo $ProImag->imgtitle; ?>" /></td>
 					  <td class="center"><img src="<?php echo base_url();?>images/product/thumb/<?php echo $ProImag->product_image; ?>"  width="200px" /> </td>
                         <td class="center"><div id="imgmsg_<?php echo $ProImag->id; ?>"></div><span>
-                          <input type="text" style="width: 15%;" name="changeorder[]" onChange="javascript:ChangeImagePriority(this,<?php echo $ProImag->id; ?>);" value="<?php echo $ProImag->imgPriority; ?>" size="3" />
+                          <input type="text" style="width: 15%;" name="changeorder[]" onChange="ChangeImagePriority(this,<?php echo $ProImag->id; ?>);" value="<?php echo $ProImag->imgPriority; ?>" size="3" />
                           </span> </td>
                         <td class="center"><ul class="action_list" style="background:none;border-top:none;">
                             <li style="width:100%;"><a class="p_del tipTop" href="javascript:void(0)" onClick="DeletePictureProducts(<?php echo $ProImag->id; ?>);" title="Delete this image">Remove</a></li>
@@ -392,7 +392,7 @@ function viewAttributes(Val){
                 <div class="form_grid_12">
                   <label class="field_title" for="bedroom">Property ID<span class="req">*</span></label>
                   <div class="form_input">
-                    <input id="property_id" type="text" tabindex="1" value="<?php echo stripslashes($product_details->row()->property_id); ?>" class="required large tipTop" name="property_id" title="Please enter the property id" onchange="javascript:prpIdCheck()" onkeyup="javascript:prpIdCheck()"  onblur="javascript:prpIdCheck()" />
+                    <input id="property_id" type="text" tabindex="1" value="<?php echo stripslashes($product_details->row()->property_id); ?>" class="required large tipTop" name="property_id" title="Please enter the property id" onchange="prpIdCheck()" onkeyup="prpIdCheck()"  onblur="prpIdCheck()" />
                       <span id="property_id_warn" class="redfont" style="color:#F00;"></span>
                   </div>
                 </div>
@@ -1422,8 +1422,7 @@ document.getElementById('net_income').value=Totvalue;
 
 </script>
 
-
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCMzMDYjFaRZ4z3rlY__4vYkNZkj8qX6qI&sensor=false"></script>
 
 	<!-- CSS and JS for our code -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/site/jquery-gmaps-latlon-picker.css"/>

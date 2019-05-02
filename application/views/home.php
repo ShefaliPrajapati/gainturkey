@@ -74,7 +74,11 @@ $urlProperty = base_url();
                     if (isset($_SESSION['userdata']) && $_SESSION['userdata']['fc_session_user_id']) {
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo $urlProperty . 'my_account'; ?>">MyAccount</a>
+                            <!--                            <p>--><?php //echo "Welcome <br> " . $this->session->userdata('fc_session_user_name');?><!--</p>-->
+                            <?php if ($this->session->userdata('fc_session_group') != 'Admin') {
+                                ?>
+                                <a class="nav-link" href="<?php echo $urlProperty . 'my_account'; ?>">MyAccount</a> <?php
+                            } ?>
                         </li>
                         <li class="nav-item bt_box">
                             <a class="nav-link" href="<?php echo $urlProperty.'signout'; ?>">Sign Out</a>

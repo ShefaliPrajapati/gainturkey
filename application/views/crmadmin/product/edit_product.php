@@ -266,10 +266,10 @@ function viewAttributes(Val){
                       <?php if(count($product_image) > 0){ foreach($product_image->result() as $ProImag){
             ?>
             <tr id="img_<?php echo $ProImag->id; ?>">
-                        <td class="center tr_select "><input type="text" name="imgtitle[]"  onChange="javascript:ChangeImagetitle(this,<?php echo $ProImag->id; ?>);" value="<?php echo $ProImag->imgtitle; ?>" /></td>
+                        <td class="center tr_select "><input type="text" name="imgtitle[]"  onChange="ChangeImagetitle(this,<?php echo $ProImag->id; ?>);" value="<?php echo $ProImag->imgtitle; ?>" /></td>
             <td class="center"><img src="<?php echo base_url();?>images/product/<?php echo $ProImag->product_image; ?>"  height="320px" width="320px" /> </td>
                         <td class="center"><div id="imgmsg_<?php echo $ProImag->id; ?>"></div><span>
-                          <input type="text" style="width: 15%;" name="changeorder[]" onChange="javascript:ChangeImagePriority(this,<?php echo $ProImag->id; ?>);" value="<?php echo $ProImag->imgPriority; ?>" size="3" />
+                          <input type="text" style="width: 15%;" name="changeorder[]" onChange="ChangeImagePriority(this,<?php echo $ProImag->id; ?>);" value="<?php echo $ProImag->imgPriority; ?>" size="3" />
                           </span> </td>
                         <td class="center"><ul class="action_list" style="background:none;border-top:none;">
                             <li style="width:100%;"><a class="p_del tipTop" href="javascript:void(0)" onClick="DeletePictureProducts(<?php echo $ProImag->id; ?>);" title="Delete this image">Remove</a></li>
@@ -1231,7 +1231,7 @@ var prodId = <?php echo $product_details->row()->id;?>;
 </script>
 
 
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCMzMDYjFaRZ4z3rlY__4vYkNZkj8qX6qI&sensor=false"></script>
 
   <!-- CSS and JS for our code -->
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/site/jquery-gmaps-latlon-picker.css"/>

@@ -1906,7 +1906,7 @@ class Product extends MY_Controller
         $this->db->from(PRODUCT);
         $this->db->where('property_id', $propId);
         if(!empty($propertyID) && $propertyID > 0){
-            $this->db->where('id !=', $propertyID);    
+            $this->db->where('id !=', $propertyID);
         }
         $PrdtDets = $this->db->get();
         if ($PrdtDets->num_rows() > 0) {
@@ -2063,7 +2063,7 @@ class Product extends MY_Controller
 
         foreach ($product_image->result() as $ProImag) {
             $name = $ProImag->product_image;
-            @copy('./images/product/thumb/' . $ProImag->product_image, './zip-image/' . $propertyId . '/' . $ProImag->product_image);
+            @copy('./images/product/' . $name, './zip-image/' . $propertyId . '/' . $name);
         }
 
         exec("zip -r zip-image/ror-images-" . $propertyId . ".zip zip-image/" . $propertyId . "/");
@@ -2072,7 +2072,7 @@ class Product extends MY_Controller
             @unlink('zip-image/' . $propertyId . '/' . $ProImag->product_image);
             $name = $ProImag->product_image;
             $this->load->library('zip');
-            $data = file_get_contents(base_url().'images/product/thumb/'.$ProImag->product_image);
+            $data = file_get_contents(base_url().'images/product/'.$ProImag->product_image);
             $this->zip->add_data($name, $data);
         }
 

@@ -1,5 +1,5 @@
 
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBGw4Qah8CBA-eXwA2x6negt3eaWhX-xR8&sensor=false"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCMzMDYjFaRZ4z3rlY__4vYkNZkj8qX6qI&sensor=false"></script>
 
 <?php
 $this->load->view('admin/templates/header.php');
@@ -538,7 +538,7 @@ function removeError(idval){
                 <div class="form_grid_12">
                   <label class="field_title" for="bedroom">Property ID<span class="req">*</span></label>
                   <div class="form_input">
-                    <input id="property_id" type="text" tabindex="1" class="required large tipTop" name="property_id" title="Please enter the property id" onchange="javascript:prpIdCheck()" onkeyup="javascript:prpIdCheck()"  onblur="javascript:prpIdCheck()" />
+                    <input id="property_id" type="text" tabindex="1" class="required large tipTop" name="property_id" title="Please enter the property id" onchange="prpIdCheck()" onkeyup="prpIdCheck()"  onblur="prpIdCheck()" />
                       <span id="property_id_warn" class="redfont" style="color:#F00;"></span>
                   </div>
                 </div>

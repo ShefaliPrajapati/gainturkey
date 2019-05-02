@@ -39,7 +39,7 @@ div#crosshair {
     background-repeat: no-repeat;
 }
 </style>
-<!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBGw4Qah8CBA-eXwA2x6negt3eaWhX-xR8&sensor=false"></script> -->
+ <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCMzMDYjFaRZ4z3rlY__4vYkNZkj8qX6qI&sensor=false"></script>
 <!-- <script src="http://www.google.com/jsapi?key=AIzaSyCEpYCT485k5-L35fgK7lTPYP4taoEH1XM" type="text/javascript">
 </script> -->
 <script type="text/javascript">
@@ -117,7 +117,7 @@ function showMap() {
                     ), 8
                 );
             return false;
-        }
+        };
 
         var form = document.getElementById('geocodeForm');
         var p = form.getElementsByTagName('p')[0];
