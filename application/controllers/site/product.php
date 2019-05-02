@@ -2084,7 +2084,7 @@ class Product extends MY_Controller
         $code = $this->input->post('code');
         $secretCode = $this->product_model->get_all_details(ADMIN_SETTINGS, array('booking_code' => $code));
         if ($secretCode->num_rows() == 1) {
-            redirect(listing);
+            redirect('listing/viewall/');
         } else {
             $this->setErrorMessage('error', 'You have entred wrong reservation code');
             echo "<script>window.history.go(-1)</script>";
@@ -2099,7 +2099,7 @@ class Product extends MY_Controller
         } else {
             if ($_SESSION['differenceTime'] > 0) {
                 $this->setErrorMessage('error', 'You already have a property in reservation');
-                redirect(listing);
+                redirect('listing/viewall/');
             } else {
                 $where = array('id'=>$seourl);
                 $this->data['productDetails'] = $this->product_model->get_all_details(PRODUCT, $where);
@@ -2173,7 +2173,7 @@ class Product extends MY_Controller
                 } else {
                     //$this->setErrorMessage('error',"<div  style='display:none;'>  <div id='inline_reserved' style='background:#fff;'> <div class='property_view'> <p style='margin:27px 0 10px 0px;'>Property id(".echo $productDetails->row()->id.") is reserved</p>  </div> </div> </div>");
                     $this->setErrorMessage('error', 'The property '.$this->data['productDetails']->row()->property_id.' is Reserved');
-                    redirect('listing');
+                    redirect('listing/viewall/');
                 }
             }
         }
@@ -2221,7 +2221,6 @@ class Product extends MY_Controller
                 $this->setErrorMessage('error', 'Product details not available');
                 redirect(base_url());
             }
-            
             
             
             if ($_SESSION['endtimer'] == '') {
