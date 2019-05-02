@@ -12,8 +12,6 @@ if(!defined('AJAX_INIT_DONE'))
  *
  */
 
-
-error_reporting(E_ALL);
 //error_reporting(E_ALL ^ E_NOTICE);
 
 define('CONFIG_SYS_MY_DOCROOT', $_SERVER['DOCUMENT_ROOT'] . implode('/',array_slice(explode('/',$_SERVER['PHP_SELF']),0,-6)));

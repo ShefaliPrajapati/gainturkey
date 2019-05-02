@@ -5,10 +5,10 @@
  * Date: 5/4/15
  * Time: 1:12 PM
  */
-ini_set("display_errors", 1);
-
-error_reporting(E_ALL);
-set_time_limit(50000);
+//ini_set("display_errors", 1);
+//
+//error_reporting(E_ALL);
+//set_time_limit(50000);
 
 require_once("sdk/isdk.php");
 

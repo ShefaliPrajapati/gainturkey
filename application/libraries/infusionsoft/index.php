@@ -1,7 +1,7 @@
 <?php
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
-set_time_limit(50000);
+//ini_set("display_errors", 1);
+//error_reporting(E_ALL);
+//set_time_limit(50000);
 
 require_once("sdk/isdk.php");
 include_once '../databaseValues.php';

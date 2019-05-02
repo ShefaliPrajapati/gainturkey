@@ -1,5 +1,5 @@
 <?php
-error_reporting(1);
+//error_reporting(1);
 if (!session_id()) {
     session_start();
 }

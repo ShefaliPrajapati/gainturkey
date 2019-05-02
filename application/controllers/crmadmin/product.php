@@ -476,7 +476,7 @@ class Product extends MY_Controller
     public function insertEditdocumentModule()
     {
         //echo '<pre>'; print_r($_POST); echo '<pre>'; print_r($_FILES);
-        error_reporting(-1);
+        //error_reporting(-1);
         //SIGNTEMPLATE
         ob_clean();
         ob_flush();

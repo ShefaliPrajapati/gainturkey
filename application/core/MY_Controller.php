@@ -23,7 +23,7 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
         ob_start();
-        error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
+        //error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
         $this->load->helper('url');
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         $this->output->set_header('Pragma: no-cache');
