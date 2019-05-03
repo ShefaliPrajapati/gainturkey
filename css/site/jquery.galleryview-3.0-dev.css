@@ -62,7 +62,7 @@ img{
 }
 .gv_panel img {
 	position: absolute;
-	/*width: 100% !important;*/
+	width: 100% !important;
 	height: auto !important;
 	left: 25px !important;
 }

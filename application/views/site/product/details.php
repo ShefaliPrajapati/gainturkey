@@ -232,7 +232,7 @@ $(function() {
 
             panel_width: 550, 				//INT - width of gallery panel (in pixels)
 
-		panel_height: 300, 				//INT - height of gallery panel (in pixels)
+		panel_height: 600, 				//INT - height of gallery panel (in pixels)
 
 		panel_animation: 'slide', 		//STRING - animation method for panel transitions (crossfade,fade,slide,none)
 
