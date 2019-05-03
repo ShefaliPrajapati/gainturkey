@@ -59,12 +59,13 @@ img{
 	overflow: hidden;
 	z-index: 100;
 	width: 100%!important;
+	text-align: center;
 }
 .gv_panel img {
-	position: absolute;
-	width: 100% !important;
-	height: auto !important;
-	left: 25px !important;
+	position: center;
+	width: auto !important;
+	/*height: auto !important;*/
+	left: 50px !important;
 }
 
 .gv_overlay { position: absolute; background: #222; color: white; z-index: 200; }

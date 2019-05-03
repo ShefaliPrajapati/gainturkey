@@ -230,11 +230,11 @@ $(function() {
 		enable_overlays: true, 			//BOOLEAN - flag to show or hide panel overlays
 
 
-            panel_width: 550, 				//INT - width of gallery panel (in pixels)
+            panel_width: 'auto', 				//INT - width of gallery panel (in pixels)
 
-		panel_height: 600, 				//INT - height of gallery panel (in pixels)
+		panel_height: 300, 				//INT - height of gallery panel (in pixels)
 
-		panel_animation: 'slide', 		//STRING - animation method for panel transitions (crossfade,fade,slide,none)
+		panel_animation: 'crossfade', 		//STRING - animation method for panel transitions (crossfade,fade,slide,none)
 
             panel_scale: 'crop', 			//STRING - cropping option for panel images (crop = scale image and fit to aspect ratio determined by panel_width and panel_height, fit = scale image and preserve original aspect ratio)
 
