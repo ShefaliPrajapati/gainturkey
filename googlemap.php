@@ -1,4 +1,5 @@
-<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<!--<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>-->
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCMzMDYjFaRZ4z3rlY__4vYkNZkj8qX6qI&sensor=false"></script>
 <script src="js/gmap3.min.js" type="text/javascript"></script>
  <script type="text/javascript">
           $(function(){
@@ -117,4 +118,3 @@
 
 
 
-		

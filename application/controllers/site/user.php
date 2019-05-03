@@ -3939,26 +3939,11 @@ class User extends MY_Controller
 
          </div>
          </div>
-         <table width="100%">
-		  <tr>
-        	<td style="font-family:Arial, Helvetica, sans-serif; font-size:17px; line-height:22px; text-align:center;" colspan="3"><br>
-            	<a href="'.base_url().'site/user/view_order111/'.$PropertyList->row()->id.'"><button>Download PDF</button></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="print_btn" style="display: none;" onClick="printthis(); return false;">Print this page</button>
-            </td>
-        </tr>
-      </table>
+        
 		 
          </div>
          </div>
-         <table width="100%">
-		  <tr>
-        	<td style="font-family:Arial, Helvetica, sans-serif; font-size:17px; line-height:22px; text-align:center;" colspan="3"><br>
-            	<a href="'.base_url().'site/user/view_order111/'.$PropertyList->row()->id.'"><button>Download PDF</button></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="print_btn" style="display: none;" onClick="printthis(); return false;">Print this page</button>
-            </td>
-        </tr>
-      </table>
-    
+         
   
 
 </body>
@@ -4465,7 +4450,7 @@ class User extends MY_Controller
          <table width="100%" class="buttons-of-print">
 		  <tr>
         	<td style="font-family:Arial, Helvetica, sans-serif; font-size:17px; line-height:22px; text-align:center;" colspan="3"><br>
-            	<a href="'.base_url().'site/user/view_order111/'.$PropertyList->row()->id.'"><button>Download PDF</button></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	<a target="_blank" href="'.base_url().'site/user/view_order111/'.$PropertyList->row()->id.'"><button>Download PDF</button></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<button onClick="printthis(); return false;">Print this page</button>
             </td>
         </tr>

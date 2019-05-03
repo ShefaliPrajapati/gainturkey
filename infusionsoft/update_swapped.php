@@ -7,21 +7,21 @@ require_once("sdk/isdk.php");
 include_once '../databaseValues.php';
 $app = new iSDK;
 if ($app->cfgCon("xi178")) {
-    $conn = @mysql_pconnect($hostName,$dbUserName,$dbPassword) or die("Database Connection Failed<br>". mysql_error());
+    $conn = @mysql_pconnect($hostName, $dbUserName, $dbPassword) or die("Database Connection Failed<br>". mysql_error());
 
     mysql_select_db($databaseName, $conn) or die('DB not selected');
     print('yo');
     $results = mysql_query("SELECT property_id FROM fc_property_reserved_info WHERE id = 1533");
-    if($results){
-        while($row = mysql_fetch_assoc($results)){
+    if ($results) {
+        while ($row = mysql_fetch_assoc($results)) {
             $app = new iSDK;
             if ($app->cfgCon("xi178")) {
-                $records = $app->dsQuery("Lead",1,0,array("_PropertyID"=>$row["property_id"], "StageID"=>"28"),array('Id','ContactId'));
-                if($records){
-                    foreach($records as $record){
-                        $app->grpRemove($record["ContactId"],292);
-                        $app->grpAssign($record["ContactId"],294);
-                        $app->dsUpdate("Lead",$record["Id"],array("StageID"=>30));
+                $records = $app->dsQuery("Lead", 1, 0, array("_PropertyID"=>$row["property_id"], "StageID"=>"28"), array('Id','ContactId'));
+                if ($records) {
+                    foreach ($records as $record) {
+                        $app->grpRemove($record["ContactId"], 292);
+                        $app->grpAssign($record["ContactId"], 294);
+                        $app->dsUpdate("Lead", $record["Id"], array("StageID"=>30));
                     }
                 }
             }
@@ -38,9 +38,8 @@ if ($app->cfgCon("xi178")) {
     //$results = mysql_query("SELECT * FROM fc_property_reserved_info");
     //$results = mysql_query("SELECT res.* FROM popup_status as ps LEFT JOIN fc_property_reserved_info as res ON res.id = ps.reserved_id where invoice_status='complete' ");
     $count = 1;
-    if($results){
-
-        while($row = mysql_fetch_assoc($results)){
+    if ($results) {
+        while ($row = mysql_fetch_assoc($results)) {
             $returnFields = array('Id');
             $contact = $app->findByEmail((string)$row['email'], $returnFields);
 
@@ -55,13 +54,13 @@ if ($app->cfgCon("xi178")) {
             //296=cancelled
             //298=swapped
 
-            $app->grpAssign($contact_id,298);
+            $app->grpAssign($contact_id, 298);
 //            $results2 = mysql_query("SELECT * FROM infusionsoft WHERE property_id = ".$row["property_id"]);
 //            if($results2){
 //                while($is_info = mysql_fetch_assoc($results2)){
 //              $app->dsUpdate("Lead",$is_info["opportunity_id"],array("StageID"=>34));
-//}
-//}
+            //}
+            //}
 
             $count++;
 
@@ -71,14 +70,14 @@ if ($app->cfgCon("xi178")) {
             //           die();
             //         foreach($records as $record){
             //               //print("INSERT INTO infusionsoft (property_id',contact_id,opportunity_id) VALUES (".$record["_PropertyID"].",".$record["ContactId"].",".$record["Id"].")");
-                           //die();
+            //die();
 
 
-//156
-//Garrett - 1
-//Chris - 1456
+            //156
+            //Garrett - 1
+            //Chris - 1456
 
-            $opportunity_id = $app->dsAdd("Lead",array(
+            $opportunity_id = $app->dsAdd("Lead", array(
                 "ContactID"=>$contact_id,
                 //28 = reserved
                 //34 = swapped
@@ -90,12 +89,12 @@ if ($app->cfgCon("xi178")) {
                 "_UserID0"=>$row["user_id"],
                 "_SoldAdminID"=>$row["sold_admin_id"],
                 "_PropertyAddress"=>$row["prop_address"],
-                "_PropertyPrice"=>"$".number_format((int)$row["prop_price"],2),
+                "_PropertyPrice"=>"$".number_format((int)$row["prop_price"], 2),
                 "_PropertyImage"=> base_url()."images/product/".$row["image"],
                 "_EntityName"=>$row["entity_name"],
                 "_ReserveType"=>$row["resrv_type"],
-                "_SalesPrice"=>"$".number_format($row["sales_price"],2),
-                "_ReservePrice"=>"$".number_format($row["reserv_price"],2),
+                "_SalesPrice"=>"$".number_format($row["sales_price"], 2),
+                "_ReservePrice"=>"$".number_format($row["reserv_price"], 2),
                 "_CashPayment"=>$row["cash_payment"],
                 "_CheckPayment"=>$row["check_payment"],
                 "_CreditPayment"=>$row["credit_payment"],
@@ -113,9 +112,9 @@ if ($app->cfgCon("xi178")) {
                 "_Bedrooms"=>$row["bedrooms"],
                 "_SquareFeet"=>$row["sq_feet"],
                 "_LotSize"=>$row["lot_size"],
-                "_MonthlyRent"=>"$".number_format($row["monthly_rent"],2),
+                "_MonthlyRent"=>"$".number_format($row["monthly_rent"], 2),
                 "_Note"=>$row["note"],
-                "_PropertyTax"=>"$".number_format($row["property_tax"],2),
+                "_PropertyTax"=>"$".number_format($row["property_tax"], 2),
                 "_CustomerName"=>$row["cust_name"],
                 "_AccountNumber"=>$row["account_no"],
                 "_ResCode"=>$row["res_code"],
@@ -152,20 +151,17 @@ if ($app->cfgCon("xi178")) {
                 "_PManagerFee"=>$row["p_manager_fee"],
                 "_PropertyManagementInfo"=>$row["prop_mgmt_info"],
                 "_SourceInfo"=>$row["source_info"],
-                "_PRMonthlyRent"=>"$".number_format($row["pr_monthly_rent"],2),
-                "_PRAnnualRent"=>"$".number_format($row["pr_annual_rent"],2),
-                "_PRHazardInsurance"=>"$".number_format($row["pr_hazard_ins"],2),
-                "_PRNetIncome"=>"$".number_format($row["pr_net_income"],2),
-                "_PRManagementExspense"=>"$".number_format($row["pr_mgmt_expense"],2),
-                "_PRPropertyTax"=>"$".number_format($row["pr_property_tax"],2),
-                "_PRUtilities"=>"$".number_format($row["pr_utilities"],2)
+                "_PRMonthlyRent"=>"$".number_format($row["pr_monthly_rent"], 2),
+                "_PRAnnualRent"=>"$".number_format($row["pr_annual_rent"], 2),
+                "_PRHazardInsurance"=>"$".number_format($row["pr_hazard_ins"], 2),
+                "_PRNetIncome"=>"$".number_format($row["pr_net_income"], 2),
+                "_PRManagementExspense"=>"$".number_format($row["pr_mgmt_expense"], 2),
+                "_PRPropertyTax"=>"$".number_format($row["pr_property_tax"], 2),
+                "_PRUtilities"=>"$".number_format($row["pr_utilities"], 2)
             ));
             print($opportunity_id."<br/>");
 
             mysql_query("INSERT INTO infusionsoft (property_id',contact_id,opportunity_id) VALUES (".$row["property_id"].",".$contact_id.",".$opportunity_id.")");
-
-      }
+        }
     }
 }
-
-?>

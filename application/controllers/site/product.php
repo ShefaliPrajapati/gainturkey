@@ -408,6 +408,8 @@ class Product extends MY_Controller
     {
         if ($this->checkLogin('U') == '') {
             redirect(base_url(signin));
+        } elseif ($_SESSION['differenceTime'] > 0 && $_SESSION['reservation_property_id'] == $seourl) {
+            redirect(base_url("reservation-continue/$seourl"));
         } else {
             $where = array('property_status !=' => 'Staging', 'property_status !=' => 'Sold', 'id' => $seourl);
             $this->load->model('admin_model');
@@ -2084,7 +2086,7 @@ class Product extends MY_Controller
         $code = $this->input->post('code');
         $secretCode = $this->product_model->get_all_details(ADMIN_SETTINGS, array('booking_code' => $code));
         if ($secretCode->num_rows() == 1) {
-            redirect('listing/viewall/');
+            redirect(listing);
         } else {
             $this->setErrorMessage('error', 'You have entred wrong reservation code');
             echo "<script>window.history.go(-1)</script>";
@@ -2099,7 +2101,7 @@ class Product extends MY_Controller
         } else {
             if ($_SESSION['differenceTime'] > 0) {
                 $this->setErrorMessage('error', 'You already have a property in reservation');
-                redirect('listing/viewall/');
+                redirect('listing/viewall');
             } else {
                 $where = array('id'=>$seourl);
                 $this->data['productDetails'] = $this->product_model->get_all_details(PRODUCT, $where);
@@ -2109,27 +2111,27 @@ class Product extends MY_Controller
                     $this->setErrorMessage('error', 'Product details not available');
                     redirect(base_url());
                 }
-                //echo '<pre>'; print_r($this->data['productDetails']->result());die;
+
                 if ($this->data['productDetails']->row()->property_status == 'Active') {
                     $userId = $this->checkLogin('U');
                     $this->product_model->update_details(SUBADMIN, array('reservation' => 'Yes', 'property_id' => $seourl), array('id' => $userId));
                     $this->load->model('admin_model');
                     $this->data['admin_settings'] = $result = $this->admin_model->getAdminSettings();
                     $this->data['UserList'] = $result = $this->admin_model->get_all_details(USERS, array('status'=>'Active','is_verified'=>'Yes'));
-            
+
                     $this->data['productImages'] = $this->product_model->get_images($this->data['productDetails']->row()->id);
                     $this->data['productAddress'] = $this->product_model->get_all_details(PRODUCT_ADDRESS, array('property_id' => $this->data['productDetails']->row()->id));
-                    
+
                     $this->data['reservationCode'] = $this->product_model->get_all_details(ATTRIBUTE, array('status' => 'Active'));
-                        
-                    
+
+
                     $resTime = time();
                     $this->product_model->update_details(PRODUCT, array('property_status'=>'Reserved'), $where);
                     $this->product_model->update_details(PRODUCT, array('reserved_time'=>$resTime), $where);
-                
-            
+
+
                     $this->load->helper('cookie');
-            
+
                     unset($_SESSION['sCheckTimeReser']);
                     unset($_SESSION['sCheckTimeSold']);
                     if ($_SESSION['endtimer'] == '') {
@@ -2147,11 +2149,11 @@ class Product extends MY_Controller
                         $differenceTime = $_SESSION['endtimer'] - time();
                         $_SESSION['differenceTime'] = $differenceTime;
                     }
-            
+
                     //echo $_SESSION['differenceTime']; die;
-            
+
                     $this->data['heading'] = $this->data['productDetails']->row()->meta_title;
-        
+
                     if ($this->data['productDetails']->row()->meta_title != '') {
                         $this->data['meta_title'] = $this->data['productDetails']->row()->meta_title;
                     }
@@ -2161,11 +2163,11 @@ class Product extends MY_Controller
                     if ($this->data['productDetails']->row()->meta_description != '') {
                         $this->data['meta_description'] = $this->data['productDetails']->row()->meta_description;
                     }
-            
+
                     //echo $this->db->last_query(); die;
-            
+
                     $this->product_model->saveResevedSettings();
-            
+
                     //print_r($_SESSION['differenceTime']);die;
                     //$this->load->view('site/product/details',$this->data);
                     //print_r($_COOKIE['differenceTime']); die;
@@ -2173,12 +2175,12 @@ class Product extends MY_Controller
                 } else {
                     //$this->setErrorMessage('error',"<div  style='display:none;'>  <div id='inline_reserved' style='background:#fff;'> <div class='property_view'> <p style='margin:27px 0 10px 0px;'>Property id(".echo $productDetails->row()->id.") is reserved</p>  </div> </div> </div>");
                     $this->setErrorMessage('error', 'The property '.$this->data['productDetails']->row()->property_id.' is Reserved');
-                    redirect('listing/viewall/');
+                    redirect('listing/viewall');
                 }
             }
         }
     }
-    
+
     public function reservation_cont($seourl)
     {
         if ($this->checkLogin('U')=='') {
@@ -2238,12 +2240,7 @@ class Product extends MY_Controller
                 $differenceTime = $_SESSION['endtimer'] - time();
                 $_SESSION['differenceTime'] = $differenceTime;
             }
-            
-            
-            
-            
-            
-            
+
             $this->data['heading'] = $this->data['productDetails']->row()->meta_title;
         
             if ($this->data['productDetails']->row()->meta_title != '') {
@@ -2260,10 +2257,10 @@ class Product extends MY_Controller
             $condition=array('id'=>$seourl);
             
             $this->product_model->edit_product($dataArr, $condition);
-            
+
             $this->product_model->saveResevedSettings();
-            
-            
+
+
             //$this->load->view('site/product/details',$this->data);
             //print_r($_COOKIE['differenceTime']); die;
             $this->load->view('site/product/reservation', $this->data);
@@ -2379,7 +2376,8 @@ class Product extends MY_Controller
         unset($_SESSION['differenceTime']);
         unset($_SESSION['endtimer']);
         unset($_SESSION['reservation']);
-            
+        unset($_SESSION['reservation_property_id']);
+
             
             
             
@@ -2441,7 +2439,6 @@ class Product extends MY_Controller
         //redirect(base_url());
     }
 
-
     public function changetoActive()
     {
         $userID = $this->checkLogin('U');
@@ -2453,6 +2450,7 @@ class Product extends MY_Controller
         unset($_SESSION['differenceTime']);
         unset($_SESSION['endtimer']);
         unset($_SESSION['reservation']);
+        unset($_SESSION['reservation_property_id']);
 
         unset($_SESSION['rfname']);
         unset($_SESSION['rlname']);

@@ -62,8 +62,9 @@ img{
 }
 .gv_panel img {
 	position: absolute;
-	width: 100% !important;
+	/*width: 100% !important;*/
 	height: auto !important;
+	left: 25px !important;
 }
 
 .gv_overlay { position: absolute; background: #222; color: white; z-index: 200; }
