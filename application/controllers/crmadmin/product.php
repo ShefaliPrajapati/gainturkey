@@ -2084,6 +2084,11 @@ class Product extends MY_Controller
 
             if (file_exists(getcwd() . "/images/crm-popup-images/$newImgNames")) {
                 $this->product_model->simple_insert('notes_image', array($type => $newImgNames, 'reserved_id' => $id, 'admin_name' => $admin_name));
+            } else {
+                @copy(getcwd() . "/server/php/files/$imageNameNew[$s]", getcwd() . "/images/crm-popup-images/$newImgNames");
+                if (file_exists(getcwd() . "/images/crm-popup-images/$newImgNames")) {
+                    $this->product_model->simple_insert('notes_image', array($type => $newImgNames, 'reserved_id' => $id, 'admin_name' => $admin_name));
+                }
             }
 
             unlink('server/php/files/'.$imageNameNew[$s]);
