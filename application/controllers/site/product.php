@@ -40,29 +40,28 @@ class Product extends MY_Controller
 
     public function download_images()
     {
+        $this->load->library('zip');
         $propertyId = $this->uri->segment(4);
 
         $sortArr1 = array('field' => 'imgPriority', 'type' => 'ASC');
         $product_image = $this->product_model->get_all_details_product(PRODUCT_PHOTOS, array('property_id' => $propertyId), $sortArr1);
 
-        if (!is_dir(getcwd() . '/zip-image/' . $propertyId)) {
-            mkdir(getcwd() . '/zip-image/' . $propertyId, 0777, true);
-        }
+        mkdir('zip-image/' . $propertyId, 0777);
 
         foreach ($product_image->result() as $ProImag) {
             $name = $ProImag->product_image;
-            @copy('./images/product/' . $ProImag->product_image, './zip-image/' . $propertyId . '/' . $name);
+            @copy('./images/product/' . $name, './zip-image/' . $propertyId . '/' . $name);
         }
-
-        exec("zip -r zip-image/ror-images-" . $propertyId . ".zip zip-image/" . $propertyId . "/");
 
         foreach ($product_image->result() as $ProImag) {
             @unlink('zip-image/' . $propertyId . '/' . $ProImag->product_image);
-            @unlink('zip-image/' . $propertyId . '/');
+            $name = $ProImag->product_image;
+            $data = file_get_contents(base_url().'images/product/'.$ProImag->product_image);
+            $this->zip->add_data($name, $data);
         }
 
-        redirect('zip-image/ror-images-' . $propertyId . '.zip');
-        exit();
+        return $this->zip->download('gain-prop-'.$propertyId.'.zip');
+        //return redirect('zip-image/ror-images-' . $propertyId . '.zip');
     }
 
     public function onboarding()

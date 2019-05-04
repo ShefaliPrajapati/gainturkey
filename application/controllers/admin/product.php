@@ -1905,7 +1905,7 @@ class Product extends MY_Controller
         $this->db->select('property_id,id');
         $this->db->from(PRODUCT);
         $this->db->where('property_id', $propId);
-        if(!empty($propertyID) && $propertyID > 0){
+        if (!empty($propertyID) && $propertyID > 0) {
             $this->db->where('id !=', $propertyID);
         }
         $PrdtDets = $this->db->get();
@@ -1951,6 +1951,7 @@ class Product extends MY_Controller
             foreach ($this->input->post('imgUploadUrl') as $imgUrl) {
                 $imagPath = getcwd() . '/images/product/';
                 $savepath = getcwd() . '/images/product/thumb/';
+                $imageNameNew[$s] = preg_replace('/\s+/', '-', $imageNameNew[$s]);
 
                 copy($imgUrl, $imagPath . $imageNameNew[$s]);
 
@@ -1967,9 +1968,9 @@ class Product extends MY_Controller
                     $h = $size['height'];
                     $option = $this->getImageShape($w, $h, $target_file);
                     $resizeObj = new Resizeimage($target_file);
-                    $resizeObj->resizeImage('300', '200', $option);
+                    $resizeObj->resizeImage('250', '200', $option);
                     $resizeObj->saveImage($savepath . $fileName, 100);
-                    //$this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
+                    $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
                     $this->ImageCompress($savepath . $fileName, $savepath . $fileName);
                 } else {
                     trigger_error('File or permission problems');
@@ -2054,6 +2055,7 @@ class Product extends MY_Controller
 
     public function download_images()
     {
+        $this->load->library('zip');
         $propertyId = $this->uri->segment(4);
 
         $sortArr1 = array('field' => 'imgPriority', 'type' => 'ASC');
@@ -2066,22 +2068,15 @@ class Product extends MY_Controller
             @copy('./images/product/' . $name, './zip-image/' . $propertyId . '/' . $name);
         }
 
-        exec("zip -r zip-image/ror-images-" . $propertyId . ".zip zip-image/" . $propertyId . "/");
-
         foreach ($product_image->result() as $ProImag) {
             @unlink('zip-image/' . $propertyId . '/' . $ProImag->product_image);
             $name = $ProImag->product_image;
-            $this->load->library('zip');
             $data = file_get_contents(base_url().'images/product/'.$ProImag->product_image);
             $this->zip->add_data($name, $data);
         }
 
-        if (rmdir('zip-image/' . $propertyId)) {
-            //echo "deleted";die;
-        }
-
-        $this->zip->download('ror-images-'.$propertyId.'.zip');
-        return Zredirect('zip-image/ror-images-' . $propertyId . '.zip');
+        return $this->zip->download('gain-prop-'.$propertyId.'.zip');
+        //return redirect('zip-image/ror-images-' . $propertyId . '.zip');
     }
 
     public function loadmoreImages()

@@ -2003,35 +2003,42 @@ class Product extends MY_Controller
     {
         $imageName = @implode(',', $this->input->post('imgUpload'));
 
-
         $imageNameNew = @explode(',', $imageName);
+        if (extension_loaded('gd') && function_exists('gd_info')) {
+            $s = 0;
+            foreach ($this->input->post('imgUploadUrl') as $imgUrl) {
+                $imagPath = getcwd() . '/images/product/';
+                $savepath = getcwd() . '/images/product/thumb/';
+                $imageNameNew[$s] = preg_replace('/\s+/', '-', $imageNameNew[$s]);
 
-        $s = 0;
-        foreach ($this->input->post('imgUploadUrl') as $imgUrl) {
-            copy($imgUrl, './images/product/' . $imageNameNew[$s]);
-            unlink('server/php/files/' . $imageNameNew[$s]);
-            unlink('server/php/files/thumbnail/' . $imageNameNew[$s]);
+                copy($imgUrl, $imagPath . $imageNameNew[$s]);
 
-            $fileName = $imageNameNew[$s];
-            $imagPath = 'images/product/';
-            $savepath = 'images/product/thumb/';
-            @copy($imagPath . $fileName, $savepath . $fileName);
-            $target_file = 'images/product/thumb/' . $fileName;
-            list($w, $h) = getimagesize($target_file);
-            $option = $this->getImageShape($w, $h, $target_file);
-            $resizeObj = new Resizeimage($target_file);
-            $resizeObj->resizeImage(250, 162, $option);
-            $resizeObj->saveImage('images/product/thumb/' . $fileName, 50);
-            $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
-            $this->ImageCompress($savepath . $fileName, $savepath . $fileName);
+                unlink('server/php/files/thumbnail/' . $imageNameNew[$s]);
+                $fileName = $imageNameNew[$s];
+                @copy("server/php/files/" . $fileName, $savepath . $fileName);
+                @copy("server/php/files/" . $fileName, $imagPath . $fileName);
+                $target_file = $imagPath . $fileName;
+                unlink('server/php/files/' . $imageNameNew[$s]);
 
-            $s++;
+                if (file_exists($target_file) && is_readable($target_file)) {
+                    $size = @getimagesize($target_file);
+                    $w = $size['width'];
+                    $h = $size['height'];
+                    $option = $this->getImageShape($w, $h, $target_file);
+                    $resizeObj = new Resizeimage($target_file);
+                    $resizeObj->resizeImage('250', '200', $option);
+                    $resizeObj->saveImage($savepath . $fileName, 100);
+                    $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
+                    $this->ImageCompress($savepath . $fileName, $savepath . $fileName);
+                } else {
+                    trigger_error('File or permission problems');
+                }
+
+                $s++;
+            }
+        } else {
+            trigger_error('GD extension not loaded');
         }
-
-        //echo $imageName;
-        //echo '<pre>'; print_r($_POST); die;
-
-
 
         $id = $this->input->post('id');
         if ($id != '') {
