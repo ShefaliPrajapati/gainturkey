@@ -47,21 +47,14 @@ class Product extends MY_Controller
         $product_image = $this->product_model->get_all_details_product(PRODUCT_PHOTOS, array('property_id' => $propertyId), $sortArr1);
 
         mkdir('zip-image/' . $propertyId, 0777);
-
         foreach ($product_image->result() as $ProImag) {
             $name = $ProImag->product_image;
-            @copy('./images/product/' . $name, './zip-image/' . $propertyId . '/' . $name);
-        }
-
-        foreach ($product_image->result() as $ProImag) {
-            @unlink('zip-image/' . $propertyId . '/' . $ProImag->product_image);
-            $name = $ProImag->product_image;
-            $data = file_get_contents(base_url().'images/product/'.$ProImag->product_image);
+            $name = preg_replace('/\s+/', '%20', $name);
+            $data = file_get_contents(base_url().'images/product/'.$name);
             $this->zip->add_data($name, $data);
         }
 
         return $this->zip->download('gain-prop-'.$propertyId.'.zip');
-        //return redirect('zip-image/ror-images-' . $propertyId . '.zip');
     }
 
     public function onboarding()
