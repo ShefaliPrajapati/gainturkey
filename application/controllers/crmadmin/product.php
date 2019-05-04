@@ -2016,13 +2016,13 @@ class Product extends MY_Controller
             $imagPath = 'images/product/';
             $savepath = 'images/product/thumb/';
             @copy($imagPath . $fileName, $savepath . $fileName);
-            $target_file = 'images/product/' . $fileName;
+            $target_file = 'images/product/thumb/' . $fileName;
             list($w, $h) = getimagesize($target_file);
             $option = $this->getImageShape($w, $h, $target_file);
             $resizeObj = new Resizeimage($target_file);
             $resizeObj->resizeImage(250, 162, $option);
-            $resizeObj->saveImage('images/product/thumb/' . $fileName, 100);
-//            $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
+            $resizeObj->saveImage('images/product/thumb/' . $fileName, 50);
+            $this->ImageCompress($imagPath . $fileName, $imagPath . $fileName);
             $this->ImageCompress($savepath . $fileName, $savepath . $fileName);
 
             $s++;
