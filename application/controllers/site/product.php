@@ -3084,6 +3084,187 @@ class Product extends MY_Controller
         $this->setErrorMessage('success', 'Brochure Updated Successfully');
         redirect('brochure/' . $prDId);
     }
+
+    public function downloadbrochure()
+    {
+        $this->data['heading'] = 'View Brochure';
+
+        $this->data['prdid'] = $prdid = $this->uri->segment(4, 0);
+
+        $condition = array('id' => $prdid);
+        $brochureDetails = $this->product_model->get_all_details(BROCHURE, $condition);
+
+        $productDetails = $this->product_model->get_all_details(PRODUCT, array('property_id' => $brochureDetails->row()->property_id));
+
+        $propAddress = $this->product_model->get_all_details(PRODUCT_ADDRESS, array('property_id' => $productDetails->row()->id));
+
+        $propImage = $this->product_model->get_all_details(PRODUCT_PHOTOS, array('property_id' => $productDetails->row()->id), array(array('field' => 'imgPriority', 'type' => 'asc')));
+
+        $Property_Type = $this->product_model->get_all_details(PRODUCT_ATTRIBUTE, array('status' => 'Active'));
+
+
+        foreach ($Property_Type->result() as $PropertyType) {
+            if ($productDetails->row()->property_type == $PropertyType->id) {
+                $AttrNameVal = $PropertyType->attr_name;
+            }
+        }
+
+        /* echo '<pre>'; print_r($brochureDetails->result());
+          echo '<pre>'; print_r($productDetails->result());
+          echo '<pre>'; print_r($propAddress->result());
+          die; */
+
+        if ($propImage->row()->product_image != '') {
+            $imgName = $propImage->row()->product_image;
+        } else {
+            $imgName = 'no-image.jpg';
+        }
+
+        $msgprop = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Return On Rentals</title>
+</head>
+<body>
+<div style="max-width: 700px; margin: 0px auto; padding: 8px 15px;">
+    <table style="background: #efefef; padding: 10px; width: 100%; margin: 0px 0px 20px;">
+    <thead>
+<tr>
+<td style="width:35%; vertical-align: top;"><img src="' . base_url() . 'images/product/' . $imgName . '" width="250" ></td>
+
+<td style="width:53%; vertical-align: top;">
+<table width="100%">
+<tr><td colspan="3" style="text-transform: uppercase; font-family: Arial,Helvetica,sans-serif; color: #c70909; font-size: 47px; padding-bottom: 17px; text-align: center; font-weight: bold; line-height:48px;">For Sale</td></tr>
+
+<tr><td colspan="3" style="font-family: Arial,Helvetica,sans-serif; text-align: center; font-weight: bold; font-size: 24px; background:  #000; color: rgb(255, 255, 255); text-transform: capitalize; border-radius: 5px; padding:10px;">$' . $brochureDetails->row()->sale_price . '</td></tr>
+
+<tr><td colspan="3"></td></tr>
+
+<tr>
+    <td width="13%"></td>
+    <td width="74%" style="font-family: Arial,Helvetica,sans-serif; text-align: center; font-weight: bold; font-size: 27px; background: #a6a3a3; color: rgb(255, 255, 255); text-transform: capitalize; border-radius: 5px; padding: 15px;">
+    
+
+    <table style="width: 100%; text-align: center;">
+        <tbody>
+    
+        <tr><td><span>' . $brochureDetails->row()->businessname . '</span></td></tr>
+
+        <tr><td><span style="width: 100%; font-size: 20px; padding: 10px 0px 0px;">' . $brochureDetails->row()->fname . '  ' . $brochureDetails->row()->lname . '</span></td></tr>
+
+        <tr><td><label style="width: 100%;  font-size: 20px; padding: 10px 0px 0px;">' . $brochureDetails->row()->phoneno . '</label></td></tr>
+    
+            </tbody>
+        </table>
+        
+    </td>
+    
+        <td width="13%"></td>
+    
+    </tr>
+
+
+</table>
+
+</td>
+
+</tr>
+
+    </thead>
+    </table>
+
+
+    <table  style="width: 100%; text-align: center;">
+    <tbody>
+    <tr>
+        <td width="10%"></td>
+        <td width="74%" style="font-family: Arial,Helvetica,sans-serif; font-weight: bold; font-size: 24px;line-height: 24px; text-transform:capitalize">Exclusive Turnkey Rental Property for sale</td>
+        <td width="10%"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="font-family: Arial,Helvetica,sans-serif; font-weight: bold; font-size: 21px; line-height: 24px; text-transform:capitalize">Rehabbed, Tenanted, and Property Managed</td>
+        <td></td>
+    </tr>
+
+    </tbody>
+    </table>
+
+
+    <table  style="width: 100%; text-align: center;margin: 20px 0px 0px; border: 1px solid rgb(136, 136, 136); ">
+    <tbody>
+    <tr><td style="font-family: Arial,Helvetica,sans-serif; font-weight: bold; text-transform: capitalize; margin: 0px; padding: 15px 0; font-size: 21px;">' . $propAddress->row()->address . ', ' . ucwords($propAddress->row()->city) . ', ' . ucwords(str_replace('-', ' ', $propAddress->row()->state)) . ' ' . $propAddress->row()->post_code . '</td></tr>
+
+    </tbody>
+    </table>
+
+<table style="width: 100%; margin: 0px; border-left: 1px solid rgb(136, 136, 136); border-bottom: 1px solid rgb(136, 136, 136); border-right: 1px solid rgb(136, 136, 136); font-family: Arial,Helvetica,sans-serif; font-weight: bold; font-size: 17px; text-align: left; padding: 14px 10px;">
+    <tbody>
+    <tr>
+        <td width="19%" style="padding: 5px 9px;">Bedroom(s)</td>
+        <td width="16%" style="color: green; padding: 5px 9px;">' . $productDetails->row()->bedrooms . '</td>
+        <td width="47%" rowspan="8" style="padding: 5px 9px; vertical-align:top;">Description <br> ' . $brochureDetails->row()->description . ' </td>
+    </tr>
+
+       <tr>
+        <td style="padding: 5px 9px;">Bathroom(s)</td>
+        <td style="color: green; padding: 5px 9px;">' . $productDetails->row()->baths . '</td>
+        
+    </tr>
+       <tr>
+        <td style="padding:5px 9px;">Square Feet</td>
+        <td style="color: green; padding:5px 9px;">' . $productDetails->row()->sq_feet . '</td>
+        
+    </tr>
+       <tr>
+        <td style="padding: 5px 9px;">Year Built</td>
+        <td style="color: green; padding:5px 9px;">' . $productDetails->row()->built . '</td>
+        
+    </tr>
+       <tr>
+        <td style="padding:5px 9px;">Type</td>
+        <td style="color: green; padding: 5px 9px;">' . $AttrNameVal . '</td>
+        
+    </tr>
+
+      <tr>
+        <td style="padding: 5px 9px;">Lot Size</td>
+        <td style="color: green; padding:5px 9px;">' . $productDetails->row()->lot_size . '</td>
+        
+    </tr>
+       <tr>
+        <td style="padding: 5px 9px;">Rental Amount</td>
+        <td style="color: green; padding:5px 9px;">$' . $productDetails->row()->monthly_rent . '</td>
+        
+    </tr>
+
+
+      <tr>
+        <td style="padding:5px 9px;">Tax per year</td>
+        <td style="color: green; padding: 5px 9px;">$' . $productDetails->row()->property_tax . '</td>
+        
+    </tr>
+       
+
+    </tbody>
+    </table>
+
+
+    <table  style="width: 100%; text-align: center;">
+    <tbody>
+    <tr><td style="font-family: Arial,Helvetica,sans-serif; color: #000000; font-weight: bold; padding-top: 15px; font-size: 27px;text-transform:capitalize">If Interested, Give Us a Call</td></tr>
+    <tr><td style="font-family: Arial,Helvetica,sans-serif; font-weight: bold; font-size: 21px; text-transform:capitalize"><span style="background: none repeat scroll 0% 0% rgb(0, 0, 0); color: rgb(255, 255, 255); font-size: 30px; line-height: 71px; padding: 8px 18px; border-radius: 4px;">' . $brochureDetails->row()->phoneno . '</span></td></tr>
+
+    </tbody>
+    </table>
+
+    </div>
+</body>
+</html>';
+        $this->data['ViewList'] = $msgprop;
+        $this->load->view('site/product/view_brochure_down', $this->data);
+    }
 }
 
 /*End of file product.php */

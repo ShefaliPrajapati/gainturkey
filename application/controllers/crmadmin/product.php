@@ -1944,6 +1944,13 @@ class Product extends MY_Controller
 
     public function popup_drag()
     {
+        $files = glob('server/php/files/*'); // get all file names present in folder
+        foreach($files as $file){ // iterate files
+            if(is_file($file)) {
+                unlink($file); // delete the file
+            }
+        }
+
         $id = $this->uri->segment(5);
         $detailsSold = $this->product_model->get_all_details(RESERVED_INFO, array('id' => $id));
         $data['type'] = $this->uri->segment(4);
@@ -2335,7 +2342,7 @@ class Product extends MY_Controller
         //$ddd =htmlentities($template_values['news_descrip'],null,'UTF-8');
         $header .="Content-Type: text/plain; charset=ISO-8859-1\r\n";
 
-        $message .= '<!DOCTYPE HTML>
+        $message = '<!DOCTYPE HTML>
 						<html>
 						<head>
 						<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
