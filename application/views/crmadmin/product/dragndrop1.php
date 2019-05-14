@@ -24,8 +24,20 @@
     <script>
         $(document).ready(function () {
 
-            $(".cboxClose1").click(function () {
-                $("#cboxOverlay,#colorbox").hide();
+            $("#cboxOverlay, .cboxClose1").click(function () {
+                $('#cboxLoadingGraphic').css('display', 'block');
+                $('#cboxLoadingOverlay').css('display', 'block');
+                $.ajax({
+                    type: 'GET',
+                    url: baseURL+'crmadmin/product/display_product_list_ajax/all',
+                    success: function(response)
+                    {
+                        var newDoc = document.open("text/html", "replace");
+                        newDoc.write(response);
+                        newDoc.close();
+                        $("#cboxOverlay,#colorbox").hide();
+                    }
+                });
             });
 
             $(".popup_dragndrop1").colorbox({
@@ -68,8 +80,8 @@
 <body>
 
 <div class="container">
-
-
+    <div id="cboxLoadingOverlay" style="float: left; display: none;"></div>
+    <div id="cboxLoadingGraphic" style="float: left; display: none;"></div>
     <!-- The file upload form used as target for the file upload widget -->
     <form id="fileupload" name="fileuploadform" action="crmadmin/product/popup_upload" method="POST"
           enctype="multipart/form-data">
@@ -102,6 +114,7 @@
 
                 <button onClick="imageupload()" style="float:right; margin-right:50px;" class="btn-success">Continue
                 </button>
+                <div id="cboxClose" class="cboxClose1" style="margin-right: 26px;margin-bottom: 13px;">close</div>
                 <!-- The global file processing state -->
                 <span class="fileupload-process"></span>
             </div>

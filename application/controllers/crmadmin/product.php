@@ -129,6 +129,101 @@ class Product extends MY_Controller
         }
     }
 
+    public function display_product_list_ajax()
+    {
+        //echo $this->checkLogin('CA'); die;
+        if ($this->checkLogin('CA') == '') {
+            //echo '<pre>'.'hello'; print_r($_POST); die;
+            redirect('deals_crm');
+        } else {
+            $this->data['urlState'] = $urlState = $this->uri->segment(4);
+            if ($this->session->userdata('ror_crm_session_admin_type') == 'main') {
+                if ($urlState == 'all') {
+                    $table = RESERVED_INFO;
+                    $whereCnd = array();
+                    //$whereCnd = array('p.sold_admin_name' => $this->session->userdata('ror_crm_session_admin_name'));
+                } elseif ($urlState == 'completed') {
+                    $table = RESERVED_INFO;
+                    $whereCnd = array();
+                    //$whereCnd = array('ps.invoice_status'=>'complete','p.sold_admin_name' => $this->session->userdata('ror_crm_session_admin_name'));
+                } elseif ($urlState == 'cancelled') {
+                    $table = CANCELLED;
+                    $whereCnd = array();
+                    //$whereCnd = array('p.sold_admin_name' => $this->session->userdata('ror_crm_session_admin_name'));
+                } elseif ($urlState == 'swapped') {
+                    $table = SWAPPED;
+                    $whereCnd = array();
+                    //$whereCnd = array('p.sold_admin_name' => $this->session->userdata('ror_crm_session_admin_name'));
+                } else {
+                    $whereCnd=array('pa.state' => $urlState);
+                    $table = RESERVED_INFO;
+                    //$whereCnd = array('pa.state'=>$urlState,'p.sold_admin_name' => $this->session->userdata('ror_crm_session_admin_name'));
+                }
+            } else {
+                if ($urlState == 'all') {
+                    $table = RESERVED_INFO;
+                    $whereCnd = array();
+                } elseif ($urlState == 'completed') {
+                    $table = RESERVED_INFO;
+                    $whereCnd = array('ps.invoice_status'=>'complete');
+                } elseif ($urlState == 'cancelled') {
+                    $table = CANCELLED;
+                    $whereCnd = array();
+                } elseif ($urlState == 'swapped') {
+                    $table = SWAPPED;
+                    $whereCnd = array();
+                } else {
+                    $table = RESERVED_INFO;
+                    $whereCnd = array('pa.state'=>$urlState);
+                }
+            }
+
+            if ($this->session->userdata('fieldType')!='' && $this->session->userdata('fieldVal')!='') {
+                $newCnd = array($this->session->userdata('fieldType') => $this->session->userdata('fieldVal'));
+                $admindata = array('fieldType' => '','fieldVal' => '');
+                $this->session->unset_userdata($admindata);
+            }
+            /* echo $table; echo "<br/>";
+            print_r($whereCnd); echo "<br/>";
+            print_r($newCnd); echo "<br/>";
+            die; */
+            //$whereCond = ' and '.$fieldType.' like  "%'.trim(addslashes($fieldVal)).'%"';
+
+            $this->data['heading'] = 'Property List';
+            if ($urlState == 'cancelled' || $urlState == 'swapped') {
+                $this->data['deals_pre']=$this->product_model->get_deals_prev($this->checkLogin('CA'));
+                $this->data['sourcer']=$this->product_model->get_sourcer($this->checkLogin('CA'));
+                //print_r($this->data['deals_pre'][0]);die;
+                $deals_prev=array();
+                foreach ($this->data['deals_pre'][0] as $x=>$val) {
+                    array_push($deals_prev, $val);
+                }
+                foreach ($this->data['sourcer'][0] as $x=>$val) {
+                    array_push($deals_prev, $val);
+                }
+                $this->data['productList'] = $this->product_model->view_product_details_cancel($table, $whereCnd, $newCnd, unserialize($deals_prev[0]) ? : null, unserialize($deals_prev[1]) ? : null);
+            } else {
+                //	$table => RESERVED_INFO
+                $this->data['deals_pre']=$this->product_model->get_deals_prev($this->checkLogin('CA'));
+                $this->data['sourcer']=$this->product_model->get_sourcer($this->checkLogin('CA'));
+                //print_r($this->data['deals_pre'][0]);die;
+                $deals_prev=array();
+                foreach ($this->data['deals_pre'][0] as $x=>$val) {
+                    array_push($deals_prev, $val);
+                }
+                foreach ($this->data['sourcer'][0] as $x=>$val) {
+                    array_push($deals_prev, $val);
+                }
+                //print_r(unserialize($deals_prev[1]));die;
+                //print_r(unserialize($deals_prev[0]));die;
+                $this->data['productList'] = $this->product_model->view_product_details1($table, $whereCnd, $newCnd, unserialize($deals_prev[0]), unserialize($deals_prev[1]));
+            }
+            #echo "<pre>"; print_r($this->data['productList']->result()); die;
+             $this->load->view('crmadmin/product/display_product_list', $this->data);
+            die;
+        }
+    }
+
     public function display_property_popup()
     {
         $id = $this->uri->segment(4);
@@ -1945,8 +2040,8 @@ class Product extends MY_Controller
     public function popup_drag()
     {
         $files = glob('server/php/files/*'); // get all file names present in folder
-        foreach($files as $file){ // iterate files
-            if(is_file($file)) {
+        foreach ($files as $file) { // iterate files
+            if (is_file($file)) {
                 unlink($file); // delete the file
             }
         }
