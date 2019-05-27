@@ -114,6 +114,11 @@ $(document).ready(function(){
                                 <th class="tip_top">
                                     Sale Date
                                 </th>
+                                <?php if ($this->uri->segment(4, 0) == 'cancelled') { ?>
+                                    <th class="tip_top">
+                                        Action
+                                    </th>
+                                <?php } ?>
                             </tr>
                             </thead>
                             <tbody>
@@ -178,6 +183,11 @@ $(document).ready(function(){
                                                 <td class="center">
                                                     <?php echo date('m/d/Y', strtotime($row->dateAdded)); ?>
                                                 </td>
+                                                <?php if ($this->uri->segment(4, 0) == 'cancelled') { ?>
+                                                <td>
+                                                    <span><a class="action-icons c-delete" href="javascript:confirm_delete('crmadmin/product/delete_cancelled_product/<?php echo $row->id;?>')" title="Delete">Delete</a></span>
+                                                </td>
+                                                <?php } ?>
                                                 <input type="hidden" value="<?php echo $row->id; ?>"
                                                        id="reserved_Id_<?php echo $i; ?>"/>
                                             </tr>

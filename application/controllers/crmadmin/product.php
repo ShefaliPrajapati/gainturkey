@@ -1688,6 +1688,19 @@ class Product extends MY_Controller
         }
     }
 
+    public function delete_cancelled_product()
+    {
+        if ($this->checkLogin('CA') == '') {
+            redirect('deals_crm');
+        } else {
+            $id = $this->uri->segment(4, 0);
+            $condition = array('id' => $id);
+            $this->product_model->commonDelete(CANCELLED, $condition);
+            $this->setErrorMessage('success', 'Property deleted successfully');
+            redirect('crmadmin/product/display_product_list/cancelled');
+        }
+    }
+
     /**
      *
      * This function delete the affiliate product record from db
@@ -2292,9 +2305,16 @@ class Product extends MY_Controller
     {
         $dataArr = array();
         $rowid = $this->input->post('popup_id');
+
+        //InfusionSoft updating record as complete - added by Matthew Wood
+        $this->load->library('infusionsoft/sdk/isdk');
+
+        $is_result =  $this->db->query("SELECT *,p.entity_name as prop_entity_name FROM fc_property_reserved_info as p LEFT JOIN popup_status as ps ON ps.reserved_id=p.id WHERE ps.id = '".$rowid."'");
+
         if ($this->input->post('invoice_status') == 'complete') {
             $dataArr =  array('admin_popup_status' => '1','completed_date'=>date('Y-m-d H:i:s'));
             $this->sendCompleteMailAdmin($this->input->post('reserved_id'));
+            $this->product_model->edit_product(['property_status'=>'Sold'], ['id' => $is_result->row()->property_id]);
         }
 
 
@@ -2303,10 +2323,6 @@ class Product extends MY_Controller
         } else {
             $this->product_model->commonInsertUpdate(STATUS, 'update', array('popup_id'), $dataArr, array('id' => $rowid));
 
-            //InfusionSoft updating record as complete - added by Matthew Wood
-            $this->load->library('infusionsoft/sdk/isdk');
-
-            $is_result =  $this->db->query("SELECT *,p.entity_name as prop_entity_name FROM fc_property_reserved_info as p LEFT JOIN popup_status as ps ON ps.reserved_id=p.id WHERE ps.id = '".$rowid."'");
 
             $app = new iSDK;
             if ($app->cfgCon("xi178")) {

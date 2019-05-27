@@ -2298,6 +2298,7 @@ class Product extends MY_Controller
         }
         echo json_encode($returnStr);
     }
+
     public function ReservationForm_Submit()
     {
         $product_source_details = $this->product_model->get_all_details(SOURCE_INFO, array('property_id'=>$this->input->post('property_id')));
@@ -2311,7 +2312,7 @@ class Product extends MY_Controller
             
         $datestring = "%Y-%m-%d %H:%i:%s";
         $time = time();
-        $dataArr1=array('property_status'=>'Sold','property_display'=>'1','modified' => mdate($datestring, $time));
+        $dataArr1=array('property_status'=>'Under Contract','property_display' => '1','modified' => mdate($datestring, $time));
         $condition1=array('id'=>$_POST['property_id']);
         $id = $this->checkLogin('U');
         $this->product_model->edit_product($dataArr1, $condition1);
