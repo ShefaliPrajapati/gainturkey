@@ -230,36 +230,38 @@ class Product extends MY_Controller
         //echo $id;die;
         $this->data['display'] = $this->uri->segment(5);
         $this->data['uri6'] = $this->uri->segment(6);
-        $detailsSold= $this->product_model->get_all_details(RESERVED_INFO, array('id'=>$id));
-        if ($detailsSold->num_rows() == 0) {
-            $buyerDetails = $this->product_model->get_all_details(CANCELLED, array('id'=>$id));
+
+        if ($this->data['uri6'] == 'cancelled') {
+            $buyerDetails = $this->product_model->get_all_details(CANCELLED, array('id' => $id));
+        } else if ($this->data['uri6'] == 'swapped') {
+            $buyerDetails = $this->product_model->get_all_details(SWAPPED, array('id' => $id));
         } else {
-            $buyerDetails = $detailsSold;
+            $buyerDetails = $this->product_model->get_all_details(RESERVED_INFO, array('property_id' => $id));
         }
-        //print_r($buyerDetails); exit;
+
         // echo '<pre>'; print_r($buyerDetails->result_array());die;
 
         $this->data['buyer_info'] = $buyerDetails;
         $sortArr1 = array('field'=>'id','type'=>'desc');
         $sortArr = array($sortArr1);
-        $this->data['admin_notes'] = $this->product_model->get_all_details(NOTES, array('reserved_id' => $id), $sortArr);
-        $this->data['admin_status'] = $this->product_model->get_all_details(STATUS, array('reserved_id' => $id));
-        $this->data['popup_img'] = $this->product_model->get_all_details('notes_image', array('reserved_id' => $id));
+        $this->data['admin_notes'] = $this->product_model->get_all_details(NOTES, array('reserved_id' => $buyerDetails->row()->id), $sortArr);
+        $this->data['admin_status'] = $this->product_model->get_all_details(STATUS, array('reserved_id' => $buyerDetails->row()->id));
+        $this->data['popup_img'] = $this->product_model->get_all_details('notes_image', array('reserved_id' => $buyerDetails->row()->id));
         $this->data['resCode'] = $this->product_model->get_all_details(ATTRIBUTE, array('status' => 'Active'));
         $this->data['RentalState'] = $this->product_model->get_all_details(STATE_TAX, array('status'=>'Active'));
-            
+
         $SignVal = $this->product_model->get_all_details(SIGNTEMPLATE, array('reserve_id'=>$buyerDetails->row()->id,'property_id'=>$buyerDetails->row()->property_id,'user_id'=>$buyerDetails->row()->user_id));
         //echo '<pre>'; print_r($SignVal->result_array());die;
-        
-        $this->data['alertLists'] = $this->product_model->alert_full_info($id);
+
+        $this->data['alertLists'] = $this->product_model->alert_full_info($buyerDetails->row()->id);
         if ($this->data['display']=="view-alert") {
             $this->data['alertId'] = $this->uri->segment(7);
             $this->data['alertInfo'] = $this->product_model->alert_info($this->data['alertId']);
         }
         $this->data['SignStatus'] = $SignVal->row()->sign_status;
         $this->data['SignID'] = $SignVal->row()->id;
-            
-            
+
+
         $this->load->view('crmadmin/product/display_product_list_general', $this->data);
     }
 
@@ -2501,15 +2503,15 @@ class Product extends MY_Controller
     public function cancelProperty()
     {
         $id = $this->input->post('id');
-        $reservedDetails = $this->product_model->get_all_details(RESERVED_INFO, array('id' => $id));
+        $reservedDetails = $this->product_model->get_all_details(RESERVED_INFO, array('property_id' => $id));
         $this->product_model->simple_insert(CANCELLED, $reservedDetails->row_array());
-        $this->product_model->commonDelete(RESERVED_INFO, array('id'=>$id));
+        $this->product_model->commonDelete(RESERVED_INFO, array('property_id' => $id));
         $this->product_model->update_details(PRODUCT, array('property_status' => 'Active','property_display'=>'0'), array('id' => $reservedDetails->row()->property_id));
         //InfusionSoft updating record as canceled - added by Matthew Wood
         $this->load->library('infusionsoft/sdk/isdk');
 
 
-        $is_result =  $this->db->query("SELECT * FROM fc_property_cancelled order by id desc limit 1");
+        $is_result =  $this->db->query("SELECT * FROM ".CANCELLED." order by id desc limit 1");
 
         $app = new iSDK;
         if ($app->cfgCon("xi178")) {
@@ -2627,13 +2629,13 @@ class Product extends MY_Controller
     public function swappedProperty()
     {
         $id = $this->input->post('id');
-        $reservedDetails = $this->product_model->get_all_details(RESERVED_INFO, array('id' => $id));
+        $reservedDetails = $this->product_model->get_all_details(RESERVED_INFO, array('property_id' => $id));
         $this->product_model->simple_insert(SWAPPED, $reservedDetails->row_array());
-        $this->product_model->commonDelete(RESERVED_INFO, array('id'=>$id));
+        $this->product_model->commonDelete(RESERVED_INFO, array('property_id'=>$id));
         $this->product_model->update_details(PRODUCT, array('property_status' => 'Active','property_display'=>'0'), array('id' => $reservedDetails->row()->property_id));
         //InfusionSoft updating record as swapped - added by Matthew Wood
         $this->load->library('infusionsoft/sdk/isdk');
-        $is_result =  $this->db->query("SELECT * FROM fc_property_swapped order by id desc limit 1");
+        $is_result =  $this->db->query("SELECT * FROM ".SWAPPED." order by id desc limit 1");
 
         $app = new iSDK;
         if ($app->cfgCon("xi178")) {

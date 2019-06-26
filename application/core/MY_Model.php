@@ -103,11 +103,12 @@ class My_Model extends CI_Model
      * Simple function for inserting data into a table
      * @param String $table
      * @param Array $data
+     * @return
      */
     public function simple_insert($table = '', $data = '')
     {
         //echo "<pre>";print_r($data);die;
-        $this->db->insert($table, $data);
+        return $this->db->insert($table, $data);
     }
 
     public function simple_copy($tableone = '', $tabletwo = '', $condition = '')
