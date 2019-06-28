@@ -174,8 +174,8 @@ class Product_model extends My_Model
             $this->db->like($newcondi);
         }
         $this->db->order_by('p.change_time', 'desc');
-        //$this->db->group_by('p.property_id');
-        
+        $this->db->group_by('p.id');
+
         $productList = $this->db->get();
         //echo $this->db->last_query(); die;
         return $productList;
@@ -816,7 +816,8 @@ class Product_model extends My_Model
         $this->db->group_by('email');
         return $this->db->get_where($table, $condition, $data);
     }
-    public function user_count_less($table='', $condition='')
+
+    public function user_count_less($table='', $condition='', $data)
     {
         $this->db->where($condition);
         return $this->db->update($table, $data);
@@ -1107,5 +1108,11 @@ class Product_model extends My_Model
         $this->db->where('a.alert_status !=', 'Completed');
         $result = $this->db->get();
         return $result->row()->counts;
+    }
+
+    public function insertData($table, $data)
+    {
+        $this->db->insert($table, $data);
+        return $this->db->insert_id();
     }
 }

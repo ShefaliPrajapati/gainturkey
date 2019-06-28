@@ -236,10 +236,8 @@ class Product extends MY_Controller
         } else if ($this->data['uri6'] == 'swapped') {
             $buyerDetails = $this->product_model->get_all_details(SWAPPED, array('id' => $id));
         } else {
-            $buyerDetails = $this->product_model->get_all_details(RESERVED_INFO, array('property_id' => $id));
+            $buyerDetails = $this->product_model->get_all_details(RESERVED_INFO, array('id' => $id));
         }
-
-        // echo '<pre>'; print_r($buyerDetails->result_array());die;
 
         $this->data['buyer_info'] = $buyerDetails;
         $sortArr1 = array('field'=>'id','type'=>'desc');
@@ -2500,12 +2498,28 @@ class Product extends MY_Controller
         }
     }
 
+    private function changeAllPropertyDocument($reservedInfo, $replaceId)
+    {
+        $this->product_model->user_count_less(NOTES,
+            array('reserved_id' => $reservedInfo->row()->id),
+            ['reserved_id' => $replaceId]);
+        $this->product_model->user_count_less(STATUS,
+            array('reserved_id' => $reservedInfo->row()->id),
+            ['reserved_id' => $replaceId]);
+        $this->product_model->user_count_less(NOTESIMAGE,
+            array('reserved_id' => $reservedInfo->row()->id),
+            ['reserved_id' => $replaceId]);
+        $this->product_model->user_count_less(SIGNTEMPLATE,
+            array('reserve_id'=> $reservedInfo->row()->id,'property_id'=> $reservedInfo->row()->property_id,'user_id'=> $reservedInfo->row()->user_id),
+            ['reserved_id' => $replaceId]);
+    }
+
     public function cancelProperty()
     {
         $id = $this->input->post('id');
-        $reservedDetails = $this->product_model->get_all_details(RESERVED_INFO, array('property_id' => $id));
-        $this->product_model->simple_insert(CANCELLED, $reservedDetails->row_array());
-        $this->product_model->commonDelete(RESERVED_INFO, array('property_id' => $id));
+        $reservedDetails = $this->product_model->get_all_details(RESERVED_INFO, array('id' => $id));
+        $this->product_model->insertData(CANCELLED, $reservedDetails->row_array());
+        $this->product_model->commonDelete(RESERVED_INFO, array('id' => $id));
         $this->product_model->update_details(PRODUCT, array('property_status' => 'Active','property_display'=>'0'), array('id' => $reservedDetails->row()->property_id));
         //InfusionSoft updating record as canceled - added by Matthew Wood
         $this->load->library('infusionsoft/sdk/isdk');
@@ -2629,9 +2643,9 @@ class Product extends MY_Controller
     public function swappedProperty()
     {
         $id = $this->input->post('id');
-        $reservedDetails = $this->product_model->get_all_details(RESERVED_INFO, array('property_id' => $id));
-        $this->product_model->simple_insert(SWAPPED, $reservedDetails->row_array());
-        $this->product_model->commonDelete(RESERVED_INFO, array('property_id'=>$id));
+        $reservedDetails = $this->product_model->get_all_details(RESERVED_INFO, array('id' => $id));
+        $this->product_model->insertData(SWAPPED, $reservedDetails->row_array());
+        $this->product_model->commonDelete(RESERVED_INFO, array('id'=>$id));
         $this->product_model->update_details(PRODUCT, array('property_status' => 'Active','property_display'=>'0'), array('id' => $reservedDetails->row()->property_id));
         //InfusionSoft updating record as swapped - added by Matthew Wood
         $this->load->library('infusionsoft/sdk/isdk');

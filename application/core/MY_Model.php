@@ -107,8 +107,8 @@ class My_Model extends CI_Model
      */
     public function simple_insert($table = '', $data = '')
     {
-        //echo "<pre>";print_r($data);die;
-        return $this->db->insert($table, $data);
+        $this->db->insert($table, $data);
+        return $this->db->insert_id();
     }
 
     public function simple_copy($tableone = '', $tabletwo = '', $condition = '')
